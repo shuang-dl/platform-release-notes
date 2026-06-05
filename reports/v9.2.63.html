@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.63 — Help Center Impact</title>
+  <style>
+    :root { --border: #eaeaea; --muted: #555; --bg-soft: #fafafa; }
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; line-height: 1.5; }
+    h1 { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 0.25rem; }
+    h2 { margin-top: 2.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.4rem; }
+    h3 { margin-top: 1.5rem; margin-bottom: 0.3rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.65rem 0.55rem; vertical-align: top; text-align: left; font-size: 0.92rem; }
+    th { background: var(--bg-soft); font-weight: 600; }
+    td.linear { white-space: nowrap; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.85rem; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #5a5a5a; font-weight: 600; }
+    .beta { color: #6b3aa3; font-weight: 600; }
+    .high-impact { color: #b32a2a; font-weight: 600; }
+    .article-link { display: block; padding: 4px 0; }
+    .article-link .id { color: #888; font-family: ui-monospace, monospace; font-size: 0.82em; }
+    code { background: #f4f4f4; padding: 1px 5px; border-radius: 3px; font-size: 0.86em; }
+    .note { font-size: 0.86em; color: #444; margin-top: 0.45rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: var(--bg-soft); border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: var(--muted); align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: var(--muted); font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .suggested { background: #fff8ee; border-left: 4px solid #f59e0b; padding: 0.9rem 1.1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
+    .suggested h3 { margin-top: 0; }
+    .alert-bar { background: #fff1f1; border-left: 4px solid #b32a2a; padding: 0.9rem 1.1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
+    .keywords { font-size: 0.85em; color: #6a6a6a; margin-top: 0.4rem; }
+    .skipped { background: #f7f7f7; border-left: 4px solid #c7c7c7; padding: 0.75rem 1.1rem; margin: 0.6rem 0; border-radius: 0 6px 6px 0; font-size: 0.92em; }
+    p.meta { color: var(--muted); font-size: 0.95em; }
+  </style>
+</head>
+<body>
+
+  <h1>Release v9.2.63 — 2026-05-26</h1>
+  <p class="meta">Source: Slack post in <a href="https://doorloop.slack.com/archives/C0B4GTX1SBG">#platform-release-notes</a> · posted 2026-05-26 10:49 EDT · Bot <code>DevOpsNotifications</code></p>
+
+  <h2>Summary</h2>
+  <p>
+    Release v9.2.63 ships <strong>14 changes</strong> across PM Operations, Onboarding &amp; Imports, Tenant Experience &amp; Payments, and Leads &amp; Leasing. The headline customer-impact item is <strong>Showings is now restricted to Pro and Premium plans</strong> — Starter customers will no longer see the showings nav, screens, prospect cards, or comms-center action (L2L-1141). Other customer-facing work: the AI Communications Center auto-responder ships a real settings UI with a first-time dialog and AI-add-on paywall (PMO-1010); the AI tenants resolution feature gets re-platformed as a new <em>Concierge Agent</em> card under Settings → AI Agents (PMO-602); income verification gets a new adoption popup at the end of the unit-listing wizard (L2L-890) and a friendlier translation pass; the rent-payments overview now carries a dismissible "share feedback" banner (TEN-368); and a couple of bug-fix polish items hit work-order email status labels (PMO-998) and property-import owner matching (ACT-412). The remaining 7 items are internal refactors, server-side APIs, schema validation, telemetry, and tracking work — no Help Center impact.
+  </p>
+
+  <div class="alert-bar">
+    <strong>⚠️ High-impact item:</strong> <a href="https://linear.app/doorloop/issue/L2L-1141">L2L-1141</a> gates the entire <strong>Showings</strong> feature behind Pro/Premium. <em>Every</em> published Showings article needs a tier-gate notice. See the Leads &amp; Leasing section below.
+  </div>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (14)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (4)</span>
+    <span class="chip" data-area="onboarding">Onboarding &amp; Imports (4)</span>
+    <span class="chip" data-area="tenant">Tenant Experience &amp; Payments (4)</span>
+    <span class="chip" data-area="leads">Leads &amp; Leasing (2)</span>
+  </div>
+
+  <!-- ========== PM OPERATIONS ========== -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">4 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/PMO-602">PMO-602</a></td>
+          <td>AI Policies → Concierge Agent: new "AI Agents" Settings section</td>
+          <td class="original">add AI tenants resolution card in Company section</td>
+          <td>The AI tenants resolution feature is being re-platformed as the <strong>Concierge Agent</strong> (working name). A new <em>AI Agents</em> section now appears in Settings → General Settings (above Personal), containing a single <em>AI tenants resolution</em> card that links to the policies page. The drawer item under Communications Center is removed. URL changes from <code>/communications-center/ai-policies</code> → <code>/ai-agents/concierge-agent</code>. New <code>aiPolicies</code> permission added to User Roles. Behind the <code>AIPolicies</code> flag.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/13917833-add-your-company-specific-policies-to-the-tenant-portal-ai-assistant">Add Your Company Specific Policies to the Tenant Portal AI Assistant <span class="id">#13917833</span></a>
+            <p class="note"><strong>Likely update needed:</strong> Update the navigation steps: AI policies now live under <em>Settings → AI Agents → AI tenants resolution</em>, not under Communications Center. Note the new <em>Concierge Agent</em> permission in User Roles. If the article references the old URL, update it. Hold publishing renames until the final marketing name is decided (still TBD per the ticket).</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-106">TEN-106</a></td>
+          <td>Discovery Component wizards ported into the monorepo</td>
+          <td class="original">TEN-106: port discovery wizards into monorepo (server + backoffice)</td>
+          <td>Backoffice (DoorWatch) gains a wizard editor so internal teams can configure in-app discovery popups (center or side variant, up to 4 steps each with picture/title/content, status options, redirect link). PostHog events <code>discovery_component_view</code> and <code>discovery_component_completed</code> instrument every step. End-customer impact only materializes when a wizard is shipped to them — Phase-1 plumbing only.</td>
+          <td><span class="internal">INTERNAL TOOLING — no Help Center change today</span>
+            <p class="note">When a specific discovery wizard goes live in DoorLoop, a "What's New" article may make sense for that wizard's topic — not for the underlying engine.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/PMO-998">PMO-998</a></td>
+          <td>Work order emails now show translated status labels (not <code>IN_PROGRESS</code>)</td>
+          <td class="original">Fixed work order email preview status label formatting to display consistent task status labels in both user and vendor email templates.</td>
+          <td>Work-order emails to both the assigned user and the vendor previously rendered the raw status enum (<code>IN_PROGRESS</code>, <code>NOT_STARTED</code>, <code>RECEIVED</code>) instead of the translated label ("In progress", "Not started", "Received"). The fix translates the status at the email-service boundary so both the preview dialog and the actual sent emails use human-readable labels.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14787357-assign-a-work-order-to-a-vendor">Assign a Work Order to a Vendor <span class="id">#14787357</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/10642782-create-a-work-order-from-a-tenant-request-as-a-subtask">Create a Work Order From a Tenant Request as a Subtask <span class="id">#10642782</span></a>
+            <p class="note"><strong>Likely update needed:</strong> If any work-order article screenshots email previews showing raw enum strings (e.g. <code>IN_PROGRESS</code>), refresh them to show the translated labels. Otherwise no copy change needed — this is a corrective fix.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/PMO-1010">PMO-1010</a></td>
+          <td>AI Auto-Responder: real settings UI, first-time dialog, and AI add-on paywall</td>
+          <td class="original">FTUE dialog for the AI auto-responder plus settings UI to enable/disable auto-responses for new and ongoing conversations.</td>
+          <td>The Communications-Center AI auto-responder gets its rollout layer. Two new toggles in Comms-Center settings: enable auto-responses for <em>new conversations</em> and for <em>ongoing conversations</em> (independent). A first-time experience dialog appears when a PM lands on the SMS view and these toggles haven't been set yet — Save to persist their picks, Skip to set both off. A paywall renders for DbTenants without the AI add-on. The old single <code>aiAutoResponderEnabled</code> field is replaced; <code>DISABLED_BY_USER</code> status renamed to <code>DISABLED</code>. Only applies to TENANT-recipient conversations today; vendor/owner/prospect see the new comms-center layout but no AI surfaces.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/12754748-review-all-tenant-conversations-with-the-doorloop-ai-assistant-using-the-communications-center">Review All Tenant Conversations With the DoorLoop AI Assistant, Using the Communications Center <span class="id">#12754748</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/9061551-communications-center-overview">Communications Center Overview <span class="id">#9061551</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/12418538-what-s-new-the-built-in-ai-assistant-is-here-to-handle-bills-listings-and-tenant-messages-version-7-0-0">What's New: The built-in AI Assistant — Version 7.0.0 <span class="id">#12418538</span></a>
+            <p class="note"><strong>Likely update needed:</strong> Add a new section to the AI Assistant comms-center article documenting the two new toggles (Enable for new conversations / Enable for ongoing conversations), the first-time experience dialog, and the AI-add-on requirement (paywall). Note that only tenant conversations get AI surfaces today; vendor/owner/prospect conversations see the new layout but no AI features.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== ONBOARDING & IMPORTS ========== -->
+  <section class="area-section" data-area="onboarding">
+    <h2>Onboarding &amp; Imports <span class="count">4 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-412">ACT-412</a></td>
+          <td>Property import: case-insensitive owner matching + descriptive error</td>
+          <td class="original">Owner matching during property imports is now case-insensitive and ignores extra whitespace for more reliable matches.</td>
+          <td>When importing properties via <code>POST /api/import/properties</code>, owner-name matching is now case- and whitespace-insensitive ("Company", "company", " Company " all match). Rows that genuinely don't match any existing owner and don't carry contact info (email/phone) now emit a clear row-level error explaining the cause — instead of the misleading <code>"phones and emails cannot both be empty"</code> validator error.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/6311472-add-a-property-owner">Add a Property Owner <span class="id">#6311472</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/9929964-delete-a-property-owner">Delete a Property Owner <span class="id">#9929964</span></a>
+            <p class="note"><strong>Likely update needed:</strong> In any import-related article, add a note that owner name matching is case- and whitespace-insensitive, and that rows referencing an unknown owner must include an email or phone to create one during import. Otherwise the import row will fail with a clear error message.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-558">ACT-558</a></td>
+          <td>Audit s3-activation Playwright spec ownership</td>
+          <td class="original">Updated E2E ownership mappings (CODEOWNERS/MODULE_OWNERS), added squad assignments and a no-owner rule for shared specs.</td>
+          <td>Internal cleanup: moves Playwright tests sitting in the wrong squad folder (e.g. a task-maintenance-types spec under Activation) to the correct owning squad's folder, plus updates to CODEOWNERS/MODULE_OWNERS. No product behavior change.</td>
+          <td><span class="internal">INTERNAL — no Help Center change</span></td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-371">ACT-371</a></td>
+          <td>Get Started V2: validate wizard payload server-side via Zod schema</td>
+          <td class="original">Added comprehensive validation tests for wizard data schemas (enums, dates, required fields) and new unit tests for launch/draft behaviors; updated UI tests to use dynamic future launch dates.</td>
+          <td>Adds a strict <code>WizardDataSchema</code> (Zod) for the Get Started V2 wizard payload — banks, properties (with nested units + co-tenants), owners, owner groups, vendors, launch mode and dates. The server now <code>safeParse</code>s the payload on save; client-side field renames will be caught immediately instead of silently producing empty addresses.</td>
+          <td><span class="internal">INTERNAL — no Help Center change</span></td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-600">ACT-600</a></td>
+          <td>Get Started V2: remove dead <code>introductionStartedAt</code> server-managed key</td>
+          <td class="original">Modified how the introduction started state is handled, allowing it to be updated instead of remaining static.</td>
+          <td>Removes an unused <code>introductionStartedAt</code> entry from the Get Started V2 server-managed events list. The <code>GET_STARTED_V2_INTRODUCTION_STARTED</code> PostHog event continues to fire (gated by the same <code>startedAt</code> claim as today). Internal cleanup, no user-facing change.</td>
+          <td><span class="internal">INTERNAL — no Help Center change</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== TENANT EXPERIENCE & PAYMENTS ========== -->
+  <section class="area-section" data-area="tenant">
+    <h2>Tenant Experience &amp; Payments <span class="count">4 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-64">TEN-64</a></td>
+          <td>Tenant Portal: new password-change + password-verification server endpoints</td>
+          <td class="original">Added password change and password verification endpoints to the authentication module.</td>
+          <td>Adds two new APIs to the Tenant Portal authentication module: confirm-password and change-email/password. Server-only this release — paired UI work lands separately. No end-user UX change today.</td>
+          <td><span class="internal">INTERNAL API — no Help Center change today</span>
+            <p class="note">Document when the paired UI ships.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-368">TEN-368</a></td>
+          <td>Rent Payments Overview: dismissible "share feedback" banner with survey</td>
+          <td class="original">Dismissible feedback banner on the rent payments overview — users can share feedback, trigger a short survey, and see a thank-you confirmation.</td>
+          <td>Adds a feedback banner to the new Rent Payments Overview screen. PMs can click through to a short PostHog-powered survey, see a thank-you confirmation, and dismiss the banner.</td>
+          <td><span class="unmatched">UNMATCHED — Rent Payments Overview itself is still un-articled</span>
+            <p class="note">Rent Payments Overview was shipped in v9.2.55 (TEN-194/TEN-195) and was already flagged as needing a new Help Center article. When that article is written, document the feedback banner there. No standalone article needed.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-179">TEN-179</a></td>
+          <td>New Relic alert for SSO authentication failures</td>
+          <td class="original">Improved SSO error handling with enhanced categorization to distinguish between user and system-level authentication failures.</td>
+          <td>Sets up a New Relic alert that triggers when SSO authentication failures exceed a threshold, with Slack notification, error type, frequency, and affected-tenants context. Internal observability — end users were never supposed to see these failures in the first place.</td>
+          <td><span class="internal">INTERNAL OBSERVABILITY — no Help Center change</span></td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-97">TEN-97</a></td>
+          <td>Tenant login trigger mapping: UTM tags on portal/invite/renewal/reminder/fee/payment emails</td>
+          <td class="original">Enhanced email link tracking: campaign UTM tags are appended to portal, invite, renewal, reminder, fee and payment emails for better click attribution.</td>
+          <td>Adds UTM source/medium/campaign parameters to outbound email links so we can attribute tenant logins back to the email that triggered them. URLs in tenant emails will carry <code>?utm_source=…</code> query strings; no UX change otherwise.</td>
+          <td><span class="internal">INTERNAL ATTRIBUTION/ANALYTICS — no Help Center change</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== LEADS & LEASING ========== -->
+  <section class="area-section" data-area="leads">
+    <h2>Leads &amp; Leasing <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/L2L-890">L2L-890</a></td>
+          <td>Income Verification: one-time popup after listing a unit</td>
+          <td class="original">Added income verification prompt at the end of the unit listing process, allowing users to enable income verification directly through a confirmation dialog or navigate to property settings to configure it separately.</td>
+          <td>After a PM finishes the List-a-Unit wizard, a one-time confirmation popup prompts them to enable income verification. Pro/Premium accounts can enable IV directly from the popup; Basic plan users are routed to the settings page. Shown once per user. Designed to drive IV adoption.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/13860117-income-verification-for-rentals-how-to-confidently-confirm-an-applicant-can-afford-the-rent">Income Verification for Rentals <span class="id">#13860117</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/8854468-edit-rental-application-settings">Edit Rental Application Settings <span class="id">#8854468</span></a>
+            <p class="note"><strong>Likely update needed:</strong> In the IV article, add a note that the first time a PM lists a unit, a popup will offer to enable IV by default. Mention the Pro/Premium-only auto-enable path and the Basic-plan settings-page redirect.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear high-impact"><a href="https://linear.app/doorloop/issue/L2L-1141">L2L-1141</a></td>
+          <td class="high-impact">⚠ Showings now gated behind Pro and Premium plans only</td>
+          <td class="original">gate behind Pro/Premium subscription tiers</td>
+          <td><strong>Starter customers can no longer access the Showings feature.</strong> The side menu item, settings, prospect overview cards, communications-center action, global search, and the showings screen route are all hidden for Starter accounts. Server-side, every PM-facing showings API returns 403 for Starter. Public prospect booking endpoints (token-based) are untouched. Pro/Premium customers see no change. ~20 customers have showings active today — all Premium.</td>
+          <td>
+            <span class="matched high-impact">MATCHED — broad impact</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14894290-showings-how-prospects-self-schedule-a-showing">Showings: How Prospects Self-Schedule a Showing <span class="id">#14894290</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14893833-showings-manage-dashboard-and-prospect-overview">Showings: Manage Dashboard, and Prospect Overview <span class="id">#14893833</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14893438-showings-company-and-property-settings">Showings: Company and Property Settings <span class="id">#14893438</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14893641-showings-set-your-showings-availability-per-agent">Showings: Set Your Showings Availability (Per Agent) <span class="id">#14893641</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14092081-showings-availability-to-follow-up">Showings: Availability to Follow-Up <span class="id">#14092081</span></a>
+            <p class="note"><strong>Likely update needed (all Showings articles):</strong> Add a clearly-visible callout at the top: "Showings is available on the <strong>Pro</strong> and <strong>Premium</strong> plans." Update any "Who can use this" / plan-eligibility section accordingly. Consider linking to the upgrade flow / pricing page from each showings article. Also worth a short "What's New / Plan Change" announcement so existing Starter customers know to expect the change.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <div class="suggested">
+    <h3>(Existing carry-over) What's New: A single place to see and act on rent payments — already drafted in Intercom (article 15234173, v9.2.55)</h3>
+    <p>TEN-368 (feedback banner) is an addition to the Rent Payments Overview screen already covered by the existing draft. No separate article needed — fold the banner into that draft when it's ready to publish.</p>
+  </div>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <div class="skipped"><strong>TEN-106</strong> — Discovery Component wizard plumbing for the backoffice; no end-user surface yet.</div>
+  <div class="skipped"><strong>ACT-558</strong> — Playwright spec ownership audit; no product change.</div>
+  <div class="skipped"><strong>ACT-371</strong> — Get Started V2 server-side payload validation; no UX change.</div>
+  <div class="skipped"><strong>ACT-600</strong> — Dead <code>introductionStartedAt</code> key removed; no UX change.</div>
+  <div class="skipped"><strong>TEN-64</strong> — New password change / verify server endpoints; UI not landed.</div>
+  <div class="skipped"><strong>TEN-179</strong> — New Relic alert for SSO failures; observability only.</div>
+  <div class="skipped"><strong>TEN-97</strong> — UTM tags added to outbound emails; analytics attribution only.</div>
+
+  <p class="meta" style="margin-top: 3rem; border-top: 1px solid #eee; padding-top: 1rem;">
+    Generated by <code>doorloop-release-summary</code> · <a href="https://linear.app/doorloop">Linear</a> · <a href="https://app.intercom.com">Intercom</a>
+  </p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
