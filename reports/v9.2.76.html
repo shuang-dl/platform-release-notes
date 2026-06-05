@@ -1,0 +1,638 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.76 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .beta { display: inline-block; background: #eee0ff; color: #6b3fa0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .internal-tag { display: inline-block; background: #f0f0f0; color: #888; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; }
+    ul.update-notes { margin: 0.3em 0 0 0; padding-left: 1.1em; font-size: 0.92em; }
+    ul.update-notes li { margin-bottom: 0.2em; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.2.76 &mdash; 2026-06-03</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1780494111566169">View original Slack post</a> &middot; <code>1780494111.566169</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 22 changes across 7 areas. Customer-visible highlights include a redesigned vendor portal with messaging and file uploads (PMO-221), AI Communications Center guided setup and escalation notifications (PMO-1493), rental applications in global search (WOR-822), and corrected transfer notification wording (BAN-789). Three features are in beta behind feature flags: late-balance-notice workflows (WOR-430/432) and a new rental application decision dialog (L2L-1151). The remaining 11 items are internal infrastructure, monitoring, and performance fixes.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (22)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (5)</span>
+    <span class="chip" data-area="onboarding-imports">Onboarding &amp; Imports (5)</span>
+    <span class="chip" data-area="tenant-experience">Tenant Experience &amp; Payments (3)</span>
+    <span class="chip" data-area="workflows">Workflows (3)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (3)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+    <span class="chip" data-area="other">Other (3)</span>
+  </div>
+
+  <!-- ===== PM Operations ===== -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">5 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- PMO-221 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-221">PMO-221</a></td>
+          <td>Vendor portal redesign with messaging &amp; file uploads</td>
+          <td class="original">Added vendor portal messaging with real photo and file uploads, plus updated work order views to match the new design.</td>
+          <td>Redesigns the vendor portal UI to match the new design system. Adds pre-OTP landing page, jobs list, activity tab, status stepper, and messaging with real photo/file uploads. Work order conversations now support file uploads. Includes redesigned error pages. Fully responsive on mobile and desktop.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/6322778-create-a-work-order">Create a Work Order</a> &mdash; Update screenshots to reflect new work order views and vendor portal messaging UI.</li>
+              <li><a href="http://support.doorloop.com/en/articles/6093760-create-a-task">Create a Task</a> &mdash; Note vendor portal file upload capabilities and conversation features on work orders.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="https://doorloop.wistia.com/medias/tn4ch9b3tf">Managing Work Orders</a> (Mar 23, 2026 &mdash; 72 days before this release) &mdash; likely needs re-recording to show the redesigned vendor portal work order views and messaging.</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- PMO-1006 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1006">PMO-1006</a></td>
+          <td>Sub-work-order field pre-fill from tenant request</td>
+          <td class="original">Added optional prefill of more work order fields from a parent tenant request when creating a sub-work order.</td>
+          <td>When creating a sub-work order from a tenant request, the system now pre-fills entry permission, entry notes, priority, and assigned users from the parent tenant request. Behind a feature flag.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/6322778-create-a-work-order">Create a Work Order</a> &mdash; Document sub-work-order pre-fill behavior when created from a tenant request.</li>
+              <li><a href="http://support.doorloop.com/en/articles/6093760-create-a-task">Create a Task</a> &mdash; Mention that sub-work orders now inherit fields from the parent tenant request.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="https://doorloop.wistia.com/medias/tn4ch9b3tf">Managing Work Orders</a> (Mar 23, 2026 &mdash; 72 days before this release) &mdash; likely needs re-recording to show pre-filled fields on sub-work orders.</li>
+              <li><a href="https://doorloop.wistia.com/medias/61dr2gbk7w">Managing Tenant Requests</a> (Mar 23, 2026 &mdash; 72 days before this release) &mdash; likely needs re-recording to show how tenant request data flows into sub-work orders.</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- PMO-455 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-455">PMO-455</a></td>
+          <td>Renewal offer pricing API endpoint</td>
+          <td class="original">Added a lease endpoint that generates renewal offer pricing inputs, including lease, rent, charges, property, and history summaries.</td>
+          <td>New agent-callable API endpoint that generates renewal offer pricing with 3-option logic, market-rent integration, and idempotency-key handling. Part of the Renewals Agent tooling.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Agent-callable API endpoint, not user-facing UI. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+        <!-- PMO-1492 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1492">PMO-1492</a></td>
+          <td>Voice API per-action timeouts</td>
+          <td class="original">Added per-action voice API timeouts and latency tracking to reduce dead air and improve call reliability.</td>
+          <td>Adds per-action timeouts to Telnyx voice API calls to prevent dead air. Stops swallowing essential control-command errors so RabbitMQ retries fire correctly. Includes command_id idempotency for retried commands.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Voice infrastructure reliability fix, no user-facing change. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+        <!-- PMO-1493 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1493">PMO-1493</a></td>
+          <td>AI Communications Center guided setup &amp; escalation alerts</td>
+          <td class="original">Added a guided setup for AI auto-replies, plus clearer empty states and escalation notifications in Communications Center.</td>
+          <td>Adds smart default tab based on AI add-on status, filter-specific empty states, combined FTUE toggle, push notifications for escalated conversations, an autoresponder stamp identifying AI messages, and a first-message intro when AI joins a conversation. Non-AI users see a lock icon on AI tabs.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/9106126-set-up-sms-messaging-for-the-communications-center">Set Up SMS Messaging for the Communications Center</a> &mdash; Document the new AI auto-reply guided setup and autoresponder stamp on AI messages.</li>
+              <li><a href="http://support.doorloop.com/en/articles/12097336-doorloop-ai-assistant-in-the-communication-center">DoorLoop AI Assistant in the Communication Center</a> &mdash; Update with push notifications for escalated conversations, first-message intro behavior, and tab visibility changes.</li>
+              <li><a href="http://support.doorloop.com/en/articles/15344763">Smarter Communications Center tools</a> &mdash; Add the new FTUE toggle, smart default tab, and empty state improvements.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="https://doorloop.wistia.com/medias/o1cw1de8i5">AI Communications Center</a> (Mar 23, 2026 &mdash; 72 days before this release) &mdash; likely needs re-recording to show the guided setup, escalation notifications, and AI message stamps.</li>
+              <li><a href="https://doorloop.wistia.com/medias/krxbldyqse">Communications: Setting Up SMS Messaging</a> (Mar 23, 2026 &mdash; 72 days before this release) &mdash; likely needs re-recording to reflect AI auto-reply setup flow changes.</li>
+              <li><a href="https://doorloop.wistia.com/medias/3xiq7gebjh">Communications Log</a> (Mar 23, 2026 &mdash; 72 days before this release) &mdash; likely needs re-recording to show new empty states and tab visibility.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== Onboarding & Imports ===== -->
+  <section class="area-section" data-area="onboarding-imports">
+    <h2>Onboarding &amp; Imports <span class="count">5 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ACT-594 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-594">ACT-594</a></td>
+          <td>SSO invitation error recovery</td>
+          <td class="original">Fixed SSO invitation errors to redirect users back to the invitation page or login flow instead of showing a server error.</td>
+          <td>Previously users saw HTTP 500 during SSO invitation acceptance via Apple or Google. Now redirects back to the invitation page with a friendly recovery message instead of a server error. Approximately 1,257 events per month were affected.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/8390139-how-to-change-your-login-email-address-or-password">How to Change Your Login Email Address or Password</a> &mdash; Note improved SSO invitation flow and recovery behavior for Apple/Google sign-in.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">&mdash; no related video</span></td>
+        </tr>
+        <!-- ACT-702 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-702">ACT-702</a></td>
+          <td>MFA phone number sync fix</td>
+          <td class="original">Now keeps MFA phone numbers in sync with profile phone records, preventing mismatched SMS destinations and duplicate mobile entries.</td>
+          <td>Fixes a bug where the MFA phone number could silently desync from the user's profile phone record. Now syncs both via a shared helper, preventing mismatched SMS destinations and duplicate mobile entries.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/8390139-how-to-change-your-login-email-address-or-password">How to Change Your Login Email Address or Password</a> &mdash; Note that MFA phone changes now automatically sync with profile phone records.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">&mdash; no related video</span></td>
+        </tr>
+        <!-- ACT-712 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-712">ACT-712</a></td>
+          <td>Onboarding launch entity-count alerts</td>
+          <td class="original">Added launch-time alerts when created entity counts don't match wizard data, helping catch partial onboarding launches.</td>
+          <td>Adds launch-time Slack alerts when created entity counts don't match wizard data, helping ops catch partial onboarding launches.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Ops monitoring for onboarding launches. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+        <!-- ACT-720 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-720">ACT-720</a></td>
+          <td>Salesforce sync failure alerting</td>
+          <td class="original">Added Slack alerts for Salesforce contact sync failures caused by inactive record owners blocking reparenting.</td>
+          <td>Alerts the RevOps Slack channel when Salesforce contact sync fails due to inactive record owners blocking reparenting.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Internal Salesforce sync alerting. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+        <!-- ACT-728 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-728">ACT-728</a></td>
+          <td>Salesforce sync rate-limit staggering</td>
+          <td class="original">Now staggers daily Salesforce sync jobs to reduce Stripe rate limit errors during peak processing.</td>
+          <td>Staggers daily Salesforce sync jobs to stay within the Stripe 100 req/s rate limit during peak processing periods.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Infrastructure rate-limit fix. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== Tenant Experience & Payments ===== -->
+  <section class="area-section" data-area="tenant-experience">
+    <h2>Tenant Experience &amp; Payments <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- TEN-275 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-275">TEN-275</a></td>
+          <td>Tenant portal performance improvements</td>
+          <td class="original">Now loads tenant portal leases faster by removing redundant checks and combining lease refresh work into one read.</td>
+          <td>Performance improvements to 3 tenant portal endpoints (lease, AR report, tenant requests with files). Removes dead loginResponse code, deduplicates lease refresh logic, adds database indexes, and routes the AR report to a read replica.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/14757476-tenant-portal-access-for-tenants-with-multiple-leases">Tenant Portal Access for Tenants With Multiple Leases</a> &mdash; No content change needed, but faster loading of lease data may affect screenshots.</li>
+              <li><a href="http://support.doorloop.com/en/articles/6101618-set-up-and-view-tenant-requests">Set Up and View Tenant Requests</a> &mdash; Note improved portal performance when viewing tenant requests with attachments.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="https://doorloop.wistia.com/medias/hkxwwfp62a">Tenant Portal Overview</a> (Mar 23, 2026 &mdash; 72 days before this release) &mdash; review for any visible loading speed changes.</li>
+              <li><a href="https://doorloop.wistia.com/medias/61dr2gbk7w">Managing Tenant Requests</a> (Mar 23, 2026 &mdash; 72 days before this release) &mdash; review for faster file loading on tenant requests.</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- TEN-472 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-472">TEN-472</a></td>
+          <td>Tenant portal health endpoint fix</td>
+          <td class="original">Fixed a tenant portal startup crash so the app boots cleanly and health checks continue to work.</td>
+          <td>Reverts a health endpoint change that caused the tenant portal server to crash on startup.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Infrastructure health check fix. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+        <!-- TEN-497 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-497">TEN-497</a></td>
+          <td>Tenant portal network binding</td>
+          <td class="original">Now supports access to the tenant portal server from outside the host network.</td>
+          <td>Binds the tenant portal server listener to 0.0.0.0 so it can be accessed from outside the host network.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Infrastructure networking change. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== Workflows ===== -->
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- WOR-822 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-822">WOR-822</a></td>
+          <td>Rental applications in global search</td>
+          <td class="original">Fixed global search to skip help-article requests when the feature is off and load faster overall.</td>
+          <td>Adds Rental Applications as searchable entities in global search. Also moves feature-flag gates from server to client for faster loading.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/6263176-rental-applications-overview">Rental Applications Overview</a> &mdash; Mention that rental applications are now searchable via the global search bar.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a> (Mar 22, 2026 &mdash; 73 days before this release) &mdash; likely needs re-recording to show global search for rental applications.</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- WOR-430 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-430">WOR-430</a></td>
+          <td><span class="beta">BETA</span> Late balance notice workflow (server)</td>
+          <td class="original">Added late-balance notice workflow support behind a feature flag, with delinquent lease filtering and day-of-month scheduling.</td>
+          <td>Server-side late balance notice trigger: queries delinquent leases, resolves day-of-month with last-day fallback, wires into 9 dispatch maps. Excludes eviction-pending leases. Behind <code>workflowsLateBalanceNotice</code> flag.</td>
+          <td>
+            <span class="unmatched">UNMATCHED</span> &mdash; new feature behind beta flag; suggested new article once at GA (see below).
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="https://doorloop.wistia.com/medias/c3pk1wpm3m">Workflows</a> (Mar 23, 2026 &mdash; 72 days before this release) &mdash; will need re-recording once late balance notice workflow reaches GA.</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- WOR-432 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-432">WOR-432</a></td>
+          <td><span class="beta">BETA</span> Late balance notice workflow (client UI)</td>
+          <td class="original">Added Late Balance Notice workflow trigger setup with a day-of-month picker and feature-flag control.</td>
+          <td>Client-side UI for the late balance notice trigger: day-of-month picker (1..31 + "Last day of month"), i18n support, and registry wiring. Behind <code>workflowsLateBalanceNotice</code> flag.</td>
+          <td>
+            <span class="unmatched">UNMATCHED</span> &mdash; new feature behind beta flag; folds into same article as WOR-430 at GA.
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="https://doorloop.wistia.com/medias/sjhnowtsd7">Late Fees Deep Dive</a> (Mar 18, 2026 &mdash; 77 days before this release) &mdash; review once at GA; late balance notice is a related but distinct feature from late fees.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== Leads & Leasing ===== -->
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- L2L-1170 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1170">L2L-1170</a></td>
+          <td>MITS syndication performance</td>
+          <td class="original">Now supports faster syndication runs by reusing tenant ID lookups instead of recalculating them each tick.</td>
+          <td>Memoizes getDbTenantIds() per orchestrator tick to avoid redundant lookups during MITS syndication runs.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Syndication performance optimization. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+        <!-- L2L-1168 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1168">L2L-1168</a></td>
+          <td>MITS staging error noise reduction</td>
+          <td class="original">Fixed MITS syndication to return a silent 404 when a feed file is missing, avoiding unnecessary error noise.</td>
+          <td>Returns a silent 404 instead of a Bugsnag error when a MITS feed file is missing in staging.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Staging error noise reduction. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+        <!-- L2L-1151 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1151">L2L-1151</a></td>
+          <td><span class="beta">BETA</span> Rental application decision dialog</td>
+          <td class="original">Added a new rental application decision dialog shell with selector, notes, notify-applicant toggle, and submit flow.</td>
+          <td>New 4-state decision dialog for rental applications: approved, rejected, ignored, and no decision. Includes internal notes field and a notify-applicant toggle. Behind <code>FlamingoFlowPm</code> flag.</td>
+          <td>
+            <span class="matched">MATCHED</span> (hold for GA)
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/6332587-update-your-decision-on-a-rental-applications-and-inform-the-applicant">Update Your Decision on a Rental Applications</a> &mdash; Once at GA, update with the new 4-state decision dialog UI, internal notes field, and notify toggle.</li>
+              <li><a href="http://support.doorloop.com/en/articles/6263176-rental-applications-overview">Rental Applications Overview</a> &mdash; Once at GA, add a section about the redesigned decision dialog.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a> (Mar 22, 2026 &mdash; 73 days before this release) &mdash; will need re-recording once the new decision dialog reaches GA.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== Banking ===== -->
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- BAN-789 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-789">BAN-789</a></td>
+          <td>Transfer notification wording correction</td>
+          <td class="original">Fixed transfer email and SMS wording to say the transfer has been initiated.</td>
+          <td>Changes transfer notification copy from "is on its way" to "has been initiated" for deposit/withdrawal email titles, subjects, and SMS messages. More accurate since ACH transfers haven't settled at notification time.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/8238902-how-to-set-up-auto-pay-on-the-tenant-portal">How to Set Up Auto-pay on the Tenant Portal</a> &mdash; Update any references to transfer notification wording to say "has been initiated" instead of "is on its way."</li>
+              <li><a href="http://support.doorloop.com/en/articles/7985010-how-to-make-a-payment-on-the-tenant-portal">How to Make a Payment on the Tenant Portal</a> &mdash; Update transfer notification wording if referenced in the article.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="https://doorloop.wistia.com/medias/efrz0afqha">Rent &amp; Payment Notifications</a> (Mar 18, 2026 &mdash; 77 days before this release) &mdash; likely needs re-recording to reflect the updated transfer notification wording.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== Other ===== -->
+  <section class="area-section" data-area="other">
+    <h2>Other <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&mdash;</td>
+          <td>Merchant-account consent ordering fix</td>
+          <td class="original">Fixed merchant-account consent creation so it only happens after the required tenant migration consent exists.</td>
+          <td>Ensures merchant-account consent is created only after the required tenant migration consent exists, preventing ordering issues.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Internal consent ordering fix. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+        <tr>
+          <td>&mdash;</td>
+          <td>Intercom tracking metadata fix</td>
+          <td class="original">Fixed Intercom tracking to drop array fields from event metadata, preventing 400 errors while keeping other data intact.</td>
+          <td>Drops array fields from Intercom event metadata to prevent 400 errors while preserving other tracking data.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Internal analytics fix. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+        <tr>
+          <td>&mdash;</td>
+          <td>Feature flag caching fix</td>
+          <td class="original">Fixed feature flag caching so company-scoped flags stay correct even when PostHog returns an empty group mapping.</td>
+          <td>Fixes feature flag caching so company-scoped flags remain correct even when PostHog returns an empty group mapping.</td>
+          <td><span class="internal-tag">INTERNAL</span> &mdash; Internal feature flag caching fix. No Help Center change needed.</td>
+          <td><span class="internal-tag">INTERNAL</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== Suggested new articles ===== -->
+  <h2>Suggested new articles</h2>
+
+  <div style="margin: 1rem 0; padding: 1rem; background: #fffbf0; border: 1px solid #f0e0c0; border-radius: 6px;">
+    <h3 style="margin-top:0;">What's New: Automate late-balance notices with a workflow trigger &mdash; Version 9.2.76</h3>
+    <p class="note"><strong>Rationale:</strong> WOR-430 and WOR-432 introduce a new workflow trigger type (Late Balance Notice) with day-of-month scheduling. No existing article covers this trigger. Once the <code>workflowsLateBalanceNotice</code> feature flag reaches GA, a dedicated article should explain the setup, scheduling options, and which leases are included/excluded.</p>
+    <p class="note"><strong>Suggested keywords:</strong> late balance, workflow, trigger, delinquent, lease, notice, day-of-month, scheduling, overdue</p>
+    <p class="note"><strong>Status:</strong> Hold until GA &mdash; currently behind feature flag.</p>
+  </div>
+
+  <!-- ===== Related training videos ===== -->
+  <h2>Related training videos</h2>
+  <p class="note">All videos were created Mar 17&ndash;23, 2026 (72&ndash;77 days before this release). Videos that matched at least one feature are listed below.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Related features</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/tn4ch9b3tf">Managing Work Orders</a></td>
+        <td>Mar 23, 2026</td>
+        <td>4:08</td>
+        <td>PMO-221 (vendor portal redesign), PMO-1006 (sub-WO pre-fill)</td>
+        <td>Yes &mdash; 72 days old</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/61dr2gbk7w">Managing Tenant Requests</a></td>
+        <td>Mar 23, 2026</td>
+        <td>3:05</td>
+        <td>PMO-1006 (sub-WO pre-fill), TEN-275 (portal performance)</td>
+        <td>Yes &mdash; 72 days old</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/o1cw1de8i5">AI Communications Center</a></td>
+        <td>Mar 23, 2026</td>
+        <td>1:27</td>
+        <td>PMO-1493 (AI guided setup &amp; escalation alerts)</td>
+        <td>Yes &mdash; 72 days old</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/krxbldyqse">Communications: Setting Up SMS Messaging</a></td>
+        <td>Mar 23, 2026</td>
+        <td>3:45</td>
+        <td>PMO-1493 (AI auto-reply setup)</td>
+        <td>Yes &mdash; 72 days old</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/3xiq7gebjh">Communications Log</a></td>
+        <td>Mar 23, 2026</td>
+        <td>1:58</td>
+        <td>PMO-1493 (empty states, tab visibility)</td>
+        <td>Yes &mdash; 72 days old</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/hkxwwfp62a">Tenant Portal Overview</a></td>
+        <td>Mar 23, 2026</td>
+        <td>3:19</td>
+        <td>TEN-275 (portal performance improvements)</td>
+        <td>Review &mdash; 72 days old; performance-only change may not need visual update</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td>
+        <td>Mar 22, 2026</td>
+        <td>6:28</td>
+        <td>WOR-822 (global search), L2L-1151 (decision dialog, beta)</td>
+        <td>Yes &mdash; 73 days old</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/c3pk1wpm3m">Workflows</a></td>
+        <td>Mar 23, 2026</td>
+        <td>4:11</td>
+        <td>WOR-430 (late balance notice trigger, beta)</td>
+        <td>Review at GA &mdash; 72 days old; feature still behind flag</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/sjhnowtsd7">Late Fees Deep Dive</a></td>
+        <td>Mar 18, 2026</td>
+        <td>6:54</td>
+        <td>WOR-432 (late balance notice UI, beta)</td>
+        <td>Review at GA &mdash; 77 days old; related but distinct feature</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/efrz0afqha">Rent &amp; Payment Notifications</a></td>
+        <td>Mar 18, 2026</td>
+        <td>3:21</td>
+        <td>BAN-789 (transfer notification wording)</td>
+        <td>Yes &mdash; 77 days old</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Suggested new training videos</h3>
+  <ul>
+    <li><strong>SSO invitation recovery flow</strong> (ACT-594) &mdash; no existing video covers the SSO/invitation sign-in experience. Consider a short clip once login/invitation flows are more broadly updated.</li>
+    <li><strong>Vendor portal walkthrough</strong> (PMO-221) &mdash; the redesigned vendor portal is a significant UI overhaul; a dedicated vendor-portal training video would complement the existing "Managing Work Orders" video.</li>
+  </ul>
+
+  <!-- ===== Items intentionally skipped ===== -->
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>PMO-455</strong> &mdash; Agent-callable API endpoint for renewal offer pricing; not user-facing.</li>
+    <li><strong>PMO-1492</strong> &mdash; Voice infrastructure per-action timeouts; no user-facing change.</li>
+    <li><strong>ACT-712</strong> &mdash; Onboarding launch entity-count monitoring alerts.</li>
+    <li><strong>ACT-720</strong> &mdash; Salesforce contact sync failure alerting.</li>
+    <li><strong>ACT-728</strong> &mdash; Salesforce/Stripe rate-limit staggering.</li>
+    <li><strong>TEN-472</strong> &mdash; Tenant portal server health endpoint revert.</li>
+    <li><strong>TEN-497</strong> &mdash; Tenant portal server network binding (0.0.0.0).</li>
+    <li><strong>L2L-1170</strong> &mdash; MITS syndication tenant-ID memoization.</li>
+    <li><strong>L2L-1168</strong> &mdash; MITS staging S3 404 noise reduction.</li>
+    <li><strong>OTHER-1</strong> &mdash; Merchant-account consent ordering fix.</li>
+    <li><strong>OTHER-2</strong> &mdash; Intercom tracking metadata array-field fix.</li>
+    <li><strong>OTHER-3</strong> &mdash; Feature flag caching fix for empty PostHog group mappings.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
