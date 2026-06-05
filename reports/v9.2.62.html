@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.62 — Help Center Impact</title>
+  <style>
+    :root { --border: #eaeaea; --muted: #555; --bg-soft: #fafafa; }
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; line-height: 1.5; }
+    h1 { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 0.25rem; }
+    h2 { margin-top: 2.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.4rem; }
+    h3 { margin-top: 1.5rem; margin-bottom: 0.3rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.65rem 0.55rem; vertical-align: top; text-align: left; font-size: 0.92rem; }
+    th { background: var(--bg-soft); font-weight: 600; }
+    td.linear { white-space: nowrap; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.85rem; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #5a5a5a; font-weight: 600; }
+    code { background: #f4f4f4; padding: 1px 5px; border-radius: 3px; font-size: 0.86em; }
+    .note { font-size: 0.86em; color: #444; margin-top: 0.45rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: var(--bg-soft); border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: var(--muted); align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: var(--muted); font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .skipped { background: #f7f7f7; border-left: 4px solid #c7c7c7; padding: 0.75rem 1.1rem; margin: 0.6rem 0; border-radius: 0 6px 6px 0; font-size: 0.92em; }
+    p.meta { color: var(--muted); font-size: 0.95em; }
+  </style>
+</head>
+<body>
+
+  <h1>Release v9.2.62 — 2026-05-25</h1>
+  <p class="meta">Source: Slack post in <a href="https://doorloop.slack.com/archives/C0B4GTX1SBG">#platform-release-notes</a> · posted 2026-05-25 09:15:59 EDT · Bot <code>DevOpsNotifications</code></p>
+
+  <h2>Summary</h2>
+  <p>
+    Release v9.2.62 ships <strong>2 internal-only changes</strong> — a performance fix to the new Get Started V2 wizard so editing one field in a 50-unit setup no longer re-renders the whole tree, and Phase 1 of decoupling RabbitMQ topology assertion from the server into a standalone library + Lambda + CLI. No customer-facing changes; no Help Center updates needed.
+  </p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (2)</span>
+    <span class="chip" data-area="onboarding">Onboarding &amp; Imports (1)</span>
+    <span class="chip" data-area="workflows">Workflows (1)</span>
+  </div>
+
+  <!-- ========== ONBOARDING & IMPORTS ========== -->
+  <section class="area-section" data-area="onboarding">
+    <h2>Onboarding &amp; Imports <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-367">ACT-367</a></td>
+          <td>Get Started V2 wizard: narrow Zustand subscription to stop re-render storms</td>
+          <td class="original">Improved state selection in the Get Started flow to stabilize predicate data and reduce unnecessary re-renders.</td>
+          <td>In the new Get Started V2 wizard, the <code>usePredicateState</code> hook was subscribing to the entire store — meaning every keystroke into a unit's rent field re-rendered the StepsPanel, Bottombar, progress calculator, and auto-advance logic. The fix replaces the broad subscription with a shallow selector over only the fields the predicates actually read. A user with 50+ units now sees dramatically fewer renders per keystroke. No UX change — same wizard, same behavior, just smoother on larger imports.</td>
+          <td><span class="internal">INTERNAL PERF FIX — no Help Center change</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== WORKFLOWS ========== -->
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/WOR-196">WOR-196</a></td>
+          <td>RabbitMQ topology assertion: standalone lib + Lambda + CLI (Phase 1)</td>
+          <td class="original">RabbitMQ topology assertion CLI with structured outcomes and exit codes</td>
+          <td>Phase 1 of moving RabbitMQ topology assertion out of the server boot path: a new <code>libs/server-rabbitmq-topology</code> library, an AWS Lambda entry point, and a local-dev CLI (<code>pnpm topology:assert</code>) — all calling the same pure declaration registry. The server still asserts on boot for now; later phases will remove that and gate deploys on the Lambda. Pure DevOps / infra refactor.</td>
+          <td><span class="internal">INTERNAL INFRA — no Help Center change</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p class="note">None. Both items in this release are internal-only.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <div class="skipped"><strong>ACT-367</strong> — Get Started V2 re-render perf fix; same UX, just faster.</div>
+  <div class="skipped"><strong>WOR-196</strong> — RabbitMQ topology lib + Lambda + CLI (Phase 1); infra-only, server behavior unchanged.</div>
+
+  <p class="meta" style="margin-top: 3rem; border-top: 1px solid #eee; padding-top: 1rem;">
+    Generated by <code>doorloop-release-summary</code> · <a href="https://linear.app/doorloop">Linear</a> · <a href="https://app.intercom.com">Intercom</a>
+  </p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
