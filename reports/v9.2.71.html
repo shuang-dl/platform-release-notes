@@ -1,0 +1,374 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.71 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .beta { color: #6b3fa0; font-weight: 600; }
+    .internal { color: #555; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .at-glance td, .at-glance th { padding: 0.4rem 0.8rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.2.71 — 2026-06-01</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1780322785868159">View original Slack post</a> · <code>1780322785.868159</code> · posted by DevOpsNotifications</p>
+
+  <h2>Summary</h2>
+  <p>Release v9.2.71 ships 26 changes across seven product areas, with the heaviest investment in PM Operations voice features (9 items) and a multi-line rental-application fee overhaul in Leads &amp; Leasing. Customer-visible highlights include MMS support and unknown-contact auto-assignment in the Communications Center, emergency-contact email on the tenant overview, and a Get Started fix that stops migrated leases from showing phantom security-deposit balances. Most of the voice routing, holding-fee, and banking-notification work is still behind feature flags (beta), and roughly a third of the release is internal NFR/infrastructure hardening with no Help Center impact.</p>
+
+  <h2>At a glance</h2>
+  <table class="at-glance">
+    <thead><tr><th>Customer-visible</th><th>New article suggested</th><th>Beta (flag-gated)</th><th>Internal-only</th></tr></thead>
+    <tbody><tr><td>10</td><td>1</td><td>7</td><td>9</td></tr></tbody>
+  </table>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (26)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (9)</span>
+    <span class="chip" data-area="accounting">Accounting (1)</span>
+    <span class="chip" data-area="onboarding-imports">Onboarding &amp; Imports (3)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (7)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (4)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+    <span class="chip" data-area="other">Other (1)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">9 items</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>—</td>
+          <td>MMS in the Communications Center auto-responder</td>
+          <td class="original">Now supports MMS messages and attachments in auto-responder conversation context and summaries.</td>
+          <td>The AI auto-responder now reads incoming MMS picture/file attachments as part of a conversation's context and includes them in its summaries, so image-based tenant messages are no longer ignored.</td>
+          <td><span class="matched">MATCHED</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/14759226-file-types-supported-via-mms-in-the-communications-center">File Types Supported via MMS in the Communications Center</a> — Likely update: confirm the supported file types list and note that MMS attachments now feed the AI auto-responder context/summaries.</li>
+            <li><a href="http://support.doorloop.com/en/articles/12754748-review-all-tenant-conversations-with-the-doorloop-ai-assistant-using-the-communications-center">Review All Tenant Conversations With the DoorLoop AI Assistant</a> — Likely update: mention that summaries now incorporate MMS attachments.</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-572">PMO-572</a></td>
+          <td>Auto-assign conversations from unknown contacts</td>
+          <td class="original">Added an Unknown Contacts setting to auto-assign SMS and voice conversations from unrecognized numbers.</td>
+          <td>Adds a Communications Center setting that auto-assigns inbound SMS and voice conversations from numbers not matching any tenant/owner/prospect/vendor to a chosen user, so cold inbounds no longer land unassigned. Defaults to off (no behavior change until opted in).</td>
+          <td><span class="matched">MATCHED</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/12754748-review-all-tenant-conversations-with-the-doorloop-ai-assistant-using-the-communications-center">Review All Tenant Conversations…(Communications Center)</a> — Likely update: document the new "Unknown Contacts" auto-assignment setting and where it lives in Communications Center settings.</li>
+            <li><a href="http://support.doorloop.com/en/articles/14759220-communications-center-vs-google-voice-key-differences">Communications Center vs. Google Voice: Key Differences</a> — Likely update: add unknown-number auto-assignment as a differentiator.</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1026">PMO-1026</a></td>
+          <td>Keypad (DTMF) forwarding-number verification</td>
+          <td class="original">Added keypad-based forwarding number verification to better confirm real phone access before saving.</td>
+          <td>Replaces auto-verify-on-answer with a flow where the verification call asks you to press a digit, plus an "Add DoorLoop as a contact" pre-step and a save-time warning for unverified numbers — so a number is only marked verified when a real person answers.</td>
+          <td><span class="matched">MATCHED</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/15280537-doorloop-voice-beta-faq">DoorLoop Voice — Beta FAQ</a> — Likely update: revise the forwarding-number verification steps to describe the new keypad-press confirmation and the "add as contact" prompt.</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-970">PMO-970</a></td>
+          <td>Missed-call tracking for unconfigured numbers</td>
+          <td class="original">Added missed-call tracking and reporting for unconfigured inbound calls, with automatic setup for newly activated numbers.</td>
+          <td>Registers every DoorLoop number with the call platform so inbound calls to customers who haven't enabled Voice are logged, enabling a "here's how many calls you missed" report to drive Voice activation. Gated by the <code>voice-missed-call-tracking</code> flag.</td>
+          <td><span class="beta">BETA</span> <span class="note">— Feature-flagged; no published article. Fold into <a href="http://support.doorloop.com/en/articles/15280537-doorloop-voice-beta-faq">DoorLoop Voice — Beta FAQ</a> at GA.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1033">PMO-1033</a></td>
+          <td>Global search dedupe fix (new-thread dropdown)</td>
+          <td class="original">Fixed global search to skip unrelated lookups when nothing matches and remove duplicate results.</td>
+          <td>Fixes the Communications Center "new message" search so the same tenant no longer appears twice and unrelated owners/vendors stop showing up when nothing matches.</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— Bug fix to existing search behavior; no documented workflow changes.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1173">PMO-1173</a></td>
+          <td>Per-number "Skip screening" toggle</td>
+          <td class="original">Added a per-forwarding-number skip screening toggle so calls can connect immediately without greeting, whisper, or AMD.</td>
+          <td>Adds a per-forwarding-number toggle so numbers that forward to an IVR/answering service skip the greeting, whisper, and answering-machine detection and bridge immediately — fixing dropped calls to phone-system destinations.</td>
+          <td><span class="matched">MATCHED</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/15280537-doorloop-voice-beta-faq">DoorLoop Voice — Beta FAQ</a> — Likely update: add a "Skip screening for this number" entry explaining when to enable it (IVR / answering-service destinations).</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1172">PMO-1172</a></td>
+          <td>Longer voice-transcription timeout</td>
+          <td class="original">Added support for longer voice transcription requests by extending the timeout to 5 minutes.</td>
+          <td>Raises the transcription request timeout from 3 to ~5 minutes so most long call recordings transcribe successfully instead of silently failing. (A ~5-min infra ceiling still remains for very long calls.)</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— NFR/infra timeout change; no customer-facing documentation impact.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-973">PMO-973</a></td>
+          <td>Property/portfolio-scoped call forwarding</td>
+          <td class="original">Added property- and portfolio-scoped call forwarding with an option to accept callers outside the selected scope.</td>
+          <td>Lets admins scope a forwarding rule to specific properties/portfolios, routing calls based on the caller's leases/ownership/interests, with a toggle for whether out-of-scope callers still ring through. Gated by the <code>voice-scoped-forwarding-rules</code> flag (default off).</td>
+          <td><span class="beta">BETA</span> <span class="note">— Feature-flagged off. Fold into <a href="http://support.doorloop.com/en/articles/15280537-doorloop-voice-beta-faq">DoorLoop Voice — Beta FAQ</a> at rollout.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1459">PMO-1459</a></td>
+          <td>Emergency-contact email on tenant overview</td>
+          <td class="original">Added emergency contact email to tenant overview and hid empty phone or email fields when no data exists.</td>
+          <td>Shows the emergency contact's email on the tenant overview page (it was previously missing) and hides empty phone/email fields so the section looks clean when data is absent.</td>
+          <td><span class="matched">MATCHED</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/9009890-how-to-update-your-contact-information-and-login-email-on-the-tenant-portal">How to Update Your Contact Information…(Tenant Portal)</a> — Likely update: if any screenshot shows the tenant overview's Emergency Contacts section, refresh it to include the email field. Low priority.</li>
+          </ul></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="accounting">
+    <h2>Accounting <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>—</td>
+          <td>Hide system-managed accounts in payment setup</td>
+          <td class="original">Now excludes system-managed accounts from payment setup lists, keeping only selectable accounts visible.</td>
+          <td>Filters DoorLoop's internal/system-managed accounts out of the account pickers during payment setup, so PMs only see accounts they can actually select.</td>
+          <td><span class="matched">MATCHED</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/14759332-change-the-bank-account-for-checkbook-io-payment-deposits">Change the Bank Account for Checkbook.io Payment Deposits</a> — Likely update: minor — note that system-managed accounts no longer appear in the deposit-account selector. Low priority.</li>
+          </ul></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="onboarding-imports">
+    <h2>Onboarding &amp; Imports <span class="count">3 items</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-647">ACT-647</a></td>
+          <td>Salesforce sync skips Stripe rate-limit errors</td>
+          <td class="original">Fixed Salesforce sync retries to skip Stripe rate-limit errors, reducing duplicate sync attempts and improving stability.</td>
+          <td>Stops the Salesforce sync job from treating Stripe rate-limit errors as retryable failures, cutting duplicate sync attempts and reducing the background sync failure rate.</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— Backend NFR/reliability fix; no Help Center impact.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-680">ACT-680</a></td>
+          <td>Get Started: credit already-collected deposits on migrated leases</td>
+          <td class="original">Fixed migrated leases so security deposits are credited to Opening Balance and no longer leave an incorrect balance.</td>
+          <td>Fixes the new Get Started flow so a migrated lease's security deposit is recorded as already held (offsetting payment) instead of an owed charge, eliminating the phantom balance PMs had to manually credit away.</td>
+          <td><span class="matched">MATCHED</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/15031875-record-a-security-deposit-for-a-lease-that-started-before-your-accounting-start-date">Record a Security Deposit for a Lease That Started Before Your Accounting Start Date</a> — Likely update: note that Get Started V2 now handles this automatically for migrated leases (manual credit workaround may no longer be needed).</li>
+            <li><a href="http://support.doorloop.com/en/articles/7892244-add-a-security-deposit-held-on-a-lease">Add a Security Deposit Held on a Lease</a> — Likely update: cross-reference the migration behavior.</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-682">ACT-682</a></td>
+          <td>Training Hub gated on PostHog flag only</td>
+          <td class="original">Now supports showing Training Hub based on the PostHog flag, with onboarding redirects landing on Home.</td>
+          <td>Decouples the Training Hub / "Training Academy" from onboarding and GSF-completion gates so it's controlled purely by a PostHog rollout flag; kills the post-login redirect to /training-hub (onboarding now lands on Home), and shows the widget bubble only after Get Started completes.</td>
+          <td><span class="matched">MATCHED</span><ul class="note">
+            <li><a href="#">What's New: Master DoorLoop faster with the new in-app Training Hub — April 2026</a> (id 14623883, <em>draft</em>) — Likely update: align this existing draft with the new always-available-via-flag behavior before publishing; remove any "appears after onboarding" framing.</li>
+          </ul></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">7 items</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-106">TEN-106</a></td>
+          <td>Discovery wizard component (back office)</td>
+          <td class="original">Added guided discovery wizards that can appear in the app as dialogs or popovers and redirect users on completion.</td>
+          <td>Internal back-office (DoorWatch) tooling that lets DoorLoop teams build in-app guided wizards (center dialog or corner popover, up to 4 steps) with tracking — without engineering. Not a setting customers configure.</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— Back-office authoring tool + analytics plumbing; no customer-facing Help Center article.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-65">TEN-65</a></td>
+          <td>Tenant portal language preference</td>
+          <td class="original">Added tenant language preference updates in the portal and now logs those changes in the activity feed.</td>
+          <td>Adds an API so tenants can change their language preference from the portal, with the change recorded in the activity feed.</td>
+          <td><span class="matched">MATCHED</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/10148841-troubleshoot-tenant-portal-login-issues">Troubleshoot Tenant Portal Login Issues</a> — Weak match; no dedicated language-preference article exists. Consider a short standalone "Change your language in the Tenant Portal" article if this ships to all tenants.</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-443">TEN-443</a></td>
+          <td>Autopay pause/resume endpoint (DoorWatch QA)</td>
+          <td class="original">Added autopay pause and resume controls for recurring payments, with date validation and a default resume date.</td>
+          <td>A VPN-gated internal endpoint for DoorWatch/QA to pause and resume autopay on a specific recurring transaction while investigating stuck payments. <strong>Despite the Slack wording, this is not a customer-facing control.</strong></td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— Internal QA/ops endpoint (VPN-gated, no token auth); no Help Center impact.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-63">TEN-63</a></td>
+          <td>Tenant portal logout API</td>
+          <td class="original">Added tenant portal logout so users can sign out and have their authentication cookies cleared reliably.</td>
+          <td>Adds a proper logout endpoint to the decoupled tenant-portal server so signing out reliably clears authentication cookies.</td>
+          <td><span class="matched">MATCHED</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/10148841-troubleshoot-tenant-portal-login-issues">Troubleshoot Tenant Portal Login Issues</a> — Weak match; behind-the-scenes parity change. No update likely needed unless logout steps are documented. Low priority.</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-456">TEN-456</a></td>
+          <td>New skip reason: db_tenant_not_started</td>
+          <td class="original">Added a distinct skip reason for recurring transactions when a tenant's start date has not arrived yet.</td>
+          <td>Splits the recurring-transactions worker's "no transactions" skip into a distinct "db_tenant_not_started" reason for cleaner monitoring dashboards.</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— NFR/observability change; no Help Center impact.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-453">TEN-453</a></td>
+          <td>Tenant portal server deploy + crash logging</td>
+          <td class="original">Fixed startup crash logs so uncaught errors now include full error details for easier debugging.</td>
+          <td>Resolves the new tenant-portal server's CI/deployment (slim Docker image) and logs uncaught startup errors with full detail under the <code>err</code> key for debugging.</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— Infra/deployment + logging; no Help Center impact.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-458">TEN-458</a></td>
+          <td>Discovery popover z-index fix</td>
+          <td class="original">Now supports discovery wizards appearing above app dialogs so they stay visible when both open together.</td>
+          <td>Raises the discovery wizard popover's z-index so it stays visible above app dialogs when both are open.</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— UI layering fix for the back-office wizard tool; no Help Center impact.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">4 items</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-496">L2L-496</a></td>
+          <td>Custom application fees with line items + user contribution</td>
+          <td class="original">Now supports charging custom rental application fees with user contributions and line items.</td>
+          <td>Supports charging custom application fees made of multiple line items alongside the legacy screening fee, where the PM-contribution split applies only to the screening portion and the applicant pays all line items. Part of the flag-gated Holding Fees project.</td>
+          <td><span class="beta">BETA</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/13014059-state-compliant-application-fee-contribution">State-Compliant Application Fee Contribution</a> — At GA: expand to cover multi-line custom fees and clarify the contribution applies to screening only.</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-343">L2L-343</a></td>
+          <td>Itemized application payment box (due-now vs. credited)</td>
+          <td class="original">Added an itemized rental application payment summary with total due now, refund labels, and tooltips when applicable.</td>
+          <td>Updates the rental-application payment box to itemize fees as "charged now" vs. "refundable deposit — credited to your lease," with totals and tooltips. Part of the flag-gated Holding Fees project.</td>
+          <td><span class="beta">BETA</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/14761937-get-a-copy-of-a-rental-application-payment-receipt">Get a Copy of a Rental Application Payment Receipt</a> — At GA: add the new itemized due-now/credited breakdown to the receipt walkthrough.</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-529">L2L-529</a></td>
+          <td>Multi-line fee breakdown on receipt + confirmation email</td>
+          <td class="original">Added a payment receipt summary to rental application submissions, showing charged fees, refundable labels, and total paid.</td>
+          <td>Shows the full multi-line fee breakdown (each line + label, including refundable-credited lines) on the rental-application receipt and confirmation email. Part of the flag-gated Holding Fees project.</td>
+          <td><span class="beta">BETA</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/14761937-get-a-copy-of-a-rental-application-payment-receipt">Get a Copy of a Rental Application Payment Receipt</a> — At GA: update receipt/email screenshots to show itemized fee lines and refundable labels.</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-259">L2L-259</a></td>
+          <td>QuickBooks sync for multi-line / liability fees</td>
+          <td class="original">Now supports syncing multi-line application fees to QuickBooks with correct revenue and liability routing when the holding-fees feature is on.</td>
+          <td>Updates the QuickBooks sync so each application-fee line posts to the correct account type (revenue → income, liability → liability), preventing corrupted P&amp;L from holding fees. Part of the flag-gated Holding Fees project.</td>
+          <td><span class="beta">BETA</span><ul class="note">
+            <li><a href="http://support.doorloop.com/en/articles/13014059-state-compliant-application-fee-contribution">State-Compliant Application Fee Contribution</a> — Weak/adjacent. No QuickBooks-specific application-fee sync article exists — see Suggested new articles below.</li>
+          </ul></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-722">BAN-722</a></td>
+          <td>Email + SMS receipts on Add Funds / Withdraw</td>
+          <td class="original">Added email and SMS notifications for bank transfers, with clear deposit and withdrawal details.</td>
+          <td>Sends the initiating PM an email and SMS receipt when an Add Funds or Withdraw transfer is initiated in Banking, gated per-channel on the existing payment-received preference. Behind the <code>BankingFaTransferNotificationsEnabled</code> flag (default off).</td>
+          <td><span class="unmatched">UNMATCHED</span> / <span class="beta">BETA</span> <span class="note">— No existing article covers banking add-funds/withdraw transfer notifications. Suggested new article below; hold until the flag rolls out.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="other">
+    <h2>Other <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>—</td>
+          <td>"Company settings" button label</td>
+          <td class="original">Fixed the Settings Manager button label to read "Company settings" for clearer, consistent wording.</td>
+          <td>Renames the Settings Manager button to "Company settings" for clearer, consistent wording.</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— Cosmetic label change; no Help Center impact.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p><strong>What's New: Get email and text receipts every time you add or withdraw funds — Version 9.2.71</strong> (covers BAN-722)<br>
+  <span class="note">Rationale: there is no Help Center article covering Banking transfer notifications. Once <code>BankingFaTransferNotificationsEnabled</code> is rolled out, PMs will receive an email and SMS receipt whenever they initiate an Add Funds or Withdraw transfer, gated by their existing payment-received notification preference. A short article should explain what triggers the receipt (initiation, not settlement), which channels fire, and how the preference controls them.<br>
+  Suggested keywords: banking, add funds, withdraw, transfer, email notification, SMS, receipt, payment received preference.</span></p>
+  <p class="note"><em>Folds into existing content (not standalone):</em> PMO-970 &amp; PMO-973 → <a href="http://support.doorloop.com/en/articles/15280537-doorloop-voice-beta-faq">DoorLoop Voice — Beta FAQ</a> at GA. L2L-259 QuickBooks multi-line sync could warrant a dedicated "How application fees sync to QuickBooks" article when Holding Fees ships.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><a href="https://linear.app/doorloop/issue/PMO-1033">PMO-1033</a> — global search dedupe/empty-path fix (bug fix, no doc change).</li>
+    <li><a href="https://linear.app/doorloop/issue/PMO-1172">PMO-1172</a> — voice transcription timeout raised to 5 min (NFR/infra).</li>
+    <li><a href="https://linear.app/doorloop/issue/ACT-647">ACT-647</a> — Salesforce sync excludes Stripe rate-limit errors from retry (NFR reliability).</li>
+    <li><a href="https://linear.app/doorloop/issue/TEN-106">TEN-106</a> — discovery wizard back-office authoring tool + analytics (internal tooling).</li>
+    <li><a href="https://linear.app/doorloop/issue/TEN-443">TEN-443</a> — autopay pause/resume VPN-gated DoorWatch QA endpoint (not customer-facing, despite Slack wording).</li>
+    <li><a href="https://linear.app/doorloop/issue/TEN-456">TEN-456</a> — new "db_tenant_not_started" skip reason (observability).</li>
+    <li><a href="https://linear.app/doorloop/issue/TEN-453">TEN-453</a> — tenant-portal server deployment + crash logging (infra).</li>
+    <li><a href="https://linear.app/doorloop/issue/TEN-458">TEN-458</a> — discovery popover z-index fix (UI layering).</li>
+    <li>"Company settings" button relabel (cosmetic, no Linear ticket).</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
