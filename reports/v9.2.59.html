@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.59 — Help Center Impact</title>
+  <style>
+    :root { --border: #eaeaea; --muted: #555; --bg-soft: #fafafa; }
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; line-height: 1.5; }
+    h1 { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 0.25rem; }
+    h2 { margin-top: 2.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.4rem; }
+    h3 { margin-top: 1.5rem; margin-bottom: 0.3rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.65rem 0.55rem; vertical-align: top; text-align: left; font-size: 0.92rem; }
+    th { background: var(--bg-soft); font-weight: 600; }
+    td.linear { white-space: nowrap; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.85rem; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #5a5a5a; font-weight: 600; }
+    .beta { color: #6b3aa3; font-weight: 600; }
+    .article-link { display: block; padding: 4px 0; }
+    .article-link .id { color: #888; font-family: ui-monospace, monospace; font-size: 0.82em; }
+    code { background: #f4f4f4; padding: 1px 5px; border-radius: 3px; font-size: 0.86em; }
+    .note { font-size: 0.86em; color: #444; margin-top: 0.45rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: var(--bg-soft); border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: var(--muted); align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: var(--muted); font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .suggested { background: #fff8ee; border-left: 4px solid #f59e0b; padding: 0.9rem 1.1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
+    .suggested h3 { margin-top: 0; }
+    .keywords { font-size: 0.85em; color: #6a6a6a; margin-top: 0.4rem; }
+    .skipped { background: #f7f7f7; border-left: 4px solid #c7c7c7; padding: 0.75rem 1.1rem; margin: 0.6rem 0; border-radius: 0 6px 6px 0; font-size: 0.92em; }
+    p.meta { color: var(--muted); font-size: 0.95em; }
+  </style>
+</head>
+<body>
+
+  <h1>Release v9.2.59 — 2026-05-24</h1>
+  <p class="meta">Source: Slack post in <a href="https://doorloop.slack.com/archives/C0B4GTX1SBG">#platform-release-notes</a> · posted 2026-05-24 08:29:53 EDT · Bot <code>DevOpsNotifications</code></p>
+
+  <h2>Summary</h2>
+  <p>
+    Release v9.2.59 ships <strong>3 changes</strong> — two are improvements to the <strong>Voice module</strong> in the Communications Center (still behind the <code>Voice</code> beta flag): smarter recipient experience when a caller drops mid-screening, and AI-generated suggested-action chips that appear under each call summary so a single tap creates a contact, sends a rental application, or files a task. The third item is a backend reliability fix to the SSO login redirect that eliminates a class of 500 errors. No general-availability features in this release that need Help Center coverage today; the Voice module additions are candidates for a refreshed Voice / AI-summary article once GA.
+  </p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (3)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="onboarding">Onboarding &amp; Imports (1)</span>
+  </div>
+
+  <!-- ========== PM OPERATIONS ========== -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/PMO-634">PMO-634</a></td>
+          <td>Voice: recipient hears "caller has disconnected" if caller drops mid-screening</td>
+          <td class="original">Add server action to stop in‑progress call gathers; notify recipients when callers disconnect mid‑screening with a short goodbye and encoded client state.</td>
+          <td>In the call-forwarding flow, when the recipient has picked up and is hearing the "Press 1 to accept call from…" screening prompt, and the caller hangs up at that moment, DoorLoop now stops the in-progress prompt and speaks "The caller has disconnected. Goodbye." before hanging up — instead of cutting the recipient off mid-sentence. Also fixes a bridge-retry path so that calls Telnyx has already torn down (404/422) aren't retried needlessly. Voice module is still behind the <code>Voice</code> beta flag.</td>
+          <td><span class="beta">BETA — feature behind the Voice flag</span>
+            <p class="note">No published Help Center article covers the voice-call screening / forwarding flow today. Suggested new article (see below) — to ship around GA, not now.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/PMO-600">PMO-600</a></td>
+          <td>Voice: AI summary now produces typed action chips + smarter push notifications</td>
+          <td class="original">Voice-powered form prefill integrated into dialogs (tasks, rental applications, vendors, prospects) for faster entry</td>
+          <td>Each voice-call AI summary now emits up to 2 typed suggested-action chips below the synopsis (Create contact, Send rental application, Create task or request). Clicking a chip opens the matching dialog with name, phone, subject, description, assignee, and priority pre-filled from the call. Push notifications for recorded / logged / voicemail calls now carry an AI-written headline plus a CTA suffix instead of a generic "Tap for more information." Voice module behind the <code>Voice</code> flag.</td>
+          <td><span class="beta">BETA — feature behind the Voice flag</span>
+            <p class="note">Existing Communications Center articles (<a href="http://support.doorloop.com/en/articles/9061551-communications-center-overview">#9061551</a>, <a href="http://support.doorloop.com/en/articles/14759218-what-is-the-communications-center-in-doorloop">#14759218</a>) cover SMS only — no voice/AI-summary coverage yet. Group with PMO-634 in a single Voice-launch article when GA.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== ONBOARDING & IMPORTS ========== -->
+  <section class="area-section" data-area="onboarding">
+    <h2>Onboarding &amp; Imports <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-441">ACT-441</a></td>
+          <td>SSO login no longer 500s on unknown provider</td>
+          <td class="original">Enhanced configuration documentation with improved guidance on query parameter handling and OAuth state management best practices.</td>
+          <td>The <code>/api/auth/sso?provider=…</code> endpoint previously crashed (HTTP 500) when given any value other than <code>google</code> or <code>apple</code> — 132 hits in 30 days from rogue values. Now unregistered providers are validated server-side and redirected to the SSO error page (302) with structured logging and a New Relic tag, instead of throwing. End-user UX change: zero — users were never supposed to see the 500 anyway. Reliability win.</td>
+          <td><span class="internal">INTERNAL RELIABILITY FIX — no Help Center change</span>
+            <p class="note">Slack bullet is a generic NFR/docs blurb that doesn't match the actual fix. The actual change is a server-side validation guard.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== SUGGESTED NEW ARTICLES ========== -->
+  <h2>Suggested new articles</h2>
+  <div class="suggested">
+    <h3>What's New: The Voice module — call screening, AI-summarized calls, and one-tap follow-up — Version ? (when GA)</h3>
+    <p><strong>Why this is needed:</strong> The Voice module (still behind the <code>Voice</code> beta flag) keeps gaining real customer-facing capability in every release. This release alone adds: a graceful "caller has disconnected" message when the caller drops mid-screening (PMO-634), AI-written suggested-action chips under every call summary (PMO-600), and AI-headlined push notifications. No published article currently covers voice calls in the Communications Center — only SMS.</p>
+    <p><strong>Suggested coverage (when GA):</strong> How call forwarding + screening works (what the recipient hears when they pick up); what the AI summary, urgency badge, and suggested-action chips look like; what each chip does (Create contact, Send rental application, Create task or request); how push notifications for missed / recorded / voicemail calls differ.</p>
+    <p class="keywords"><strong>Keywords:</strong> Communications Center, voice calls, call forwarding, call screening, AI call summary, suggested actions, push notifications, prospect creation from call</p>
+    <p class="note"><strong>Recommendation:</strong> Hold this article until the Voice flag is generally available. Track via these Linear issues so coverage lands with launch: PMO-634, PMO-600, and any future Voice Module MVP tickets.</p>
+  </div>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <div class="skipped"><strong>ACT-441</strong> — SSO 500-error reliability fix; no end-user UX change.</div>
+
+  <p class="meta" style="margin-top: 3rem; border-top: 1px solid #eee; padding-top: 1rem;">
+    Generated by <code>doorloop-release-summary</code> · <a href="https://linear.app/doorloop">Linear</a> · <a href="https://app.intercom.com">Intercom</a>
+  </p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
