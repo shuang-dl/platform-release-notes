@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.75 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .beta { color: #6b3fa0; font-weight: 600; }
+    .internal { color: #555; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .at-glance td, .at-glance th { padding: 0.4rem 0.8rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.2.75 — 2026-06-02</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1780406465427719">View original Slack post</a> · <code>1780406465.427719</code> · posted by DevOpsNotifications</p>
+
+  <h2>Summary</h2>
+  <p>Release v9.2.75 is a small release of 4 changes. The one customer-facing highlight is self-serve <strong>payment dispute management</strong> in Banking (BAN-348), which lets property managers review, draft, and submit evidence for Stripe payment disputes directly inside DoorLoop instead of routing through the risk team. The remaining three items are internal hardening: a new background queue that makes voice post-call transcription/summary more reliable, scaffolding for a new communications-purchases library, and a rent-reminder performance optimization. Only the dispute feature has Help Center impact — and it's a content gap (no existing article covers disputes).</p>
+
+  <h2>At a glance</h2>
+  <table class="at-glance">
+    <thead><tr><th>Customer-visible</th><th>New article suggested</th><th>Beta (flag-gated)</th><th>Internal-only</th></tr></thead>
+    <tbody><tr><td>1</td><td>1</td><td>0</td><td>3</td></tr></tbody>
+  </table>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (4)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+    <span class="chip" data-area="other">Other (1)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-484">PMO-484</a></td>
+          <td>Scaffold communications-purchases library</td>
+          <td class="original">Added idempotent one-time purchase tracking with pending, completed, and failed statuses for clearer billing reconciliation.</td>
+          <td>Despite the product-sounding Slack note, this ticket (SP-1) only scaffolds an empty, properly-configured Nx library (<code>@doorloop/communications-purchases</code>) with boundary rules — the actual purchase model and service land in later tickets. No user-facing behavior ships here.</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— Library scaffolding/NFR; no customer-facing change yet.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1028">PMO-1028</a></td>
+          <td>Voice post-call processing → BullMQ queue</td>
+          <td class="original">Added background processing for voice call follow-up tasks so recordings can be transcribed, summarized, and published more reliably.</td>
+          <td>Moves voice post-call work (transcribe → AI summary → publish) off a fire-and-forget promise onto a dedicated, retry-aware background queue so a worker crash no longer silently loses a call's transcript and summary. Reliability improvement to the (beta) Voice pipeline.</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— Backend reliability/NFR; no Help Center impact. Reduces missing-transcript incidents in Voice.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-348">BAN-348</a></td>
+          <td>Self-serve payment dispute management</td>
+          <td class="original">Added dispute management so users can view, edit, save drafts, and submit evidence from payment transactions.</td>
+          <td>When a transaction is in DISPUTED status, the status chip becomes clickable and a "View Dispute" action opens an embedded Stripe dispute UI scoped to that charge. PMs can review dispute details, upload/save draft evidence, and submit responses without leaving DoorLoop — removing the risk team from the loop. Gated by existing payment/merchant-account permissions.</td>
+          <td><span class="unmatched">UNMATCHED</span> <span class="note">— No existing article covers handling payment disputes. Genuine content gap; see Suggested new articles. Adjacent articles to cross-link: <a href="http://support.doorloop.com/en/articles/8218181-introduction-to-lease-payment-status-labels-and-their-meaning">Introduction to Lease Payment Status Labels and Their Meaning</a> (covers the DISPUTED status) and <a href="http://support.doorloop.com/en/articles/9140540-what-is-a-merchant-account-and-the-responsibilities-associated-with-it">What is a Merchant Account and the Responsibilities Associated With It</a> (chargeback responsibility).</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="other">
+    <h2>Other <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>—</td>
+          <td>Faster rent reminder processing</td>
+          <td class="original">Added faster rent reminder processing by reusing already loaded property data and reducing extra database reads.</td>
+          <td>Performance optimization that reuses already-loaded property data when generating rent reminders, cutting redundant database reads.</td>
+          <td><span class="internal">INTERNAL</span> <span class="note">— Backend performance optimization; no Help Center impact.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p><strong>What's New: Handle payment disputes yourself, right inside DoorLoop — Version 9.2.75</strong> (covers BAN-348)<br>
+  <span class="note">Rationale: there is no Help Center article covering payment disputes. PMs can now open a disputed transaction, review the dispute details in an embedded Stripe panel, save draft evidence, and submit a response — without contacting DoorLoop's risk team. A new article should explain how to find a disputed payment (DISPUTED status chip / "View Dispute"), what evidence to gather, how drafts/submission work, and the chargeback-responsibility context. Cross-link the Lease Payment Status Labels and Merchant Account Responsibilities articles.<br>
+  Suggested keywords: dispute, chargeback, payment dispute, evidence, DISPUTED status, transactions, merchant account, Stripe.</span></p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><a href="https://linear.app/doorloop/issue/PMO-484">PMO-484</a> — scaffolds the <code>communications-purchases</code> Nx library (SP-1); no shipping behavior yet (NFR).</li>
+    <li><a href="https://linear.app/doorloop/issue/PMO-1028">PMO-1028</a> — moves voice post-call processing to a retry-aware BullMQ queue (reliability/NFR).</li>
+    <li>Faster rent reminder processing — performance optimization, no Linear ticket.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
