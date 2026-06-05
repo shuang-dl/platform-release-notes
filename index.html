@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform Release Notes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #3b82f6;
+      --blue-light: #eff6ff;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --text-soft: #64748b;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --green: #22c55e;
+      --green-light: #f0fdf4;
+      --tag-bg: #f1f5f9;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: var(--blue);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo svg { width: 20px; height: 20px; color: white; }
+
+    .header-text h1 {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .header-text p {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-top: 1px;
+    }
+
+    .main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .count-badge {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-soft);
+      background: var(--tag-bg);
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead tr {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    thead th {
+      padding: 11px 16px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+
+    tbody tr:hover { background: var(--bg); }
+
+    td {
+      padding: 14px 16px;
+      font-size: 14px;
+      vertical-align: middle;
+    }
+
+    .date-cell {
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .version-tag {
+      display: inline-block;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .version-tag.none {
+      background: var(--tag-bg);
+      color: var(--text-muted);
+      font-weight: 400;
+      font-family: inherit;
+    }
+
+    .title-cell {
+      color: var(--text-soft);
+      max-width: 340px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .view-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      font-weight: 500;
+      font-size: 13px;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #dbeafe;
+      border-radius: 6px;
+      background: var(--blue-light);
+      transition: background 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .view-link:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+    }
+
+    .view-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    .generated-cell {
+      color: var(--text-muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    /* Empty state */
+    .empty {
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .empty-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--tag-bg);
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .empty-icon svg { width: 24px; height: 24px; color: var(--text-muted); }
+
+    .empty h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .empty p {
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.6;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .empty code {
+      background: var(--tag-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* Error banner */
+    .error-banner {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #b91c1c;
+      margin-bottom: 16px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="16" y1="13" x2="8" y2="13"/>
+      <line x1="16" y1="17" x2="8" y2="17"/>
+      <polyline points="10 9 9 9 8 9"/>
+    </svg>
+  </div>
+  <div class="header-text">
+    <h1>Platform Release Notes</h1>
+    <p>Help Center impact reports — generated by Claude</p>
+  </div>
+</header>
+
+<div class="main">
+  <div id="error-banner" class="error-banner"></div>
+
+  <div class="section-header">
+    <h2>Reports</h2>
+    <span id="count-badge" class="count-badge">0 reports</span>
+  </div>
+
+  <div class="card">
+    <div id="table-wrap"></div>
+  </div>
+</div>
+
+<script>
+  function formatDate(dateStr) {
+    // dateStr is YYYY-MM-DD
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const date = new Date(y, m - 1, d);
+    return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function formatGenerated(isoStr) {
+    if (!isoStr) return '';
+    const d = new Date(isoStr);
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('error-banner');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function renderEmpty() {
+    return `
+      <div class="empty">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <h3>No reports yet</h3>
+        <p>Ask Claude to generate a release summary — for example: <br><code>release summary for 2026-06-05</code></p>
+      </div>`;
+  }
+
+  function renderTable(reports) {
+    // Sort newest first
+    const sorted = [...reports].sort((a, b) => b.date.localeCompare(a.date));
+
+    const rows = sorted.map(r => `
+      <tr>
+        <td class="date-cell">${formatDate(r.date)}</td>
+        <td>
+          ${r.version
+            ? `<span class="version-tag">${r.version}</span>`
+            : `<span class="version-tag none">—</span>`}
+        </td>
+        <td class="title-cell" title="${r.title || ''}">${r.title || ''}</td>
+        <td class="generated-cell">${formatGenerated(r.generatedAt)}</td>
+        <td>
+          <a class="view-link" href="${r.filename}" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            View
+          </a>
+        </td>
+      </tr>`).join('');
+
+    return `
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Version</th>
+            <th>Summary</th>
+            <th>Generated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  }
+
+  async function init() {
+    try {
+      const res = await fetch('reports.json?t=' + Date.now());
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const reports = await res.json();
+
+      const badge = document.getElementById('count-badge');
+      badge.textContent = `${reports.length} report${reports.length !== 1 ? 's' : ''}`;
+
+      const wrap = document.getElementById('table-wrap');
+      wrap.innerHTML = reports.length === 0 ? renderEmpty() : renderTable(reports);
+    } catch (err) {
+      showError('Could not load reports.json — ' + err.message);
+      document.getElementById('table-wrap').innerHTML = renderEmpty();
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>
