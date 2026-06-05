@@ -1,0 +1,293 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.79 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #999; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .internal-row td { background: #fafafa; color: #888; }
+    a { color: #18408f; }
+    ul.update-list { margin: 0.25rem 0; padding-left: 1.2rem; }
+    ul.update-list li { font-size: 0.9em; color: #444; margin-bottom: 2px; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.2.79 — 2026-06-04</h1>
+  <p>
+    <a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1780664681602539">View original Slack post</a>
+    · <code>1780664681.602539</code>
+  </p>
+
+  <h2>Summary</h2>
+  <p>This release ships 7 changes across PM Operations (3), Onboarding &amp; Imports (3), and Tenant Experience &amp; Payments (1). The customer-visible highlights are: vendor inactive status with toggles and list filtering (PMO-986), portfolio filtering in Communications Center (PMO-1462), enhanced Communications Center UI with tenant presence indicators and auto-responder controls (PMO-641), and localized SSO invitation error messages for the tenant portal (ACT-612). Three items are internal infrastructure with no Help Center impact.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (7)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (3)</span>
+    <span class="chip" data-area="onboarding-imports">Onboarding &amp; Imports (3)</span>
+    <span class="chip" data-area="tenant-experience">Tenant Experience &amp; Payments (1)</span>
+  </div>
+
+  <!-- PM Operations -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- PMO-986 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-986" target="_blank">PMO-986</a></td>
+          <td>Vendor inactive/active status</td>
+          <td class="original">Added an inactive status for vendors with active/inactive toggles, list filtering, and a guard for recurring transactions.</td>
+          <td>Property managers can now mark vendors as inactive (or re-activate them) via a toggle on the vendor overview page. The vendor list gains an active/inactive filter (default: active only, mirroring property behavior). Recurring transactions that reference an inactive vendor are guarded to prevent unintended charges.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-list">
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/6362223" target="_blank">Vendor Management Overview</a> — Add a dedicated "Active &amp; Inactive Vendors" section showing the toggle in the vendor overview dropdown and how the list filter works.</li>
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/6295184" target="_blank">Add a Vendor</a> — Note that newly-added vendors are active by default; show how to deactivate after creation.</li>
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/8487190" target="_blank">Edit a Vendor</a> — Add inactive toggle to the "what you can edit" list and update screenshots.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <!-- PMO-1462 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1462" target="_blank">PMO-1462</a></td>
+          <td>Communications Center portfolio filter</td>
+          <td class="original">Added portfolio filtering to Communications Center so users can narrow messages and conversations by property group.</td>
+          <td>A new portfolio (property group) filter is available in the Communications Center inbox, letting users narrow messages and conversations to a specific portfolio. Works the same way as property-level filtering already present in the UI.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-list">
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/9061551" target="_blank">Communications Center Overview</a> — Add portfolio filter to the "Filtering your inbox" section and update screenshots.</li>
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/14759235" target="_blank">Why Use the Communications Center Instead of Your Personal Cell Phone</a> — Update inbox screenshot to show portfolio filter option.</li>
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/9420392" target="_blank">Set Assignees for Messages Received on the Communication Center [HOA]</a> — Add portfolio as an additional filter dimension alongside property.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-list">
+              <li><a href="https://doorloop.wistia.com/medias/o1cw1de8i5" target="_blank">AI Communications Center</a> (created Mar 23, 2026 — <strong>73 days before this release</strong>) — likely needs re-recording to show portfolio filter in the inbox.</li>
+              <li><a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a> (created Mar 23, 2026 — 73 days before release) — review for inbox screenshots that may be outdated.</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- PMO-641 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-641" target="_blank">PMO-641</a></td>
+          <td>Communications Center AI co-pilot UI enhancements</td>
+          <td class="original">Added tenant presence indicators, improved auto-responder controls, and let users save contacts from conversations.</td>
+          <td>Three UI enhancements to the Communications Center: (1) Presence indicators show whether a tenant is currently active/online in a conversation. (2) Auto-responder controls are improved with clearer settings. (3) Users can now save a contact directly from a conversation thread without leaving the inbox. Part of the AI Communication Hub for SMS project.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-list">
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/12097336" target="_blank">DoorLoop AI Assistant in the Communication Center</a> — Document the improved auto-responder controls and tenant presence indicator badges.</li>
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/9061551" target="_blank">Communications Center Overview</a> — Add presence indicators and save-contact flow to the conversation view section.</li>
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/9106126" target="_blank">Set Up SMS Messaging for the Communications Center</a> — Update auto-responder setup screenshots.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-list">
+              <li><a href="https://doorloop.wistia.com/medias/o1cw1de8i5" target="_blank">AI Communications Center</a> (created Mar 23, 2026 — 73 days before this release) — likely needs re-recording to show presence indicators and new auto-responder UI.</li>
+              <li><a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a> (created Mar 23, 2026 — 73 days before release) — review auto-responder section.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Onboarding & Imports -->
+  <section class="area-section" data-area="onboarding-imports">
+    <h2>Onboarding &amp; Imports <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ACT-719 -->
+        <tr class="internal-row">
+          <td><a href="https://linear.app/doorloop/issue/ACT-719" target="_blank">ACT-719</a></td>
+          <td>Batch import error readability (internal)</td>
+          <td class="original">Fixed batch import failures to save a readable error message, making failed jobs easier to review and clean up.</td>
+          <td>Internal improvement: batch import job failure reasons are now stored as a human-readable string (e.g. "Property not found") instead of a raw JSON object in the database. This makes failed-job logs easier for ops/support to query and clean up. No change to the user-facing import UI.</td>
+          <td><span class="label">⚫ INTERNAL</span> — Backend log format change only; the property manager's import screen is unchanged. Labels: NFR, Maintainability.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <!-- ACT-738 -->
+        <tr class="internal-row">
+          <td><a href="https://linear.app/doorloop/issue/ACT-738" target="_blank">ACT-738</a></td>
+          <td>2FA analytics to New Relic (internal)</td>
+          <td class="original">Added 2FA verification tracking with outcome, reason, and channel details for better login funnel reporting.</td>
+          <td>Internal monitoring: the OTP/login transaction now emits custom New Relic attributes (<code>otpOutcome</code>, <code>otpReason</code>, <code>otpChannel</code>) so the 2FA dashboard can show a real per-reason success funnel. No change to user-facing 2FA flows.</td>
+          <td><span class="label">⚫ INTERNAL</span> — Pure analytics/observability change. No customer-visible behavior. Label: NFR.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <!-- ACT-612 -->
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-612" target="_blank">ACT-612</a></td>
+          <td>Localized SSO invitation error messages</td>
+          <td class="original">Now shows localized SSO invitation and login error messages instead of raw codes for expired or invalid access.</td>
+          <td>Tenants who click an expired or invalid SSO invitation link now see a clear, localized message in English or Spanish (e.g. "This invitation link has expired. Please ask your property manager to send a new one.") instead of the raw code string <code>invitation_expired</code>. Four error codes are covered: invitation_expired, invitation_invalid, no_portal_access, db_tenant_not_found.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-list">
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/8042443" target="_blank">How to Accept Your Tenant Portal Invite (Step-by-Step)</a> — Add a troubleshooting step showing the new "link expired" and "link invalid" error messages tenants may see.</li>
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/10148841" target="_blank">Troubleshoot Tenant Portal Login Issues</a> — Add an SSO error codes section documenting all 4 new messages and what tenants should do for each.</li>
+              <li><a href="https://app.intercom.io/a/apps/wcjnv9vi/articles/6337696" target="_blank">Fix Common Tenant Portal Invite Issues</a> — Add "Expired or invalid invite link" scenario with the new message copy and resolution (re-invite from DoorLoop).</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span>
+            <ul class="update-list">
+              <li><a href="https://doorloop.wistia.com/medias/9inwe6t7wj" target="_blank">Sending Out Tenant Portal Invites</a> (created Mar 22, 2026 — <strong>74 days before this release</strong>) — consider adding a short note or re-recording to show what the tenant sees if their link expires.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Tenant Experience & Payments -->
+  <section class="area-section" data-area="tenant-experience">
+    <h2>Tenant Experience &amp; Payments <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- TEN-85 -->
+        <tr class="internal-row">
+          <td><a href="https://linear.app/doorloop/issue/TEN-85" target="_blank">TEN-85</a></td>
+          <td>JournalEntry models migration (internal)</td>
+          <td class="original">Added shared journal entry models and validation updates, improving save behavior and preventing unintended changes.</td>
+          <td>Internal technical debt: the JournalEntry and related transaction subdoc models (~50 files) are migrated to the shared <code>@doorloop/mongodb-models</code> library. The <code>@pre('save')</code> hook is refactored to separate pure math/validation from impure side effects. No change to user-facing journal entry behavior.</td>
+          <td><span class="label">⚫ INTERNAL</span> — Infrastructure refactor only. No customer-visible behavior changes. Labels: NFR, Scalability.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <div style="background:#fff8f0;border:1px solid #f5dfc0;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1rem;">
+    <strong>What's New: Vendor inactive status — mark vendors as inactive without deleting them — Version 9.2.79</strong><br>
+    <span class="note">Rationale: PMO-986 introduces a first-class inactive status for vendors — a commonly requested feature (confirmed in Gong call with Jennifer Marin / Jorge Nunez). This deserves a "What's New" article to surface the toggle, the list filter, and the recurring-transaction guard. Currently no article covers vendor active/inactive status — the closest (Vendor Management Overview) only documents creation/editing.<br>
+    Suggested keywords: vendor inactive, deactivate vendor, active vendors filter, recurring transactions vendor</span>
+  </div>
+  <div style="background:#fff8f0;border:1px solid #f5dfc0;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1rem;">
+    <strong>What's New: Smarter Communications Center — presence indicators, auto-responder controls, and save contacts — Version 9.2.79</strong><br>
+    <span class="note">Rationale: PMO-641 bundles three meaningful UI improvements to the Communications Center inbox. While the existing "What's New: Smarter Communications Center tools" article (v9.2.71) covers earlier improvements, these new features (presence indicators, improved auto-responder settings, save contacts from thread) are distinct enough to merit their own article — or at least a prominent update to the Communications Center Overview.<br>
+    Suggested keywords: communications center, tenant presence, auto-responder, save contacts, SMS inbox</span>
+  </div>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Duration</th><th>Related features</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/o1cw1de8i5" target="_blank">AI Communications Center</a></td>
+        <td>Mar 23, 2026</td>
+        <td>1:27</td>
+        <td>PMO-1462 (portfolio filter), PMO-641 (presence indicators, auto-responder)</td>
+        <td><strong>Yes</strong> — created 73 days before this release; likely missing portfolio filter and new AI UI controls.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a></td>
+        <td>Mar 23, 2026</td>
+        <td>3:45</td>
+        <td>PMO-1462 (portfolio filter), PMO-641 (auto-responder controls)</td>
+        <td><strong>Review</strong> — created 73 days before release; check whether auto-responder setup section is still accurate.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/9inwe6t7wj" target="_blank">Sending Out Tenant Portal Invites</a></td>
+        <td>Mar 22, 2026</td>
+        <td>2:17</td>
+        <td>ACT-612 (localized SSO error messages)</td>
+        <td><strong>Review</strong> — created 74 days before release; consider adding what tenants see if their invite link has expired.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Suggested new training videos (NO VIDEO match):</strong></p>
+  <ul>
+    <li><strong>PMO-986 — Vendor Inactive Status:</strong> No existing training video covers vendor management or inactive status. A short video on marking vendors inactive and using the status filter would complement the existing Bills &amp; Expenses content.</li>
+  </ul>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>ACT-719</strong> — Batch import fail-reason stored as readable string (NFR/Maintainability — internal log format, no user-facing import UI change)</li>
+    <li><strong>ACT-738</strong> — 2FA verification outcome emitted to New Relic (NFR — pure internal monitoring, no customer-visible change)</li>
+    <li><strong>TEN-85</strong> — JournalEntry models migration to shared library (NFR/Scalability — backend refactor, no customer-visible behavior change)</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
