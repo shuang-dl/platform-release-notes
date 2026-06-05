@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "date": "2026-05-22",
+    "version": "v9.2.55",
+    "title": "Release v9.2.55 — Help Center Impact",
+    "filename": "reports/v9.2.55.html",
+    "generatedAt": "2026-05-22T00:00:00Z"
+  },
+  {
+    "date": "2026-05-26",
+    "version": "v9.2.59",
+    "title": "Release v9.2.59 — Help Center Impact",
+    "filename": "reports/v9.2.59.html",
+    "generatedAt": "2026-05-26T00:00:00Z"
+  },
+  {
+    "date": "2026-05-26",
+    "version": "v9.2.62",
+    "title": "Release v9.2.62 — Help Center Impact",
+    "filename": "reports/v9.2.62.html",
+    "generatedAt": "2026-05-26T00:00:00Z"
+  },
+  {
+    "date": "2026-05-27",
+    "version": "v9.2.63",
+    "title": "Release v9.2.63 — Help Center Impact",
+    "filename": "reports/v9.2.63.html",
+    "generatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "date": "2026-05-27",
+    "version": "v9.2.66",
+    "title": "Release v9.2.66 — Help Center Impact",
+    "filename": "reports/v9.2.66.html",
+    "generatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "date": "2026-05-27",
+    "version": "v9.2.67",
+    "title": "Release v9.2.67 — Help Center Impact",
+    "filename": "reports/v9.2.67.html",
+    "generatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "date": "2026-06-01",
+    "version": "v9.2.71",
+    "title": "Release v9.2.71 — Help Center Impact",
+    "filename": "reports/v9.2.71.html",
+    "generatedAt": "2026-06-01T00:00:00Z"
+  },
+  {
+    "date": "2026-06-02",
+    "version": "v9.2.75",
+    "title": "Release v9.2.75 — Help Center Impact",
+    "filename": "reports/v9.2.75.html",
+    "generatedAt": "2026-06-02T00:00:00Z"
+  },
+  {
+    "date": "2026-06-03",
+    "version": "v9.2.76",
+    "title": "Release v9.2.76 — Help Center Impact",
+    "filename": "reports/v9.2.76.html",
+    "generatedAt": "2026-06-03T00:00:00Z"
+  },
+  {
+    "date": "2026-06-05",
+    "version": "v9.2.79",
+    "title": "Release v9.2.79 — Help Center Impact",
+    "filename": "reports/v9.2.79.html",
+    "generatedAt": "2026-06-05T00:00:00Z"
+  }
+]
