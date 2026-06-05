@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.67 — Help Center Impact</title>
+  <style>
+    :root { --border: #eaeaea; --muted: #555; --bg-soft: #fafafa; }
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; line-height: 1.5; }
+    h1 { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 0.25rem; }
+    h2 { margin-top: 2.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.4rem; }
+    h3 { margin-top: 1.5rem; margin-bottom: 0.3rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.65rem 0.55rem; vertical-align: top; text-align: left; font-size: 0.92rem; }
+    th { background: var(--bg-soft); font-weight: 600; }
+    td.linear { white-space: nowrap; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.85rem; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #5a5a5a; font-weight: 600; }
+    .beta { color: #6b3aa3; font-weight: 600; }
+    .article-link { display: block; padding: 4px 0; }
+    .article-link .id { color: #888; font-family: ui-monospace, monospace; font-size: 0.82em; }
+    code { background: #f4f4f4; padding: 1px 5px; border-radius: 3px; font-size: 0.86em; }
+    .note { font-size: 0.86em; color: #444; margin-top: 0.45rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: var(--bg-soft); border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: var(--muted); align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: var(--muted); font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .skipped { background: #f7f7f7; border-left: 4px solid #c7c7c7; padding: 0.75rem 1.1rem; margin: 0.6rem 0; border-radius: 0 6px 6px 0; font-size: 0.92em; }
+    p.meta { color: var(--muted); font-size: 0.95em; }
+  </style>
+</head>
+<body>
+
+  <h1>Release v9.2.67 — 2026-05-27</h1>
+  <p class="meta">Source: Slack post in <a href="https://doorloop.slack.com/archives/C0B4GTX1SBG">#platform-release-notes</a> · posted 2026-05-27 12:46:01 EDT · Bot <code>DevOpsNotifications</code> · second release of the day after v9.2.66</p>
+
+  <h2>Summary</h2>
+  <p>
+    Release v9.2.67 ships <strong>4 changes</strong>. One customer-visible polish item: clearer copy on the 2FA "remember this device for 30 days" checkbox (ACT-649). One Voice-module improvement still behind the beta flag — inactive teammates now show an Inactive tag in voice settings and are skipped during call forwarding (PMO-1004). Two internal items: a Mongo write-conflict retry on the BATCH_IMPORT sync paths (ACT-398), and a backend chart-of-accounts routing fix for payments/payouts (unlinked).
+  </p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (4)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (1)</span>
+    <span class="chip" data-area="onboarding">Onboarding &amp; Imports (2)</span>
+    <span class="chip" data-area="other">Other (1)</span>
+  </div>
+
+  <!-- ========== PM OPERATIONS ========== -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/PMO-1004">PMO-1004</a></td>
+          <td>Voice settings: Inactive-user badges + call forwarding skips inactive assignees</td>
+          <td class="original">Added inactive-user badges and disabled toggles in voice settings, while call forwarding now skips inactive assigned users.</td>
+          <td>If a teammate assigned to receive forwarded calls is later deactivated, the row in Voice Settings is now rendered greyed-out with an <em>Inactive</em> tag — and the forwarding logic skips that user when ringing assigned targets, falling through to the next configured target (other users, voicemail, etc.). PMs can still remove or replace the inactive assignment from the same row. Previously calls were forwarded into a black hole. Voice module is still behind the <code>Voice</code> beta flag.</td>
+          <td><span class="beta">BETA — feature behind the Voice flag</span>
+            <p class="note">Group with PMO-634 + PMO-600 (v9.2.59) into the eventual Voice-launch article. Add a "What happens when an assigned user is deactivated" subsection covering the visual + behavioral changes.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== ONBOARDING & IMPORTS ========== -->
+  <section class="area-section" data-area="onboarding">
+    <h2>Onboarding &amp; Imports <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-398">ACT-398</a></td>
+          <td>Batch import: retry recurring-payment creation on Mongo write conflicts</td>
+          <td class="original">Now retries recurring payment creation during batch imports when database write conflicts occur, improving import reliability.</td>
+          <td>BATCH_IMPORT jobs were hitting MongoDB <code>Write conflict during plan execution</code> errors (~23/week) when downstream syncs (Intercom user sync, Stripe payout acceleration) collided on the same lease/tenant/recurring-payment documents. The fix wraps the affected downstream paths with the existing WRITE_CONFLICT-aware retry helper so imports succeed instead of failing mid-flight.</td>
+          <td><span class="internal">INTERNAL RELIABILITY FIX — no Help Center change</span>
+            <p class="note">No user-facing UX change. Imports that previously hit transient conflicts will now succeed without manual rerun.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-649">ACT-649</a></td>
+          <td>2FA: clearer "remember this device for 30 days" checkbox copy</td>
+          <td class="original">Added clearer 2FA checkbox text so users know it skips the verification code on this device for 30 days.</td>
+          <td>The 30-day checkbox on the 2FA verification screen previously confused users — some thought it skipped login entirely, some didn't know what 2FA was, some didn't understand the browser-session implication. Copy is now explicit: this device will skip the verification code for 30 days. Goal is to cut support tickets driven by misunderstanding the option.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/13335418-2fa-verification-code">2FA Verification Code <span class="id">#13335418</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/6341992-enable-two-factor-authentication-for-sms">Enable Two-Factor Authentication for SMS <span class="id">#6341992</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14758136-troubleshoot-2fa-verification-code-issues">Troubleshoot 2FA Verification Code Issues <span class="id">#14758136</span></a>
+            <p class="note"><strong>Likely update needed:</strong> If any of these articles quote the old checkbox label, update it to the new copy. Add (or refresh) a short note: "Checking this option will skip the 2FA verification code on this device for the next 30 days. After that period, you'll be prompted again." Refresh the checkbox screenshot if one is present.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== OTHER ========== -->
+  <section class="area-section" data-area="other">
+    <h2>Other <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear">—</td>
+          <td>Chart-of-accounts routing for payments and payouts</td>
+          <td class="original">Added chart-of-accounts routing so payments and payouts now resolve the correct destination account more reliably.</td>
+          <td>Backend routing change so payments and payouts resolve to the correct destination account in the chart of accounts more reliably. No user-facing UX change called out in the Slack note; no Linear link to pull more detail from.</td>
+          <td><span class="internal">INTERNAL — no Help Center change (no Linear link)</span>
+            <p class="note">If this becomes user-visible later (e.g. surfaces in reports or account selection), revisit.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p class="note">None standalone — PMO-1004 folds into the future Voice-launch article (held alongside PMO-634 and PMO-600 from v9.2.59) when the Voice flag goes GA.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <div class="skipped"><strong>ACT-398</strong> — Batch-import Mongo write-conflict retry; reliability only.</div>
+  <div class="skipped"><strong>(unlinked)</strong> — Chart-of-accounts routing for payments/payouts; backend reliability with no detail.</div>
+
+  <p class="meta" style="margin-top: 3rem; border-top: 1px solid #eee; padding-top: 1rem;">
+    Generated by <code>doorloop-release-summary</code> · <a href="https://linear.app/doorloop">Linear</a> · <a href="https://app.intercom.com">Intercom</a>
+  </p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
