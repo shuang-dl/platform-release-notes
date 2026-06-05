@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.55 — Help Center Impact</title>
+  <style>
+    :root { --border: #eaeaea; --muted: #555; --bg-soft: #fafafa; }
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; line-height: 1.5; }
+    h1 { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 0.25rem; }
+    h2 { margin-top: 2.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.4rem; }
+    h3 { margin-top: 1.5rem; margin-bottom: 0.3rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.65rem 0.55rem; vertical-align: top; text-align: left; font-size: 0.92rem; }
+    th { background: var(--bg-soft); font-weight: 600; }
+    td.linear { white-space: nowrap; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.85rem; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #5a5a5a; font-weight: 600; }
+    .article-link { display: block; padding: 4px 0; }
+    .article-link .id { color: #888; font-family: ui-monospace, monospace; font-size: 0.82em; }
+    code { background: #f4f4f4; padding: 1px 5px; border-radius: 3px; font-size: 0.86em; }
+    .note { font-size: 0.86em; color: #444; margin-top: 0.45rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: var(--bg-soft); border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: var(--muted); align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; transition: background 0.15s, border-color 0.15s; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: var(--muted); font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+
+    .suggested { background: #fff8ee; border-left: 4px solid #f59e0b; padding: 0.9rem 1.1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
+    .suggested h3 { margin-top: 0; }
+    .keywords { font-size: 0.85em; color: #6a6a6a; margin-top: 0.4rem; }
+    .skipped { background: #f7f7f7; border-left: 4px solid #c7c7c7; padding: 0.75rem 1.1rem; margin: 0.6rem 0; border-radius: 0 6px 6px 0; font-size: 0.92em; }
+    p.meta { color: var(--muted); font-size: 0.95em; }
+  </style>
+</head>
+<body>
+
+  <h1>Release v9.2.55 — 2026-05-20</h1>
+  <p class="meta">Source: <a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1779292660928709">Slack post in #platform-release-notes</a> · ts <code>1779454620.116509</code> · Bot <code>DevOpsNotifications</code></p>
+
+  <h2>Summary</h2>
+  <p>
+    Release v9.2.55 ships <strong>14 changes</strong> across six product areas. Customer-visible work concentrates in
+    <strong>PM Operations</strong> (expense file sharing now auto-detects owners),
+    <strong>Accounting / Reporting v2</strong> (running balance column returns to Transaction Details; insurance status chip now shows <em>Expired</em> and <em>Future</em>),
+    <strong>Tenant Experience &amp; Payments</strong> (new <em>Rent Payments Overview</em> with an <em>Additional Payments</em> page and an in-app notification announcement),
+    <strong>Leads &amp; Leasing</strong> (showings dialogs no longer break when availability isn't set),
+    <strong>Workflows</strong> (Realtor.com listing now visible with a <em>New</em> tag),
+    and <strong>Onboarding &amp; Imports</strong> (cancelled accounts can re-subscribe at their previous unit count).
+    The remaining items are backend reliability and telemetry — no Help Center change needed.
+  </p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (14)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="accounting">Accounting (4)</span>
+    <span class="chip" data-area="onboarding">Onboarding & Imports (3)</span>
+    <span class="chip" data-area="tenant">Tenant Experience & Payments (3)</span>
+    <span class="chip" data-area="workflows">Workflows (1)</span>
+    <span class="chip" data-area="leads">Leads & Leasing (1)</span>
+  </div>
+
+  <!-- ========== PM OPERATIONS ========== -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/PMO-605">PMO-605</a></td>
+          <td>Auto-detect owners when sharing expense files</td>
+          <td class="original">Enhanced expense file sharing with automatic owner detection from transaction lines</td>
+          <td>The owner-selector input is gone from the Expense dialog's file-sharing section. Owners are now derived automatically from each line item's <em>unit owner</em> (falling back to property owner). When line items resolve to different owners, the toggle is disabled and a warning explains why. After uploading a file, the share-with-owners toggle defaults to ON.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/10249419-share-a-file-with-a-tenant-or-an-owner">Share a File With a Tenant or an Owner <span class="id">#10249419</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/10262302-enable-viewing-of-uploaded-files-on-the-owner-portal">Enable Viewing of Uploaded Files on the Owner Portal <span class="id">#10262302</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/6076135-create-an-expense">Create an Expense <span class="id">#6076135</span></a>
+            <p class="note"><strong>Likely update needed:</strong> Remove screenshots / steps showing the manual owner selector in the expense file-share section. Replace with: "Owners are detected automatically from each expense line item." Document the disabled-toggle warning that appears when line items resolve to different owners. Note the new default-ON behavior after upload.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-574">ACT-574</a></td>
+          <td>Billing calculator: correct plan-tier names + annual math</td>
+          <td class="original">Improved accuracy of add-on pricing calculations when switching billing intervals.</td>
+          <td>Updates the internal billing calculator tool to use current plan names (Starter, Pro, Premium), fixes annual-plan totals that were showing the monthly amount, and corrects AI add-on rollup in the annual view. Internal sales/CS tool — not in the customer product.</td>
+          <td><span class="internal">INTERNAL TOOL — no Help Center change</span>
+            <p class="note">Calculator lives at an internal URL; no customer-facing article documents it.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== ACCOUNTING ========== -->
+  <section class="area-section" data-area="accounting">
+    <h2>Accounting <span class="count">4 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/DOO-1969">DOO-1969</a></td>
+          <td>Running Balance column on the new Transaction Details report</td>
+          <td class="original">Added running balance column to transaction details and option to include beginning-balance rows in grids/exports</td>
+          <td>The new (v2) Transaction Details report now exposes a togglable <em>Running Balance</em> column that mirrors the legacy v1 behavior: accumulates row-by-row, resets per group when a group-by is active, and anchors on each group's <code>beginningBalance</code> row. Also exports correctly to CSV / Excel / PDF.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/9736552-transaction-details-report">Transaction Details Report <span class="id">#9736552</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/9311649-introduction-to-running-balances-on-the-lease-ledger">Introduction to Running Balances on the Lease Ledger <span class="id">#9311649</span></a>
+            <p class="note"><strong>Likely update needed:</strong> In the Transaction Details Report article, confirm the Running Balance column is documented as an available (togglable) column on the v2 report — not just the legacy one. Add a note that when a group-by is active, the running balance resets per group anchored on the group's beginning-balance row.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/BAN-371">BAN-371</a></td>
+          <td>Stripe recovery now subtracts convenience fee from recovered lease payment</td>
+          <td class="original">Corrected lease payment amount recovery to deduct applicable convenience fees (ACH and credit card) so recovered received amounts match payment metadata.</td>
+          <td>Fixes a sporadic production bug where lease payments created via the Stripe Journal Entry Recovery path (when the normal webhook is delayed &gt;10 min) recorded the <em>gross</em> amount (rent + convenience fee) instead of rent-only — causing deposits to double-count the fee. No user-facing UX change; impacted data is now correct on its own.</td>
+          <td><span class="internal">INTERNAL BUG FIX — no Help Center change</span>
+            <p class="note">Pure backend correction; PMs see correct numbers but no new screen or setting.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/DOO-1944">DOO-1944</a></td>
+          <td>Insurance Compliance v2: Expired & Future statuses now translate + color-code</td>
+          <td class="original">Extended insurance status support with the addition of two new policy statuses: EXPIRED and FUTURE. Each new status includes localized English translations and distinct visual indicators for enhanced identification. Users will benefit from improved visibility of policy lifecycle states across reporting dashboards.</td>
+          <td>On the v2 Insurance Compliance report, the insurance-status chip previously showed the raw key (e.g. <code>option.insuranceStatus.EXPIRED</code>) in gray for two of four possible enum values. The chip now renders <em>Expired</em> (orange) and <em>Future</em> (blue/info) with translated labels and the right semantic color. CSV / Excel / PDF exports also use the translated labels.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/9797013-insurance-summary-report">Insurance Summary Report <span class="id">#9797013</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/6345333-view-and-edit-tenant-insurance-policy-information">View and Edit Tenant Insurance Policy Information <span class="id">#6345333</span></a>
+            <p class="note"><strong>Likely update needed:</strong> Where the article enumerates insurance statuses, list all four: <em>Active</em> (green), <em>No Insurance</em> (red), <em>Expired</em> (orange — NEW), <em>Future</em> (blue — NEW). Note the policy-lifecycle visibility benefit on reporting dashboards.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-246">TEN-246</a></td>
+          <td>Server model migration PR13 (core/)</td>
+          <td class="original">Internal code organization improvements with no user-facing changes.</td>
+          <td>Internal refactor: migrates remaining Typegoose models in <code>apps/server/src/core/</code> to the <code>mongodb-models</code> library. No user-facing change.</td>
+          <td><span class="internal">INTERNAL — no Help Center change</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== ONBOARDING & IMPORTS ========== -->
+  <section class="area-section" data-area="onboarding">
+    <h2>Onboarding &amp; Imports <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-353">ACT-353</a></td>
+          <td>Login API returns 202 with MFA challenge payload</td>
+          <td class="original">Clients can receive explicit 202 responses with header/payload to trigger the MFA challenge flow.</td>
+          <td><code>POST /api/auth/login</code> now returns HTTP <strong>202 Accepted</strong> (with header <code>X-MFA-Required: totp</code>) instead of 401 when credentials are valid but MFA is still required. Other 13 step-up MFA routes still return 401 for now. Affects external API integrators; no UI change for end users.</td>
+          <td><span class="internal">INTERNAL API CHANGE — minimal Help Center impact</span>
+            <p class="note">2FA help articles (<code>#6341992</code>, <code>#13335418</code>, <code>#14758136</code>) describe end-user flows that didn't change. If a public API reference exists, the new 202 response shape should be documented there.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-451">ACT-451</a></td>
+          <td>Salesforce user-sync telemetry (<code>SfSyncUserWorkerRun</code>)</td>
+          <td class="original">Enhanced monitoring for Salesforce user syncs: per-user run events, duration metrics, success/failure counters, and error classification for improved observability.</td>
+          <td>Instruments the <code>SYNC_USER_TO_SALESFORCE</code> agenda job with New Relic custom events (per-user run, duration, success/failure, error classification) so a "User Salesforce Sync" dashboard can mirror the existing DbTenant dashboard. Internal observability only.</td>
+          <td><span class="internal">INTERNAL — no Help Center change</span></td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-569">ACT-569</a></td>
+          <td>Cancelled accounts can re-subscribe at the same unit count</td>
+          <td class="original">Added comprehensive test coverage for subscription plan button logic, including scenarios for plan changes, AI addon removal, and subscription reactivation.</td>
+          <td>Previously, an account with a cancelled Stripe subscription could only re-subscribe if it picked a plan unit count <strong>+1 higher</strong> than its prior active count — forcing a meaningless upgrade. Now PMs can re-subscribe with exactly the plan/unit count they left off on.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14757313-cancel-your-doorloop-subscription">Cancel Your DoorLoop Subscription <span class="id">#14757313</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/6198498-update-your-subscription-plan-unit-count">Update Your Subscription Plan Unit Count <span class="id">#6198498</span></a>
+            <p class="note"><strong>Likely update needed:</strong> In the Cancel Subscription article, add a "Reactivating after cancellation" section noting that PMs can return at their previous unit count — no forced upgrade required. Remove any guidance that implied users must add +1 unit to reactivate.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== TENANT EXPERIENCE & PAYMENTS ========== -->
+  <section class="area-section" data-area="tenant">
+    <h2>Tenant Experience &amp; Payments <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-195">TEN-195</a></td>
+          <td>Notification-bell announcement for new Rent Payments Overview</td>
+          <td class="original">Launched monthly automated announcements to help users track rental payments, identify overdue amounts, and send reminders.</td>
+          <td>Adds a one-time entry under the in-app notification bell that announces the new Rent Payments Overview screen to property managers and links directly to the new tab. Shows once per PM. <em>(Note: Slack bullet describes the broader rent-payments-overview launch; Linear ticket is specifically the notification-bell wiring.)</em></td>
+          <td><span class="unmatched">UNMATCHED — suggested new article (see below)</span>
+            <p class="note">The Rent Payments Overview screen itself appears to be brand new; no existing article covers it yet.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-271">TEN-271</a></td>
+          <td>Re-queue Stripe charge.succeeded jobs after lock_timeout</td>
+          <td class="original">Enhanced Stripe webhook processing with automatic retry logic for temporary lock timeout errors</td>
+          <td>When Stripe holds the per-destination-account write lock longer than the in-process retry budget (~7.5s), the <code>charge.succeeded</code> job is now re-queued at 10/20/30-minute intervals (up to 3 re-queues) instead of failing terminally. Eliminates the need for manual Agendash requeues during ACH burst windows.</td>
+          <td><span class="internal">INTERNAL RELIABILITY FIX — no Help Center change</span></td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-194">TEN-194</a></td>
+          <td>New "Additional Payments" page from Rent Payments Overview</td>
+          <td class="original">Added an "Additional Payments" page from the rent payments overview with route, search/filter bar, paginated table, expandable lease rows, tenant rows, and status badges.</td>
+          <td>Adds a full-page Additional Payments list reachable from the Rent Payments Overview "View status" action. Includes route, search/filter bar, paginated table, expandable lease rows, tenant rows, and status badges.</td>
+          <td><span class="unmatched">UNMATCHED — suggested new article (see below)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== WORKFLOWS ========== -->
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/L2L-789">L2L-789</a></td>
+          <td>Realtor.com surfaced as disabled with a "New" tag in syndication</td>
+          <td class="original">Refined and updated the visual styling of "new" item indicators across listing partner and syndication management screens. Enhanced the presentation components used throughout these interfaces to ensure consistent modern design and improved overall visual coherence across all listing management features.</td>
+          <td>To increase adoption of the Realtor.com lead API, Realtor.com now appears in the Listings page's syndication area in a disabled visual state with a <em>New</em> tag. Clicking it surfaces the existing Realtor.com activation flow.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14759688-listing-partner-sites-available-in-doorloop">Listing Partner Sites Available in DoorLoop <span class="id">#14759688</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/8426617-turn-on-listing-syndications">Turn on Listing Syndications <span class="id">#8426617</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14841870-what-s-new-more-listing-partners-easier-tenant-activation-version-9-2-29">What's New: More listing partners — Version 9.2.29 <span class="id">#14841870</span></a>
+            <p class="note"><strong>Likely update needed:</strong> In <em>Listing Partner Sites Available in DoorLoop</em>, add Realtor.com to the partner list and call out that it appears with a <em>New</em> tag in a disabled state until activated — clicking the entry opens the existing Realtor.com lead-API activation flow.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== LEADS & LEASING ========== -->
+  <section class="area-section" data-area="leads">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/L2L-768">L2L-768</a></td>
+          <td>Showings no longer break when availability isn't set</td>
+          <td class="original">Added availability banner to showing dialogs for displaying and managing property availability settings</td>
+          <td>Fixes broken showings behavior in the Communication Center and Prospect Overview when no showing availability is configured. Adds an in-dialog availability banner with auto-seeding defaults, plus fixes for assignee transfers, duplicate group rows, and lost prospect prefill when navigating to the nested availability dialog.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14893641-showings-set-your-showings-availability-per-agent">Showings: Set Your Showings Availability (Per Agent) <span class="id">#14893641</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14092081-showings-availability-to-follow-up">Showings: Availability to Follow-Up <span class="id">#14092081</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/14893438-showings-company-and-property-settings">Showings: Company and Property Settings <span class="id">#14893438</span></a>
+            <p class="note"><strong>Likely update needed:</strong> Add a note (or new subsection) explaining the in-dialog availability banner that appears when a user opens Send Invitation / Create Showing without having configured availability yet — with an inline "set availability" CTA. Clarify that assignee changes preserve the availability group cleanly.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== SUGGESTED NEW ARTICLES ========== -->
+  <h2>Suggested new articles</h2>
+  <div class="suggested">
+    <h3>What's New: A single place to see and act on rent payments — Version 9.2.55</h3>
+    <p><strong>Why this is needed:</strong> The Rent Payments Overview screen and its companion "Additional Payments" page (TEN-194) and in-app notification announcement (TEN-195) are net-new surface area. The overview rolls up rent payment status across the portfolio and lets PMs drill into an Additional Payments list with search, filter, paginated table, expandable lease/tenant rows, and status badges.</p>
+    <p><strong>Suggested coverage:</strong> Where to find Rent Payments Overview, what each status badge means, how the Additional Payments page differs from the main rent-payments view, how to use the filter/search/pagination, and what the one-time notification-bell announcement looks like.</p>
+    <p class="keywords"><strong>Keywords:</strong> rent payments overview, additional payments, payment status badges, notification bell announcement, payment adoption</p>
+  </div>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <div class="skipped"><strong>ACT-574</strong> — internal billing-calculator tool (not in customer product).</div>
+  <div class="skipped"><strong>BAN-371</strong> — backend Stripe recovery correctness fix; no user-facing change.</div>
+  <div class="skipped"><strong>TEN-246</strong> — server-side Typegoose model migration; internal refactor.</div>
+  <div class="skipped"><strong>ACT-353</strong> — API-only status-code change (401 → 202) for MFA challenge on the login endpoint; no end-user UX change.</div>
+  <div class="skipped"><strong>ACT-451</strong> — New Relic telemetry instrumentation for Salesforce user sync; observability only.</div>
+  <div class="skipped"><strong>TEN-271</strong> — Stripe webhook re-queue on lock_timeout; reliability improvement, no UX change.</div>
+
+  <p class="meta" style="margin-top: 3rem; border-top: 1px solid #eee; padding-top: 1rem;">
+    Generated by <code>doorloop-release-summary</code> · <a href="https://linear.app/doorloop">Linear</a> · <a href="https://app.intercom.com">Intercom</a>
+  </p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
