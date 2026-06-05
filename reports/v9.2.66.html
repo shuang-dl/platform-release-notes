@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.66 — Help Center Impact</title>
+  <style>
+    :root { --border: #eaeaea; --muted: #555; --bg-soft: #fafafa; }
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; line-height: 1.5; }
+    h1 { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 0.25rem; }
+    h2 { margin-top: 2.5rem; border-bottom: 1px solid #f0f0f0; padding-bottom: 0.4rem; }
+    h3 { margin-top: 1.5rem; margin-bottom: 0.3rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.65rem 0.55rem; vertical-align: top; text-align: left; font-size: 0.92rem; }
+    th { background: var(--bg-soft); font-weight: 600; }
+    td.linear { white-space: nowrap; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.85rem; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #5a5a5a; font-weight: 600; }
+    .article-link { display: block; padding: 4px 0; }
+    .article-link .id { color: #888; font-family: ui-monospace, monospace; font-size: 0.82em; }
+    code { background: #f4f4f4; padding: 1px 5px; border-radius: 3px; font-size: 0.86em; }
+    .note { font-size: 0.86em; color: #444; margin-top: 0.45rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: var(--bg-soft); border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: var(--muted); align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: var(--muted); font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .suggested { background: #fff8ee; border-left: 4px solid #f59e0b; padding: 0.9rem 1.1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
+    .suggested h3 { margin-top: 0; }
+    .skipped { background: #f7f7f7; border-left: 4px solid #c7c7c7; padding: 0.75rem 1.1rem; margin: 0.6rem 0; border-radius: 0 6px 6px 0; font-size: 0.92em; }
+    p.meta { color: var(--muted); font-size: 0.95em; }
+  </style>
+</head>
+<body>
+
+  <h1>Release v9.2.66 — 2026-05-27</h1>
+  <p class="meta">Source: Slack post in <a href="https://doorloop.slack.com/archives/C0B4GTX1SBG">#platform-release-notes</a> · posted 2026-05-27 09:14:41 EDT · Bot <code>DevOpsNotifications</code></p>
+
+  <h2>Summary</h2>
+  <p>
+    Release v9.2.66 ships <strong>10 changes</strong> across PM Operations, Accounting, Onboarding &amp; Imports, Tenant Experience &amp; Payments, Leads &amp; Leasing, and Banking. Customer-facing work is mostly an extension of items already in flight:
+    PMO-988 builds on last week's expense-file owner auto-detection (PMO-605, v9.2.55) by adding a multi-select dropdown, a "set as default" option, and a paperclip-icon refresh on the Owner Portal files page;
+    the Additional Payments screen — broken since launch — now correctly shows alternative payment methods (TEN-397);
+    and a second adoption nudge for Income Verification lands on the Rental Applications screen via a "What's New" dialog. ACT-598 polishes visual inconsistencies in the login/signup fields, including a placeholder that was covering the password value.
+    Everything else is internal: a Renewals Agent API endpoint, a small GSF V2 redirect fix, two Bugsnag noise-reduction tasks, an env-detection refinement, and a Slack alert routing fix.
+  </p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (10)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="accounting">Accounting (1)</span>
+    <span class="chip" data-area="onboarding">Onboarding &amp; Imports (2)</span>
+    <span class="chip" data-area="tenant">Tenant Experience &amp; Payments (3)</span>
+    <span class="chip" data-area="leads">Leads &amp; Leasing (1)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+  </div>
+
+  <!-- ========== PM OPERATIONS ========== -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/PMO-988">PMO-988</a></td>
+          <td>Expense file sharing: multi-select owner picker + "set as default" + Owner Portal icon refresh</td>
+          <td class="original">Enhanced owner-selection UI for file sharing with a "set as default" option and multi-select owner lookup</td>
+          <td>Builds on v9.2.55's auto-owner-detection (PMO-605). The PM-side Share-a-File flow now shows a dropdown listing all owners under the selected property/unit — pre-selected by default, with the ability to unselect specific ones. When line items span properties/units with different owners, a disclaimer notes that the file will be shared with every relevant owner. Adds a "set as default" button (mirroring Create a Lease Payment) so chosen recipients can be persisted as the default for future shares. On the Owner Portal Files page, the file-extension color block is replaced with a unified paperclip icon. Adds a link from owner-portal expense-related files back to the source expense.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/10249419-share-a-file-with-a-tenant-or-an-owner">Share a File With a Tenant or an Owner <span class="id">#10249419</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/10262302-enable-viewing-of-uploaded-files-on-the-owner-portal">Enable Viewing of Uploaded Files on the Owner Portal <span class="id">#10262302</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/6076135-create-an-expense">Create an Expense <span class="id">#6076135</span></a>
+            <p class="note"><strong>Likely update needed:</strong> Add a "Multi-select owner picker" subsection to the file-sharing article — show the dropdown with default-selected owners, the unselect behavior, the cross-property/unit disclaimer, and the new "set as default" button. Refresh the Owner Portal screenshot to show the new paperclip icon. Mention the new link from owner-portal files back to the source expense. <em>Coordinate with the still-pending PMO-605 update from v9.2.55 so both land together.</em></p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/PMO-446">PMO-446</a></td>
+          <td>Renewals Agent: <code>GET /api/leases/:id/is-recommended</code> endpoint</td>
+          <td class="original">Added a lease recommendation endpoint that returns immutable guidelines, tenant-level aggregates (rent, payments, inspections, maintenance, engagement, insurance, tenure) and computed risk flags.</td>
+          <td>New server endpoint that returns a structured "is-recommended for renewal" payload for a lease — guidelines, tenant-level aggregates across rent / payments / inspections / maintenance / engagement / insurance / tenure, and computed risk flags. Built for the Renewals Agent (fleet-of-agents project, M8 milestone). No UI consumes it yet.</td>
+          <td><span class="internal">INTERNAL API — no Help Center change today</span>
+            <p class="note">Document when the Renewals Agent UI ships.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== ACCOUNTING ========== -->
+  <section class="area-section" data-area="accounting">
+    <h2>Accounting <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-650">ACT-650</a></td>
+          <td>GSF V2: redirect to incoming-payments screen after Merchant Account update (not GSF)</td>
+          <td class="original">redirect to GSF V2 after merchant account update</td>
+          <td>Small fix to the merchant-account fee-disclaimer dialog manager: when a Merchant Account is <em>updated</em> (in addition to the existing <em>newly established</em> path), GSF V2 users now correctly redirect to the incoming-payments screen instead of bouncing back into the GSF flow.</td>
+          <td><span class="internal">INTERNAL FLOW FIX — no Help Center change</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== ONBOARDING & IMPORTS ========== -->
+  <section class="area-section" data-area="onboarding">
+    <h2>Onboarding &amp; Imports <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-598">ACT-598</a></td>
+          <td>Login/signup: align field color, typography, border, and spacing</td>
+          <td class="original">Updated login form field handling for improved consistency.</td>
+          <td>Fixes small visual inconsistencies between input fields on the login and signup screens — color, typography, border, and text spacing now match across email and password fields. Also fixes a regression where the placeholder text was visually covering the entered password value (introduced by the recent password show/hide "Eye" toggle).</td>
+          <td>
+            <span class="matched">MATCHED (minor)</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/8148968-log-into-your-doorloop-account">Log Into Your DoorLoop Account <span class="id">#8148968</span></a>
+            <p class="note"><strong>Likely update needed:</strong> If the login article uses screenshots that show the misaligned fields, refresh them with the new aligned design. No copy change needed.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/ACT-653">ACT-653</a></td>
+          <td>Reduce Salesforce onboarding-sync Bugsnag noise</td>
+          <td class="original">Improved logging infrastructure to provide better control over error monitoring notifications, reducing unnecessary alerts for expected scenarios while maintaining visibility for critical issues.</td>
+          <td>Two Salesforce-sync log lines were flooding Bugsnag (~402k/30d "onboarding not found" warnings + ~98k/30d telemetry stack-trace info logs). Downgrades severity / opts out of Bugsnag forwarding so genuine sync errors are no longer buried. Pure observability cleanup.</td>
+          <td><span class="internal">INTERNAL OBSERVABILITY — no Help Center change</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== TENANT EXPERIENCE & PAYMENTS ========== -->
+  <section class="area-section" data-area="tenant">
+    <h2>Tenant Experience &amp; Payments <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-397">TEN-397</a></td>
+          <td>Additional Payments screen: now actually shows alternative payment methods (and toast notifications)</td>
+          <td class="original">Added toast notifications for payment slip copy/download/print</td>
+          <td>The Additional Payments screen (the page TEN-194 added in v9.2.55) was rendering empty. It now mirrors the lease overview's <em>Alternative payment methods</em> section — cash payment biller details (name, amount, account number), pay-link availability with an enable/disable toggle, and an intentional empty state for leases with no additional payments. Adds toast notifications when a tenant copies, downloads, or prints a payment slip. Also separates print from download per Figma.</td>
+          <td><span class="unmatched">UNMATCHED — folds into the existing Rent Payments Overview draft</span>
+            <p class="note">Rent Payments Overview / Additional Payments is covered by the v9.2.55 Intercom draft <code>15234173</code> (still unpublished). When that article is finalized, include: the Additional Payments empty-state behavior, the cash payment / pay-link data shown, and the new copy/download/print toasts.</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/TEN-369">TEN-369</a></td>
+          <td>Kill silent <code>[100190]</code> No-Access noise on pay-link flow</td>
+          <td class="original">Updated lease status validation logic to ensure proper eligibility checks for pay link functionality.</td>
+          <td>Since 2026-05-14 the pay-link endpoints (<code>GET /api/pay-links/eligible-tenants</code>, <code>PUT/POST /api/draft-leases/:id*</code>) were silently logging <code>[100190] No Access</code> ~1,500/day — at one point <code>PUT draft-leases</code> ran at a 48% error rate. The fix tightens lease-status eligibility checks so the access-denial path no longer fires for legitimate flows. Internal NFR; no end-user UX change.</td>
+          <td><span class="internal">INTERNAL RELIABILITY FIX — no Help Center change</span></td>
+        </tr>
+        <tr>
+          <td class="linear">—</td>
+          <td>Local env detection refinement</td>
+          <td class="original">Refined local environment detection to distinguish development server runs from other environments, improving hostname parsing accuracy.</td>
+          <td>Internal hostname-parsing tweak (no Linear link). Development-server detection no longer false-matches other environments.</td>
+          <td><span class="internal">INTERNAL — no Help Center change</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== LEADS & LEASING ========== -->
+  <section class="area-section" data-area="leads">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear">—</td>
+          <td>Income Verification: "What's New" dialog on the Rental Applications screen with one-click Enable</td>
+          <td class="original">Added a "What's New" dialog on the rental applications screen to enable Income Verification, with confirm flow that either enables the feature or directs to settings and shows success/error feedback.</td>
+          <td>Second IV adoption nudge in two weeks (after L2L-890 in v9.2.63's List-a-Unit popup). On the Rental Applications screen, a "What's New" dialog now lets a PM enable Income Verification in one click. Pro/Premium accounts get auto-enable directly from the dialog; Basic accounts are routed to the settings page. Success and error feedback render in-line.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/13860117-income-verification-for-rentals-how-to-confidently-confirm-an-applicant-can-afford-the-rent">Income Verification for Rentals <span class="id">#13860117</span></a>
+            <a class="article-link" href="http://support.doorloop.com/en/articles/8854468-edit-rental-application-settings">Edit Rental Application Settings <span class="id">#8854468</span></a>
+            <p class="note"><strong>Likely update needed:</strong> In the IV article, add a section noting the two adoption surfaces: (1) the List-a-Unit popup (from v9.2.63) and now (2) the Rental Applications screen "What's New" dialog. Clarify the plan-tier behavior consistently: Pro/Premium auto-enable inline, Basic redirected to settings.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== BANKING ========== -->
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%;">Linear</th>
+          <th style="width:18%;">Feature</th>
+          <th style="width:19%;">Original Notes (Slack)</th>
+          <th style="width:23%;">What it does</th>
+          <th style="width:32%;">Affected articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="linear"><a href="https://linear.app/doorloop/issue/BAN-575">BAN-575</a></td>
+          <td>Route Western Union Cash partially-funded Slack alert to <code>#western-union-technical</code></td>
+          <td class="original">Improved notification routing for Western Union Cash partially funded transactions to ensure notifications reach the correct destination.</td>
+          <td>A Slack alert ("WU Cash Payments - Payment Intent was partially funded") was being sent to the default <code>appAlertsChannel</code>. The fix adds the correct recipient so the alert now lands in <code>#western-union-technical</code>. Internal ops routing fix only.</td>
+          <td><span class="internal">INTERNAL OPS — no Help Center change</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p class="note">None standalone — TEN-397 (Additional Payments screen) folds into the existing v9.2.55 Intercom draft <code>15234173</code> when it's published.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <div class="skipped"><strong>PMO-446</strong> — Renewals Agent <code>is-recommended</code> server endpoint; no UI yet.</div>
+  <div class="skipped"><strong>ACT-650</strong> — GSF V2 redirect fix after merchant-account update.</div>
+  <div class="skipped"><strong>ACT-653</strong> — Bugsnag noise reduction for Salesforce onboarding sync.</div>
+  <div class="skipped"><strong>TEN-369</strong> — Kill silent <code>[100190]</code> No-Access errors on pay-link flow; lease-status eligibility tightened.</div>
+  <div class="skipped"><strong>(unlinked)</strong> — Local env detection / hostname parsing refinement.</div>
+  <div class="skipped"><strong>BAN-575</strong> — Western Union Cash partially-funded Slack alert routing fix.</div>
+
+  <p class="meta" style="margin-top: 3rem; border-top: 1px solid #eee; padding-top: 1rem;">
+    Generated by <code>doorloop-release-summary</code> · <a href="https://linear.app/doorloop">Linear</a> · <a href="https://app.intercom.com">Intercom</a>
+  </p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
