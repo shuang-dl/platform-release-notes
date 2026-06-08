@@ -1,0 +1,320 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.85 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #666; font-weight: 600; }
+    .beta { color: #5b3fb3; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #888; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .flag-badge { display: inline-block; background: #ede9fe; color: #5b3fb3; border-radius: 4px; padding: 1px 6px; font-size: 0.78em; font-weight: 700; margin-left: 4px; }
+</style>
+</head>
+<body>
+  <h1>Release v9.2.85 — 2026-06-08</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1780925598938169">View original Slack post</a> · <code>1780925598.938169</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 10 changes across PM Operations (1), Accounting (1), Onboarding &amp; Imports (3), Tenant Experience &amp; Payments (1), Workflows (2), Leads &amp; Leasing (1), and Other (1). The two headline customer-facing items are <strong>offline-first inspection editing on mobile</strong> (PMO-1570, behind a feature flag) and <strong>saved views + CSV/Excel export for property/unit lists</strong> in Accounting. Workflows gains a configurable outstanding-balance threshold for Late Balance Notice triggers (WOR-1090, also flag-gated). The remaining items are internal reliability, monitoring, and infrastructure work.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (10)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (1)</span>
+    <span class="chip" data-area="accounting">Accounting (1)</span>
+    <span class="chip" data-area="onboarding">Onboarding &amp; Imports (3)</span>
+    <span class="chip" data-area="tenant-payments">Tenant Experience &amp; Payments (1)</span>
+    <span class="chip" data-area="workflows">Workflows (2)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (1)</span>
+    <span class="chip" data-area="other">Other (1)</span>
+  </div>
+
+  <!-- ── PM OPERATIONS ─────────────────────────────────────── -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1570">PMO-1570</a> <span class="flag-badge">🚩 FLAG</span></td>
+          <td>Offline-First Inspection Editing (Mobile)</td>
+          <td class="original">Added offline-first inspection editing with local saves, sync progress, and an offline status badge.</td>
+          <td>Mobile inspectors can now complete the INSPECTING_AREAS step with zero connectivity. Edits save to IndexedDB on-device instantly; a background sync engine uploads pending changes to the server when connectivity is restored. Shows a sync progress indicator and offline badge. Behind the <code>inspections-offline-first-mode</code> feature flag, mobile-only.</td>
+          <td>
+            <span class="beta">🟣 BETA — feature flag</span><br>
+            Hold Help Center updates until the flag goes GA. When launched, these articles will need updating:<br><br>
+            • <a href="http://support.doorloop.com/en/articles/13134260">Review a Completed Inspection and Next Steps</a><br>
+            <span class="note">Likely update: Add section on how offline sync works — edits save locally and upload on reconnect.</span><br><br>
+            • <a href="http://support.doorloop.com/en/articles/13133865">Start an AI Inspection</a><br>
+            <span class="note">Likely update: Note that the inspection step now works offline on mobile; AI sub-features (voice-fill, AI-annotate) degrade gracefully offline.</span>
+          </td>
+          <td><span class="no-video">— no related video</span><br>
+          <span class="note">Note: "AI Inspections" video (<a href="https://doorloop.wistia.com/medias/34pur4lk9w">Wistia</a>) may need a future update when this flag goes GA.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── ACCOUNTING ─────────────────────────────────────────── -->
+  <section class="area-section" data-area="accounting">
+    <h2>Accounting <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>—</td>
+          <td>Saved Views, Virtual Scrolling &amp; CSV/Excel Export for Property/Unit Lists</td>
+          <td class="original">Added saved views, virtual scrolling, and CSV/Excel export to property and unit lists.</td>
+          <td>Property and unit list views now support: (1) saved filter/view configurations so users can store and reuse their preferred list setups; (2) virtual scrolling for smooth performance on large lists; (3) one-click CSV and Excel export of the current list view.</td>
+          <td>
+            <span class="unmatched">🟠 UNMATCHED</span> — no existing article covers saved views or export on property/unit lists.<br>
+            <span class="note">Suggested new article (see below): <em>"What's New: Save your property and unit list views and export to CSV or Excel — Version 9.2.85"</em></span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            • <a href="https://doorloop.wistia.com/medias/qhbipfxe62">Add a New Unit</a>
+            <span class='note'>(created Mar 18, 2026 — 82 days before this release, likely needs re-recording)</span><br><br>
+            • <a href="https://doorloop.wistia.com/medias/pmogitfoao">Add a New Property</a>
+            <span class='note'>(created Mar 18, 2026 — 82 days before this release, likely needs re-recording)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── ONBOARDING & IMPORTS ───────────────────────────────── -->
+  <section class="area-section" data-area="onboarding">
+    <h2>Onboarding &amp; Imports <span class="count">3 items</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-731">ACT-731</a></td>
+          <td>V1/V2 Onboarding Flow Assignment Persistence</td>
+          <td class="original">Added persistent V1/V2 onboarding assignment so routing and analytics stay consistent after subscription.</td>
+          <td>Internal: the V1 vs V2 onboarding wizard selection is now persisted as a frozen value on the DbTenant record immediately after subscription, eliminating a race condition where the wrong wizard could briefly appear. Routing and funnel analytics now use this stable value. No customer-visible UI change.</td>
+          <td><span class="internal">⚫ INTERNAL</span> — Backend routing fix; no Help Center change needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-747">ACT-747</a></td>
+          <td>Salesforce Sync Flow-Trigger Error Alerts to RevOps</td>
+          <td class="original">Now alerts RevOps in Slack when Salesforce account syncs fail due to flow-trigger errors, with key error details.</td>
+          <td>Internal: when the daily Salesforce account sync encounters a <code>CANNOT_EXECUTE_FLOW_TRIGGER</code> error, an alert is now automatically posted to the <code>#s3-activation-revops-alerts</code> Slack channel with the error details, job name, and dbTenant ID so a Salesforce admin can act quickly.</td>
+          <td><span class="internal">⚫ INTERNAL</span> — Internal RevOps alerting; no Help Center change needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-752">ACT-752</a></td>
+          <td>Subscription Update Billing Error Handling</td>
+          <td class="original">Fixed subscription updates to return handled 400 errors for blocked payments and invalid billing addresses.</td>
+          <td>The subscription update endpoint now surfaces clear, recoverable 400 error messages — rather than unhandled exceptions — when a previous payment is still processing or a billing address is unrecognized. Users see a specific actionable message instead of a generic failure screen.</td>
+          <td><span class="internal">⚫ INTERNAL</span> — Error-handling classification fix; no article content change needed. Users already see a message; this just ensures it's a handled response rather than an unhandled exception.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── TENANT EXPERIENCE & PAYMENTS ─────────────────────── -->
+  <section class="area-section" data-area="tenant-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-729">ACT-729</a></td>
+          <td>OTP SMS Metadata Tagging</td>
+          <td class="original">Added OTP SMS metadata so messages now log as OTP source with zero credits charged.</td>
+          <td>Internal: OTP SMS messages sent via Telnyx now include metadata tagging them as <code>OTP</code> source with <code>creditsCharged: 0</code>, ensuring they don't incorrectly consume DoorLoop SMS credits. No customer-visible change.</td>
+          <td><span class="internal">⚫ INTERNAL</span> — Internal billing/monitoring metadata; no Help Center change needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── WORKFLOWS ─────────────────────────────────────────── -->
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">2 items</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1090">WOR-1090</a> <span class="flag-badge">🚩 FLAG</span></td>
+          <td>Late Balance Notice: Outstanding-Balance Threshold + Day-of-Month Copy</td>
+          <td class="original">Added an outstanding-balance threshold and clearer day-of-month copy for late balance notice workflows.</td>
+          <td>PM polish for the Late Balance Notice workflow trigger: adds a configurable outstanding-balance threshold (default $0) so the workflow only fires when a delinquent lease exceeds the set amount. Also fixes day-of-month picker copy to read "Day N of the month" / "Last day of the month". Behind the <code>workflows-late-balance-notice</code> feature flag.</td>
+          <td>
+            <span class="beta">🟣 BETA — feature flag</span><br>
+            Hold full updates until flag goes GA. When launched:<br><br>
+            • <a href="http://support.doorloop.com/en/articles/12903573">Getting Started With Workflows</a><br>
+            <span class="note">Likely update: Add Late Balance Notice trigger with the outstanding-balance threshold field and day-of-month picker to the workflow types table.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            • <a href="https://doorloop.wistia.com/medias/sjhnowtsd7">Late Fees Deep Dive</a>
+            <span class='note'>(created Mar 18, 2026 — 82 days before this release, likely needs re-recording)</span><br><br>
+            • <a href="https://doorloop.wistia.com/medias/34ofizmqi1">Lease Renewals Overview</a>
+            <span class='note'>(created Mar 20, 2026 — 80 days before this release, likely needs re-recording)</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1058">WOR-1058</a></td>
+          <td>Agent Message Envelope Zod DTOs (Internal Foundation)</td>
+          <td class="original">Added stricter validation for agent messages to improve reliability of notifications, wakeups, lease renewals, and decisions.</td>
+          <td>Internal infrastructure: defines frozen Zod message-envelope schemas in <code>libs/dto</code> for the fleet-of-agents system, covering lease renewal triggers, agent wakeups, notifications, decisions, and chat messages. Provides validated contracts at every queue boundary. No customer-visible change.</td>
+          <td><span class="internal">⚫ INTERNAL</span> — Internal agent/queue schema foundation; no Help Center change needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── LEADS & LEASING ───────────────────────────────────── -->
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>—</td>
+          <td>Showings Cancellation Specific Error Messages</td>
+          <td class="original">Fixed showing cancellations to display specific messages for already-cancelled, expired, or missing links.</td>
+          <td>Bug fix: the showings cancellation flow now displays a specific, descriptive message depending on the state — already-cancelled, expired link, or missing link — instead of a generic error. Prospective tenants and applicants see a clear explanation of what happened.</td>
+          <td>
+            <span class="unmatched">🟠 UNMATCHED</span> — no existing article covers the showings cancellation link experience.<br>
+            <span class="note">Suggested new article (see below): <em>"What's New: Clearer cancellation messages for showings links — Version 9.2.85"</em></span>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── OTHER ─────────────────────────────────────────────── -->
+  <section class="area-section" data-area="other">
+    <h2>Other <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>—</td>
+          <td>Rent Reminder DB Performance Optimization</td>
+          <td class="original">Now reuses tenant login constants during rent reminder processing to reduce database calls and speed up sends.</td>
+          <td>Internal performance fix: rent reminder processing reuses pre-loaded tenant login constants instead of recalculating per-reminder, reducing redundant database reads and speeding up bulk send operations. No customer-visible change.</td>
+          <td><span class="internal">⚫ INTERNAL</span> — Performance optimization; no Help Center change needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+
+  <div style="border:1px solid #e5e7eb;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;">
+    <strong>1. What's New: Save your property and unit list views and export to CSV or Excel — Version 9.2.85</strong>
+    <p class="note"><strong>Rationale:</strong> The new saved views + virtual scrolling + CSV/Excel export for property and unit lists is a standalone productivity feature with no existing article. Property managers who work with large portfolios will find this essential; they'll search for "how to export property list" or "save unit view filters."</p>
+    <p class="note"><strong>Suggested keywords:</strong> saved views, property list, unit list, export CSV, export Excel, filter, virtual scroll, list view, download</p>
+    <p class="note"><strong>Suggested body intro:</strong> DoorLoop's property and unit list views now work harder for you. You can save your preferred filter combinations as named views, scroll smoothly through large portfolios with virtual rendering, and export any list to CSV or Excel for analysis or reporting outside DoorLoop.</p>
+  </div>
+
+  <div style="border:1px solid #e5e7eb;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;">
+    <strong>2. What's New: Clearer cancellation messages for showings links — Version 9.2.85</strong>
+    <p class="note"><strong>Rationale:</strong> Applicants who click an already-cancelled, expired, or invalid showings link previously saw a generic error. Now they see a specific message. This is minor but can reduce support tickets from confused applicants. No existing article covers this error state.</p>
+    <p class="note"><strong>Suggested keywords:</strong> showing cancellation, cancelled link, expired link, showing error, rental application, prospect</p>
+    <p class="note"><strong>Suggested body intro:</strong> When a prospect or applicant clicks a showings cancellation link that has already been used, expired, or is no longer valid, DoorLoop now displays a clear, specific message explaining the exact reason — so there's no confusion about why the link didn't work.</p>
+  </div>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead><tr><th>Video</th><th>Created</th><th>Related features</th><th>Needs update?</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/qhbipfxe62">Add a New Unit</a></td>
+        <td>Mar 18, 2026</td>
+        <td>ACCT-NOLINK (property/unit list export)</td>
+        <td>Review — 82 days before release. Check if list view and export features are covered; update if missing.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/pmogitfoao">Add a New Property</a></td>
+        <td>Mar 18, 2026</td>
+        <td>ACCT-NOLINK (property/unit list export)</td>
+        <td>Review — 82 days before release. Check if property list view is shown with new save/export options.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/sjhnowtsd7">Late Fees Deep Dive</a></td>
+        <td>Mar 18, 2026</td>
+        <td>WOR-1090 (Late Balance Notice threshold)</td>
+        <td>Review — 82 days before release. Late Balance Notice is flag-gated; re-record when flag goes GA.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/34ofizmqi1">Lease Renewals Overview</a></td>
+        <td>Mar 20, 2026</td>
+        <td>WOR-1090 (Late Balance Notice threshold)</td>
+        <td>Review — 80 days before release. Flag-gated; hold until GA.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Suggested new training videos (features with no video):</strong></p>
+  <ul>
+    <li><strong>PMO-1570 Offline Inspections</strong> — Record a short walkthrough of completing an inspection in airplane mode on mobile once this feature goes GA.</li>
+  </ul>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>ACT-731</strong> — V1/V2 onboarding assignment persistence on DbTenant. Internal routing/analytics fix.</li>
+    <li><strong>ACT-747</strong> — Salesforce account sync CANNOT_EXECUTE_FLOW_TRIGGER alerts to RevOps Slack. Internal alerting.</li>
+    <li><strong>ACT-752</strong> — Subscription update 400-error classification fix. Internal error-handling improvement; no article content change.</li>
+    <li><strong>ACT-729</strong> — OTP SMS metadata tagging (OTP source + creditsCharged: 0). Internal billing/monitoring.</li>
+    <li><strong>WOR-1058</strong> — Agent message-envelope Zod DTOs. Internal fleet-of-agents infrastructure foundation.</li>
+    <li><strong>Other (no link)</strong> — Rent reminder DB optimization (reuse tenant login constants). Internal performance fix.</li>
+  </ul>
+
+  <h2>Unreachable Linear tickets</h2>
+  <p><em>None — all tickets were accessible.</em></p>
+
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else { sec.classList.add('hidden'); }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
