@@ -240,12 +240,15 @@
       font-weight: 500;
     }
 
-    .title-cell {
+    .summary-cell {
       color: var(--body);
-      max-width: 320px;
+      max-width: 420px;
+      font-size: 13px;
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
 
     .generated-cell {
@@ -549,7 +552,7 @@
         <td>${r.version
           ? `<span class="version-chip">${r.version}</span>`
           : `<span class="version-chip none">—</span>`}</td>
-        <td class="title-cell" title="${r.title || ''}">${r.title || ''}</td>
+        <td class="summary-cell" title="${r.summary || r.title || ''}">${r.summary || r.title || '—'}</td>
         <td class="generated-cell">${formatGenerated(r.generatedAt)}</td>
         <td>
           <button class="view-btn" onclick="openDrawer('${r.filename}', '${r.version || ''}')">
