@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.83 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #666; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #888; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .sev { display: inline-block; background: #fee2e2; color: #991b1b; border-radius: 4px; padding: 1px 6px; font-size: 0.78em; font-weight: 700; margin-left: 4px; }
+</style>
+</head>
+<body>
+  <h1>Release v9.2.83 — 2026-06-07</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1780835896104799">View original Slack post</a> · <code>1780835896.104799</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 3 changes across PM Operations (1), Tenant Experience &amp; Payments (1), and Banking (1). All three are internal infrastructure or backend changes: inspection eligibility tracking for analytics, RabbitMQ pipeline wiring for DoorWatch risk incidents, and a Stripe webhook handler to keep payout bank account data in sync. No customer-facing UI changes require Help Center updates.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (3)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (1)</span>
+    <span class="chip" data-area="tenant-payments">Tenant Experience &amp; Payments (1)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>—</td>
+          <td>Inspection Eligibility Analytics Tracking</td>
+          <td class="original">Added inspection-creation eligibility tracking to three lease events for more accurate analytics.</td>
+          <td>Internal analytics improvement: tracks whether inspection creation is eligible at three specific lease lifecycle events, improving the accuracy of internal inspection funnel reporting. No customer-visible UI change.</td>
+          <td><span class="internal">INTERNAL</span> — Analytics/tracking only; no Help Center change needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-370">TEN-370</a></td>
+          <td>DoorWatch Risk Incident Pipeline (RabbitMQ)</td>
+          <td class="original">Added RabbitMQ publishing for payment limit alerts so DoorWatch can capture them as risk incidents.</td>
+          <td>Internal backend feature: payment limit alerts (from the growth monitor cron) are now published to a RabbitMQ queue. The DoorWatch system consumes these to persist and display real risk incident data instead of stubs. No customer-facing UI change in this ticket — the DoorWatch consumer side is tracked separately in TEN-508.</td>
+          <td><span class="internal">INTERNAL</span> — Backend pipeline infrastructure; no Help Center change needed. The customer-facing risk tab UI ships via TEN-508.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-807">BAN-807</a></td>
+          <td>Payout Bank Account Sync (Stripe Webhook)</td>
+          <td class="original">Now supports syncing connected payout bank account changes so cached account details stay up to date.</td>
+          <td>Backend fix: DoorLoop now handles the Stripe <code>account.external_account.updated</code> webhook to keep payout bank account data in sync across internal collections (stripeAccounts and embeddedFinancingAccounts). Prevents stale cached bank account details when a connected account's payout bank changes on Stripe's side. No customer-visible UI change.</td>
+          <td><span class="internal">INTERNAL</span> — Webhook handler for data sync. No customer-visible change; bank account articles do not need updating. If bank account changes were previously causing data sync issues, no article workarounds need to be removed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p><em>No unmatched customer-visible features in this release — all items are internal infrastructure.</em></p>
+
+  <h2>Related training videos</h2>
+  <p><em>No training videos matched features in this release. All changes are internal backend infrastructure with no customer-facing UI impact.</em></p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>Inspection eligibility tracking (no Linear link)</strong> — Analytics-only tracking of inspection eligibility at lease events. No UI change.</li>
+    <li><strong>TEN-370</strong> — RabbitMQ pipeline for DoorWatch risk incidents. Backend infrastructure; customer-facing UI tracked separately in TEN-508.</li>
+    <li><strong>BAN-807</strong> — Stripe webhook handler for payout bank account sync. Backend data consistency fix; no UI change.</li>
+  </ul>
+
+  <h2>Unreachable Linear tickets</h2>
+  <p><em>None — all tickets were accessible. Note: BAN-807 status is "Merged" (not yet "Done") but was included in the release post.</em></p>
+
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
