@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.80 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #666; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #888; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .sev { display: inline-block; background: #fee2e2; color: #991b1b; border-radius: 4px; padding: 1px 6px; font-size: 0.78em; font-weight: 700; margin-left: 4px; }
+</style>
+</head>
+<body>
+  <h1>Release v9.2.80 — 2026-06-05</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1780749638728289">View original Slack post</a> · <code>1780749638.728289</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 4 changes across PM Operations (3) and Leads &amp; Leasing (1). The headline customer-facing feature adds a <strong>Service Location callout</strong> on work order details and printouts for units with distinct addresses — helping vendors arrive at the right location. A SEV-2 fix restores the rental applications listings page for companies whose units have no rent set. Two internal fixes resolve a global search note-click crash and suppress voice call error log noise.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (4)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (3)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (1)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-358">PMO-358</a></td>
+          <td>Service Location on Work Orders</td>
+          <td class="original">Added a Service Location callout on work order details and printouts when a unit has its own address.</td>
+          <td>When a work order is linked to a unit whose address differs from the property's (e.g. multi-building), a light-blue "Service Location" callout now appears on the work order detail panel and print/PDF so vendors and assigned users see the correct unit address.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            • <a href="http://support.doorloop.com/en/articles/8887722-assign-a-vendor-to-a-work-order">Assign a Vendor to a Work Order</a><br>
+            <span class="note">Likely update: Add a screenshot or note showing the new Service Location callout that appears under the property address when a unit has its own address.</span><br><br>
+            • <a href="http://support.doorloop.com/en/articles/6322778-create-a-work-order">Create a Work Order</a><br>
+            <span class="note">Likely update: Mention that units with distinct addresses will now display a Service Location field in the work order header.</span><br><br>
+            • <a href="http://support.doorloop.com/en/articles/14762118-notify-vendors-when-they-are-added-to-a-work-order">Notify Vendors When Added to a Work Order</a><br>
+            <span class="note">Likely update: Note that vendor notifications now include the service location address when the unit differs from the property.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            • <a href="https://doorloop.wistia.com/medias/tn4ch9b3tf">Managing Work Orders</a>
+            <span class='note'>(created Mar 23, 2026 — 74 days before this release, likely needs re-recording)</span><br><br>
+            • <a href="https://doorloop.wistia.com/medias/qhbipfxe62">Add a New Unit</a>
+            <span class='note'>(created Mar 18, 2026 — 79 days before this release, likely needs re-recording)</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1491">PMO-1491</a></td>
+          <td>Global Search Note Click Bug Fix</td>
+          <td class="original">Fixed global search note clicks to open the Edit Note dialog instead of the error screen.</td>
+          <td>Bug fix: clicking a Note result in global search was showing a "Something went wrong" error screen due to a React Router v7 migration regression. The Edit Note dialog now opens correctly.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            • <a href="http://support.doorloop.com/en/articles/14758139-something-went-wrong-error-in-doorloop">'Something Went Wrong' Error in DoorLoop</a><br>
+            <span class="note">Likely update: Verify this article does not instruct users to workaround the note-click crash — that bug is now fixed. Remove or update any steps referencing global search notes causing this error.</span>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1503">PMO-1503</a></td>
+          <td>Voice Call Error Log Suppression</td>
+          <td class="original">Fixed voice calls so already-disconnected legs no longer create error logs or unnecessary retries.</td>
+          <td>Internal reliability fix: centralizes Telnyx 404/422 "call no longer active" handling at the adapter so disconnected voice legs no longer generate error noise or spurious retries. No customer-visible behavior change.</td>
+          <td><span class="internal">INTERNAL</span> — Backend reliability fix; no Help Center change needed. Labels: Backend, Reliability.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1208">L2L-1208</a> <span class="sev">SEV-2</span></td>
+          <td>Rental Listings Page Crash Fix (Null Rent)</td>
+          <td class="original">Fixed the rental applications listings page from crashing when a unit has no rent set, so listings now load normally.</td>
+          <td>SEV-2 bug fix: the public rental applications listings page crashed with "Something went wrong" for companies whose units had no rent value. The card view now safely handles null rent and renders all listings normally without a price line.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            • <a href="http://support.doorloop.com/en/articles/14761917-incorrect-rent-amount-showing-on-rental-applications">Incorrect Rent Amount Showing on Rental Applications</a><br>
+            <span class="note">Likely update: Add a note that units with no rent set will now show without a price instead of crashing the page.</span><br><br>
+            • <a href="http://support.doorloop.com/en/articles/14761916-unit-not-appearing-on-the-rental-application">Unit Not Appearing on the Rental Application</a><br>
+            <span class="note">Likely update: Verify troubleshooting steps remain accurate now that the null-rent crash is resolved.</span><br><br>
+            • <a href="http://support.doorloop.com/en/articles/14758139-something-went-wrong-error-in-doorloop">'Something Went Wrong' Error in DoorLoop</a><br>
+            <span class="note">Likely update: Remove or update any reference to the rental applications listing page crash caused by missing rent values.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            • <a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a>
+            <span class='note'>(created Mar 22, 2026 — 75 days before this release, likely needs re-recording)</span><br><br>
+            • <a href="https://doorloop.wistia.com/medias/qhbipfxe62">Add a New Unit</a>
+            <span class='note'>(created Mar 18, 2026 — 79 days before this release, likely needs re-recording)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p><em>No unmatched customer-visible features in this release — all relevant features have existing article coverage.</em></p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Duration</th><th>Related features</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/tn4ch9b3tf">Managing Work Orders</a></td>
+        <td>Mar 23, 2026</td>
+        <td>—</td>
+        <td>PMO-358 (Service Location callout)</td>
+        <td>Yes — 74 days before release. Re-record to show the Service Location callout on work order details and print.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/qhbipfxe62">Add a New Unit</a></td>
+        <td>Mar 18, 2026</td>
+        <td>—</td>
+        <td>PMO-358, L2L-1208</td>
+        <td>Review — 79 days before release. Check whether unit address fields / rent fields are shown; update if missing.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td>
+        <td>Mar 22, 2026</td>
+        <td>—</td>
+        <td>L2L-1208 (listings page crash fix)</td>
+        <td>Review — 75 days before release. Verify the listings page flow shown is accurate after the null-rent fix.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>PMO-1503</strong> — Backend adapter fix suppressing Telnyx 404/422 error noise for disconnected voice legs. No customer-facing UI change.</li>
+  </ul>
+
+  <h2>Unreachable Linear tickets</h2>
+  <p><em>None — all tickets were accessible.</em></p>
+
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
