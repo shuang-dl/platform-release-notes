@@ -4,90 +4,103 @@
     "version": "v9.2.55",
     "title": "Release v9.2.55 \u2014 Help Center Impact",
     "filename": "reports/v9.2.55.html",
-    "generatedAt": "2026-05-22T00:00:00Z"
+    "generatedAt": "2026-05-22T00:00:00Z",
+    "summary": "Release v9.2.55 ships 14 changes across six product areas. Customer-visible work concentrates in PM Operations (expense file sharing now auto-detects owners), Accounting / Reporting v2 (running balance column returns to Transaction Details; insurance status chip now shows Expired and Future), Tenant Experience & Payments (new Rent Payments Overview with an Additional Payments page and an in-app notification announcement), Leads & Leasing (showings dialogs no longer break when availability isn't set), Workflows (Realtor.com listing now visible with a New tag), and Onboarding & Imports (cancelled accounts can re-subscribe at their previous unit count). The remaining items are backend reliability and telemetry \u2014 no Help Center change needed."
   },
   {
     "date": "2026-05-26",
     "version": "v9.2.59",
     "title": "Release v9.2.59 \u2014 Help Center Impact",
     "filename": "reports/v9.2.59.html",
-    "generatedAt": "2026-05-26T00:00:00Z"
+    "generatedAt": "2026-05-26T00:00:00Z",
+    "summary": "Release v9.2.59 ships 3 changes \u2014 two are improvements to the Voice module in the Communications Center (still behind the Voice beta flag): smarter recipient experience when a caller drops mid-screening, and AI-generated suggested-action chips that appear under each call summary so a single tap creates a contact, sends a rental application, or files a task. The third item is a backend reliability fix to the SSO login redirect that eliminates a class of 500 errors. No general-availability features in this release that need Help Center coverage today; the Voice module additions are candidates for a refreshed Voice / AI-summary article once GA."
   },
   {
     "date": "2026-05-26",
     "version": "v9.2.62",
     "title": "Release v9.2.62 \u2014 Help Center Impact",
     "filename": "reports/v9.2.62.html",
-    "generatedAt": "2026-05-26T00:00:00Z"
+    "generatedAt": "2026-05-26T00:00:00Z",
+    "summary": "Release v9.2.62 ships 2 internal-only changes \u2014 a performance fix to the new Get Started V2 wizard so editing one field in a 50-unit setup no longer re-renders the whole tree, and Phase 1 of decoupling RabbitMQ topology assertion from the server into a standalone library + Lambda + CLI. No customer-facing changes; no Help Center updates needed."
   },
   {
     "date": "2026-05-27",
     "version": "v9.2.63",
     "title": "Release v9.2.63 \u2014 Help Center Impact",
     "filename": "reports/v9.2.63.html",
-    "generatedAt": "2026-05-27T00:00:00Z"
+    "generatedAt": "2026-05-27T00:00:00Z",
+    "summary": "Release v9.2.63 ships 14 changes across PM Operations, Onboarding & Imports, Tenant Experience & Payments, and Leads & Leasing. The headline customer-impact item is Showings is now restricted to Pro and Premium plans \u2014 Starter customers will no longer see the showings nav, screens, prospect cards, or comms-center action (L2L-1141). Other customer-facing work: the AI Communications Center auto-responder ships a real settings UI with a first-time dialog and AI-add-on paywall (PMO-1010); the AI tenants resolution feature gets re-platformed as a new Concierge Agent card under Settings \u2192 AI Agents (PMO-602); income verification gets a new adoption popup at the end of the unit-listing wizard (L2L-890) and a friendlier translation pass; the rent-payments overview now carries a dismissible \"share feedback\" banner (TEN-368); and a couple of bug-fix polish items hit work-order email status labels (PMO-998) and property-import owner matching (ACT-412). The remaining 7 items are internal refactors, server-side APIs, schema validation, telemetry, and tracking work \u2014 no Help Center impact."
   },
   {
     "date": "2026-05-27",
     "version": "v9.2.66",
     "title": "Release v9.2.66 \u2014 Help Center Impact",
     "filename": "reports/v9.2.66.html",
-    "generatedAt": "2026-05-27T00:00:00Z"
+    "generatedAt": "2026-05-27T00:00:00Z",
+    "summary": "Release v9.2.66 ships 10 changes across PM Operations, Accounting, Onboarding & Imports, Tenant Experience & Payments, Leads & Leasing, and Banking. Customer-facing work is mostly an extension of items already in flight: PMO-988 builds on last week's expense-file owner auto-detection (PMO-605, v9.2.55) by adding a multi-select dropdown, a \"set as default\" option, and a paperclip-icon refresh on the Owner Portal files page; the Additional Payments screen \u2014 broken since launch \u2014 now correctly shows alternative payment methods (TEN-397); and a second adoption nudge for Income Verification lands on the Rental Applications screen via a \"What's New\" dialog. ACT-598 polishes visual inconsistencies in the login/signup fields, including a placeholder that was covering the password value. Everything else is internal: a Renewals Agent API endpoint, a small GSF V2 redirect fix, two Bugsnag noise-reduction tasks, an env-detection refinement, and a Slack alert routing fix."
   },
   {
     "date": "2026-05-27",
     "version": "v9.2.67",
     "title": "Release v9.2.67 \u2014 Help Center Impact",
     "filename": "reports/v9.2.67.html",
-    "generatedAt": "2026-05-27T00:00:00Z"
+    "generatedAt": "2026-05-27T00:00:00Z",
+    "summary": "Release v9.2.67 ships 4 changes. One customer-visible polish item: clearer copy on the 2FA \"remember this device for 30 days\" checkbox (ACT-649). One Voice-module improvement still behind the beta flag \u2014 inactive teammates now show an Inactive tag in voice settings and are skipped during call forwarding (PMO-1004). Two internal items: a Mongo write-conflict retry on the BATCH_IMPORT sync paths (ACT-398), and a backend chart-of-accounts routing fix for payments/payouts (unlinked)."
   },
   {
     "date": "2026-06-01",
     "version": "v9.2.71",
     "title": "Release v9.2.71 \u2014 Help Center Impact",
     "filename": "reports/v9.2.71.html",
-    "generatedAt": "2026-06-01T00:00:00Z"
+    "generatedAt": "2026-06-01T00:00:00Z",
+    "summary": "Release v9.2.71 ships 26 changes across seven product areas, with the heaviest investment in PM Operations voice features (9 items) and a multi-line rental-application fee overhaul in Leads & Leasing. Customer-visible highlights include MMS support and unknown-contact auto-assignment in the Communications Center, emergency-contact email on the tenant overview, and a Get Started fix that stops migrated leases from showing phantom security-deposit balances. Most of the voice routing, holding-fee, and banking-notification work is still behind feature flags (beta), and roughly a third of the release is internal NFR/infrastructure hardening with no Help Center impact."
   },
   {
     "date": "2026-06-02",
     "version": "v9.2.75",
     "title": "Release v9.2.75 \u2014 Help Center Impact",
     "filename": "reports/v9.2.75.html",
-    "generatedAt": "2026-06-02T00:00:00Z"
+    "generatedAt": "2026-06-02T00:00:00Z",
+    "summary": "Release v9.2.75 is a small release of 4 changes. The one customer-facing highlight is self-serve payment dispute management in Banking (BAN-348), which lets property managers review, draft, and submit evidence for Stripe payment disputes directly inside DoorLoop instead of routing through the risk team. The remaining three items are internal hardening: a new background queue that makes voice post-call transcription/summary more reliable, scaffolding for a new communications-purchases library, and a rent-reminder performance optimization. Only the dispute feature has Help Center impact \u2014 and it's a content gap (no existing article covers disputes)."
   },
   {
     "date": "2026-06-03",
     "version": "v9.2.76",
     "title": "Release v9.2.76 \u2014 Help Center Impact",
     "filename": "reports/v9.2.76.html",
-    "generatedAt": "2026-06-03T00:00:00Z"
+    "generatedAt": "2026-06-03T00:00:00Z",
+    "summary": "This release ships 22 changes across 7 areas. Customer-visible highlights include a redesigned vendor portal with messaging and file uploads (PMO-221), AI Communications Center guided setup and escalation notifications (PMO-1493), rental applications in global search (WOR-822), and corrected transfer notification wording (BAN-789). Three features are in beta behind feature flags: late-balance-notice workflows (WOR-430/432) and a new rental application decision dialog (L2L-1151). The remaining 11 items are internal infrastructure, monitoring, and performance fixes."
   },
   {
     "date": "2026-06-05",
     "version": "v9.2.79",
     "title": "Release v9.2.79 \u2014 Help Center Impact",
     "filename": "reports/v9.2.79.html",
-    "generatedAt": "2026-06-05T00:00:00Z"
+    "generatedAt": "2026-06-05T00:00:00Z",
+    "summary": "This release ships 7 changes across PM Operations (3), Onboarding & Imports (3), and Tenant Experience & Payments (1). The customer-visible highlights are: vendor inactive status with toggles and list filtering (PMO-986), portfolio filtering in Communications Center (PMO-1462), enhanced Communications Center UI with tenant presence indicators and auto-responder controls (PMO-641), and localized SSO invitation error messages for the tenant portal (ACT-612). Three items are internal infrastructure with no Help Center impact."
   },
   {
     "date": "2026-06-05",
     "version": "v9.2.80",
     "title": "Release v9.2.80 \u2014 Help Center Impact",
     "filename": "reports/v9.2.80.html",
-    "generatedAt": "2026-06-08T00:00:00Z"
+    "generatedAt": "2026-06-08T00:00:00Z",
+    "summary": "This release ships 4 changes across PM Operations (3) and Leads & Leasing (1). The headline customer-facing feature adds a Service Location callout on work order details and printouts for units with distinct addresses \u2014 helping vendors arrive at the right location. A SEV-2 fix restores the rental applications listings page for companies whose units have no rent set. Two internal fixes resolve a global search note-click crash and suppress voice call error log noise."
   },
   {
     "date": "2026-06-07",
     "version": "v9.2.83",
     "title": "Release v9.2.83 \u2014 Help Center Impact",
     "filename": "reports/v9.2.83.html",
-    "generatedAt": "2026-06-08T00:00:00Z"
+    "generatedAt": "2026-06-08T00:00:00Z",
+    "summary": "This release ships 3 changes across PM Operations (1), Tenant Experience & Payments (1), and Banking (1). All three are internal infrastructure or backend changes: inspection eligibility tracking for analytics, RabbitMQ pipeline wiring for DoorWatch risk incidents, and a Stripe webhook handler to keep payout bank account data in sync. No customer-facing UI changes require Help Center updates."
   },
   {
     "date": "2026-06-08",
     "version": "v9.2.85",
     "title": "Release v9.2.85 \u2014 Help Center Impact",
     "filename": "reports/v9.2.85.html",
-    "generatedAt": "2026-06-08T00:00:00Z"
+    "generatedAt": "2026-06-08T00:00:00Z",
+    "summary": "This release ships 10 changes across PM Operations (1), Accounting (1), Onboarding & Imports (3), Tenant Experience & Payments (1), Workflows (2), Leads & Leasing (1), and Other (1). The two headline customer-facing items are offline-first inspection editing on mobile (PMO-1570, behind a feature flag) and saved views + CSV/Excel export for property/unit lists in Accounting. Workflows gains a configurable outstanding-balance threshold for Late Balance Notice triggers (WOR-1090, also flag-gated). The remaining items are internal reliability, monitoring, and infrastructure work."
   }
 ]
