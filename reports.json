@@ -102,5 +102,21 @@
     "filename": "reports/v9.2.85.html",
     "generatedAt": "2026-06-08T00:00:00Z",
     "summary": "This release ships 10 changes across PM Operations (1), Accounting (1), Onboarding & Imports (3), Tenant Experience & Payments (1), Workflows (2), Leads & Leasing (1), and Other (1). The two headline customer-facing items are offline-first inspection editing on mobile (PMO-1570, behind a feature flag) and saved views + CSV/Excel export for property/unit lists in Accounting. Workflows gains a configurable outstanding-balance threshold for Late Balance Notice triggers (WOR-1090, also flag-gated). The remaining items are internal reliability, monitoring, and infrastructure work."
+  },
+  {
+    "date": "2026-06-09",
+    "version": "v9.2.87",
+    "title": "Release v9.2.87 \u2014 Help Center Impact",
+    "filename": "reports/v9.2.87.html",
+    "generatedAt": "2026-06-10T00:00:00Z",
+    "summary": "This release ships 8 changes across PM Operations (3), Tenant Experience & Payments (3 internal), Workflows (1 internal), and Leads & Leasing (1). Customer-visible highlights: missed inbound calls to unconfigured DoorLoop numbers are now reliably tracked in voice reports (PMO-1551 bug fix), and the AI auto-responder no longer stamps SMS replies server-side \u2014 the AI agent controls the full message text (PMO-1556). UI polish adds New-badge indicators to showing entry points (settings, prospects, invitations). Four items are internal infrastructure."
+  },
+  {
+    "date": "2026-06-10",
+    "version": "v9.2.92",
+    "title": "Release v9.2.92 \u2014 Help Center Impact",
+    "filename": "reports/v9.2.92.html",
+    "generatedAt": "2026-06-10T00:00:00Z",
+    "summary": "This release ships 4 changes, all in Tenant Experience & Payments. Two are customer-facing: a first-time card payment discount A/B experiment for eligible one-time payers in the tenant portal (TEN-467, experiment-gated), and tenants can now mark notifications as read with instant badge count updates (TEN-490). Two are internal: invitation pageview analytics moved server-side for full-coverage tracking (TEN-522), and MongoDB models for tasks/rental applications/eSignature/policy/budget migrated to the shared library (TEN-243)."
   }
 ]
