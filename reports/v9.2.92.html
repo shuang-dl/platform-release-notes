@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.92 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #999; }
+    .internal { color: #888; font-weight: 600; }
+    .beta { color: #b36b00; font-weight: 600; }
+    .non-final { color: #b36b00; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.2.92 — 2026-06-10</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1781097183188509">View original Slack post</a> · <code>1781097183.188509</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 4 changes, all in Tenant Experience &amp; Payments. The two customer-visible items are a first-time card payment discount experiment in the tenant portal (A/B test for eligible one-time payers) and the ability for tenants to mark notifications as read with instant badge count updates. The other two items are internal: an invitation analytics tracking fix and a models migration for shared library infrastructure.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (4)</span>
+    <span class="chip" data-area="tenant-experience">Tenant Experience &amp; Payments (4)</span>
+  </div>
+
+  <!-- Tenant Experience & Payments -->
+  <section class="area-section" data-area="tenant-experience">
+    <h2>Tenant Experience &amp; Payments <span class="count">4 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-467" target="_blank">TEN-467</a><br><span class="non-final label">non-final state: Merged</span><br><span class="beta label">EXPERIMENT</span></td>
+          <td>First-time card payment discount experiment</td>
+          <td class="original">Added a first-time card payment discount experiment in the tenant portal for eligible one-time payments.</td>
+          <td>Introduces a pricing modal A/B test that shows eligible tenants a discounted card payment fee for their first one-time credit/debit card payment. The discount experiment is behind a feature flag and only activates for eligible tenants. Property managers may start seeing tenants reference a "discount" when paying by card for the first time — this is intentional and experiment-controlled.</td>
+          <td>
+            <span class="matched">MATCHED</span> <span class="beta">(hold for GA — experiment behind flag)</span><br>
+            1. <a href="http://support.doorloop.com/en/articles/9010545-how-to-make-a-one-time-single-payment-on-the-tenant-portal" target="_blank">How to Make a One-Time Single Payment on the Tenant Portal</a><br>
+            <span class="note">Likely update needed (when GA): Add a section or note about the card payment discount that may appear for first-time card payers; update screenshots if the discount modal is visible in the one-time payment flow.</span><br><br>
+            2. <a href="http://support.doorloop.com/en/articles/9910526-how-to-remove-a-saved-payment-method-on-the-tenant-portal" target="_blank">How to Remove a Saved Payment Method on the Tenant Portal</a><br>
+            <span class="note">Likely update needed (when GA): Check if the discount prompt is shown when a card method is involved; update if screenshots change.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/hkxwwfp62a" target="_blank">Tenant Portal Overview</a> (Mar 23, 2026)<br>
+            <span class="note">Created ~79 days before this release. If this video covers the payment flow, flag for re-recording once the discount experiment reaches GA.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-522" target="_blank">TEN-522</a></td>
+          <td>Invitation pageview tracking moved server-side</td>
+          <td class="original">Now tracks invitation pageviews server-side for more reliable login and invite funnel analytics.</td>
+          <td>Moves the <code>invitation_pageview</code> PostHog event from the browser (lossy on mobile/iOS) to the server, so it fires reliably for 100% of tenants who open their invite link — including via SMS and WebView. Fixes an analytics undercount where ~half of invited tenants had no pageview recorded. No change to what tenants see or experience.</td>
+          <td><span class="internal">INTERNAL</span> — analytics fix only; no user-facing behavior changes. No Help Center update needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-243" target="_blank">TEN-243</a><br><span class="label">NFR</span><span class="label">Scalability</span></td>
+          <td>Models migration — task, rental application, eSignature, policy, budget</td>
+          <td class="original">Moved task, rental application, e-signature, policy, and budget models to the shared library for broader reuse.</td>
+          <td>Migrates MongoDB model definitions for tasks, rental applications, eSignature requests/templates, policies, and budgets from the legacy <code>apps/server</code> location to the shared <code>@doorloop/mongodb-models</code> library. This is an architectural refactor to support the decoupled tenant-portal-server. No user-facing change.</td>
+          <td><span class="internal">INTERNAL</span> — infrastructure refactor (NFR/Scalability); no Help Center change needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-490" target="_blank">TEN-490</a></td>
+          <td>Mark tenant portal notifications as read</td>
+          <td class="original">Added the ability to mark tenant portal notifications as read, updating unread counts and app badges instantly.</td>
+          <td>Adds a <code>PATCH /notifications/:id/mark-as-read</code> endpoint to the tenant portal server. When a tenant reads a notification, it is marked as read, the unread count is recounted, and a silent push notification updates the app badge instantly. This powers the notification badge staying accurate in the tenant portal mobile app.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            1. <a href="http://support.doorloop.com/en/articles/14757485-tenant-notifications-when-a-request-is-completed" target="_blank">Tenant Notifications When a Request Is Completed</a><br>
+            <span class="note">Likely update needed: Add a note explaining that tenants can now mark notifications as read and the app badge count updates instantly — update screenshots showing the notification center if applicable.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/hkxwwfp62a" target="_blank">Tenant Portal Overview</a> (Mar 23, 2026)<br>
+            <span class="note">Created ~79 days before this release. If this video shows the notification badge or notification center, flag for re-recording to demonstrate mark-as-read behavior.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>No standalone unmatched features in this release requiring new articles. The card payment discount (TEN-467) is experiment-gated — hold until GA before creating dedicated documentation.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Duration</th><th>Related features</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/hkxwwfp62a" target="_blank">Tenant Portal Overview</a></td>
+        <td>Mar 23, 2026</td>
+        <td>—</td>
+        <td>TEN-467 (card discount), TEN-490 (mark as read)</td>
+        <td><strong>Review</strong> — 79 days before this release. Two new tenant portal behaviors shipped: card payment discount experiment + notification mark-as-read. Re-record if either behavior is shown in this video.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>TEN-522</strong> — Invitation pageview moved server-side; analytics-only change, no user-facing behavior.</li>
+    <li><strong>TEN-243</strong> — Models migration to shared library (NFR/Scalability); architectural refactor, no user-facing change.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
