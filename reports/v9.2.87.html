@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.87 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #999; }
+    .internal { color: #888; font-weight: 600; }
+    .non-final { color: #b36b00; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.2.87 — 2026-06-09</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1781010319575429">View original Slack post</a> · <code>1781010319.575429</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 8 changes across PM Operations (missed-call tracking bugfix, AI SMS signature endpoint), Tenant Experience &amp; Payments (3 internal infrastructure items), Workflows (1 internal infrastructure item), and Leads &amp; Leasing (1 showing UI fix plus 1 no-link UI enhancement). The two most notable customer-facing changes are the fix ensuring missed inbound calls are now reliably tracked in voice reporting, and the AI auto-responder SMS signature being moved from server-side stamping to agent-controlled — meaning AI reply text in Communications Center will look cleaner.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (8)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (3)</span>
+    <span class="chip" data-area="tenant-experience">Tenant Experience &amp; Payments (3)</span>
+    <span class="chip" data-area="workflows">Workflows (1)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (1)</span>
+  </div>
+
+  <!-- PM Operations -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1551" target="_blank">PMO-1551</a><br><span class="non-final label">non-final state: Merged</span></td>
+          <td>Missed-call tracking now records reliably</td>
+          <td class="original">Now records missed unconfigured inbound calls immediately, so they're tracked reliably even when the call rings out.</td>
+          <td>Fixes a production bug where missed calls to unconfigured DoorLoop phone numbers were never written to logs. The tracking row is now written synchronously when the call initiates (ring-out), rather than waiting for a <code>call.cost</code> webhook that never fires for unanswered calls. Voice reports will now show the correct count of missed/unconfigured inbound calls.</td>
+          <td><span class="unmatched">UNMATCHED</span> — no existing article covers voice missed-call reporting specifically.<br><span class="note">→ Suggested new article: "Understanding Missed Call Tracking for Unconfigured Numbers" (see Suggested new articles below)</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1556" target="_blank">PMO-1556</a></td>
+          <td>AI auto-responder SMS signature is now agent-controlled</td>
+          <td class="original">Added an agent SMS signature endpoint and stopped auto-responder texts from adding a server-side AI assistant stamp.</td>
+          <td>Adds a <code>GET /api/communications/agent-sms-signature</code> endpoint that returns the SMS signature the AI agent appends to its messages. The server no longer stamps AI auto-responder replies with "— Sent by AI assistant" — the agent itself now controls the full message text. This makes AI-generated SMS replies cleaner and allows future per-company customization of the signature.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            1. <a href="http://support.doorloop.com/en/articles/9757445-create-a-new-task-from-an-sms-message-on-the-communications-center" target="_blank">Create a New Task from an SMS Message on the Communications Center</a><br>
+            <span class="note">Likely update needed: Update any screenshots showing AI-generated SMS reply text — the "Sent by AI assistant" stamp will no longer appear as a server-appended line.</span><br><br>
+            2. <a href="http://support.doorloop.com/en/articles/15344763-what-s-new-smarter-communications-center-tools-and-a-smoother-tenant-portal-version-9-2-71" target="_blank">What's New: Smarter Communications Center — v9.2.71</a><br>
+            <span class="note">Likely update needed: Reference the updated behavior in the "what's changed" changelog history if applicable.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            1. <a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a> (Mar 23, 2026)<br>
+            <span class="note">Created 78 days before this release — likely needs re-recording to reflect that AI reply signatures are now agent-controlled, not server-stamped.</span><br><br>
+            2. <a href="https://doorloop.wistia.com/medias/o1cw1de8i5" target="_blank">AI Communications Center</a> (Mar 23, 2026)<br>
+            <span class="note">Created 78 days before this release — if it demonstrates how AI auto-responder replies look, update to show the cleaner signature format.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>—</td>
+          <td>New "tags" on showing entry points</td>
+          <td class="original">Added New tags to showing entry points in settings, prospects, and message-based invitations.</td>
+          <td>Adds visual "New" badge indicators to the showing-related entry points in three places: the Settings page, the Prospects list, and message-based invitation flows. This draws attention to the showings feature for users who haven't tried it yet.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            1. <a href="http://support.doorloop.com/en/articles/14894290-showings-how-prospects-self-schedule-a-showing" target="_blank">Showings: How Prospects Self-Schedule a Showing</a><br>
+            <span class="note">Likely update needed: Check if any entry-point screenshots in this article now show a "New" badge — update if so.</span><br><br>
+            2. <a href="http://support.doorloop.com/en/articles/14092081-showings-availability-to-follow-up" target="_blank">Showings: Availability to Follow-Up</a><br>
+            <span class="note">Likely update needed: Review screenshots showing the Showings settings area — update if the "New" tag is visible.</span>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Tenant Experience & Payments -->
+  <section class="area-section" data-area="tenant-experience">
+    <h2>Tenant Experience &amp; Payments <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-492" target="_blank">TEN-492</a><br><span class="label">NFR</span></td>
+          <td>Tenant portal unread notification count API</td>
+          <td class="original">Added unread notification counts to the tenant portal so the badge stays accurate across the app.</td>
+          <td>Adds the server-side <code>GET /unread-notifications</code> endpoint to the new tenant-portal-server, returning the count of unread notifications for the logged-in tenant. This is an infrastructure building block enabling the notification badge in the tenant portal mobile app to reflect the correct count.</td>
+          <td><span class="internal">INTERNAL</span> — backend API endpoint; no user-visible documentation change needed. The notification badge behavior is the user-facing result, covered by other features.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-512" target="_blank">TEN-512</a><br><span class="label">CX Improvement</span></td>
+          <td>Discovery wizard analytics tracking</td>
+          <td class="original">Added discovery wizard view and completion tracking so teams can measure impressions and finishes in PostHog.</td>
+          <td>Adds two missing PostHog analytics events to the discovery wizard component: <code>discovery_component_view</code> (fired when a wizard appears, per step) and <code>discovery_component_completed</code> (fired when the final button is clicked). No change to what users see — purely analytics instrumentation so the product team can measure wizard engagement.</td>
+          <td><span class="internal">INTERNAL</span> — analytics-only change; no Help Center documentation change needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-439" target="_blank">TEN-439</a><br><span class="label">NFR</span></td>
+          <td>Tenant portal server PostHog analytics SDK</td>
+          <td class="original">Added analytics tracking for tenant actions, including language preference changes, to keep product events flowing.</td>
+          <td>Adds the PostHog Node.js SDK and an <code>AnalyticsService</code> to the new tenant-portal-server so analytics events (like <code>tenant_language_change</code>) continue to fire as tenant portal endpoints migrate away from the legacy server. The first event wired up is language preference changes. No user-facing change — purely internal infrastructure.</td>
+          <td><span class="internal">INTERNAL</span> — infrastructure-only; no Help Center change needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Workflows -->
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1061" target="_blank">WOR-1061</a></td>
+          <td>Agent envelope publishing infrastructure</td>
+          <td class="original">Added agent envelope publishing with routing and deterministic message IDs for reliable delivery and deduplication.</td>
+          <td>Adds deterministic event-ID builders and a <code>publishAgentEnvelope()</code> wrapper for the Fleet of Agents system. These ensure each agent message has a unique, traceable ID for deduplication and routing. Internal plumbing for the renewals agent and other AI agents — no user-facing behavior change.</td>
+          <td><span class="internal">INTERNAL</span> — agent infrastructure; no Help Center change needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Leads & Leasing -->
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>—</td>
+          <td>Showing cancellation page displays correct state</td>
+          <td class="original">Fixed showing cancellation pages to show the correct canceled state and hide cancel or keep actions for already-canceled tours.</td>
+          <td>Bug fix: when a prospect opens a showing cancellation link for a tour that was already canceled, the page now correctly shows the "already canceled" state and hides the cancel/keep action buttons. Previously, canceled tours could still show the action buttons, which was confusing.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            1. <a href="http://support.doorloop.com/en/articles/14894290-showings-how-prospects-self-schedule-a-showing" target="_blank">Showings: How Prospects Self-Schedule a Showing</a><br>
+            <span class="note">Likely update needed: If this article includes screenshots of the cancellation confirmation page, update them to show the corrected already-canceled state (no cancel/keep buttons visible).</span>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <div>
+    <h3>Suggested: "Understanding Missed Call Tracking for Unconfigured Numbers" (PMO-1551)</h3>
+    <p><strong>Rationale:</strong> Now that missed inbound calls to unconfigured DoorLoop phone numbers are reliably tracked, property managers may want to understand where to find these logs and what the "missed call" report covers. There is currently no article explaining how DoorLoop tracks missed calls from numbers that haven't been configured with call forwarding or voice settings.</p>
+    <p><strong>Suggested keywords:</strong> missed call, unconfigured number, voice, call tracking, inbound calls, voice report, call logs, Communications Center</p>
+  </div>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Duration</th><th>Related features</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a></td>
+        <td>Mar 23, 2026</td>
+        <td>—</td>
+        <td>PMO-1556 (AI SMS signature)</td>
+        <td><strong>Yes</strong> — 78 days before this release. If video shows AI auto-responder reply text, update to reflect agent-controlled signature.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/o1cw1de8i5" target="_blank">AI Communications Center</a></td>
+        <td>Mar 23, 2026</td>
+        <td>1:27</td>
+        <td>PMO-1556 (AI SMS signature)</td>
+        <td><strong>Review</strong> — 78 days before this release. Check if AI reply appearance is demonstrated; if so, update stamp behavior.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Suggested new training videos:</strong></p>
+  <ul>
+    <li>PMO-1551: "Voice Missed Call Tracking" — no existing video covers how to view or interpret missed-call logs for unconfigured numbers.</li>
+  </ul>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>TEN-492</strong> — Backend API endpoint (NFR); the unread count API is infrastructure, not a standalone Help Center topic.</li>
+    <li><strong>TEN-512</strong> — PostHog analytics events for discovery wizard; analytics-only, no user-facing change.</li>
+    <li><strong>TEN-439</strong> — PostHog SDK infrastructure for tenant-portal-server; analytics infrastructure, no user-facing change.</li>
+    <li><strong>WOR-1061</strong> — Agent envelope publishing for Fleet of Agents; internal plumbing, no user-facing change.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
