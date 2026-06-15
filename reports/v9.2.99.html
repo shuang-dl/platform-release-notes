@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.99 — 2026-06-14 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1060px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #888; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .staleness { color: #b3541e; font-size: 0.85em; }
+    ul.update-notes { margin: 0.3rem 0; padding-left: 1.2rem; }
+    ul.update-notes li { font-size: 0.88em; color: #444; margin-bottom: 0.2rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.2.99 — 2026-06-14 — Help Center Impact</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG">View #platform-release-notes</a> · <code>Slack TS: 1781441014.681689</code></p>
+
+  <h2>Summary</h2>
+  <p>Release v9.2.99 ships a single customer-facing change: per-property Welcome SMS customization in the Communication Center (PMO-968). Property managers can now set a unique welcome message for each property — addressing a top upmarket request from accounts managing multiple owners or LLCs — while retaining the company-wide default as a fallback. This is the highest-impact Help Center item in the June 11–14 window and directly affects at least three existing SMS and Communication Center articles.</p>
+
+  <h2>At a Glance</h2>
+  <table style="max-width:480px">
+    <thead><tr><th>Category</th><th>Count</th></tr></thead>
+    <tbody>
+      <tr><td>Customer-visible (Done)</td><td>1</td></tr>
+      <tr><td>Existing articles flagged for update</td><td>3</td></tr>
+      <tr><td>Training videos flagged for review</td><td>1</td></tr>
+    </tbody>
+  </table>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (1)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (1)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:7%">Linear</th>
+          <th style="width:14%">Feature</th>
+          <th style="width:18%">Original Notes (Slack)</th>
+          <th style="width:22%">What it does</th>
+          <th style="width:22%">Affected articles</th>
+          <th style="width:17%">Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-968" target="_blank">PMO-968</a></td>
+          <td>Per-Property Welcome SMS Customization in Communication Center</td>
+          <td class="original">Added company-level Welcome SMS customization in Communication Center, with default fallback and required opt-out text.</td>
+          <td>Property managers can now customize the Welcome SMS message per property in the Communication Center settings. A new tab in the settings dialog accepts property-specific welcome text using template variables (<code>{{companyName}}</code>, <code>{{fromNumber}}</code>, <code>{{recipientName}}</code>). When no property-level message is set the system falls back to the company-wide default. The required opt-out language is enforced automatically. Addresses a high-priority request from large upmarket accounts (~450–641 units) managing multiple owners or LLCs who need each property's outbound SMS to reflect the correct business name.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/9176260-send-a-welcome-sms-to-your-tenants-prospects-vendors-and-owners" target="_blank">Send a Welcome SMS to Your Tenants, Prospects, Vendors, and Owners</a> — Update to document the new per-property Welcome SMS tab in Communication Center settings; add steps to set property-level message text, explain the default fallback, and list the available template variables (<code>{{companyName}}</code>, <code>{{fromNumber}}</code>, <code>{{recipientName}}</code>).</li>
+              <li><a href="http://support.doorloop.com/en/articles/12802782-best-practices-when-creating-sms-messages-on-the-communication-center" target="_blank">Best Practices When Creating SMS Messages on the Communication Center</a> — Add a section on using per-property Welcome SMS for multi-owner or multi-LLC portfolios; explain when to use property-specific vs. company-wide defaults.</li>
+              <li><a href="http://support.doorloop.com/en/articles/9420528-create-a-new-message-on-the-communication-center-hoa" target="_blank">Create a New Message on the Communication Center [HOA]</a> — Note that the Welcome SMS tab now supports property-level customization.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a><br>
+            <span class="staleness">Created Mar 23, 2026 — 83 days before this release. Re-record or add a segment showing the new per-property Welcome SMS customization tab in Communication Center settings, including template variables and the default fallback behavior.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested New Articles</h2>
+  <p>None — all features are covered by existing articles.</p>
+
+  <h2>Related Training Videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Duration</th><th>Related features</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a></td>
+        <td>Mar 23, 2026</td>
+        <td>—</td>
+        <td>PMO-968 — per-property Welcome SMS</td>
+        <td><strong>Yes</strong> — 83 days older than this release. Re-record or add segment for the new per-property Welcome SMS customization tab.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Items Intentionally Skipped (Internal-Only)</h2>
+  <p>None in this release.</p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+  <hr style="margin-top:3rem">
+  <p style="color:#888;font-size:0.85em"><em>Generated by the <code>doorloop-release-summary</code> Claude skill.</em></p>
+</body>
+</html>
