@@ -1,0 +1,364 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.3.0 — 2026-06-15 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1060px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #888; }
+    .beta { color: #0369a1; font-weight: 600; }
+    .non-final { color: #0369a1; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .staleness { color: #b3541e; font-size: 0.85em; }
+    ul.update-notes { margin: 0.3rem 0; padding-left: 1.2rem; }
+    ul.update-notes li { font-size: 0.88em; color: #444; margin-bottom: 0.2rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.3.0 — 2026-06-15 — Help Center Impact</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG">View #platform-release-notes</a> · <code>Slack TS: 1781532615.367259</code></p>
+
+  <h2>Summary</h2>
+  <p>Release v9.3.0 — DoorLoop's first major version bump — ships 16 changes across four product areas. The headline customer-facing features are lease document tracking with tenant portal sharing (PMO-203), automatic SMS/voice fallback for international 2FA delivery (ACT-744), Lemonade renters insurance expansion to five new states (TEN-579), and a redesigned Pay-or-Quit workflow template with a distinct lavender look and first-in-list placement (WOR-1123). Owner Portal file search and filtering (PMO-1783) and the Late Balance Notice automated workflow execution (WOR-430) ship behind feature flags. Six items are internal infrastructure or analytics with no Help Center impact.</p>
+
+  <h2>At a Glance</h2>
+  <table style="max-width:500px">
+    <thead><tr><th>Category</th><th>Count</th></tr></thead>
+    <tbody>
+      <tr><td>Customer-visible (Done)</td><td>7</td></tr>
+      <tr><td>Beta / flag-gated</td><td>2</td></tr>
+      <tr><td>Non-final state (Merged)</td><td>1</td></tr>
+      <tr><td>Internal / NFR (skipped)</td><td>6</td></tr>
+      <tr><td>Existing articles flagged for update</td><td>9</td></tr>
+      <tr><td>Training videos flagged for review</td><td>3</td></tr>
+      <tr><td>Suggested new articles</td><td>1</td></tr>
+    </tbody>
+  </table>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (10)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="onboarding">Onboarding &amp; Imports (2)</span>
+    <span class="chip" data-area="tenant-experience">Tenant Experience &amp; Payments (3)</span>
+    <span class="chip" data-area="workflows">Workflows (3)</span>
+  </div>
+
+  <!-- PM Operations -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:7%">Linear</th>
+          <th style="width:14%">Feature</th>
+          <th style="width:18%">Original Notes (Slack)</th>
+          <th style="width:22%">What it does</th>
+          <th style="width:22%">Affected articles</th>
+          <th style="width:17%">Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-203" target="_blank">PMO-203</a></td>
+          <td>Lease Document Tagging &amp; Tenant Portal Sharing</td>
+          <td class="original">Added lease document tagging and tenant sharing, with a new Lease Documents section in the tenant portal.</td>
+          <td>Property managers can now designate a specific file on a lease as the official "lease document." Four entry points: the "already signed" flow when creating a new lease, the signature request flow, a new Lease Settings card for manual retroactive association, and the lease renewal flow. Each entry point shows an opt-in sharing toggle (on by default) to surface the document in a new <strong>Lease Documents</strong> section of the tenant portal. Renewal creates a new active lease document and deactivates the prior one for AI context purposes. Phase 2 (AI indexing) is out of scope for this release.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/8295907-send-a-document-or-file-to-a-tenant" target="_blank">Send a Document or File to a Tenant</a> — Add a new section covering the Lease Documents tab in the tenant portal; explain how property managers designate a lease document and tenants view it; include the sharing toggle and all four entry points (new lease, signature request, lease settings card, lease renewal).</li>
+              <li><a href="http://support.doorloop.com/en/articles/9788034-customize-lease-specific-tenant-portal-settings" target="_blank">Customize Lease-Specific Tenant Portal Settings</a> — Add documentation for the new lease document association card in Lease Settings, including how to upload a new file or designate an existing one, and how the sharing consent toggle works.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/hkxwwfp62a" target="_blank">Tenant Portal Overview</a><br>
+            <span class="staleness">Created Mar 23, 2026 — 84 days before this release. Add a segment showing the new Lease Documents section in the tenant portal where tenants can access their signed lease agreement.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1783" target="_blank">PMO-1783</a> <span class="beta">[BETA — flag: owner-portal-files-search-and-filters]</span></td>
+          <td>Owner Portal Files — Search &amp; Filter</td>
+          <td class="original">Added search and filters to the Owner Portal Files tab so owners can narrow files by date, type, and uploader.</td>
+          <td>Behind the <code>owner-portal-files-search-and-filters</code> feature flag, the Owner Portal Files tab gains a search input (by filename) and four filters: Uploaded By (PM or Owner), File Type (Expense, Lease, Inspection, or Owner Request — multi-select), and Date Range. Mirrors the existing filter pattern from the Owner Portal Requests page. Hold Help Center update for GA.</td>
+          <td>
+            <span class="beta">BETA — hold for GA</span><br>
+            <span class="note">When flag is lifted, update:
+              <ul class="update-notes">
+                <li><a href="http://support.doorloop.com/en/articles/10262302-enable-viewing-of-uploaded-files-on-the-owner-portal" target="_blank">Enable Viewing of Uploaded Files on the Owner Portal</a> — Add new search and filter capabilities (by filename, uploader, file type, date range).</li>
+                <li><a href="http://support.doorloop.com/en/articles/14759175-property-owners-can-view-shared-files-on-the-owner-portal" target="_blank">Property Owners Can View Shared Files on the Owner Portal</a> — Update screenshot to show the filter panel; explain how owners can filter their file list.</li>
+              </ul>
+            </span>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Onboarding & Imports -->
+  <section class="area-section" data-area="onboarding">
+    <h2>Onboarding &amp; Imports <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:7%">Linear</th>
+          <th style="width:14%">Feature</th>
+          <th style="width:18%">Original Notes (Slack)</th>
+          <th style="width:22%">What it does</th>
+          <th style="width:22%">Affected articles</th>
+          <th style="width:17%">Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-744" target="_blank">ACT-744</a></td>
+          <td>International 2FA — Automatic SMS/Voice Fallback</td>
+          <td class="original">Now supports automatic SMS or voice fallback for international 2FA codes when one delivery channel is blocked.</td>
+          <td>When a 2FA verification code can't be delivered via SMS (e.g., alphanumeric sender ID "DoorLoop" blocked by a country's carrier, such as Pakistan), the system now automatically retries via voice call — and vice versa. Previously both channels could fail silently, showing a misleading "check or change your number" error even when the number was valid. The fix also adds the missing countries to Telnyx's outbound voice profile whitelist. Users in blocked regions (Pakistan and others) will now reliably receive their OTP.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/14758136-troubleshoot-2fa-verification-code-issues" target="_blank">Troubleshoot 2FA Verification Code Issues</a> — Add a section on international SMS delivery: explain that DoorLoop now automatically falls back to voice if SMS is blocked; list countries where alphanumeric sender IDs may not work; update the "change your number" guidance to distinguish a carrier-blocked scenario (change nothing) from a genuinely invalid number.</li>
+              <li><a href="http://support.doorloop.com/en/articles/13335418-2fa-verification-code" target="_blank">2FA Verification Code</a> — Add a note that users in some countries may receive their OTP via voice call instead of SMS; explain the automatic fallback.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-812" target="_blank">ACT-812</a></td>
+          <td>Data Migration — Custom Lease Names Preserved on Import</td>
+          <td class="original">Now supports preserving custom lease names during import instead of auto-renaming them from tenant data.</td>
+          <td>The data migration sheet now accepts an optional <code>lease.name</code> column. When populated, that value becomes the lease name in DoorLoop instead of the default auto-generated name (concatenated from tenant first/last name fields). Designed for upmarket accounts that pre-define lease names aligned to their own naming conventions (e.g., unit codes, owner entity names). If the field is blank, the existing auto-naming behavior is unchanged.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/8608503-import-your-data-into-doorloop" target="_blank">Import Your Data Into DoorLoop</a> — Add documentation for the new optional <code>lease.name</code> column in the data migration sheet; explain that custom lease names are now preserved on import instead of being auto-generated from tenant names; include an example of when to use it.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/h9y7ymsrfc" target="_blank">Import Your Existing Data</a><br>
+            <span class="staleness">Created Mar 23, 2026 — 84 days before this release. Add a note or segment explaining the new <code>lease.name</code> column and how to use it to preserve custom lease names during data migration.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Tenant Experience & Payments -->
+  <section class="area-section" data-area="tenant-experience">
+    <h2>Tenant Experience &amp; Payments <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:7%">Linear</th>
+          <th style="width:14%">Feature</th>
+          <th style="width:18%">Original Notes (Slack)</th>
+          <th style="width:22%">What it does</th>
+          <th style="width:22%">Affected articles</th>
+          <th style="width:17%">Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-78" target="_blank">TEN-78</a></td>
+          <td>Tenant Portal — Delete Payment Method from Payment Wizard</td>
+          <td class="original">Added payment method deletion from the payment wizard for tenant portal users.</td>
+          <td>Tenant portal users can now delete a saved payment method (credit card or bank account) directly from within the payment wizard flow, in addition to the existing deletion path from settings. The backend implements the new <code>DELETE /api/tenant-portal/payment-tokens/:id</code> route. This reduces friction when tenants need to remove an expired card mid-payment.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/9910526-how-to-remove-a-saved-payment-method-on-the-tenant-portal" target="_blank">How to Remove a Saved Payment Method on the Tenant Portal</a> — Update to mention that payment methods can now also be removed directly from within the payment wizard, not only from portal settings; add steps or a note for the in-wizard deletion path.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/hkxwwfp62a" target="_blank">Tenant Portal Overview</a><br>
+            <span class="staleness">Created Mar 23, 2026 — 84 days before this release. Update to reflect that tenants can now remove saved payment methods within the payment wizard.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-576" target="_blank">TEN-576</a> <span class="non-final">[non-final: Merged]</span></td>
+          <td>Rent Payments Overview — Total Outstanding Tile Fix &amp; Analytics Alignment</td>
+          <td class="original">Fixed the Total Outstanding tile and simplified rent payments cards while aligning payment analytics events.</td>
+          <td>Fixes the Total Outstanding tile on the Rent Payments Overview dashboard so it accurately reflects all leases with an outstanding balance. Simplifies the rent payment cards UI. Adds missing analytics events (<code>online_payment_requested_sent</code>, <code>pay_online_request_sent</code>, <code>bulk_overdue_notice_sent</code>) for PM payment-nudge actions in the Needs Attention flow. Still Merged — not fully deployed. Hold Help Center update until Done.</td>
+          <td>
+            <span class="non-final">HOLD — Merged, not Done</span><br>
+            <span class="note">When Done, update: <a href="http://support.doorloop.com/en/articles/15400762" target="_blank">Understanding the Payments Dashboard</a> (draft) — reflect corrected Total Outstanding tile behavior.</span>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-579" target="_blank">TEN-579</a></td>
+          <td>Lemonade Renters Insurance — 5 New States Added</td>
+          <td class="original">Now supports Lemonade insurance routing for tenants in DE, LA, NH, SD, and WY.</td>
+          <td>Lemonade renters insurance is now available through the tenant portal in five additional states: Delaware, Louisiana, New Hampshire, South Dakota, and Wyoming. Tenants in these states will now see the Lemonade insurance option when their property manager has renters insurance required on their lease.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/8926877-introduction-to-lemonade-and-renters-insurance" target="_blank">Introduction to Lemonade and Renters Insurance</a> — Update the list of Lemonade-supported states to include Delaware (DE), Louisiana (LA), New Hampshire (NH), South Dakota (SD), and Wyoming (WY).</li>
+              <li><a href="http://support.doorloop.com/en/articles/6973871-how-to-get-renters-insurance-on-the-tenant-portal" target="_blank">How to Get Renters Insurance on the Tenant Portal</a> — Update any state eligibility mentions; confirm the 5 new states are reflected.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Workflows -->
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:7%">Linear</th>
+          <th style="width:14%">Feature</th>
+          <th style="width:18%">Original Notes (Slack)</th>
+          <th style="width:22%">What it does</th>
+          <th style="width:22%">Affected articles</th>
+          <th style="width:17%">Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1123" target="_blank">WOR-1123</a></td>
+          <td>Pay-or-Quit Notice — Distinct Lavender Identity in Workflow Templates</td>
+          <td class="original">Added a distinct lavender Pay-or-Quit notice chip and card, and moved it to the top of workflow templates.</td>
+          <td>The Pay-or-Quit (Late Balance Notice) workflow template previously reused the blue "Renewals" chip color and yellow card background, making it indistinguishable from other templates. It now has its own <code>LATE_BALANCE_NOTICE</code> tag, a distinct lavender chip (#E3D8F8), a lavender-colored template card, and the label "Pay-or-Quit notice." It also appears first in the workflow templates list. This affects the workflow creation experience for any PMs setting up automated late-balance communications.</td>
+          <td>
+            <span class="unmatched">UNMATCHED — suggested new article</span><br>
+            <span class="note">No existing article covers the Pay-or-Quit workflow template in the context of the template browser/card UI. → See Suggested New Articles.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/c3pk1wpm3m" target="_blank">Workflows</a><br>
+            <span class="staleness">Created Mar 23, 2026 — 84 days before this release. Update to show the new lavender Pay-or-Quit notice template card appearing at the top of the templates list, with the correct chip color and label.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-430" target="_blank">WOR-430</a> <span class="beta">[BETA — flag: workflowsLateBalanceNotice]</span></td>
+          <td>Late Balance Notice — Automated Workflow Execution</td>
+          <td class="original">Added late-balance workflow execution creation on the configured day of month, with duplicate prevention.</td>
+          <td>Behind the <code>workflowsLateBalanceNotice</code> feature flag, the Late Balance Notice workflow now automatically queries delinquent leases (active leases with <code>outstandingBalance &gt; 0</code>, excluding leases with eviction pending) and schedules execution on the configured day of the month. Last-day-of-month fallback handles short months (e.g., day 31 in February → Feb 28). An idempotency check prevents duplicate executions for the same lease + date pair. Excludes month-to-month delinquent leases. Still In Review — hold Help Center update for GA.</td>
+          <td>
+            <span class="beta">BETA — hold for GA</span><br>
+            <span class="note">When the flag is lifted, will need a dedicated Late Balance Notice workflow article covering: how to activate the trigger, day-of-month configuration, what leases qualify (active, balance &gt; 0, no eviction pending), and the duplicate prevention logic.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/c3pk1wpm3m" target="_blank">Workflows</a><br>
+            <span class="staleness">Created Mar 23, 2026 — 84 days before this release. Update (when WOR-430 is GA) to demonstrate configuring the Late Balance Notice automated trigger and scheduling.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1126" target="_blank">WOR-1126</a></td>
+          <td>Workflow Conditions — Dollar Sign on Balance Threshold Input</td>
+          <td class="original">Added a $ symbol to Outstanding Balance threshold inputs in workflow conditions for clearer money amounts.</td>
+          <td>In the workflow editor's Triggers &amp; Conditions panel, the "Outstanding Balance" threshold value field now shows a leading <code>$</code> adornment inside the input. Previously the field showed a plain number with no currency indicator, which was ambiguous. The <code>$</code> is opt-in per criterion type and won't appear on non-currency numeric inputs. Minor UI polish with no behavioral change.</td>
+          <td>
+            <span class="matched">MATCHED (minor)</span>
+            <ul class="update-notes">
+              <li><a href="https://doorloop.wistia.com/medias/c3pk1wpm3m" target="_blank">Workflows</a> — If any article or screenshot documents the Outstanding Balance condition input, update to show the <code>$</code> adornment. No standalone article needed for this UI polish.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/c3pk1wpm3m" target="_blank">Workflows</a><br>
+            <span class="staleness">Created Mar 23, 2026 — 84 days before this release. If the video shows the workflow condition editor, update the balance threshold screenshot to reflect the $ adornment.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested New Articles</h2>
+  <h3>Pay-or-Quit Notice Workflow Template (WOR-1123)</h3>
+  <p><strong>Proposed title:</strong> <em>What's New: Pay-or-Quit notice now has its own distinct identity in the Workflow Templates list — Version 9.3.0</em></p>
+  <p><strong>Rationale:</strong> The Pay-or-Quit (Late Balance Notice) workflow template is now visually distinct — a lavender chip labeled "Pay-or-Quit notice" and a matching lavender card appearing first in the templates list. PMs looking for this template would previously have searched under "Renewals" (the chip it reused). A new or updated article should cover: how to locate the Pay-or-Quit template in the Workflow Templates view, what it does (automated late-balance notice to delinquent tenants), and how to set up or customize it. This article will serve as the foundation for the fuller Late Balance Notice workflow documentation once WOR-430 is GA.</p>
+  <p><strong>Suggested keywords:</strong> pay or quit, late balance notice, workflow, workflow template, automated notice, delinquent tenant, balance due, notice, workflow chip</p>
+
+  <h2>Related Training Videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Related features</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/hkxwwfp62a" target="_blank">Tenant Portal Overview</a></td>
+        <td>Mar 23, 2026</td>
+        <td>PMO-203 (new Lease Documents section), TEN-78 (delete payment method in wizard)</td>
+        <td><strong>Yes</strong> — 84 days old. Add segment showing Lease Documents tab in tenant portal and in-wizard payment method deletion.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/c3pk1wpm3m" target="_blank">Workflows</a></td>
+        <td>Mar 23, 2026</td>
+        <td>WOR-1123 (Pay-or-Quit lavender chip, first in list), WOR-430 (Late Balance Notice trigger — GA pending), WOR-1126 ($ on balance threshold)</td>
+        <td><strong>Yes</strong> — 84 days old. Update to show new lavender Pay-or-Quit template card at top of list, and $ adornment in balance threshold condition.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/h9y7ymsrfc" target="_blank">Import Your Existing Data</a></td>
+        <td>Mar 23, 2026</td>
+        <td>ACT-812 (custom lease names on import via lease.name field)</td>
+        <td><strong>Review</strong> — 84 days old. Add note about new <code>lease.name</code> column in the migration sheet.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Items Intentionally Skipped (Internal-Only)</h2>
+  <ul>
+    <li><strong>PMO-2043</strong> — SMS connection hardening (keep-alive agent + timeout on Telnyx SMS path, behind <code>telnyx-sms-connection-hardening</code> flag). Pure infrastructure; no user-facing change.</li>
+    <li><strong>PMO-2056</strong> [non-final: Merged] — Voice: retry <code>record_start</code> on <code>ECONNABORTED</code>. Backend reliability fix for missed voicemail recordings; no user-visible change.</li>
+    <li><strong>ACT-770</strong> — GetStartedV2 data migration: graceful handling when no Salesforce opportunity is linked. Backend fix with no user-facing impact.</li>
+    <li><strong>ACT-815</strong> — Server-side login-outcome analytics (success/failure/reason/status tracked in PostHog). Pure internal analytics instrumentation.</li>
+    <li><strong>TEN-275</strong> [non-final: In Review] — Tenant portal endpoint performance improvements (AR report and lease detail endpoints). Backend optimization; no visible UI change.</li>
+    <li><strong>TEN-580</strong> [non-final: Merged] — Tenant portal server Dockerfile fix for missing <code>tsconfig.options.json</code>. DevOps/build fix only.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+  <hr style="margin-top:3rem">
+  <p style="color:#888;font-size:0.85em"><em>Generated by the <code>doorloop-release-summary</code> Claude skill.</em></p>
+</body>
+</html>
