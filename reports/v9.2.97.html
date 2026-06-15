@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.2.97 — 2026-06-12 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1060px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #888; }
+    .non-final { color: #0369a1; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .staleness { color: #b3541e; font-size: 0.85em; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    ul.update-notes { margin: 0.3rem 0; padding-left: 1.2rem; }
+    ul.update-notes li { font-size: 0.88em; color: #444; margin-bottom: 0.2rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.2.97 — 2026-06-12 — Help Center Impact</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG">View #platform-release-notes</a> · <code>Slack TS: 1781354611.884349</code></p>
+
+  <h2>Summary</h2>
+  <p>Release v9.2.97 ships 4 changes across Accounting, Tenant Experience &amp; Payments, Workflows, and Other. The headline customer-visible items are a long-overdue column rename from "Description" to "Memo" in all transaction list reports (DOO-1507), and a QA fix pass on the Rent Payments Overview dashboard correcting average collection time and overdue messaging (TEN-396). The Outstanding Charges Table chip for Late Balance Notice emails (WOR-1106) is still In Review. Unpaid Rent now routes directly to the v2 AR Aging Summary for users on the new reporting engine (TIG-2590).</p>
+
+  <h2>At a Glance</h2>
+  <table style="max-width:480px">
+    <thead><tr><th>Category</th><th>Count</th></tr></thead>
+    <tbody>
+      <tr><td>Customer-visible (Done)</td><td>2</td></tr>
+      <tr><td>Non-final state (In Review)</td><td>1</td></tr>
+      <tr><td>Routing fix (Done)</td><td>1</td></tr>
+      <tr><td>New articles suggested</td><td>1</td></tr>
+      <tr><td>Existing articles flagged for update</td><td>6</td></tr>
+      <tr><td>Training videos flagged for review</td><td>2</td></tr>
+    </tbody>
+  </table>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (4)</span>
+    <span class="chip" data-area="accounting">Accounting (1)</span>
+    <span class="chip" data-area="tenant-experience">Tenant Experience &amp; Payments (1)</span>
+    <span class="chip" data-area="workflows">Workflows (1)</span>
+    <span class="chip" data-area="other">Other (1)</span>
+  </div>
+
+  <section class="area-section" data-area="accounting">
+    <h2>Accounting <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:7%">Linear</th>
+          <th style="width:14%">Feature</th>
+          <th style="width:18%">Original Notes (Slack)</th>
+          <th style="width:22%">What it does</th>
+          <th style="width:22%">Affected articles</th>
+          <th style="width:17%">Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TIG-1507" target="_blank">DOO-1507</a></td>
+          <td>Transaction List Column Renamed "Description" → "Memo"</td>
+          <td class="original">Fixed transaction list reports to show Memo instead of Description for the memo column header.</td>
+          <td>The "Description" column header in transaction list reports was a misnomer — the field stores transaction memos. The column is now labeled "Memo" across all transaction list views (lease, vendor, report contexts) to align with standard accounting terminology.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/8279133-transactions-list-report" target="_blank">Transactions List Report</a> — Rename all "Description" column references to "Memo"; refresh screenshots showing the old label.</li>
+              <li><a href="http://support.doorloop.com/en/articles/14760808-view-monthly-tenant-payments-using-the-transaction-list-report" target="_blank">View Monthly Tenant Payments Using the Transaction List Report</a> — Update "Description" column references to "Memo".</li>
+              <li><a href="http://support.doorloop.com/en/articles/9736552-transaction-details-report" target="_blank">Transaction Details Report</a> — Check for "Description" column header references and update to "Memo" if present.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience">
+    <h2>Tenant Experience &amp; Payments <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-396" target="_blank">TEN-396</a></td>
+          <td>Rent Payments Overview — Collection Time &amp; Overdue Messaging Fixed</td>
+          <td class="original">Fixed average collection time and overdue messaging on the Rent Payments Overview, and improved online payment error messages.</td>
+          <td>QA pass on the Rent Payments Overview dashboard: corrects the average collection time calculation, fixes the overdue tile to accurately reflect all leases with an outstanding balance, improves online payment error messages shown to tenants, replaces the 'New' badge with 'Beta', and fixes a wizard error copy issue ("Error: Widget Exception" removed).</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/15400762" target="_blank">Understanding the Payments Dashboard</a> <span class="label" style="background:#fff3cd">draft</span> — Primary target: update to reflect corrected average collection time logic, accurate overdue tile behavior, and the 'Beta' tag replacing 'New'.</li>
+              <li><a href="http://support.doorloop.com/en/articles/6252218-best-practices-to-get-your-tenants-to-pay-online" target="_blank">Best Practices To Get Your Tenants To Pay Online</a> — Update payment error message examples if copy changed in any screenshots.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/efrz0afqha" target="_blank">Rent &amp; Payment Notifications</a><br>
+            <span class="staleness">Created Mar 18, 2026 — 85 days before this release. Review whether the Rent Payments Overview section needs updating to reflect the corrected metrics and 'Beta' label.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1106" target="_blank">WOR-1106</a> <span class="non-final">[non-final: In Review]</span></td>
+          <td>Outstanding Charges Table Added to Late Balance Notice Emails</td>
+          <td class="original">Added an Outstanding Charges Table chip to Late Balance Notice emails, giving tenants an itemized open-charges breakdown.</td>
+          <td>Adds a new content chip to the workflow email editor for Late Balance Notice (LBN) emails. When inserted, this chip renders a server-generated itemized table of open charges (Date / Description / Amount + bold Total row) at send time. The table is omitted automatically when the balance is zero. Only available for LBN workflow triggers — not other email types.</td>
+          <td>
+            <span class="unmatched">UNMATCHED — potential new article</span><br>
+            <span class="note">No existing article covers the Outstanding Charges Table chip in Late Balance Notice workflow emails. → See Suggested New Articles. Hold until ticket reaches Done state.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/c3pk1wpm3m" target="_blank">Workflows</a><br>
+            <span class="staleness">Created Mar 23, 2026 — 80 days before this release. Update (when WOR-1106 is Done) to demonstrate adding the Outstanding Charges Table chip to Late Balance Notice workflow emails.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="other">
+    <h2>Other <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TIG-2590" target="_blank">TIG-2590</a></td>
+          <td>Unpaid Rent Now Routes to AR Aging Summary (Reports v2)</td>
+          <td class="original">Fixed Unpaid Rent to open the new AR Aging Summary when reports v2 is enabled, with correct menu highlighting.</td>
+          <td>When a user with Reports v2 enabled clicks "Unpaid Rent," they now land on the v2 AR Aging Summary (<code>/reports-v2/ar-aging-summary</code>) with the correct menu item highlighted. Previously the link pointed to the legacy aging summary page and the new-reports nav item stayed unhighlighted.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/14760811-view-unpaid-rent-using-the-a-r-aging-details-report" target="_blank">View Unpaid Rent Using the A/R Aging Details Report</a> — Update navigation steps: for Reports v2 users, "Unpaid Rent" now opens the new AR Aging Summary; update screenshots.</li>
+              <li><a href="http://support.doorloop.com/en/articles/6295819-view-the-a-r-aging-reports-to-see-which-tenants-still-owe-money" target="_blank">View the A/R Aging Reports to See Which Tenants Still Owe Money</a> — Add a note explaining the updated navigation for Reports v2 users.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested New Articles</h2>
+  <h3>Outstanding Charges Table in Late Balance Notice Emails (WOR-1106) — hold until Done</h3>
+  <p><strong>Proposed title:</strong> <em>What's New: Add an itemized charges table to Late Balance Notice emails — Version 9.2.97</em></p>
+  <p><strong>Rationale:</strong> The new Outstanding Charges Table chip lets property managers include a dynamically-generated itemized breakdown of a tenant's open charges directly in Late Balance Notice emails. No existing Help Center article covers workflow email chip customization for LBN specifically. A new article should cover: how to insert the chip in the workflow editor, what the table renders (Date/Description/Amount/Total), the zero-balance empty-state behavior, and the LBN-only scope.</p>
+  <p><strong>Suggested keywords:</strong> outstanding charges, late balance notice, workflow email, charges table, tenant, lease balance, itemized, email template</p>
+
+  <h2>Related Training Videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Related features</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/c3pk1wpm3m" target="_blank">Workflows</a></td>
+        <td>Mar 23, 2026</td>
+        <td>WOR-1106 — Outstanding Charges Table chip</td>
+        <td><strong>Yes (when WOR-1106 is Done)</strong> — 80 days old. Add segment showing the Outstanding Charges Table chip in the LBN email editor.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/efrz0afqha" target="_blank">Rent &amp; Payment Notifications</a></td>
+        <td>Mar 18, 2026</td>
+        <td>TEN-396 — Rent Payments Overview fixes</td>
+        <td><strong>Review</strong> — 85 days old. Check whether the Rent Payments Overview section reflects corrected collection time and 'Beta' tag.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Items Intentionally Skipped (Internal-Only)</h2>
+  <p>None in this release — all 4 tickets are customer-visible.</p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+  <hr style="margin-top:3rem">
+  <p style="color:#888;font-size:0.85em"><em>Generated by the <code>doorloop-release-summary</code> Claude skill.</em></p>
+</body>
+</html>
