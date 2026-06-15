@@ -1,0 +1,573 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Releases v9.2.95–v9.2.99 (June 11–14, 2026) — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1060px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    h3 { margin-top: 1.8rem; color: #333; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #888; }
+    .internal { color: #666; font-style: italic; }
+    .beta { color: #a16207; font-weight: 600; }
+    .non-final { color: #0369a1; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .release-badge { display: inline-block; background: #e8f0fe; color: #1a56db; border-radius: 4px; padding: 2px 8px; font-size: 0.8em; font-weight: 600; margin-right: 6px; }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .release-section { margin-top: 2.5rem; padding-top: 1rem; border-top: 2px solid #f0f0f0; }
+    .release-section.hidden { display: none; }
+    ul.update-notes { margin: 0.3rem 0; padding-left: 1.2rem; }
+    ul.update-notes li { font-size: 0.88em; color: #444; margin-bottom: 0.2rem; }
+    .staleness { color: #b3541e; font-size: 0.85em; }
+  </style>
+</head>
+<body>
+  <h1>Releases v9.2.95–v9.2.99 — June 11–14, 2026</h1>
+  <p>
+    <a href="https://doorloop.slack.com/archives/C0B4GTX1SBG">View #platform-release-notes</a> ·
+    <code>v9.2.95: 1781184099.144109</code> ·
+    <code>v9.2.96: 1781270152.562509</code> ·
+    <code>v9.2.97: 1781354611.884349</code> ·
+    <code>v9.2.99: 1781441014.681689</code>
+  </p>
+
+  <h2>Summary</h2>
+  <p>This report covers 4 releases (v9.2.95–v9.2.99) shipped June 11–14, 2026, spanning 16 Linear tickets across PM Operations, Accounting, Onboarding &amp; Imports, Tenant Experience &amp; Payments, Workflows, and Leads &amp; Leasing. Key customer-visible changes include per-property Welcome SMS customization in the Communication Center (PMO-968), two new v2 reporting engine entries for Tasks and Work Orders (DOO-2477, DOO-2478), fixes to the Rent Payments Overview dashboard (TEN-396), navigation upgrades routing Unpaid Rent and Open Bills to the new Reports v2 aging summaries (TIG-2590, TIG-2608), and improved Stripe billing error messages now shown in English and Spanish (ACT-750). Four tickets are internal-only infrastructure changes with no Help Center impact.</p>
+
+  <h2>At a Glance</h2>
+  <table style="max-width:520px">
+    <thead><tr><th>Category</th><th>Count</th></tr></thead>
+    <tbody>
+      <tr><td>Customer-visible (Done/Deployed)</td><td>8</td></tr>
+      <tr><td>Customer-visible (non-final state: Merged/In Review)</td><td>3</td></tr>
+      <tr><td>Beta (behind feature flag)</td><td>1</td></tr>
+      <tr><td>Internal only (no Help Center change)</td><td>4</td></tr>
+      <tr><td>New articles suggested</td><td>3</td></tr>
+      <tr><td>Existing articles flagged for update</td><td>9</td></tr>
+      <tr><td>Training videos flagged for review</td><td>5</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Filter by Release</h2>
+  <div class="filters" id="release-filters">
+    <span class="label-text">Release:</span>
+    <span class="chip active" data-release="all">All (4)</span>
+    <span class="chip" data-release="v9.2.95">v9.2.95 — Jun 11</span>
+    <span class="chip" data-release="v9.2.96">v9.2.96 — Jun 11</span>
+    <span class="chip" data-release="v9.2.97">v9.2.97 — Jun 12</span>
+    <span class="chip" data-release="v9.2.99">v9.2.99 — Jun 14</span>
+  </div>
+
+  <!-- =========================================================
+       RELEASE v9.2.95 — 2026-06-11
+  ========================================================== -->
+  <div class="release-section" data-release="v9.2.95">
+    <h2>Release v9.2.95 — 2026-06-11</h2>
+
+    <h3>Onboarding &amp; Imports</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:7%">Linear</th>
+          <th style="width:14%">Feature</th>
+          <th style="width:18%">Original Notes (Slack)</th>
+          <th style="width:22%">What it does</th>
+          <th style="width:22%">Affected articles</th>
+          <th style="width:17%">Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-750" target="_blank">ACT-750</a></td>
+          <td>Stripe Billing Errors Now Show Friendly Messages</td>
+          <td class="original">Now translates expected Stripe billing errors into handled HTTP responses with user-facing messages in English and Spanish.</td>
+          <td>Previously, common Stripe outcomes like declined cards, insufficient funds, incorrect card numbers, and rate-limit responses were surfaced as raw server errors (500s or unhandled exceptions), polluting Bugsnag/New Relic dashboards and confusing tenants. This fix catches those known Stripe error types and converts them to clear, localized HTTP 4xx responses with human-readable messages in English and Spanish.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/14756243-unable-to-authenticate-your-payment-method-error" target="_blank">'Unable to Authenticate Your Payment Method' Error</a> — Update to mention that DoorLoop now surfaces Stripe decline reasons (declined, insufficient funds, incorrect number) as clear, localized error messages rather than a generic server error.</li>
+              <li><a href="http://support.doorloop.com/en/articles/9011223-why-am-i-getting-a-your-card-does-not-support-this-type-of-purchase-error" target="_blank">"Your card does not support…" Error</a> — Confirm error message copy matches new localized strings; update examples if the wording changed.</li>
+              <li><a href="http://support.doorloop.com/en/articles/14757322-pay-doorloop-subscription-with-a-bank-account" target="_blank">Pay DoorLoop Subscription With a Bank Account</a> — Minor: check whether any subscription billing error copy needs refreshing.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tenant Experience &amp; Payments <span class="label">1 internal</span></h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-245" target="_blank">TEN-245</a></td>
+          <td><span class="internal">INTERNAL — Code Migration</span></td>
+          <td class="original">Added a shared UTC offset for recurring transactions, keeping schedule calculations consistent across the app.</td>
+          <td>Migrates RecurringTransaction MongoDB model definitions to a shared library (<code>@doorloop/mongodb-models</code>), extracting a complex pre-validate hook. No customer-facing behavior changes — schedule calculations remain identical.</td>
+          <td><span class="internal">No Help Center change — internal refactor, NFR/Scalability label, no behavior change.</span></td>
+          <td><span class="no-video">—</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- =========================================================
+       RELEASE v9.2.96 — 2026-06-11
+  ========================================================== -->
+  <div class="release-section" data-release="v9.2.96">
+    <h2>Release v9.2.96 — 2026-06-11</h2>
+
+    <h3>PM Operations <span class="label">1 internal</span></h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1481" target="_blank">PMO-1481</a></td>
+          <td><span class="internal">INTERNAL — Renewals Agent Events</span></td>
+          <td class="original">Added renewal events so the external agent stays in sync when offers are accepted, signed, or activated.</td>
+          <td>Publishes a <code>lease.renewalOfferAccepted</code> event to the fleet-of-agents RabbitMQ queue when a tenant accepts a renewal offer on the tenant portal. Gated behind the <code>fleet-of-agents</code> feature flag (default off). No UI changes; no customer-visible behavior.</td>
+          <td><span class="internal">No Help Center change — backend event only, feature flag default off.</span></td>
+          <td><span class="no-video">—</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Accounting <span class="label non-final">3 non-final</span></h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TIG-2605" target="_blank">TIG-2605</a> <span class="non-final">[non-final: Merged]</span></td>
+          <td>Transaction Details Report Account Type Filters Fixed</td>
+          <td class="original">Fixed Transaction Details report account type filters so liability, revenue, and expense options no longer caused 400 errors.</td>
+          <td>In the v2 Transaction Details report, filtering by "Long Term Liability," "Other Current Liability," or "Cost of Goods Sold" previously returned a 400 error due to enum value drift between the client registry and server DTO. This aligns the three mismatched values so all account type filters now work correctly.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/9736552-transaction-details-report" target="_blank">Transaction Details Report</a> — Add a note (or remove a known-issue caveat if one exists) that Long Term Liability, Other Current Liability, and Cost of Goods Sold filters are now fully functional in the v2 report.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TIG-2477" target="_blank">DOO-2477</a> <span class="non-final">[non-final: Merged]</span></td>
+          <td>Tasks &amp; Tenant Requests Report Added to Reports Home (v2)</td>
+          <td class="original">Added Tasks and Tenant Requests reports to Reports Home with task insights, filtering, and task dialog deep links.</td>
+          <td>Ports the legacy Tasks report to the v2 reporting engine, adding it to Reports Home with two tiles: "Tasks" (all types) and "Tenant Requests" (preset filter). Includes an insights panel (open, overdue, high-priority KPIs), filters by type/property/status/priority/due date, group-by options, and deep-link clicks that open the task dialog directly from the report row.</td>
+          <td>
+            <span class="unmatched">UNMATCHED for v2 report</span><br>
+            <span class="note">No existing article covers the Tasks or Tenant Requests report in the v2 reporting engine. General task-management articles exist but don't address this new Reports Home entry. → See Suggested New Articles below.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/tn4ch9b3tf" target="_blank">Managing Work Orders</a> <span class="staleness">(Mar 23, 2026 — 79 days before release; may need update to mention Tasks report in Reports Home)</span><br>
+            <a href="https://doorloop.wistia.com/medias/61dr2gbk7w" target="_blank">Managing Tenant Requests</a> <span class="staleness">(Mar 23, 2026 — 79 days; likely needs re-recording or annotation to show the new Reports Home Tenant Requests tile)</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TIG-2478" target="_blank">DOO-2478</a> <span class="non-final">[non-final: Merged]</span></td>
+          <td>Work Orders Report Added to Reports Home (v2)</td>
+          <td class="original">Added the Work Orders report with filters, insights, sorting, and row actions in the new reporting experience.</td>
+          <td>Ports the Work Orders report to the v2 reporting engine with its own Reports Home tile. Adds columns for vendor, bill created, and approved-by-owner status, plus an insights panel showing open/overdue work orders and total estimated cost. Supports filtering by property/status/priority/vendor/due date, sorting, and row-level actions.</td>
+          <td>
+            <span class="unmatched">UNMATCHED for v2 report</span><br>
+            <span class="note">Existing work-order articles cover creating and managing work orders, not the new v2 Work Orders report. → See Suggested New Articles below.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/tn4ch9b3tf" target="_blank">Managing Work Orders</a> <span class="staleness">(Mar 23, 2026 — 79 days before release; update to mention the new Work Orders report in Reports Home)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Onboarding &amp; Imports</h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-769" target="_blank">ACT-769</a></td>
+          <td>OTP Login Errors Now Show Clear "Invalid Code" Message</td>
+          <td class="original">Fixed OTP login so missing codes now return a clear invalid-code error instead of a 500.</td>
+          <td>When a tenant or user attempted to log in with an OTP code that didn't exist in the database (e.g., an expired or incorrect code), the server was throwing an unhandled exception and returning a 500. This fix guards the OTP validation step so missing codes now return a clear 4xx "invalid code" response with an actionable error message.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/13335418-2fa-verification-code" target="_blank">2FA Verification Code</a> — Update troubleshooting language to note that invalid/missing OTP codes now display a clear error rather than an unhelpful server error page.</li>
+              <li><a href="http://support.doorloop.com/en/articles/14758136-troubleshoot-2fa-verification-code-issues" target="_blank">Troubleshoot 2FA Verification Code Issues</a> — Confirm error message examples reflect the new "invalid code" wording; update if the copy changed.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tenant Experience &amp; Payments <span class="label">1 internal</span></h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-494" target="_blank">TEN-494</a></td>
+          <td>Tenant Notification Preferences Now Save &amp; Sync Across Mobile and Web</td>
+          <td class="original">Added saving notification settings from the preferences dialog, keeping mobile and web preferences in sync.</td>
+          <td>Previously the tenant-portal notification settings dialog could not persist changes through the new tenant-portal server path, causing mobile and web preferences to drift. This ships the PUT /notification-settings endpoint on the new server, which saves preferences and ensures mobile mirrors web settings after every save, resolving the sync inconsistency.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/6081899-customize-company-default-tenant-portal-settings" target="_blank">Customize Company Default Tenant Portal Settings</a> — Add a note that tenants' notification preferences now save reliably and stay in sync between mobile and web; update any screenshots of the settings dialog if UI changed.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/hkxwwfp62a" target="_blank">Tenant Portal Overview</a> <span class="staleness">(Mar 23, 2026 — 79 days; review notification settings section)</span><br>
+            <a href="https://doorloop.wistia.com/medias/t65qdhawyi" target="_blank">Tenant Portal Settings</a> <span class="staleness">(Mar 18, 2026 — 84 days; update to show notification sync fix)</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-247" target="_blank">TEN-247</a></td>
+          <td><span class="internal">INTERNAL — Models Migration</span></td>
+          <td class="original">Added shared model imports and reorganized database definitions with no customer-facing behavior changes.</td>
+          <td>Migrates the final batch of <code>apps/server/src/features/</code> models (announcements, conversations, inspections, embedded-financing) to the shared <code>libs/mongodb-models</code> library. Zero customer-facing behavior changes — internal code restructuring only.</td>
+          <td><span class="internal">No Help Center change — NFR/Scalability, no behavior change explicitly stated.</span></td>
+          <td><span class="no-video">—</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Workflows <span class="label">1 internal</span></h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-923" target="_blank">BAN-923</a></td>
+          <td><span class="internal">INTERNAL — RabbitMQ Observability</span></td>
+          <td class="original">Added optional New Relic tracking for RabbitMQ message processing to improve queue visibility without changing delivery behavior.</td>
+          <td>Wraps every consumed RabbitMQ message in a New Relic background transaction so child spans (tracing, flow-of-funds) are visible in the New Relic dashboard. Adds queue name, messageId, and retry count as span attributes. Purely an observability improvement — message delivery and processing behavior are unchanged.</td>
+          <td><span class="internal">No Help Center change — internal observability only, no delivery behavior change.</span></td>
+          <td><span class="no-video">—</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Leads &amp; Leasing <span class="label beta">1 beta</span></h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1156" target="_blank">L2L-1156</a></td>
+          <td><span class="beta">BETA — Decision Dialog: Email Preview + Result Toast</span></td>
+          <td class="original">Added an email preview in the decision dialog and shows a decision-specific confirmation toast after saving.</td>
+          <td>Adds a live server-rendered email preview to the rental-application decision dialog (shows the actual approval/rejection email template the applicant will receive, with the editable reason updating in real time). Replaces the old confirmation modal with an 8-second result toast that shows the decision outcome, refund/credit amount, and a "View report" action. Behind the <code>FlamingoFlowPm</code> feature flag — not visible to standard users yet.</td>
+          <td><span class="beta">HOLD — behind <code>FlamingoFlowPm</code> flag. Update Help Center when flag goes GA.</span></td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED (hold for GA)</span><br>
+            <a href="https://doorloop.wistia.com/medias/cj0cls5dwu" target="_blank">Rental Applications</a> <span class="staleness">(Mar 22, 2026 — 80 days; update when FlamingoFlowPm goes GA to show new decision dialog)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Other</h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TIG-2608" target="_blank">TIG-2608</a></td>
+          <td>Open Bills Now Routes to AP Aging Summary (Reports v2)</td>
+          <td class="original">Added routing so Open Bills now opens the new AP aging summary report and stays highlighted there.</td>
+          <td>When a user with Reports v2 enabled clicks "Open Bills" from the left-nav menu or dashboard, they are now redirected to the new v2 AP Aging Summary report (<code>/reports-v2/ap-aging-summary</code>) instead of the legacy page. The Open Bills menu item also stays highlighted when viewing this v2 page. Mirrors the same change previously made for Unpaid Rent → AR Aging Summary (TIG-2590).</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/14758320-find-unpaid-open-bills-in-doorloop" target="_blank">Find Unpaid Open Bills in DoorLoop</a> — Update navigation instructions: when Reports v2 is enabled, clicking "Open Bills" now goes to the AP Aging Summary in the new reports engine; update any screenshots showing the old page.</li>
+              <li><a href="http://support.doorloop.com/en/articles/9939653-a-p-aging-details-report-view-unpaid-bills" target="_blank">A/P Aging Details Report — View Unpaid Bills</a> — Add note that this report is now the default destination for the "Open Bills" nav link when on Reports v2.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- =========================================================
+       RELEASE v9.2.97 — 2026-06-12
+  ========================================================== -->
+  <div class="release-section" data-release="v9.2.97">
+    <h2>Release v9.2.97 — 2026-06-12</h2>
+
+    <h3>Accounting</h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TIG-1507" target="_blank">DOO-1507</a></td>
+          <td>Transaction List Column Renamed from "Description" to "Memo"</td>
+          <td class="original">Fixed transaction list reports to show Memo instead of Description for the memo column header.</td>
+          <td>The "Description" column header in transaction list reports was a misnomer — the field stores transaction memos, not descriptions. The column is now labeled "Memo" across all transaction list views (lease, vendor, and report contexts) to match standard accounting terminology and align with how the field is labelled elsewhere in DoorLoop.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/8279133-transactions-list-report" target="_blank">Transactions List Report</a> — Update all references to the "Description" column header to "Memo"; refresh any screenshots showing the old label.</li>
+              <li><a href="http://support.doorloop.com/en/articles/14760808-view-monthly-tenant-payments-using-the-transaction-list-report" target="_blank">View Monthly Tenant Payments Using the Transaction List Report</a> — Update "Description" column references to "Memo"; update screenshots if the column is visible.</li>
+              <li><a href="http://support.doorloop.com/en/articles/9736552-transaction-details-report" target="_blank">Transaction Details Report</a> — Check for any "Description" column header references and update to "Memo".</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tenant Experience &amp; Payments</h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-396" target="_blank">TEN-396</a></td>
+          <td>Rent Payments Overview — Collection Time &amp; Overdue Messaging Fixed</td>
+          <td class="original">Fixed average collection time and overdue messaging on the Rent Payments Overview, and improved online payment error messages.</td>
+          <td>QA pass on the Rent Payments Overview dashboard (part of the Unlocking Payment Adoption feature): corrects the average collection time calculation, fixes overdue balance tile logic to accurately reflect all leases with an outstanding balance, and improves online payment error messages shown to tenants when payments fail. Also replaces the 'New' tag with 'Beta' and fixes a wizard error message copy issue.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/15400762" target="_blank">Understanding the Payments Dashboard</a> <span class="label" style="background:#fff3cd">draft</span> — This draft article is the primary target; update to reflect corrected average collection time logic, accurate overdue tile behavior, and the 'Beta' tag replacing 'New'.</li>
+              <li><a href="http://support.doorloop.com/en/articles/6252218-best-practices-to-get-your-tenants-to-pay-online" target="_blank">Best Practices To Get Your Tenants To Pay Online</a> — Update any payment error message examples to match improved error copy if relevant screenshots exist.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/efrz0afqha" target="_blank">Rent &amp; Payment Notifications</a> <span class="staleness">(Mar 18, 2026 — 85 days before release; review to see if Rent Payments Overview section needs updating for the corrected metrics)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Workflows <span class="label non-final">1 non-final</span></h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1106" target="_blank">WOR-1106</a> <span class="non-final">[non-final: In Review]</span></td>
+          <td>Outstanding Charges Table Added to Late Balance Notice Emails</td>
+          <td class="original">Added an Outstanding Charges Table chip to Late Balance Notice emails, giving tenants an itemized open-charges breakdown.</td>
+          <td>Adds a new content chip to the workflow email editor for Late Balance Notice (LBN) emails. When inserted, this chip renders a server-generated itemized table of the lease's open charges (Date / Description / Amount, with a bold Total row) at send time. The table only appears if there are outstanding charges; it's omitted automatically when the balance is zero. Only available in LBN workflow templates — not applicable to other email triggers.</td>
+          <td>
+            <span class="unmatched">UNMATCHED — potential new article</span><br>
+            <span class="note">No existing article covers the Outstanding Charges Table chip in Late Balance Notice workflow emails. The closest articles are about lease balance display, not workflow email customization. → See Suggested New Articles below. Hold until ticket reaches Done state.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/c3pk1wpm3m" target="_blank">Workflows</a> <span class="staleness">(Mar 23, 2026 — 80 days before release; likely needs an update or annotation covering the new Outstanding Charges Table chip option for LBN emails)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Other</h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TIG-2590" target="_blank">TIG-2590</a></td>
+          <td>Unpaid Rent Now Routes to AR Aging Summary (Reports v2)</td>
+          <td class="original">Fixed Unpaid Rent to open the new AR Aging Summary when reports v2 is enabled, with correct menu highlighting.</td>
+          <td>When a user with Reports v2 enabled clicks "Unpaid Rent" from the income section or dashboard, they are now redirected to the new v2 AR Aging Summary report (<code>/reports-v2/ar-aging-summary</code>) with the correct menu item highlighted. Previously the link pointed to the legacy aging summary and the new-reports menu item stayed unhighlighted.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/14760811-view-unpaid-rent-using-the-a-r-aging-details-report" target="_blank">View Unpaid Rent Using the A/R Aging Details Report</a> — Update navigation: when Reports v2 is on, the "Unpaid Rent" shortcut now goes to the new AR Aging Summary; update steps/screenshots accordingly.</li>
+              <li><a href="http://support.doorloop.com/en/articles/6295819-view-the-a-r-aging-reports-to-see-which-tenants-still-owe-money" target="_blank">View the A/R Aging Reports to See Which Tenants Still Owe Money</a> — Add a note explaining the updated navigation for users on Reports v2.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- =========================================================
+       RELEASE v9.2.99 — 2026-06-14
+  ========================================================== -->
+  <div class="release-section" data-release="v9.2.99">
+    <h2>Release v9.2.99 — 2026-06-14</h2>
+
+    <h3>PM Operations</h3>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-968" target="_blank">PMO-968</a></td>
+          <td>Per-Property Welcome SMS Customization in Communication Center</td>
+          <td class="original">Added company-level Welcome SMS customization in Communication Center, with default fallback and required opt-out text.</td>
+          <td>Property managers can now customize the Welcome SMS message sent to new tenants on a per-property basis directly in the Communication Center settings. A new tab in the Communication Center settings dialog lets users enter property-specific welcome text (using <code>{{companyName}}</code>, <code>{{fromNumber}}</code>, and <code>{{recipientName}}</code> variables). If no property-level message is set, the system falls back to the company-wide default. The required opt-out language is enforced automatically. Addresses a top upmarket request from accounts managing multiple owners or LLCs.</td>
+          <td>
+            <span class="matched">MATCHED</span><br>
+            <ul class="update-notes">
+              <li><a href="http://support.doorloop.com/en/articles/9176260-send-a-welcome-sms-to-your-tenants-prospects-vendors-and-owners" target="_blank">Send a Welcome SMS to Your Tenants, Prospects, Vendors, and Owners</a> — Update to document the new per-property customization tab in Communication Center settings; include steps to set a property-level message, explain the default fallback, and show the available template variables.</li>
+              <li><a href="http://support.doorloop.com/en/articles/12802782-best-practices-when-creating-sms-messages-on-the-communication-center" target="_blank">Best Practices When Creating SMS Messages on the Communication Center</a> — Add a section on using per-property Welcome SMS for multi-owner or multi-LLC portfolios; explain when to use property-specific vs. company-wide defaults.</li>
+              <li><a href="http://support.doorloop.com/en/articles/9420528-create-a-new-message-on-the-communication-center-hoa" target="_blank">Create a New Message on the Communication Center [HOA]</a> — Note the new Welcome SMS tab in Communication Center supports HOA property-level customization.</li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a> <span class="staleness">(Mar 23, 2026 — 83 days before this release; likely needs re-recording or a segment added to show the new per-property Welcome SMS customization tab in Communication Center settings)</span><br>
+            <a href="https://doorloop.wistia.com/medias/o1cw1de8i5" target="_blank">AI Communications Center</a> <span class="staleness">(Mar 23, 2026 — 83 days; check if property-level SMS customization should be mentioned)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- =========================================================
+       SUGGESTED NEW ARTICLES
+  ========================================================== -->
+  <h2>Suggested New Articles</h2>
+
+  <h3>1. Tasks &amp; Tenant Requests Report in Reports Home (DOO-2477)</h3>
+  <p><strong>Proposed title:</strong> <em>What's New: View and filter all tasks and tenant requests from the Reports Home — Version 9.2.96</em></p>
+  <p><strong>Rationale:</strong> The v2 reporting engine now has dedicated tiles for Tasks and Tenant Requests in Reports Home. No existing article walks users through accessing, filtering, or grouping from these new tiles, or explains the KPI insights panel (open items, overdue, high-priority). A new article should cover: how to find the tiles in Reports Home, how to use the preset Tenant Requests filter, available filter chips (Type, Property, Status, Priority, Due Date), group-by options, and how to deep-link to the task dialog from a row.</p>
+  <p><strong>Suggested keywords:</strong> tasks report, tenant requests report, reports home, work orders, filter, group, insights, open tasks, overdue</p>
+
+  <h3>2. Work Orders Report in Reports Home (DOO-2478)</h3>
+  <p><strong>Proposed title:</strong> <em>What's New: Track work orders with filters and insights in the new Work Orders report — Version 9.2.96</em></p>
+  <p><strong>Rationale:</strong> Similar to Tasks, the new Work Orders report tile in Reports Home is not covered by any existing article. Existing work-order articles cover creating/assigning/updating work orders but not using the v2 report for analysis. A new article should cover: finding the Work Orders tile, filter options (Property, Status, Priority, Vendor, Due Date, Bill Created, Approved by Owner), insights panel (open/overdue counts, total estimated cost), and sorting options.</p>
+  <p><strong>Suggested keywords:</strong> work orders report, reports home, vendor, filter, insights, overdue, estimated cost, bill created</p>
+
+  <h3>3. Outstanding Charges Table in Late Balance Notice Emails (WOR-1106) — hold until Done</h3>
+  <p><strong>Proposed title:</strong> <em>What's New: Add an itemized charges table to Late Balance Notice emails — Version 9.2.97</em></p>
+  <p><strong>Rationale:</strong> The new Outstanding Charges Table chip in the workflow email editor lets property managers add a dynamically-generated itemized breakdown of a tenant's open charges directly to Late Balance Notice emails. This is a meaningful workflow customization that has no existing Help Center coverage. A new article should cover: how to add the chip in the workflow editor, what the table shows (Date/Description/Amount/Total), when the table is omitted (zero balance), and the fact that this chip is only available for LBN triggers. <em>Hold until WOR-1106 reaches Done state.</em></p>
+  <p><strong>Suggested keywords:</strong> outstanding charges, late balance notice, workflow email, charges table, tenant, lease balance, itemized</p>
+
+  <!-- =========================================================
+       RELATED TRAINING VIDEOS
+  ========================================================== -->
+  <h2>Related Training Videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Related Features</th>
+        <th>Needs Update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a></td>
+        <td>Mar 23, 2026</td>
+        <td>PMO-968 — per-property Welcome SMS customization</td>
+        <td><strong>Yes</strong> — 83 days older than v9.2.99 release. Re-record or add segment showing the new per-property Welcome SMS tab in Communication Center settings.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/c3pk1wpm3m" target="_blank">Workflows</a></td>
+        <td>Mar 23, 2026</td>
+        <td>WOR-1106 — Outstanding Charges Table chip in LBN emails</td>
+        <td><strong>Yes (when WOR-1106 is Done)</strong> — 80 days older than v9.2.97 release. Update to demonstrate adding the Outstanding Charges Table chip to Late Balance Notice workflow emails.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/tn4ch9b3tf" target="_blank">Managing Work Orders</a></td>
+        <td>Mar 23, 2026</td>
+        <td>DOO-2477, DOO-2478 — Tasks/Work Orders reports in v2 Reports Home</td>
+        <td><strong>Yes (when non-final tickets are Done)</strong> — 79 days older than v9.2.96 release. Update to show the Work Orders report tile in Reports Home with filters and insights panel.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/61dr2gbk7w" target="_blank">Managing Tenant Requests</a></td>
+        <td>Mar 23, 2026</td>
+        <td>DOO-2477 — Tenant Requests tile in Reports Home</td>
+        <td><strong>Yes (when DOO-2477 is Done)</strong> — 79 days older than v9.2.96 release. Add segment showing the new Tenant Requests tile in Reports Home.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/efrz0afqha" target="_blank">Rent &amp; Payment Notifications</a></td>
+        <td>Mar 18, 2026</td>
+        <td>TEN-396 — Rent Payments Overview fixes; ACT-750 — Stripe error messages</td>
+        <td><strong>Review</strong> — 85 days older than v9.2.97 release. Review whether Rent Payments Overview section needs updating for corrected average collection time and overdue messaging.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Suggested new training videos:</strong></p>
+  <ul>
+    <li><em>Tasks &amp; Tenant Requests Report</em> — Covers the new Reports Home tiles for Tasks and Tenant Requests, including filters, group-by, and the insights panel. (DOO-2477)</li>
+    <li><em>Work Orders Report</em> — Demonstrates the new Work Orders report in Reports Home, including vendor filters and estimated cost insights. (DOO-2478)</li>
+  </ul>
+
+  <!-- =========================================================
+       INTERNAL ITEMS
+  ========================================================== -->
+  <h2>Items Intentionally Skipped (Internal-Only)</h2>
+  <ul>
+    <li><strong>PMO-1481</strong> — Backend event publishing for Renewals Agent; gated behind <code>fleet-of-agents</code> flag (default off). No UI or workflow change visible to users.</li>
+    <li><strong>TEN-247</strong> — MongoDB model migration (features/ tier 3) with no customer-facing behavior changes; NFR/Scalability label.</li>
+    <li><strong>BAN-923</strong> — New Relic OpenTelemetry tracing for RabbitMQ consumers; observability-only, no delivery or behavior change.</li>
+    <li><strong>TEN-245</strong> — RecurringTransactions model migration to shared library; no customer-facing changes; NFR/Scalability label. (Note: Slack bullet mentions "UTC offset for recurring transactions" — the underlying behavior is unchanged.)</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#release-filters .chip');
+      var sections = document.querySelectorAll('.release-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var rel = chip.getAttribute('data-release');
+          sections.forEach(function(sec) {
+            if (rel === 'all' || sec.getAttribute('data-release') === rel) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+  <hr style="margin-top:3rem">
+  <p style="color:#888;font-size:0.85em"><em>Generated by the <code>doorloop-release-summary</code> Claude skill.</em></p>
+</body>
+</html>
