@@ -121,10 +121,26 @@
   }
   ,{
     "date": "2026-06-11",
-    "version": "v9.2.95-v9.2.99",
-    "title": "Releases v9.2.95–v9.2.99 — Help Center Impact",
-    "filename": "reports/v9.2.95-v9.2.99.html",
+    "version": "v9.2.95-v9.2.96",
+    "title": "Releases v9.2.95 + v9.2.96 — Help Center Impact",
+    "filename": "reports/v9.2.95-v9.2.96.html",
     "generatedAt": "2026-06-15T00:00:00Z",
-    "summary": "This report covers 4 releases (v9.2.95–v9.2.99) shipped June 11–14, 2026, spanning 16 Linear tickets across PM Operations, Accounting, Onboarding & Imports, Tenant Experience & Payments, Workflows, and Leads & Leasing. Key customer-visible changes include per-property Welcome SMS customization in the Communication Center (PMO-968), two new v2 reporting engine entries for Tasks and Work Orders (DOO-2477, DOO-2478), fixes to the Rent Payments Overview dashboard (TEN-396), navigation upgrades routing Unpaid Rent and Open Bills to the new Reports v2 aging summaries (TIG-2590, TIG-2608), and improved Stripe billing error messages now shown in English and Spanish (ACT-750). Four tickets are internal-only infrastructure changes with no Help Center impact."
+    "summary": "Two releases shipped June 11, 2026 (v9.2.95 and v9.2.96) covering 11 tickets. Customer-visible highlights: improved Stripe billing error messages in English and Spanish (ACT-750), tenant notification preferences now saving and syncing across mobile and web (TEN-494), two new v2 Reports Home entries for Tasks and Work Orders (DOO-2477, DOO-2478 — non-final), OTP login 500 error fixed (ACT-769), and Open Bills routing to the v2 AP Aging Summary (TIG-2608). Four tickets are internal infrastructure; one (L2L-1156) is behind a feature flag."
+  }
+  ,{
+    "date": "2026-06-12",
+    "version": "v9.2.97",
+    "title": "Release v9.2.97 — Help Center Impact",
+    "filename": "reports/v9.2.97.html",
+    "generatedAt": "2026-06-15T00:00:00Z",
+    "summary": "Release v9.2.97 ships 4 changes across Accounting, Tenant Experience & Payments, Workflows, and Other. Transaction list reports now show 'Memo' instead of 'Description' as the column header (DOO-1507). The Rent Payments Overview dashboard receives a QA fix pass for average collection time and overdue messaging (TEN-396). The Outstanding Charges Table chip for Late Balance Notice emails (WOR-1106) is still In Review. Unpaid Rent now routes directly to the v2 AR Aging Summary for users on the new reporting engine (TIG-2590)."
+  }
+  ,{
+    "date": "2026-06-14",
+    "version": "v9.2.99",
+    "title": "Release v9.2.99 — Help Center Impact",
+    "filename": "reports/v9.2.99.html",
+    "generatedAt": "2026-06-15T00:00:00Z",
+    "summary": "Release v9.2.99 ships one customer-facing change: per-property Welcome SMS customization in the Communication Center (PMO-968). Property managers can now set a unique welcome message for each property with a default fallback, addressing a top upmarket request from large accounts managing multiple owners or LLCs. Three existing SMS and Communication Center articles need updating."
   }
 ]
