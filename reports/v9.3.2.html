@@ -62,8 +62,8 @@
         <tr>
           <td><a href="https://linear.app/doorloop/issue/ACT-883" target="_blank">ACT-883</a></td>
           <td>Self-healing merchant account Salesforce sync</td>
-          <td><em class="original">Now self-heals merchant account syncs when a deleted Salesforce record would otherwise block updates.</em><br><span class="unreachable">⚠️ Linear unreachable</span></td>
-          <td>When a Salesforce record linked to a merchant account is deleted, the sync no longer gets stuck — it self-repairs and continues processing updates. This is a backend reliability fix with no user-visible UI change.</td>
+          <td><em class="original">Now self-heals merchant account syncs when a deleted Salesforce record would otherwise block updates.</em></td>
+          <td>The <code>SYNC_MERCHANT_ACCOUNT</code> job was failing with Salesforce's <code>INVALID_CROSS_REFERENCE_KEY</code> error when a related record (e.g. a deleted parent Account or stale lookup field) on the merchant account payload no longer existed. The fix detects the dangling reference and self-heals before retrying the update. Only 2 occurrences in 30 days — low volume, no customer-visible impact.</td>
           <td><span class="internal">⚫ INTERNAL</span><br><span class="note">Backend Salesforce sync fix — no customer-facing change; no Help Center update needed.</span></td>
           <td><span class="no-video">— no related video</span></td>
         </tr>
@@ -88,8 +88,8 @@
         <tr>
           <td><a href="https://linear.app/doorloop/issue/TEN-275" target="_blank">TEN-275</a></td>
           <td>Faster tenant request file loading</td>
-          <td><em class="original">Now loads tenant requests with files faster by indexing file lookups and mapping page results concurrently.</em><br><span class="unreachable">⚠️ Linear unreachable</span></td>
-          <td>Tenant requests that include file attachments now load significantly faster. The backend indexes file lookups and processes page results in parallel rather than sequentially — a pure performance improvement with no UI changes.</td>
+          <td><em class="original">Now loads tenant requests with files faster by indexing file lookups and mapping page results concurrently.</em><br><span class="label" style="background:#fff3cd;color:#856404;">non-final state: Merged</span></td>
+          <td>Part of a broader effort to fix three high-volume tenant portal endpoints dragging production Apdex below 0.9. This Slack bullet covers <code>GET /api/tenant-portal/tenant-requests/with-files</code> (Apdex 0.69) — file metadata was fetched per-request without batching; the fix adds an index and maps results concurrently. No UI or workflow changes.</td>
           <td><span class="internal">⚫ INTERNAL</span><br><span class="note">Backend performance improvement only — no workflow or UI changes; no Help Center update needed.</span></td>
           <td>
             <span class="video-matched">Managing Tenant Requests</span> — <a href="https://doorloop.wistia.com/medias/61dr2gbk7w" target="_blank">watch</a><br>
@@ -99,8 +99,8 @@
         <tr>
           <td><a href="https://linear.app/doorloop/issue/TEN-534" target="_blank">TEN-534</a></td>
           <td>Applicant lease-signed analytics tracking</td>
-          <td><em class="original">Added applicant lease signed tracking when a lease e-signature is completed, helping target renter promotions.</em><br><span class="unreachable">⚠️ Linear unreachable</span></td>
-          <td>When an applicant completes a lease e-signature, a tracking event is now fired internally. This enables the marketing team to identify newly signed tenants and target renter promotions. No change to the user-facing e-signature flow.</td>
+          <td><em class="original">Added applicant lease signed tracking when a lease e-signature is completed, helping target renter promotions.</em></td>
+          <td>When a lease e-signature is completed, the system now emits an <code>applicant_lease_signed</code> event at the applicant level. This is specifically for Lemonade insurance promotion targeting — it lets Lemonade identify newly signed tenants and present relevant offers. No change to the e-signature flow or any PM-facing UI.</td>
           <td><span class="internal">⚫ INTERNAL</span><br><span class="note">Internal analytics event only — no customer-facing workflow change; no Help Center update needed.</span></td>
           <td>
             <span class="video-matched">Sending eSignature Requests</span> — <a href="https://doorloop.wistia.com/medias/2hr70has8m" target="_blank">watch</a><br>
@@ -110,8 +110,8 @@
         <tr>
           <td><a href="https://linear.app/doorloop/issue/TEN-604" target="_blank">TEN-604</a></td>
           <td>Rent Payments Overview stat cards accuracy fix</td>
-          <td><em class="original">Fixed Rent Payments Overview stat cards to show accurate outstanding balance, collection rate, overdue, and average days values.</em><br><span class="unreachable">⚠️ Linear unreachable</span></td>
-          <td>The four key metric tiles on the Rent Payments Overview dashboard — Outstanding Balance, Collection Rate, Overdue %, and Average Days to Pay — were displaying incorrect values due to a calculation bug. This fix restores accurate figures across all four cards.</td>
+          <td><em class="original">Fixed Rent Payments Overview stat cards to show accurate outstanding balance, collection rate, overdue, and average days values.</em></td>
+          <td>After a recent deploy, all four stat cards on the Rent Payments Overview tab regressed to showing <code>0</code> — Total Outstanding, Collection Rate, Avg Collection Time, and Overdue. Root cause was a broken mapping between the <code>collectionStats</code> widget endpoint and the client (renamed/removed field in the DTO). High-priority regression (P2), resolved within ~18 hours of discovery.</td>
           <td>
             <span class="matched">🟢 MATCHED</span><br>
             1. <a href="http://support.doorloop.com/en/articles/15400762-rent-payments-dashboard-overview" target="_blank">Rent Payments Dashboard Overview</a><br>
@@ -163,15 +163,6 @@
     <li><strong>ACT-883</strong> — Backend Salesforce sync self-heal; no customer-facing change.</li>
     <li><strong>TEN-275</strong> — Performance improvement to file loading; no UI or workflow change.</li>
     <li><strong>TEN-534</strong> — Internal analytics tracking event; no customer-facing change.</li>
-  </ul>
-
-  <h2>Unreachable Linear tickets</h2>
-  <p>All 4 Linear tickets were unreachable this run (connector authentication invalidated). Feature descriptions are based on Slack bullet text only.</p>
-  <ul>
-    <li><strong>ACT-883</strong> — Linear connector returned auth error</li>
-    <li><strong>TEN-275</strong> — Linear connector returned auth error</li>
-    <li><strong>TEN-534</strong> — Linear connector returned auth error</li>
-    <li><strong>TEN-604</strong> — Linear connector returned auth error</li>
   </ul>
 
   <script>
