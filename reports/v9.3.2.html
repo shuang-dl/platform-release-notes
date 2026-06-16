@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.3.2 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #666; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #999; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .unreachable { color: #999; font-style: italic; font-size: 0.85em; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.3.2 — 2026-06-16</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1781617790956199">View original Slack post</a> · <code>1781617790.956199</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 4 changes across Onboarding &amp; Imports (1) and Tenant Experience &amp; Payments (3). The tenant-facing highlight is a bug fix restoring accurate stat cards on the Rent Payments Overview dashboard — outstanding balance, collection rate, overdue %, and average days values are now correct. The remaining items are backend improvements: a self-healing Salesforce merchant-account sync, a performance boost for tenant requests with file attachments, and internal analytics tracking for lease e-signature completions.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (4)</span>
+    <span class="chip" data-area="onboarding-imports">Onboarding &amp; Imports (1)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (3)</span>
+  </div>
+
+  <section class="area-section" data-area="onboarding-imports">
+    <h2>Onboarding &amp; Imports <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-883" target="_blank">ACT-883</a></td>
+          <td>Self-healing merchant account Salesforce sync</td>
+          <td><em class="original">Now self-heals merchant account syncs when a deleted Salesforce record would otherwise block updates.</em><br><span class="unreachable">⚠️ Linear unreachable</span></td>
+          <td>When a Salesforce record linked to a merchant account is deleted, the sync no longer gets stuck — it self-repairs and continues processing updates. This is a backend reliability fix with no user-visible UI change.</td>
+          <td><span class="internal">⚫ INTERNAL</span><br><span class="note">Backend Salesforce sync fix — no customer-facing change; no Help Center update needed.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-275" target="_blank">TEN-275</a></td>
+          <td>Faster tenant request file loading</td>
+          <td><em class="original">Now loads tenant requests with files faster by indexing file lookups and mapping page results concurrently.</em><br><span class="unreachable">⚠️ Linear unreachable</span></td>
+          <td>Tenant requests that include file attachments now load significantly faster. The backend indexes file lookups and processes page results in parallel rather than sequentially — a pure performance improvement with no UI changes.</td>
+          <td><span class="internal">⚫ INTERNAL</span><br><span class="note">Backend performance improvement only — no workflow or UI changes; no Help Center update needed.</span></td>
+          <td>
+            <span class="video-matched">Managing Tenant Requests</span> — <a href="https://doorloop.wistia.com/medias/61dr2gbk7w" target="_blank">watch</a><br>
+            <span class="note">Created Mar 23, 2026 (85 days before this release). This video covers tenant request workflows — no re-recording needed since only load speed changed, not the workflow itself. Review if the video shows any loading behavior.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-534" target="_blank">TEN-534</a></td>
+          <td>Applicant lease-signed analytics tracking</td>
+          <td><em class="original">Added applicant lease signed tracking when a lease e-signature is completed, helping target renter promotions.</em><br><span class="unreachable">⚠️ Linear unreachable</span></td>
+          <td>When an applicant completes a lease e-signature, a tracking event is now fired internally. This enables the marketing team to identify newly signed tenants and target renter promotions. No change to the user-facing e-signature flow.</td>
+          <td><span class="internal">⚫ INTERNAL</span><br><span class="note">Internal analytics event only — no customer-facing workflow change; no Help Center update needed.</span></td>
+          <td>
+            <span class="video-matched">Sending eSignature Requests</span> — <a href="https://doorloop.wistia.com/medias/2hr70has8m" target="_blank">watch</a><br>
+            <span class="note">Created Mar 23, 2026 (85 days before this release). Matched by keyword — no re-recording needed since the e-signature user workflow is unchanged.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-604" target="_blank">TEN-604</a></td>
+          <td>Rent Payments Overview stat cards accuracy fix</td>
+          <td><em class="original">Fixed Rent Payments Overview stat cards to show accurate outstanding balance, collection rate, overdue, and average days values.</em><br><span class="unreachable">⚠️ Linear unreachable</span></td>
+          <td>The four key metric tiles on the Rent Payments Overview dashboard — Outstanding Balance, Collection Rate, Overdue %, and Average Days to Pay — were displaying incorrect values due to a calculation bug. This fix restores accurate figures across all four cards.</td>
+          <td>
+            <span class="matched">🟢 MATCHED</span><br>
+            1. <a href="http://support.doorloop.com/en/articles/15400762-rent-payments-dashboard-overview" target="_blank">Rent Payments Dashboard Overview</a><br>
+            <span class="note">Likely update needed: Verify that any screenshots of the four stat tiles (Outstanding Balance, Collection Rate, Overdue, Avg Days) reflect accurate values — if screenshots were taken while the bug existed, they should be recaptured.</span><br><br>
+            2. <a href="http://support.doorloop.com/en/articles/15234173-what-s-new-a-new-rent-payments-overview-smarter-expense-sharing-and-sharper-reporting-version-9-2-55" target="_blank">What's New: Rent Payments Overview (v9.2.55)</a><br>
+            <span class="note">Likely update needed: This article introduced the Rent Payments Overview feature — add a note that stat card calculations were corrected in v9.3.2, or update any stat descriptions that reflected the prior (incorrect) behavior.</span>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>No new articles needed for this release. All customer-facing changes are bug fixes or internal improvements already covered by existing documentation.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Related features</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/61dr2gbk7w" target="_blank">Managing Tenant Requests</a></td>
+        <td>Mar 23, 2026</td>
+        <td>—</td>
+        <td>TEN-275 — Faster tenant request file loading</td>
+        <td>Review — created 85 days before this release; workflow unchanged, but check if any loading screens are shown</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/2hr70has8m" target="_blank">Sending eSignature Requests</a></td>
+        <td>Mar 23, 2026</td>
+        <td>—</td>
+        <td>TEN-534 — Applicant lease-signed analytics tracking</td>
+        <td>No — user workflow unchanged; internal tracking only</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Suggested new training videos:</strong> None for this release.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>ACT-883</strong> — Backend Salesforce sync self-heal; no customer-facing change.</li>
+    <li><strong>TEN-275</strong> — Performance improvement to file loading; no UI or workflow change.</li>
+    <li><strong>TEN-534</strong> — Internal analytics tracking event; no customer-facing change.</li>
+  </ul>
+
+  <h2>Unreachable Linear tickets</h2>
+  <p>All 4 Linear tickets were unreachable this run (connector authentication invalidated). Feature descriptions are based on Slack bullet text only.</p>
+  <ul>
+    <li><strong>ACT-883</strong> — Linear connector returned auth error</li>
+    <li><strong>TEN-275</strong> — Linear connector returned auth error</li>
+    <li><strong>TEN-534</strong> — Linear connector returned auth error</li>
+    <li><strong>TEN-604</strong> — Linear connector returned auth error</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
