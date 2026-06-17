@@ -157,5 +157,13 @@
     "title": "Release v9.3.2 \u2014 Help Center Impact",
     "filename": "reports/v9.3.2.html",
     "generatedAt": "2026-06-16T00:00:00Z"
+  },
+  {
+    "date": "2026-06-17",
+    "version": "v9.3.6",
+    "title": "Release v9.3.6 \u2014 Help Center Impact",
+    "filename": "reports/v9.3.6.html",
+    "generatedAt": "2026-06-17T00:00:00Z",
+    "summary": "Release v9.3.6 ships 7 changes across 5 product areas. The most Help Center\u2013relevant changes are a copy fix in Tenant Assistant Settings (PM Operations) and early duplicate-validation on batch tenant imports (Onboarding & Imports). The remaining 5 items are internal analytics instrumentation, a Salesforce API optimization, and a Leads & Leasing UI framework upgrade \u2014 none requiring immediate article updates."
   }
 ]
