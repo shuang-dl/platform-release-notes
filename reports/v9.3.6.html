@@ -1,0 +1,340 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.3.6 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #888; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #999; font-style: italic; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; margin-top: 0.3rem; }
+    .update-note { font-size: 0.88em; color: #1f5c7a; background: #f0f8ff; border-left: 3px solid #1f5c7a; padding: 4px 8px; margin-top: 4px; border-radius: 0 4px 4px 0; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .status-badge { display: inline-block; font-size: 0.75em; padding: 1px 6px; border-radius: 4px; margin-left: 4px; }
+    .status-done { background: #d4edda; color: #155724; }
+    .status-merged { background: #fff3cd; color: #856404; }
+    .staleness { font-size: 0.83em; color: #8b5e00; background: #fff8e1; border-radius: 3px; padding: 2px 6px; margin-top: 3px; display: inline-block; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.3.6 — 2026-06-17</h1>
+  <p>
+    <a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1781702453835379">View original Slack post</a> ·
+    <code>1781702453.835379</code>
+  </p>
+
+  <h2>Summary</h2>
+  <p>Release v9.3.6 ships 7 changes across 5 product areas. The most Help Center–relevant changes are a copy fix in Tenant Assistant Settings (PM Operations) and early duplicate-validation on batch tenant imports (Onboarding &amp; Imports). The remaining 5 items are internal analytics instrumentation, a Salesforce API optimization, and a Leads &amp; Leasing UI framework upgrade — none requiring immediate article updates.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (7)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (1)</span>
+    <span class="chip" data-area="onboarding-imports">Onboarding &amp; Imports (3)</span>
+    <span class="chip" data-area="tenant-experience">Tenant Experience &amp; Payments (1)</span>
+    <span class="chip" data-area="workflows">Workflows (1)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (1)</span>
+  </div>
+
+  <!-- PM OPERATIONS -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="https://linear.app/doorloop/issue/PMO-2063" target="_blank">PMO-2063</a>
+            <span class="status-badge status-done">Done</span>
+          </td>
+          <td>Tenant Assistant Settings: "No documents found" empty-state fix</td>
+          <td class="original">Fixed the empty-state message to say "No documents found" for Tenant Assistant Settings searches with no matches.</td>
+          <td>
+            The Tenant Assistant Settings page (formerly called "Policies") showed "No policies found" when a search returned zero results. This copy-only fix updates that empty-state text to "No documents found", aligning it with the rest of the feature's language ("New document", "Edit document", etc.).
+          </td>
+          <td>
+            <span class="matched">🟢 MATCHED</span><br>
+            <a href="http://support.doorloop.com/en/articles/15364914-doorloop-concierge-agent-beta-faq" target="_blank">DoorLoop Concierge Agent — Beta FAQ</a>
+            <div class="update-note"><strong>Likely update needed:</strong> Check any screenshots of the Tenant Assistant Settings (policy/document list) — update caption or image if it shows the old "No policies found" empty-state text.</div>
+          </td>
+          <td>
+            <span class="video-matched">🎬 VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/o9ij6alyn7" target="_blank">AI Tenant Portal Concierge</a>
+            <div class="staleness">Created Mar 23, 2026 — 86 days before this release. Review if it shows the Tenant Assistant Settings document list empty state.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ONBOARDING & IMPORTS -->
+  <section class="area-section" data-area="onboarding-imports">
+    <h2>Onboarding &amp; Imports <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="https://linear.app/doorloop/issue/ACT-877" target="_blank">ACT-877</a>
+            <span class="status-badge status-merged">Merged</span>
+          </td>
+          <td>Batch Import: pre-flight duplicate email &amp; phone validation</td>
+          <td class="original">Now validates duplicate tenant email and mobile phone before import, so conflicts are caught early with accurate row errors.</td>
+          <td>
+            Previously, duplicate tenant email or mobile phone errors only surfaced after the batch import job had already run — causing the entire job to appear as failed. Now a validation step runs before the job starts, surfacing duplicate-email and duplicate-phone conflicts as clear row-level error messages upfront, so PMs can fix issues before any data is processed.
+          </td>
+          <td>
+            <span class="matched">🟢 MATCHED</span><br>
+            <a href="http://support.doorloop.com/en/articles/8608503-import-your-data-into-doorloop" target="_blank">Import Your Data Into DoorLoop</a>
+            <div class="update-note"><strong>Likely update needed:</strong> Add a callout in the validation / pre-import step section explaining that duplicate tenant email addresses and mobile phone numbers are now flagged before the job begins, with per-row error details shown in the import response.</div>
+          </td>
+          <td>
+            <span class="video-matched">🎬 VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/h9y7ymsrfc" target="_blank">Import Your Existing Data</a>
+            <div class="staleness">Created Mar 23, 2026 — 86 days before this release. Consider adding a note or re-recording the validation step to show the new pre-flight duplicate check.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://linear.app/doorloop/issue/ACT-849" target="_blank">ACT-849</a>
+            <span class="status-badge status-merged">Merged</span>
+          </td>
+          <td>Post-migration Slack alerts: add Implementation &amp; Onboarding Owner</td>
+          <td class="original">Added Implementation and Onboarding Owner names to post-migration Slack alerts, with N/A fallback when unavailable.</td>
+          <td>
+            The internal <code>#data-migration-updates</code> Slack alerts that fire when a tenant's data migration completes now include the Implementation Owner and Onboarding Owner names (pulled from the Salesforce account). Falls back to "N/A" when either owner isn't set.
+          </td>
+          <td><span class="internal">⚫ INTERNAL</span> — Internal migration-team Slack alert only; no PM- or tenant-facing UI change.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://linear.app/doorloop/issue/ACT-928" target="_blank">ACT-928</a>
+            <span class="status-badge status-merged">Merged</span>
+          </td>
+          <td>Salesforce: skip redundant Onboarding writes for fully-onboarded tenants</td>
+          <td class="original">Now skips redundant Salesforce onboarding updates for fully onboarded tenants when nothing has changed, reducing API usage.</td>
+          <td>
+            The Salesforce sync was unconditionally writing one <code>Onboarding__c</code> record per tenant per sweep — even for fully-onboarded tenants with no changed data. A new one-shot short-circuit skips the write when all onboarding milestone timestamps are already set and the score hasn't changed, cutting ~22k–23k unnecessary Salesforce API calls per day.
+          </td>
+          <td><span class="internal">⚫ INTERNAL</span> — Backend performance (NFR) optimization; no customer-facing behavior change.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- TENANT EXPERIENCE & PAYMENTS -->
+  <section class="area-section" data-area="tenant-experience">
+    <h2>Tenant Experience &amp; Payments <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="https://linear.app/doorloop/issue/TEN-605" target="_blank">TEN-605</a>
+            <span class="status-badge status-done">Done</span>
+          </td>
+          <td>Tenant Portal login: authentication method added to analytics event</td>
+          <td class="original">Added authentication method tracking to tenant login analytics so sign-in events now capture SSO, OTP, password, or impersonation.</td>
+          <td>
+            The <code>tenant_logged_in</code> PostHog analytics event now includes an <code>authentication</code> property with values: <code>SSO</code>, <code>password</code>, <code>OTP</code>, or <code>none</code>. This is a data-only enrichment for internal product analytics; no change to the tenant login experience.
+          </td>
+          <td><span class="internal">⚫ INTERNAL</span> — Analytics instrumentation (NFR) only; no change to tenant-visible login behavior or screens.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- WORKFLOWS -->
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="https://linear.app/doorloop/issue/WOR-1138" target="_blank">WOR-1138</a>
+            <span class="status-badge status-merged">Merged</span>
+          </td>
+          <td>Late Balance Notice workflow: PostHog analytics instrumentation</td>
+          <td class="original">Added analytics for late balance notice workflows to track trigger settings and activation details.</td>
+          <td>
+            Instruments the Late Balance Notice (Pay-or-Quit) workflow type for PostHog analytics. Adds a new <code>workflows_trigger_settings_click</code> event capturing <code>workflowType</code>, <code>dayOfMonth</code>, and <code>outstandingBalanceThreshold</code>. Also extends the existing <code>workflows_workflow_activated</code> event with those two fields for PoQ workflows. Sits entirely behind the <code>workflows-late-balance-notice</code> feature flag.
+          </td>
+          <td><span class="internal">⚫ INTERNAL</span> — Analytics instrumentation (NFR) behind a feature flag; no customer-visible workflow behavior change.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- LEADS & LEASING -->
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="https://linear.app/doorloop/issue/L2L-1595" target="_blank">L2L-1595</a>
+            <span class="status-badge status-merged">Merged</span>
+          </td>
+          <td>URL-driven entity drawer framework for Leads &amp; Leasing</td>
+          <td class="original">Added a URL-driven entity drawer with tabbed details, preserving navigation state and permissions-based tab visibility.</td>
+          <td>
+            Builds a new config-driven <code>EntityDrawer</code> UI component for Leads &amp; Leasing that reads its open state and entity ID from the URL (instead of an overlay manager). Navigation state is preserved across page loads, tabs are shown or hidden based on user permissions, and deep-linking to a specific entity's detail drawer is now possible. This is primarily a UX infrastructure change that powers future L2L entity detail views (e.g. prospect drawers).
+          </td>
+          <td>
+            <span class="unmatched">🟠 UNMATCHED</span><br>
+            No existing Help Center article covers URL-driven drawer navigation. This is foundational framework work — monitor for follow-up features (e.g. prospect detail pages) that will need documentation.
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <div style="border:1px solid #ececec; border-radius:8px; padding:1rem 1.25rem; margin-bottom:1rem;">
+    <strong>PMO-2063 — No standalone article needed</strong><br>
+    The empty-state copy fix is a 1-word change inside the Tenant Assistant Settings. The existing <a href="http://support.doorloop.com/en/articles/15364914-doorloop-concierge-agent-beta-faq" target="_blank">DoorLoop Concierge Agent — Beta FAQ</a> should be reviewed for screenshots showing the old "No policies found" text; no new article needed.
+  </div>
+  <div style="border:1px solid #ececec; border-radius:8px; padding:1rem 1.25rem; margin-bottom:1rem;">
+    <strong>Proposed: "What's New: Batch Import Now Catches Duplicate Tenant Email and Phone Before the Job Runs — Version v9.3.6"</strong><br>
+    <span class="note"><strong>Rationale:</strong> PMs who import tenant data will see a new validation step that shows duplicate-email and duplicate-phone errors immediately, before any records are processed. This changes their import workflow and could reduce support contacts about failed jobs.</span><br>
+    <span class="note"><strong>Keywords:</strong> batch import, duplicate email, duplicate phone, import validation, tenant import, import errors, row error</span>
+  </div>
+  <div style="border:1px solid #ececec; border-radius:8px; padding:1rem 1.25rem;">
+    <strong>L2L-1595 — Defer; monitor for GA feature</strong><br>
+    The URL-driven entity drawer is an engineering infrastructure change. No Help Center article needed until a customer-visible L2L entity detail view (e.g. prospect deep-link) is released on top of this framework.
+  </div>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Related feature(s)</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/o9ij6alyn7" target="_blank">AI Tenant Portal Concierge</a></td>
+        <td>Mar 23, 2026</td>
+        <td>PMO-2063 — Tenant Assistant Settings empty-state copy</td>
+        <td><strong>Review</strong> — 86 days before this release. Check if video shows the "No policies found" empty state; if so, re-record or add annotation.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/h9y7ymsrfc" target="_blank">Import Your Existing Data</a></td>
+        <td>Mar 23, 2026</td>
+        <td>ACT-877 — Batch import duplicate email/phone validation</td>
+        <td><strong>Likely update needed</strong> — 86 days before this release. The import validation flow now shows pre-flight errors for duplicate contact info; consider re-recording or annotating the validation step.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Suggested new training videos</h3>
+  <ul>
+    <li><strong>L2L-1595</strong> — No training video exists for the URL-driven entity drawer. Defer until a full customer-facing Leads &amp; Leasing entity detail view is shipped on top of this framework.</li>
+  </ul>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>ACT-849</strong> — Internal Slack alert improvement for the migration team; adds Implementation &amp; Onboarding Owner fields to <code>#data-migration-updates</code> messages.</li>
+    <li><strong>ACT-928</strong> — Backend performance optimization (NFR); skips redundant Salesforce <code>Onboarding__c</code> writes for fully-onboarded tenants.</li>
+    <li><strong>TEN-605</strong> — Analytics instrumentation (NFR); adds <code>authentication</code> property to the internal <code>tenant_logged_in</code> PostHog event.</li>
+    <li><strong>WOR-1138</strong> — Analytics instrumentation (NFR) behind the <code>workflows-late-balance-notice</code> feature flag; no customer-visible change.</li>
+  </ul>
+
+  <h2>Unreachable Linear tickets</h2>
+  <p><em>None — all 7 tickets were successfully retrieved.</em></p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
