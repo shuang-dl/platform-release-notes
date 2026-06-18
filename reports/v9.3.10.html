@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.3.10 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #888; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #999; font-style: italic; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; margin-top: 0.3rem; }
+    .update-note { font-size: 0.88em; color: #1f5c7a; background: #f0f8ff; border-left: 3px solid #1f5c7a; padding: 4px 8px; margin-top: 4px; border-radius: 0 4px 4px 0; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .status-badge { display: inline-block; font-size: 0.75em; padding: 1px 6px; border-radius: 4px; margin-left: 4px; }
+    .status-done { background: #d4edda; color: #155724; }
+    .status-merged { background: #fff3cd; color: #856404; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.3.10 — 2026-06-18</h1>
+  <p>
+    <a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1781788409251099">View original Slack post</a> ·
+    <code>1781788409.251099</code>
+  </p>
+
+  <h2>Summary</h2>
+  <p>Release v9.3.10 is a focused Leads &amp; Leasing drop with 2 changes. The only customer-visible item is a Share feedback (CSAT survey) banner added to the Showings list page on desktop and mobile (L2L-1625) — two existing showings articles may need screenshot updates. L2L-1620 is a shared code extraction with no live app impact, setting the stage for future prospect and unit showings drawer surfaces.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (2)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (2)</span>
+  </div>
+
+  <!-- LEADS & LEASING -->
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="https://linear.app/doorloop/issue/L2L-1625" target="_blank">L2L-1625</a>
+            <span class="status-badge status-merged">Merged</span>
+          </td>
+          <td>Showings list: Share feedback (CSAT survey) banner</td>
+          <td class="original">Added a Share feedback banner to the Showings list to collect customer survey responses.</td>
+          <td>
+            Adds a persistent "Share feedback" banner to the top of the Showings list page on both desktop and mobile. Clicking the button fires a PostHog event (<code>showings_feedback_requested</code>) that triggers an in-app CSAT survey. The banner is always visible; the survey self-gates via PostHog targeting so users who already responded won't be re-prompted. Modeled on the existing Rent Payments Overview feedback banner pattern.
+          </td>
+          <td>
+            <span class="matched">🟢 MATCHED</span><br>
+            <a href="http://support.doorloop.com/en/articles/14893833-showings-manage-dashboard-and-prospect-overview" target="_blank">Showings: Manage Dashboard, and Prospect Overview</a>
+            <div class="update-note"><strong>Likely update needed:</strong> Check any screenshots of the Showings list / dashboard — if they show the top of the page, update them to include the new "Share feedback" banner that now appears there.</div>
+            <br>
+            <a href="http://support.doorloop.com/en/articles/14894290-showings-how-prospects-self-schedule-a-showing" target="_blank">Showings: How Prospects Self-Schedule a Showing</a>
+            <div class="update-note"><strong>Low priority:</strong> This article covers the prospect-facing scheduling flow, not the PM list view. Only update if any screenshot incidentally shows the Showings list from the PM side.</div>
+          </td>
+          <td><span class="no-video">— no related video</span><br><span class="note">No Showings-specific training video exists in the DoorLoop Training Hub.</span></td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://linear.app/doorloop/issue/L2L-1620" target="_blank">L2L-1620</a>
+            <span class="status-badge status-merged">Merged</span>
+          </td>
+          <td>Shared Showings list component extracted to master</td>
+          <td class="original">Added a shared Showings list with Upcoming and Past sections, invitation actions, and read-only support.</td>
+          <td>
+            Extracts the generic, resource-type-driven Showings list module (<code>splitShowingsList</code>, ~20 files) from feature branches to master as shared code. This component will power both the prospect-tab and unit-tab showings views. Linear explicitly notes: <em>"Imported by nothing live yet — no app impact."</em> This is foundational code for future prospect and unit entity drawer surfaces.
+          </td>
+          <td><span class="internal">⚫ INTERNAL</span> — Code extraction with no live app impact (per Linear ticket). No PM-visible UI change shipped in this release.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p><em>No new articles suggested for this release.</em> Both items are either covered by existing showings articles (L2L-1625) or have no live app impact (L2L-1620). Once the full prospect/unit entity drawers ship on top of L2L-1620's extracted code, a new article covering the tabbed prospect/unit showings experience may be warranted.</p>
+
+  <h2>Related training videos</h2>
+  <p>No DoorLoop Training Hub video covers showings specifically. Consider creating a <strong>"Managing Showings"</strong> training video once the full showings entity drawer experience (built on L2L-1620) ships to GA.</p>
+  <h3>Suggested new training videos</h3>
+  <ul>
+    <li><strong>L2L-1625 / L2L-1620</strong> — "Managing Showings" — no video currently exists covering the Showings list, Upcoming/Past sections, or invitation management. Defer until the full entity drawer ships.</li>
+  </ul>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>L2L-1620</strong> — Shared Showings list code extraction to master; Linear explicitly notes "Imported by nothing live yet — no app impact."</li>
+  </ul>
+
+  <h2>Unreachable Linear tickets</h2>
+  <p><em>None — both tickets were successfully retrieved.</em></p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
