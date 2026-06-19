@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.3.11 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #555; font-weight: 600; }
+    .beta { color: #7c4dcc; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #999; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.3.11 — 2026-06-19</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1781874876809209">View original Slack post</a> · <code>1781874876.809209</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 7 changes across PM Operations, Onboarding &amp; Imports, Tenant Experience &amp; Payments, and Banking. The standout customer-visible change is ACT-619, which ensures the correct official import templates (Residential, Commercial, HOA) are served in GSF v2 — directly affecting the "Import Your Data Into DoorLoop" Help Center article. The remaining customer-visible items are a work-order requesting-tenant picker (behind a feature flag, not yet live) and a fix for owner portal statement report errors; the Tenant Experience and Banking changes are all backend infrastructure improvements with no direct Help Center impact.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (7)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="onboarding">Onboarding &amp; Imports (1)</span>
+    <span class="chip" data-area="tenant-experience">Tenant Experience &amp; Payments (3)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+  </div>
+
+  <!-- PM Operations -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2068" target="_blank">PMO-2068</a></td>
+          <td>Requesting-Tenant Picker on Work Orders (Beta)</td>
+          <td class="original">Added a requesting-tenant picker for work orders, with tenant status badges and better task detail fallback.</td>
+          <td>When the <code>work-order-print-requesting-tenant</code> feature flag is enabled, property managers can attribute a requesting tenant to any work order created from a lease, unit, or property. The picker shows tenants sorted Current → Future → Past with status badges; single-tenant leases auto-fill. The selected tenant appears in the work order overview tile and on the printed work order. Flag is default <strong>OFF</strong>.</td>
+          <td>
+            <span class="beta">🟣 BETA — behind feature flag (default OFF)</span><br>
+            <span class="note">Articles to update <em>once the flag goes GA</em>:<br>
+            • <a href="http://support.doorloop.com/en/articles/6322778-create-a-work-order" target="_blank">Create a Work Order</a> — Add a section explaining how to assign a requesting tenant when creating a WO from a unit or property.<br>
+            • <a href="http://support.doorloop.com/en/articles/9701740-edit-a-work-order" target="_blank">Edit a Work Order</a> — Note that the requesting-tenant field is now editable post-creation.</span>
+          </td>
+          <td>
+            <span class="video-matched">Managing Work Orders</span><br>
+            <a href="https://doorloop.wistia.com/medias/tn4ch9b3tf" target="_blank">doorloop.wistia.com/medias/tn4ch9b3tf</a><br>
+            <span class="note">Created Mar 23, 2026 — 88 days before this release. Likely needs re-recording once the requesting-tenant flag goes live to show the new picker UI.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2070" target="_blank">PMO-2070</a></td>
+          <td>Owner Portal — Owner Statement Defaults to CASH (Bug Fix)</td>
+          <td class="original">Fixed owner statement reports to default to CASH when no accounting method is selected, preventing report errors.</td>
+          <td>A bug caused the Owner Portal's Owner Statement report to return a 400 error for owners whose account had no default accounting method set. The fix ensures the request always includes <code>filter_accountingMethod=CASH</code> as a fallback, matching the server's validation requirements. Affects ~1% of requests since the owner-portal Owner Statement launched on 2026-06-09.</td>
+          <td>
+            <span class="unmatched">🟠 UNMATCHED</span><br>
+            <span class="note">No existing Help Center article specifically covers the Owner Statement Report available inside the Owner Portal. Closest are:<br>
+            • <a href="http://support.doorloop.com/en/articles/8317597-how-to-use-the-owner-portal" target="_blank">How to Use the Owner Portal</a> — general overview; verify if it mentions the Owner Statement report.<br>
+            → Suggested new article: "How to View the Owner Statement Report on the Owner Portal" (see Suggested Articles below).</span>
+          </td>
+          <td>
+            <span class="no-video">— no related video</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Onboarding & Imports -->
+  <section class="area-section" data-area="onboarding">
+    <h2>Onboarding &amp; Imports <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-619" target="_blank">ACT-619</a></td>
+          <td>Official Import Templates Served in GSF v2</td>
+          <td class="original">Now supports downloading the official Residential, Commercial, and HOA import templates and importing them correctly.</td>
+          <td>The Get-Started Flow v2 (GSF v2) previously offered a generic placeholder import template that didn't match the structure DoorLoop's import pipeline actually processes. This fix swaps in the same official customer-facing templates (Residential, Commercial, HOA) that are linked in the Help Center article 8608503 and used in GSF v1. The templates and the importer are now end-to-end validated: customers can download, populate, and upload without schema mismatches.</td>
+          <td>
+            <span class="matched">🟢 MATCHED</span><br>
+            <a href="http://support.doorloop.com/en/articles/8608503-import-your-data-into-doorloop" target="_blank">Import Your Data Into DoorLoop</a><br>
+            <span class="note"><strong>Likely update needed:</strong> Confirm the downloadable template links in this article (Residential, Commercial, HOA tabs/sections) point to the same files now served by GSF v2. If any template was versioned or updated, refresh the download links and verify the column structure described in the article still matches.</span>
+          </td>
+          <td>
+            <span class="video-matched">Import Your Existing Data</span><br>
+            <a href="https://doorloop.wistia.com/medias/h9y7ymsrfc" target="_blank">doorloop.wistia.com/medias/h9y7ymsrfc</a><br>
+            <span class="note">Created Mar 23, 2026 — 88 days before this release. If GSF v2's import template download UI or the template file itself changed appearance, this video likely needs a re-record or at minimum a chapter update showing the correct templates.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Tenant Experience & Payments -->
+  <section class="area-section" data-area="tenant-experience">
+    <h2>Tenant Experience &amp; Payments <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-493" target="_blank">TEN-493</a></td>
+          <td>Notification Settings API (Infrastructure)</td>
+          <td class="original">Added tenant notification settings retrieval so tenants can view and manage lease-based preferences.</td>
+          <td>Migrates the <code>GET /api/tenant-portal/notification-settings</code> endpoint from the legacy app server to the new decoupled tenant-portal-server. Includes lease settings and late-fees logic. The tenant-facing behavior is unchanged; the endpoint is only routed to the new server when the <code>TenantPortalUseNewServer</code> feature flag is on. This is a backend infrastructure migration with no visible UI change.</td>
+          <td><span class="internal">⚫ INTERNAL — backend API migration; no Help Center change needed</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-528" target="_blank">TEN-528</a></td>
+          <td>Feature Flag Evaluation + Redis Cache (Infrastructure)</td>
+          <td class="original">Added tenant-aware feature flag evaluation with Redis caching for faster, more consistent flag behavior.</td>
+          <td>Wires up the OpenFeature provider and a Redis-backed flag-definition cache in the tenant-portal-server. This enables server-side feature flag evaluation (using PostHog + Redis) for tenant-portal endpoints, with per-request evaluation context built from the tenant's identity. Re-enables per-event feature flag enrichment in PostHog analytics. No customer-facing behavior change; purely infrastructure.</td>
+          <td><span class="internal">⚫ INTERNAL — NFR infrastructure; no Help Center change needed</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-598" target="_blank">TEN-598</a></td>
+          <td>Onboarding State APIs (Infrastructure)</td>
+          <td class="original">Added onboarding status updates that save tenant progress more reliably during Short Onboarding.</td>
+          <td>Migrates the tenant onboarding state <code>GET</code> and <code>PUT</code> endpoints from the legacy app server to the new tenant-portal-server. This makes the Short Onboarding flow more reliable by routing through the decoupled server. No new UI or behavior from the tenant's perspective; purely an infrastructure migration as part of the Decouple Tenant Portal Server project.</td>
+          <td><span class="internal">⚫ INTERNAL — NFR infrastructure; no Help Center change needed</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Banking -->
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-947" target="_blank">BAN-947</a></td>
+          <td>Full Payout Failure Chain — Deposit Line Items Fix</td>
+          <td class="original">Now includes original line items from the full Stripe payout failure chain, keeping deposit history complete.</td>
+          <td>A bug caused DoorLoop to silently drop original charge line items from a successful payout deposit when a Stripe payout had failed <em>more than once</em> before succeeding. The fix walks the entire failure chain iteratively (not just one level deep), so all original line items are captured in the deposit record. Also fixes the same blind spot in the manual force-deposit intervention tool. Affects accounting accuracy for merchants with repeated payout failures. High-priority internal accounting fix; no UI change.</td>
+          <td><span class="internal">⚫ INTERNAL — backend Stripe accounting fix; no customer-facing article needed</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <div style="border-left: 3px solid #e0a800; padding: 0.75rem 1rem; margin: 1rem 0; background: #fffdf0;">
+    <strong>For PMO-2070 — Owner Portal Owner Statement Report</strong><br>
+    <em>Proposed title:</em> <code>What's New: Owner Statement Report now works for all owners regardless of accounting method — Version 9.3.11</code><br>
+    <em>Rationale:</em> The Owner Portal Owner Statement report launched on 2026-06-09 but silently failed for ~1% of owners who had no default accounting method set. This fix makes the report universally accessible. A brief "How to View the Owner Statement Report on the Owner Portal" article (or a section added to "How to Use the Owner Portal") would document this report's existence and usage for owners.<br>
+    <em>Suggested keywords:</em> owner statement, owner portal, accounting method, cash, accrual, financial report, property summary
+  </div>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Related features</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/tn4ch9b3tf" target="_blank">Managing Work Orders</a></td>
+        <td>Mar 23, 2026</td>
+        <td>4:08</td>
+        <td>PMO-2068 (requesting-tenant picker)</td>
+        <td><strong>Review</strong> — 88 days before this release. Update once the requesting-tenant feature flag goes GA to show the new picker UI in the work order dialog.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/h9y7ymsrfc" target="_blank">Import Your Existing Data</a></td>
+        <td>Mar 23, 2026</td>
+        <td>5:26</td>
+        <td>ACT-619 (official import templates)</td>
+        <td><strong>Yes — likely needs update.</strong> 88 days before this release. The import template download step in GSF v2 may now look different; verify the video shows the correct Residential/Commercial/HOA templates.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><em>Suggested new training videos (features with NO VIDEO match):</em></p>
+  <ul>
+    <li>Owner Portal: Owner Statement Report — no training video exists covering this report from an owner's perspective.</li>
+  </ul>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>TEN-493</strong> — Backend API migration (GET /notification-settings) to tenant-portal-server; behavior unchanged behind a feature flag. No Help Center change.</li>
+    <li><strong>TEN-528</strong> — NFR: OpenFeature provider + Redis flag cache in tenant-portal-server. No customer-facing behavior change.</li>
+    <li><strong>TEN-598</strong> — NFR: Onboarding state API migration to tenant-portal-server. No new UI or Help Center impact.</li>
+    <li><strong>BAN-947</strong> — Internal Stripe payout accounting fix (deposit line items for multi-failure chains). Backend-only; no PM or owner-facing UI change.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
