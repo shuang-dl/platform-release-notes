@@ -181,5 +181,12 @@
     "filename": "reports/v9.3.11.html",
     "generatedAt": "2026-06-19T00:00:00Z",
     "summary": "This release ships 7 changes across PM Operations, Onboarding & Imports, Tenant Experience & Payments, and Banking. The standout customer-visible change is ACT-619, which ensures the correct official import templates (Residential, Commercial, HOA) are served in GSF v2 \u2014 directly affecting the 'Import Your Data Into DoorLoop' Help Center article. Other items include a work-order requesting-tenant picker (BETA, flag default OFF), an owner portal statement report bug fix, and backend infrastructure improvements with no direct Help Center impact."
+  },
+  {
+    "date": "2026-06-23",
+    "version": "v9.3.19",
+    "title": "Release v9.3.19 \u2014 Help Center Impact",
+    "filename": "reports/v9.3.19.html",
+    "generatedAt": "2026-06-23T00:00:00Z"
   }
 ]
