@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.3.19 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #888; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .label-beta { background: #fef3c7; color: #92400e; }
+    .label-internal { background: #f3f4f6; color: #6b7280; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.3.19 — 2026-06-23</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1782219730247339">View original Slack post</a> · <code>1782219730.247339</code></p>
+
+  <h2>Summary</h2>
+  <p>Release v9.3.19 ships 3 changes across PM Operations (1) and Leads &amp; Leasing (2). The headline change is a Communications Center file-send fallback that automatically converts oversized or unsupported attachments into secure hosted links rather than failing — currently behind a flag (<code>commsCenterLinkFallback</code>). Both Leads &amp; Leasing items are pre-production: the unit drawer is a dark-launch infrastructure change with zero customer impact, and property timezone auto-detection remains behind the <code>property-timezone</code> flag (default off).</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (3)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (1)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (2)</span>
+  </div>
+
+  <!-- PM Operations -->
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1553" target="_blank">PMO-1553</a></td>
+          <td>
+            Communications Center — secure-link fallback for oversized attachments
+            <br><span class="label label-beta">🟣 BETA</span>
+            <span class="label">flag: commsCenterLinkFallback</span>
+          </td>
+          <td><span class="original">Now supports sending oversized or unsupported attachments as secure links in text messages instead of failing.</span></td>
+          <td>
+            When a PM attaches a file to an outbound SMS/MMS in Communications Center, DoorLoop now checks at attach-time whether the file exceeds MMS limits (5 MB) or is an unsupported type. If it does, the system compresses first and — when compression alone isn't enough — hosts the file on S3 and inserts a short secure link in the message body instead. The sent message shows the native attachment view plus a "Sent as link" badge. Recipients receive a no-login tokenized link. Feature is gated behind <code>commsCenterLinkFallback</code> (default off, cohort ramp).
+          </td>
+          <td>
+            <span class="matched">BETA — hold for GA</span><br>
+            <span class="note">Related article found (likely covers this when GA):</span><br>
+            <a href="http://support.doorloop.com/en/articles/15344763-what-s-new-smarter-communications-center-tools-and-a-smoother-tenant-portal-version-9-2-71" target="_blank">What's New: Smarter Communications Center tools and a smoother Tenant Portal — v9.2.71</a><br>
+            <span class="note"><strong>Likely update needed when GA:</strong> Add a dedicated section or new article covering (1) when the fallback triggers, (2) what the "Sent as link" badge looks like in the sent view, and (3) file-size and type limits for the hosted link mode (50 MB/file).</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/o1cw1de8i5" target="_blank">AI Communications Center</a> <span class="note">(created Mar 23, 2026 — 92 days before this release; likely needs re-recording to reflect the attachment fallback behavior)</span><br><br>
+            <a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a> <span class="note">(created Mar 23, 2026 — 92 days before this release; consider adding a segment on attachment handling and the secure-link fallback)</span><br><br>
+            <a href="https://doorloop.wistia.com/medias/jxsly4gkel" target="_blank">Communications: Sending Out Announcements</a> <span class="note">(created Mar 23, 2026 — 92 days before this release; may need mention of file attachment limits)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Leads & Leasing -->
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1621" target="_blank">L2L-1621</a></td>
+          <td>
+            Unit drawer shell — flag-gated dark launch
+            <br><span class="label label-internal">⚫ INTERNAL</span>
+            <span class="label">flag: lead-to-lease-unit-drawer (off)</span>
+          </td>
+          <td><span class="original">Added a unit drawer from the Units list, letting users open unit details without leaving the page when enabled.</span></td>
+          <td>
+            Infrastructure change: extracts the unit detail view into a shared <code>EntityDrawer</code> component (with a Showings tab) accessible from the Units list. The flag is off by default, so the existing detail page behavior is unchanged for all users. No customer-facing impact until the flag is enabled.
+          </td>
+          <td>
+            <span class="label label-internal">⚫ INTERNAL — no Help Center change</span><br>
+            <span class="note">Flag is off; "dark — no app impact." Revisit when the unit drawer is publicly enabled.</span>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1611" target="_blank">L2L-1611</a></td>
+          <td>
+            Property timezone auto-detection (create &amp; edit forms)
+            <br><span class="label label-beta">🟣 BETA</span>
+            <span class="label">flag: property-timezone (off)</span>
+          </td>
+          <td><span class="original">Added property timezone selection that auto-fills from address coordinates and updates when they change.</span></td>
+          <td>
+            Adds a TimeZone selector to the property create wizard and address-edit form, gated behind the <code>property-timezone</code> flag (default off). When a user enters or changes an address, the selector auto-derives the IANA timezone from the coordinates via a new read-only endpoint and pre-fills the field — which the user can still override. The submitted timezone is stored on <code>address.timezone</code>. Primarily powers Showings availability accuracy.
+          </td>
+          <td>
+            <span class="unmatched">UNMATCHED</span> — no existing article covers property timezone or Showings scheduling timezone settings.<br>
+            <span class="note"><strong>Suggested new article when GA:</strong> See "Suggested new articles" below.</span>
+          </td>
+          <td>
+            <span class="video-matched">VIDEO MATCHED</span><br>
+            <a href="https://doorloop.wistia.com/medias/pmogitfoao" target="_blank">Add a New Property</a> <span class="note">(created Mar 18, 2026 — 97 days before this release; will need a new segment showing the timezone auto-fill field once the flag goes GA)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <div style="border-left: 3px solid #f59e0b; padding: 0.75rem 1rem; margin-bottom: 1.5rem; background: #fffbeb;">
+    <p><strong>Proposed title:</strong> What's New: Property timezone auto-fills from your address for accurate showing availability — Version X.X.X</p>
+    <p><strong>Status:</strong> <span class="label label-beta">BETA — hold for GA</span> (flag <code>property-timezone</code> is off by default; create draft when flag ramps to general availability)</p>
+    <p><strong>Rationale:</strong> No existing Help Center article covers timezone configuration at the property level or explains how DoorLoop derives it from address coordinates. When this goes GA, property managers setting up new properties or editing addresses will see an unfamiliar auto-filled field with no explanation. A short article covering (1) where the selector appears, (2) how auto-fill works, and (3) when/why to override it will prevent support tickets.</p>
+    <p><strong>Suggested keywords:</strong> property timezone, timezone selector, address coordinates, showing availability, scheduling, IANA timezone, property settings, create property</p>
+  </div>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Related features</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/o1cw1de8i5" target="_blank">AI Communications Center</a></td>
+        <td>Mar 23, 2026</td>
+        <td>1:27</td>
+        <td>PMO-1553 — secure-link fallback for attachments</td>
+        <td><strong>Yes</strong> — 92 days before this release; add coverage of the attachment fallback and "Sent as link" badge</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/krxbldyqse" target="_blank">Communications: Setting Up SMS Messaging</a></td>
+        <td>Mar 23, 2026</td>
+        <td>3:45</td>
+        <td>PMO-1553 — secure-link fallback for attachments</td>
+        <td><strong>Yes</strong> — 92 days before this release; consider adding a segment on file attachment limits and what happens when a file is too large</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/jxsly4gkel" target="_blank">Communications: Sending Out Announcements</a></td>
+        <td>Mar 23, 2026</td>
+        <td>2:45</td>
+        <td>PMO-1553 — secure-link fallback for attachments</td>
+        <td><strong>Review</strong> — 92 days before this release; may need mention of attachment size limits in the context of sending</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/pmogitfoao" target="_blank">Add a New Property</a></td>
+        <td>Mar 18, 2026</td>
+        <td>2:40</td>
+        <td>L2L-1611 — property timezone selector</td>
+        <td><strong>Yes (when GA)</strong> — 97 days before this release; add a segment for the new timezone auto-fill field in the property create wizard</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Suggested new training videos (NO VIDEO features):</strong> None — all unmatched features are BETA/internal. Revisit when flags go GA.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>L2L-1621</strong> — Unit drawer dark launch. Flag <code>lead-to-lease-unit-drawer</code> is off by default; the ticket notes "Dark — no app impact." This is a pure infrastructure/refactor merge with no customer-visible behavior change until the flag is explicitly enabled.</li>
+  </ul>
+
+  <h2>Unreachable Linear tickets</h2>
+  <p><em>None — all 3 Linear issues were successfully retrieved.</em></p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
