@@ -192,17 +192,25 @@
   {
     "date": "2026-06-24",
     "version": "v9.3.24",
-    "title": "Release v9.3.24 — Help Center Impact",
+    "title": "Release v9.3.24 \u2014 Help Center Impact",
     "filename": "reports/v9.3.24.html",
     "generatedAt": "2026-07-16T00:00:00Z",
-    "summary": "This release ships a single change to Tenant Experience & Payments: an A/B test on the payments banner's call-to-action copy (TEN-636), with sticky tenant-based label assignment across desktop and mobile. The change is an internal experiment on wording — it doesn't alter documented functionality, so no Help Center article or training video needs updating for this release."
+    "summary": "This release ships a single change to Tenant Experience & Payments: an A/B test on the payments banner's call-to-action copy (TEN-636), with sticky tenant-based label assignment across desktop and mobile. The change is an internal experiment on wording \u2014 it doesn't alter documented functionality, so no Help Center article or training video needs updating for this release."
   },
   {
     "date": "2026-06-25",
     "version": "v9.3.26",
-    "title": "Release v9.3.26 — Help Center Impact",
+    "title": "Release v9.3.26 \u2014 Help Center Impact",
     "filename": "reports/v9.3.26.html",
     "generatedAt": "2026-07-16T00:00:00Z",
     "summary": "This is a small release with two changes: an Onboarding & Imports polish item that adds an animated saving/saved/error indicator to the Get Started flow (ACT-1019), and a Banking backend change that adds background syncing for Stripe Treasury financial accounts and transactions (BAN-1088). Only the Get Started indicator is customer-visible enough to touch existing Help Center content; the Treasury sync work is internal data-pipeline infrastructure with no new UI of its own."
+  },
+  {
+    "date": "2026-06-28",
+    "version": "v9.3.29",
+    "title": "Release v9.3.29 \u2014 Help Center Impact",
+    "filename": "reports/v9.3.29.html",
+    "generatedAt": "2026-07-16T00:00:00Z",
+    "summary": "This release ships 4 changes across PM Operations (a smarter running-summary memory for the SMS auto-responder, plus more accurate overdue-reminder click analytics), Tenant Experience & Payments (new backend infrastructure \u2014 a held-payment side record and validation bypass \u2014 for the in-progress Payment Hold & Risk Review feature), and Leads & Leasing (a new collapsible Custom Fields section added to the Unit Overview drawer with search, add, and edit actions)."
   }
 ]
