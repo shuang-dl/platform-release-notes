@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.3.29 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .internal { color: #666; font-weight: 600; }
+    .beta { color: #7c3aed; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.3.29 — 2026-06-28</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1782649919309429">View original Slack post</a> · <code>1782649919.309429</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 4 changes across PM Operations (a smarter running-summary memory for the SMS auto-responder, plus more accurate overdue-reminder click analytics), Tenant Experience &amp; Payments (new backend infrastructure — a held-payment side record and validation bypass — for the in-progress Payment Hold &amp; Risk Review feature), and Leads &amp; Leasing (a new collapsible Custom Fields section added to the Unit Overview drawer with search, add, and edit actions).</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (4)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (1)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (1)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2112">PMO-2112</a></td>
+          <td>AI SMS assistant now remembers the full conversation</td>
+          <td class="original">Added a running conversation summary and now uses all messages since it for ongoing SMS replies.</td>
+          <td>The SMS auto-responder previously dropped context if there was a gap of a week or more between tenant messages. It now keeps a single running summary and includes every message sent since that summary when generating replies, so the AI has continuous context instead of losing the thread on longer-running conversations. (A separate filter still resets context for a brand-new SMS conversation so old PM–tenant history isn't replayed.)</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/15364816-doorloop-ai-auto-responder-faq">DoorLoop AI Auto-Responder — FAQ</a><br><span class="note">Likely update needed: clarify how far back the AI "remembers" a conversation now that it uses a running summary + all messages since, rather than dropping context after a 1-week gap.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/15364914-doorloop-concierge-agent-beta-faq">DoorLoop Concierge Agent — Beta FAQ</a><br><span class="note">Likely update needed: same context-memory clarification, scoped to the Concierge Agent beta.</span></li>
+            </ul>
+          </td>
+          <td>
+            <a class="video-matched" href="https://doorloop.wistia.com/medias/krxbldyqse">Communications: Setting Up SMS Messaging</a><br>
+            <span class="note">Created Mar 23, 2026 (~97 days before this release) — topical match on SMS messaging; review to confirm it doesn't misstate how conversation memory works for the AI auto-responder.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-796">TEN-796</a></td>
+          <td>More accurate overdue-reminder click analytics</td>
+          <td class="original">Now tracks overdue reminder clicks only when the Send Rent Reminder button is clicked, improving analytics accuracy.</td>
+          <td>Adds a property to the internal <code>listitem_click</code> analytics event so it only fires when a PM actually clicks "Send Rent Reminder," instead of over-counting unrelated clicks in the same list item. This is an internal telemetry fix with no visible change to the product.</td>
+          <td>
+            <span class="internal">INTERNAL</span> — analytics/telemetry-only change; no user-facing UI or workflow change.
+          </td>
+          <td>
+            <a class="video-matched" href="https://doorloop.wistia.com/medias/efrz0afqha">Rent &amp; Payment Notifications</a><br>
+            <span class="note">Created Mar 18, 2026 (~102 days before this release) — topical match on rent reminders; no update needed since this change is analytics-only.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-797">TEN-797</a></td>
+          <td>Payment hold infrastructure for risk review (backend)</td>
+          <td class="original">Added held-payment records for risk review and a bypass for payment-limit revalidation during approval.</td>
+          <td>Backend-only groundwork for the upcoming Payment Hold &amp; Risk Review feature. Adds a lightweight <code>HeldPayment</code> side record (instead of a pending journal entry) so a flagged payment doesn't touch the ledger until it's approved or declined, plus a <code>bypassLimitValidation</code> flag so an approved payment isn't re-rejected by the payment-limit check. No UI or tenant/PM-facing workflow ships in this ticket — it's the data model and repository logic that a future approval flow will build on.</td>
+          <td>
+            <span class="beta">BETA</span> — building block for the in-progress "Payment Hold &amp; Risk Review" project (milestone: "[M6] Build"); hold for GA before documenting. Related existing articles for context once GA'd: <a href="http://support.doorloop.com/en/articles/14756829-pending-review-status-on-merchant-account-transactions">'Pending Review' Status on Merchant Account Transactions</a>, <a href="http://support.doorloop.com/en/articles/14756241-tenant-payment-limit-errors">Tenant Payment Limit Errors</a>.
+          </td>
+          <td>
+            <span class="no-video">— no related video</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1654">L2L-1654</a></td>
+          <td>Custom fields now visible directly in Unit Overview</td>
+          <td class="original">Added a collapsible Custom fields section to Unit Overview with search, add, and edit actions.</td>
+          <td>The redesigned Unit drawer's Overview tab now has a collapsible "Custom Fields" card, mirroring the one already on the Prospect drawer. It shows the DbTenant's custom fields configured for units, with a search box in the header plus Add Fields and Edit Fields actions, label/value rows in the body, and an empty state when none are configured — so PMs no longer have to leave the Unit drawer to check or edit a unit's custom field values.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/11418769-set-up-custom-fields">Set Up Custom Fields</a><br><span class="note">Likely update needed: add a note/screenshot showing the new collapsible Custom Fields card directly inside the Unit drawer's Overview tab, alongside the existing "Custom Fields section on the Overview page" callout.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/11464799-manage-your-custom-fields">Manage Your Custom Fields</a><br><span class="note">Likely update needed: mention that units can now be searched/added/edited for custom fields directly from the Unit Overview drawer, not just the global Custom Fields settings page.</span></li>
+            </ul>
+          </td>
+          <td>
+            <a class="video-matched" href="https://doorloop.wistia.com/medias/qhbipfxe62">Add a New Unit</a><br>
+            <span class="note">Created Mar 18, 2026 (~102 days before this release) — topical match on Units; consider a short addendum clip covering the new Custom Fields collapsible in Unit Overview.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>None — every customer-visible feature in this release (PMO-2112, L2L-1654) maps to an existing article that can be updated in place. No standalone new article is warranted.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Features it relates to</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/krxbldyqse">Communications: Setting Up SMS Messaging</a></td>
+        <td>Mar 23, 2026, 12:55 AM</td>
+        <td>3:45</td>
+        <td>PMO-2112 (SMS auto-responder conversation memory)</td>
+        <td>Review — older than this release; confirm it doesn't describe outdated conversation-memory behavior.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/efrz0afqha">Rent &amp; Payment Notifications</a></td>
+        <td>Mar 18, 2026, 3:03 PM</td>
+        <td>3:21</td>
+        <td>TEN-796 (overdue reminder click analytics)</td>
+        <td>No — TEN-796 is analytics-only, no visible workflow change.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/qhbipfxe62">Add a New Unit</a></td>
+        <td>Mar 18, 2026, 5:54 PM</td>
+        <td>1:20</td>
+        <td>L2L-1654 (Custom Fields in Unit Overview)</td>
+        <td>Review — consider a short addendum on the new Custom Fields card; not required.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">Suggested new training videos: none — TEN-797 is backend-only and not yet a customer-facing workflow, so no video is warranted until the Payment Hold &amp; Risk Review feature reaches GA.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><b>TEN-796</b> — Analytics/telemetry event fix only; no user-facing change.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
