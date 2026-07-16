@@ -188,5 +188,13 @@
     "title": "Release v9.3.19 \u2014 Help Center Impact",
     "filename": "reports/v9.3.19.html",
     "generatedAt": "2026-06-23T00:00:00Z"
+  },
+  {
+    "date": "2026-06-24",
+    "version": "v9.3.24",
+    "title": "Release v9.3.24 — Help Center Impact",
+    "filename": "reports/v9.3.24.html",
+    "generatedAt": "2026-07-16T00:00:00Z",
+    "summary": "This release ships a single change to Tenant Experience & Payments: an A/B test on the payments banner's call-to-action copy (TEN-636), with sticky tenant-based label assignment across desktop and mobile. The change is an internal experiment on wording — it doesn't alter documented functionality, so no Help Center article or training video needs updating for this release."
   }
 ]
