@@ -1,0 +1,390 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.3.30 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.3.30 — 2026-06-29</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1782739948183869">View original Slack post</a> · <code>1782739948.183869</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 19 changes across PM Operations (Owners list redesign, Tasks/Recurring Tasks date-range filters), Accounting (activation-day credit + optional net-due auto-charge at lease signing), Tenant Experience &amp; Payments (Western Union cash payment slips in the tenant portal, Pay-or-Quit email campaigns, a unified tenant invitation email, and Pending Review held payments), Workflows (renewal-trigger publishing, a search-performance fix, and showings on the calendar), Leads &amp; Leasing (a rental-application link label fix, a new Unit drawer Communication tab, and MITS syndication flag scaffolding), and Banking (Stripe failure alerting, a payout-account reminder email, a low-volume alert, and an internal delete action), plus two backend performance improvements under Other.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (19)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="accounting">Accounting (1)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (4)</span>
+    <span class="chip" data-area="workflows">Workflows (3)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (3)</span>
+    <span class="chip" data-area="banking">Banking (4)</span>
+    <span class="chip" data-area="other">Other (2)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1614/owners-list-migrate-to-shared-list-engine">PMO-1614</a></td>
+          <td>Owners list redesign with filters, actions &amp; saved views</td>
+          <td class="original">Added a new Owners list experience with improved filters, actions, saved views, and mobile support.</td>
+          <td>Rebuilds the Owners list on DoorLoop's shared list engine — adding column customization, multi-column sort, a density toggle, and a redesigned row drawer, plus saved views and mobile support.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6746388-introduction-to-property-owners">Introduction to Property Owners</a> — <span class="note">Likely update needed: update screenshots to reflect the new list columns, filters, and saved-views UI.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/8700491-manage-your-tenants-vendors-owners-and-prospects">Manage Your Tenants, Vendors, Owners, and Prospects</a> — <span class="note">Likely update needed: note the new Owners list row drawer and actions if this article walks through owner management.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Recording Owner Distributions</span> <span class="note">(created Mar 23, 2026 — 98 days before this release) likely needs a refresh to show the redesigned Owners list before diving into distributions.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2229/tasks-recurring-tasks-lists-add-period-date-range-filters">PMO-2229</a></td>
+          <td>Date-range filters on Tasks and Recurring Tasks lists</td>
+          <td class="original">Added date-range filters to Tasks and Recurring Tasks lists so support can narrow results by key dates.</td>
+          <td>Adds Due Date and Created Date range filters to the Tasks list, and a Term date-range filter to the Recurring Tasks list, inside the existing Filters popover — no new feature flag required.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6322721-edit-or-delete-recurring-tasks">Edit or Delete Recurring Tasks</a> — <span class="note">Likely update needed: mention the new Term date-range filter in the Recurring Tasks Filters popover.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/8500024-edit-or-delete-a-task-hoa">Edit or Delete a Task [HOA]</a> — <span class="note">Likely update needed: mention the new Due Date / Created Date filters on the Tasks list.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Creating a Task</span> <span class="note">(created Mar 23, 2026 — 98 days before this release) likely needs a mention of the new date-range filter options in the Filters popover.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="accounting">
+    <h2>Accounting <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>— <span class="note">no Linear link</span></td>
+          <td>Activation-day credit + net-due auto-charge at lease signing</td>
+          <td class="original">Added activation-day credit booking and optional net-due auto-charge during lease signing when enabled.</td>
+          <td>When enabled, DoorLoop books a credit on the lease's activation day and can automatically charge any net-due balance at the moment the lease is signed, removing a manual follow-up step.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/7170082-post-a-rent-charge-to-a-lease-before-the-due-date">Post a Rent Charge to a Lease Before the Due Date</a> — <span class="note">Likely update needed: add a section on the new activation-day credit and optional net-due auto-charge toggle at signing.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Creating Leases</span> <span class="note">(created Mar 18, 2026 — 103 days before this release) likely needs an update covering the new activation-day credit / net-due auto-charge behavior at signing.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">4 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-72/tenant-portal-server-or-cash-payments-slip-apis">TEN-72</a></td>
+          <td>View Western Union cash payment slip details in the tenant portal</td>
+          <td class="original">Now supports viewing Western Union cash payment slip details in the tenant portal, with access checks preserved.</td>
+          <td>Tenants can now view and download their Western Union CashPayments slip details directly in the tenant portal (with pagination), governed by the same access checks as other portal payment data.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/9101589-doorloop-cashpayments-powered-by-western-union-overview">DoorLoop CashPayments Powered by Western Union Overview</a> — <span class="note">Likely update needed: add a note that tenants can now view/download their cash payment slip from the tenant portal.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/6846426-tenant-payment-questions-frequently-asked-questions">Tenant Payment Questions: Frequently Asked Questions</a> — <span class="note">Likely update needed: mention slip visibility for tenants asking where to find their cash payment record.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Tenant Portal Overview</span> <span class="note">(created Mar 23, 2026 — 98 days before this release) likely needs a mention of the cash payment slip view.</span>, <span class="video-matched">Setting Up Incoming Payments</span> <span class="note">(created Mar 23, 2026 — 98 days before this release) may want a note on Western Union slip visibility.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-774/support-workflow-communication">TEN-774</a></td>
+          <td>Pay or Quit email campaigns with trackable short links</td>
+          <td class="original">Added support for Pay or Quit email campaigns and a short code for consistent link tracking.</td>
+          <td>Adds support for Pay-or-Quit (POQ) email campaigns with a dedicated short code, so POQ links are tracked consistently in workflow and communication logs.</td>
+          <td><span class="unmatched">UNMATCHED</span> <span class="note">suggested new article (see below)</span></td>
+          <td><span class="video-matched">Workflows</span> <span class="note">(created Mar 23, 2026 — 98 days before this release) likely needs a segment on Pay-or-Quit email campaigns and short-link tracking.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-525/tenant-invitation-close-test">TEN-525</a></td>
+          <td>One unified tenant invitation email</td>
+          <td class="original">Added a single updated tenant invitation email for new and unedited accounts, while preserving edited invites.</td>
+          <td>Replaces the A/B-tested invite email with a single updated template (new DoorLoop colors/branding) for new and unedited accounts, while leaving any invite text a PM has already customized untouched.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6295640-re-invite-tenants-to-the-tenant-portal">Re-invite Tenants to the Tenant Portal</a> — <span class="note">Likely update needed: update the invite email screenshot to the new template and colors.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/8042443-how-to-accept-your-tenant-portal-invite-step-by-step">How to Accept Your Tenant Portal Invite (Step-by-Step)</a> — <span class="note">Likely update needed: update the email screenshots tenants see when accepting an invite.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Sending Out Tenant Portal Invites</span> <span class="note">(created Mar 22, 2026 — 99 days before this release) likely needs re-recording to show the new invite email template.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-799/doorloop-approvedecline-internal-api-service-vpncustom-token">TEN-799</a></td>
+          <td>Held payments now show as Pending Review before approval</td>
+          <td class="original">Added held payments as Pending Review journal entries so tenants can see them in progress before approval.</td>
+          <td>Payments placed on hold for risk review are now booked as Pending Review journal entries (instead of being invisible), plus new internal approve/decline endpoints, so tenants can see the payment is in progress before it's approved or declined.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/14756829-pending-review-status-on-merchant-account-transactions">'Pending Review' Status on Merchant Account Transactions</a> — <span class="note">Likely update needed: confirm this article now also covers the tenant-payment hold flow, not only merchant-side holds.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/6216601-create-a-journal-entry">Create a Journal Entry</a> — <span class="note">Likely update needed: note that held payments now auto-generate a Pending Review journal entry.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Setting Up Incoming Payments</span> <span class="note">(created Mar 23, 2026 — 98 days before this release) may want a note on the new Pending Review hold state.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1137/sch-4-build-publish-renewal-trigger-envelopes-deterministic-eventid-to">WOR-1137</a></td>
+          <td>Renewal-trigger envelope publishing (internal)</td>
+          <td class="original">Added renewal-trigger envelope publishing with deterministic IDs, stable deduping, and safer retry handling.</td>
+          <td>Backend-only: publishes a deterministic, dedupe-safe "trigger envelope" onto the shared RabbitMQ queue whenever a lease enters its renewal window, so the renewal automation agent starts reliably without double-triggering on re-runs.</td>
+          <td><span class="unmatched">INTERNAL</span> <span class="note">— no Help Center change; internal queue/messaging plumbing with no user-facing surface.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td>— <span class="note">no Linear link</span></td>
+          <td>Faster non-phone search (internal)</td>
+          <td class="original">Now skips a redundant search pass for non-phone searches, making results faster without changing behavior.</td>
+          <td>Backend performance fix: skips a redundant search pass for searches that aren't by phone number, speeding up results without changing what's returned.</td>
+          <td><span class="unmatched">INTERNAL</span> <span class="note">— no Help Center change; pure backend performance optimization.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1588/p3-client-render-showing-events-across-monthweekdaylist">L2L-1588</a></td>
+          <td>Showings now appear directly on the calendar</td>
+          <td class="original">Added showing events to the calendar across Month, Week, Day, and List views with clear styling and times.</td>
+          <td>Projected showing tasks now render as first-class calendar events — with distinct styling and a status badge — across the Month, Week, Day, and List views, correctly time-ordered within each day.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/8613058-doorloop-calendar-overview">DoorLoop Calendar Overview</a> — <span class="note">Likely update needed: add a section/screenshot showing how showings now appear on the calendar with their status badge.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/14092081-showings-availability-to-follow-up">Showings: Availability to Follow-Up</a> — <span class="note">Likely update needed: cross-link to the calendar view now that showings render there.</span></li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span> <span class="note">(candidate for a new training video — see Related training videos)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1686/fix-incorrect-empty-state-copy-for-unit-application-link-button">L2L-1686</a></td>
+          <td>Fixed rental application copy-link button label</td>
+          <td class="original">Fixed the rental application copy link button label so it now matches the link it copies.</td>
+          <td>The Units tab empty-state button previously read "Copy listings link" even though it copies a rental application link — it now reads "Copy rental application link" to match its actual behavior.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/8852342-introduction-to-rental-application-links">Introduction to Rental Application Links</a> — <span class="note">Likely update needed: verify any button-label screenshot reflects "Copy rental application link."</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/14761915-send-a-rental-application-link-for-a-specific-unit-only">Send a Rental Application Link for a Specific Unit Only</a> — <span class="note">Likely update needed: update any screenshot still showing the old "Copy listings link" label.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Rental Applications</span> <span class="note">(created Mar 22, 2026 — 99 days before this release) may want a check that the button label shown matches the corrected copy.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1132/m513-unit-communication-embed-consume-only">L2L-1132</a></td>
+          <td>New Communication tab in the Unit drawer</td>
+          <td class="original">Added a Communication tab to the unit drawer so users can view unit-related conversations in one place.</td>
+          <td>Adds a Communication tab to the Unit drawer that embeds the shared Communications module (message thread, multi-channel inbound, AI "Help me write," composer) scoped to that unit — so users can see unit-related conversations without leaving the Units page.</td>
+          <td><span class="unmatched">UNMATCHED</span> <span class="note">suggested new article (see below)</span></td>
+          <td><span class="video-matched">Communications Log</span> <span class="note">(created Mar 23, 2026 — 98 days before this release) likely needs a mention of the new unit-scoped Communication tab.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1420/mits-syndication-inverted-pipeline-16-flag-plumbing-hexagonal-feature">L2L-1420</a></td>
+          <td>MITS syndication pipeline flag scaffolding (internal, dark launch)</td>
+          <td class="original">Added a new syndication feature flag and supporting settings for a future listing-selection flow.</td>
+          <td>Ships a new feature flag (default off) and backend scaffolding for a future, inverted MITS listing-syndication pipeline. Explicitly "zero runtime change" — nothing reads the flag yet, so nothing is customer-visible in this release.</td>
+          <td><span class="unmatched">INTERNAL</span> <span class="note">— no Help Center change; dark-launched behind a flag with no behavior change yet.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">4 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-1217/listen-to-stripe-failure-webhooks-and-emit-alerts">BAN-1217</a></td>
+          <td>Broader Stripe failure monitoring (internal)</td>
+          <td class="original">Added broader Stripe failure monitoring so failed payments and account updates are tracked and alerted faster.</td>
+          <td>Subscribes to a defined set of Stripe failure-class webhooks (treasury transfers, payouts, external-account errors) and routes each to a tiered alert, so Stripe-side failures page the right team instead of surfacing only in logs.</td>
+          <td><span class="unmatched">INTERNAL</span> <span class="note">— no Help Center change; internal ops/risk-team alerting, not customer-facing.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-1272/creating-an-email-with-actions-to-the-users">BAN-1272</a></td>
+          <td>Reminder emails for treasury accounts missing a payout bank account</td>
+          <td class="original">Added automated reminder emails for treasury accounts that finish onboarding without a payout bank account.</td>
+          <td>A daily job now emails account owners who completed treasury/embedded-financing onboarding but haven't connected a payout bank account yet, with a direct link to finish that step (plus new PostHog tracking on the flow).</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/14756842-verify-payout-account-on-merchant-account">Verify Payout Account on Merchant Account</a> — <span class="note">Likely update needed: mention the new automated reminder email sent when a payout account isn't connected.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/6088168-set-up-property-bank-accounts">Set Up Property Bank Accounts</a> — <span class="note">Likely update needed: cross-reference the reminder-email flow for context.</span></li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span> <span class="note">(candidate for a new training video — see Related training videos)</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-969/m22-processed-0-implausibly-low-volume-alert">BAN-969</a></td>
+          <td>Low-volume processing alert (internal)</td>
+          <td class="original">Added a low-volume alert for embedded financing balance processing so unusual drops are caught sooner.</td>
+          <td>Emits processed/failed counts as metrics (not just logs) for the embedded-financing balance job and alerts when the processed volume is implausibly low relative to the expected population, catching a silent stall.</td>
+          <td><span class="unmatched">INTERNAL</span> <span class="note">— no Help Center change; internal ops alerting for a backend batch job.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td>— <span class="note">no Linear link</span></td>
+          <td>VPN-protected soft-delete for availability status records (internal)</td>
+          <td class="original">Added a VPN-protected delete action for availability status records that now soft-deletes instead of removing them.</td>
+          <td>An internal, VPN-gated admin action now soft-deletes availability-status records instead of hard-deleting them, preserving the data for recovery/audit.</td>
+          <td><span class="unmatched">INTERNAL</span> <span class="note">— no Help Center change; VPN-gated internal admin tooling.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="other">
+    <h2>Other <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>— <span class="note">no Linear link</span></td>
+          <td>Faster rent reminder processing (internal)</td>
+          <td class="original">Now reuses preloaded tenant data during rent reminder processing to reduce repeated database lookups.</td>
+          <td>Backend performance fix: rent reminder processing now reuses already-loaded tenant data instead of re-querying the database for each reminder, reducing load with no visible behavior change.</td>
+          <td><span class="unmatched">INTERNAL</span> <span class="note">— no Help Center change; pure backend performance optimization.</span></td>
+          <td><span class="video-matched">Rent &amp; Payment Notifications</span> <span class="note">(created Mar 18, 2026 — 103 days before this release) — not required, purely a backend efficiency change.</span></td>
+        </tr>
+        <tr>
+          <td>— <span class="note">no Linear link</span></td>
+          <td>Faster eligible pay-link tenant lookups (internal)</td>
+          <td class="original">Now returns eligible pay-link tenants faster by reducing repeated lookups and batching tenant checks.</td>
+          <td>Backend performance fix: batches tenant-eligibility checks for Pay Link instead of looking each one up individually, returning results faster with no visible behavior change.</td>
+          <td><span class="unmatched">INTERNAL</span> <span class="note">— no Help Center change; pure backend performance optimization.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p><strong>What's New: Pay or Quit email campaigns now come with trackable short links — Version 9.3.30</strong><br>
+  <em>Rationale:</em> TEN-774 adds first-class support for Pay-or-Quit (POQ) email campaigns and a dedicated short code for consistent link tracking. No existing article covers POQ email campaigns or workflow link tracking, and this is a distinct enough capability to warrant its own "What's New" post rather than folding into a generic workflows article.<br>
+  <em>Suggested keywords:</em> pay or quit, POQ, email campaign, short link, workflow tracking, eviction notice email</p>
+
+  <p><strong>What's New: Message tenants and prospects right from the Unit drawer — Version 9.3.30</strong><br>
+  <em>Rationale:</em> L2L-1132 adds a new Communication tab inside the Unit drawer, embedding the shared Communications module scoped to a specific unit. No existing article documents unit-scoped messaging, and it's a visible new tab PMs will notice immediately.<br>
+  <em>Suggested keywords:</em> unit drawer, communication tab, unit messages, prospect communication, AI help me write</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Duration</th><th>Features it relates to</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><a href="https://doorloop.wistia.com/medias/amlzzxud11">Recording Owner Distributions</a></td><td>Mar 23, 2026</td><td>4:48</td><td>PMO-1614 (Owners list redesign)</td><td>Yes — 98 days older than this release; show the new list UI first.</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/i5szoii0n0">Creating a Task</a></td><td>Mar 23, 2026</td><td>2:37</td><td>PMO-2229 (Task date-range filters)</td><td>Yes — 98 days older; mention the new Filters popover options.</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/3i8ub7vvpz">Creating Leases</a></td><td>Mar 18, 2026</td><td>4:28</td><td>Accounting (activation-day credit / net-due auto-charge)</td><td>Yes — 103 days older; add the new signing-time charge behavior.</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/hkxwwfp62a">Tenant Portal Overview</a></td><td>Mar 23, 2026</td><td>3:19</td><td>TEN-72 (Western Union cash payment slip)</td><td>Yes — 98 days older; show the new slip view.</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/bzdlte97ff">Setting Up Incoming Payments</a></td><td>Mar 23, 2026</td><td>6:47</td><td>TEN-72, TEN-799 (cash payment slip, Pending Review holds)</td><td>Review — consider a note on slip visibility and the Pending Review hold state.</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/c3pk1wpm3m">Workflows</a></td><td>Mar 23, 2026</td><td>4:11</td><td>TEN-774 (Pay or Quit email campaigns)</td><td>Yes — 98 days older; add a segment on POQ campaigns and short links.</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/9inwe6t7wj">Sending Out Tenant Portal Invites</a></td><td>Mar 22, 2026</td><td>2:17</td><td>TEN-525 (unified tenant invitation email)</td><td>Yes — 99 days older; re-record with the new invite template.</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td><td>Mar 22, 2026</td><td>6:28</td><td>L2L-1686 (copy-link button label fix)</td><td>Review — confirm the button label shown matches the corrected copy.</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/3xiq7gebjh">Communications Log</a></td><td>Mar 23, 2026</td><td>1:58</td><td>L2L-1132 (Unit drawer Communication tab)</td><td>Yes — 98 days older; mention the new unit-scoped Communication tab.</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/efrz0afqha">Rent &amp; Payment Notifications</a></td><td>Mar 18, 2026</td><td>3:21</td><td>Other (rent reminder processing performance)</td><td>No — internal performance change only, no visible behavior to update.</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Suggested new training videos:</strong></p>
+  <ul>
+    <li><strong>Showings on the Calendar</strong> — no existing video covers showings rendering on the Month/Week/Day/List calendar (L2L-1588); a short clip would help support and onboarding.</li>
+    <li><strong>Connecting Your Payout Bank Account</strong> — no existing video walks through resolving the "payout account not connected" reminder email flow (BAN-1272).</li>
+  </ul>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>WOR-1137</strong> — Renewal-trigger envelope publishing to an internal RabbitMQ queue; no user-facing surface.</li>
+    <li><strong>Workflows (no Linear link)</strong> — Skips a redundant search pass for non-phone searches; backend performance only.</li>
+    <li><strong>L2L-1420</strong> — New syndication feature flag + scaffolding, default off, explicitly zero runtime change (dark launch).</li>
+    <li><strong>BAN-1217</strong> — Broader Stripe failure-webhook monitoring; internal ops/risk alerting only.</li>
+    <li><strong>BAN-969</strong> — Low-volume processing alert for an internal balance job; ops-only signal.</li>
+    <li><strong>Banking (no Linear link)</strong> — VPN-protected soft-delete action for availability status records; internal admin tooling.</li>
+    <li><strong>Other (no Linear link) — rent reminders</strong> — Reuses preloaded tenant data during rent reminder processing; backend performance only.</li>
+    <li><strong>Other (no Linear link) — pay-link tenants</strong> — Batches tenant-eligibility checks for Pay Link; backend performance only.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
