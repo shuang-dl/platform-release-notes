@@ -228,5 +228,13 @@
     "filename": "reports/v9.3.31.html",
     "generatedAt": "2026-07-17T00:00:00Z",
     "summary": "This release ships 23 tracked changes across seven areas: PM Operations leads with a broad rollout of the shared list engine to Vendors, Notes, and Inspections lists plus new Task/Recurring Task drawer overview cards and SMS escalation follow-through; Accounting fixes a stuck reconciliation dialog and adds bill deep-links from search; Tenant Experience & Payments restores dependent filter chaining and lays the foundation for a unified tenant Settings page; Workflows and Leads & Leasing add showings-calendar filters, popups, and a new-showing CTA, plus Bills in global search; and Banking improves micro-deposit verification messaging and merchant-account status visibility. A handful of items (Salesforce RevOps alerting, Get Started V2 monitoring, application-fee analytics instrumentation, and a banking debug endpoint) are internal-only and have no customer-facing Help Center or training impact."
+  },
+  {
+    "date": "2026-07-02",
+    "version": "v9.4.1",
+    "title": "Release v9.4.1 — Help Center Impact",
+    "filename": "reports/v9.4.1.html",
+    "generatedAt": "2026-07-17T00:00:00Z",
+    "summary": "This release ships a single change under Workflows: a redesigned Communications Settings page (PMO-2052) that adds section-based editing, mobile navigation, and unsaved-changes protection. The update touches Help Center articles that walk through the Settings > Communications Center flow and overlaps with existing Communications Center training videos, which were recorded before this redesign."
   }
 ]
