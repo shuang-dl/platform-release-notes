@@ -220,5 +220,13 @@
     "filename": "reports/v9.3.30.html",
     "generatedAt": "2026-07-17T00:05:52Z",
     "summary": "This release ships 19 changes across PM Operations (Owners list redesign, Tasks/Recurring Tasks date-range filters), Accounting (activation-day credit + optional net-due auto-charge at lease signing), Tenant Experience & Payments (Western Union cash payment slips in the tenant portal, Pay-or-Quit email campaigns, a unified tenant invitation email, and Pending Review held payments), Workflows (renewal-trigger publishing, a search-performance fix, and showings on the calendar), Leads & Leasing (a rental-application link label fix, a new Unit drawer Communication tab, and MITS syndication flag scaffolding), and Banking (Stripe failure alerting, a payout-account reminder email, a low-volume alert, and an internal delete action), plus two backend performance improvements under Other."
+  },
+  {
+    "date": "2026-06-30",
+    "version": "v9.3.31",
+    "title": "Release v9.3.31 — Help Center Impact",
+    "filename": "reports/v9.3.31.html",
+    "generatedAt": "2026-07-17T00:00:00Z",
+    "summary": "This release ships 23 tracked changes across seven areas: PM Operations leads with a broad rollout of the shared list engine to Vendors, Notes, and Inspections lists plus new Task/Recurring Task drawer overview cards and SMS escalation follow-through; Accounting fixes a stuck reconciliation dialog and adds bill deep-links from search; Tenant Experience & Payments restores dependent filter chaining and lays the foundation for a unified tenant Settings page; Workflows and Leads & Leasing add showings-calendar filters, popups, and a new-showing CTA, plus Bills in global search; and Banking improves micro-deposit verification messaging and merchant-account status visibility. A handful of items (Salesforce RevOps alerting, Get Started V2 monitoring, application-fee analytics instrumentation, and a banking debug endpoint) are internal-only and have no customer-facing Help Center or training impact."
   }
 ]
