@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.8 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .internal { color: #555; font-style: italic; }
+    .miscite { background: #fff3e0; border: 1px solid #ffcc80; border-radius: 6px; padding: 0.6rem 0.8rem; font-size: 0.9em; margin: 0.5rem 0 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.8 — 2026-07-07</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1783428830515579">View original Slack post</a> · <code>1783428830.515579</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 10 changes across PM Operations (per-view preset columns, a combined range filter for currency/percentage custom fields), Tenant Experience &amp; Payments (a new list-engine Leases list, faster tenant-portal login, demo-portal insurance, and a payment-hold fix), and Leads &amp; Leasing (list-engine v2 migrations for embedded Rental Applications and Signature Requests tabs, plus a new draft-lease drawer). One Accounting-labeled item (L2L-1213) is dev-only feature-flag tooling with no customer-facing surface — and appears to be mis-filed under Accounting (see note below).</p>
+
+  <div class="miscite"><b>Mis-cite flag:</b> L2L-1213 ("Added dev-only browser extension overrides for backend feature flags…") is listed under the <b>Accounting</b> header in the Slack post, but its Linear ticket prefix (<code>L2L</code>) and team (Lead To Lease) have nothing to do with Accounting. The content itself — a Chrome-extension-driven backend feature-flag override for local/dev environments — is internal developer tooling regardless of which team header it sits under. Classified as INTERNAL below.</div>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (10)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="accounting">Accounting (1)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (4)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (3)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2308">PMO-2308</a></td>
+          <td>Per-view default columns for preset list tabs</td>
+          <td class="original">Added per-view default columns so preset list tabs now open with the right columns and order.</td>
+          <td>When switching between preset tabs (e.g. All / Missed / Voicemail on the Phone Calls list), each tab can now show its own default set of columns in the right order — e.g. hiding "Answered By" and "Duration" on Missed/Abandoned since those don't apply — and restores the full column set on tabs that don't define an override.</td>
+          <td><span class="unmatched">UNMATCHED</span> — suggested new article (see below)</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2354">PMO-2354</a></td>
+          <td>Single range filter for currency &amp; percentage custom fields</td>
+          <td class="original">Added a single range filter for currency and percentage custom fields, making budget and percentage filters easier to use.</td>
+          <td>Custom fields of type currency or percentage now get one combined from/to range filter in the filter popover instead of two separate filters, making it faster to filter a list by a budget or percentage range.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/11418769-set-up-custom-fields">Set Up Custom Fields</a><br><span class="note">Likely update needed: mention the new combined from/to range filter for currency and percentage custom fields.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/11464799-manage-your-custom-fields">Manage Your Custom Fields</a><br><span class="note">Likely update needed: same — add a screenshot of the range filter in the filter popover.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Filtering &amp; Grouping in Reports</span> (created Mar 23, 2026 — 106 days before this release)<br><span class="note">Likely needs updating: mention the new combined range filter for currency/percentage fields if this video covers filter types.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="accounting">
+    <h2>Accounting <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1213">L2L-1213</a></td>
+          <td>Dev-only backend feature-flag overrides via browser extension</td>
+          <td class="original">Added dev-only browser extension overrides for backend feature flags in local and development environments.</td>
+          <td class="internal">Internal developer tooling — the DoorLoop feature-flag Chrome extension can now override server-side (backend) flag evaluations in local/dev environments via a request header, not just client-side flags. Registered only in LOCAL/DEVELOPMENT; never in staging or production.</td>
+          <td class="internal">no Help Center change — developer-only tooling, no customer-facing surface (see mis-cite note above; this is a Lead-to-Lease/L2L ticket, not an Accounting change)</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">4 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-819">TEN-819</a></td>
+          <td>New Leases list with saved views and mobile-friendly layout</td>
+          <td class="original">Added the new leases list with saved views, improved filters, row actions, and mobile-friendly layout.</td>
+          <td>The Leases list has been rebuilt on the shared list engine (v2): saved views, better filters, a row drawer for inline lease detail, plus existing bulk actions and export are preserved — and it now works responsively on mobile. Rolling out behind a feature flag.</td>
+          <td><span class="unmatched">UNMATCHED</span> — suggested new article (see below); existing Help Center articles cover individual lease actions but not the list screen itself</td>
+          <td><span class="video-matched">Creating Leases</span> (created Mar 18, 2026 — 111 days before this release)<br><span class="note">Likely needs re-recording to show the new list layout, saved views, filters, and row drawer.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-623">TEN-623</a></td>
+          <td>Faster tenant portal login (single-lease hydration)</td>
+          <td class="original">Now supports faster tenant portal login by loading only the requested lease while preserving the lease switcher.</td>
+          <td class="internal"><code>/auth/me</code> now hydrates only the lease the tenant portal actually needs instead of every lease the tenant has, cutting page-load DB calls — while still returning the full lease list so the "Change Lease" switcher keeps working exactly as before.</td>
+          <td class="internal">no Help Center change — backend performance optimization only; no visible UI or workflow change (switcher behavior explicitly preserved)</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-869">TEN-869</a></td>
+          <td>Insurance in the Demo Tenant Portal</td>
+          <td class="original">Added demo insurance support so users can view, create, edit, delete, and upload proof files with instant updates.</td>
+          <td>In the sandbox Demo Tenant Portal (used by PMs to explore DoorLoop before adopting it), the Insurance page is now fully interactive: it renders from fixture data and lets a PM click through purchase/upload/edit/delete flows, with the in-memory demo store updating instantly. No real data or network calls; mutations reset on reload.</td>
+          <td><span class="unmatched">UNMATCHED</span> — this is a sales/demo-sandbox feature, not the live tenant portal. Existing articles like "How to Get Renters Insurance on the Tenant Portal" describe the real feature and don't need changes; there's no article describing the Demo Tenant Portal itself.</td>
+          <td><span class="no-video">— no related video</span> (closest match, "Tenant Portal Overview", covers the live portal — not the demo sandbox)</td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-934">TEN-934</a></td>
+          <td>Fix: over-limit tenant payments now held for review instead of blocked</td>
+          <td class="original">Now supports over-limit tenant portal card and eCheck payments when payment review is enabled, so they can proceed to review.</td>
+          <td class="internal">Bug fix — with the Payment Hold &amp; Risk Review flag on, a tenant payment that exceeds merchant limits was being rejected outright instead of entering the intended "pending review" hold state. Now it correctly proceeds to a held/pending state and surfaces as a Payment-await incident in DoorWatch, matching the feature's original design.</td>
+          <td class="internal">no Help Center change — restores already-documented intended behavior of the Payment Hold &amp; Risk Review flow; no new customer-facing behavior to document</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1868">L2L-1868</a></td>
+          <td>Rental Applications tab (on detail pages) upgraded to new list experience</td>
+          <td class="original">Added the embedded Rental Applications tab to the newer list experience, with scoped filters and consistent actions across detail pages.</td>
+          <td class="internal">The Rental Applications tab embedded on Prospect, Tenant, Unit, and Property detail pages now uses the same list-engine v2 experience as the standalone Applications screen, correctly scoped to that record — while keeping the tab's extra actions (Add application, Copy link, Print QR code).</td>
+          <td class="internal">no Help Center change — internal migration to the list-engine v2 component; behavior and actions are explicitly preserved, gated behind the existing feature flag</td>
+          <td><span class="video-matched">Rental Applications</span> (created Mar 22, 2026 — 107 days before this release)<br><span class="note">Low priority: internal refactor with no intended visual/behavior change, but worth a quick check if the tab's look has shifted.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1869">L2L-1869</a></td>
+          <td>Signature Requests tab (on detail pages) upgraded to new list experience</td>
+          <td class="original">Added the embedded Signature Requests tab to the new list experience for faster, scope-correct results.</td>
+          <td class="internal">Same list-engine v2 migration as L2L-1868, applied to the Signature Requests tab embedded on Lease, Draft Lease, Unit, and Property detail pages.</td>
+          <td class="internal">no Help Center change — internal migration; behavior explicitly preserved, gated behind the existing feature flag</td>
+          <td><span class="video-matched">Sending eSignature Requests</span> (created Mar 23, 2026 — 106 days before this release)<br><span class="note">Low priority: internal refactor with no intended visual/behavior change, but worth a quick check if the tab's look has shifted.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1861">L2L-1861</a></td>
+          <td>Draft lease drawer (Overview / Communication / Signature Requests)</td>
+          <td class="original">Added a draft lease drawer with Overview, Communication, and Signature Requests tabs for quicker lease review.</td>
+          <td>Draft leases now open in a side drawer (instead of a full page) with three tabs — Overview, Communication, and Signature Requests — mirroring the pattern used for other entity drawers, so PMs can review a draft lease without leaving the list.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/10446520-create-a-draft-lease">Create a Draft Lease</a><br><span class="note">Likely update needed: add the new drawer view alongside the existing full-page steps.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/6326017-edit-or-activate-a-draft-lease">Edit or Activate a Draft Lease</a><br><span class="note">Likely update needed: show the Overview/Communication/Signature Requests drawer tabs.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/13943269-draft-lease-vs-active-lease">Draft Lease vs. Active Lease</a><br><span class="note">Likely update needed: mention the new drawer as the way draft leases are now reviewed.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Creating Leases</span> (created Mar 18, 2026 — 111 days before this release)<br><span class="note">Likely needs a segment update to show the new draft lease drawer.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p><b>PMO-2308</b> — Proposed title: <i>What's New: Preset list tabs now open with the right columns automatically — Version 9.4.8</i>. Rationale: no existing article covers per-tab column defaults; PMs switching between preset views (e.g. Phone Calls' Missed/Voicemail tabs) will notice columns changing and may want to know why. Suggested keywords: preset view, column visibility, list tabs, default columns.</p>
+  <p><b>TEN-819</b> — Proposed title: <i>What's New: The redesigned Leases list — saved views, faster filters, and mobile support — Version 9.4.8</i>. Rationale: the Leases list is a core, high-traffic screen with a substantial UI change (saved views, row drawer, mobile layout); no current article documents the list screen itself, only individual lease actions. Suggested keywords: leases list, saved views, lease filters, mobile, row drawer.</p>
+  <p><b>TEN-869</b> — Proposed title: <i>What's New: Explore Insurance in the Demo Tenant Portal — Version 9.4.8</i>. Rationale: the Demo Tenant Portal is a sales/exploration sandbox with no dedicated Help Center coverage; as more domains (like Insurance) become interactive in demo mode, a short overview article would help PMs and prospects understand it's a sandbox (no real data, resets on reload). Suggested keywords: demo tenant portal, sandbox, insurance, explore.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Features it relates to</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/3i8ub7vvpz">Creating Leases</a></td>
+        <td>Mar 18, 2026</td>
+        <td>—</td>
+        <td>TEN-819 (new Leases list), L2L-1861 (draft lease drawer)</td>
+        <td>Yes — older than this release (111 days); the list layout and draft lease review flow it shows have both changed</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/ikt1yw6muk">Filtering &amp; Grouping in Reports</a></td>
+        <td>Mar 23, 2026</td>
+        <td>—</td>
+        <td>PMO-2354 (currency/percentage range filter)</td>
+        <td>Review — older than this release (106 days); check if it covers custom field filter types</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td>
+        <td>Mar 22, 2026</td>
+        <td>—</td>
+        <td>L2L-1868 (embedded Rental Applications tab migration)</td>
+        <td>Review — internal migration, likely no visual change, but confirm</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/2hr70has8m">Sending eSignature Requests</a></td>
+        <td>Mar 23, 2026</td>
+        <td>—</td>
+        <td>L2L-1869 (embedded Signature Requests tab migration)</td>
+        <td>Review — internal migration, likely no visual change, but confirm</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Suggested new training videos: none beyond the existing punch list above — PMO-2308, TEN-623, TEN-869, TEN-934, and L2L-1213 have no related video and are either too narrow (single filter tweak, internal fix) or sandbox-only (TEN-869) to warrant a dedicated new video at this time.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><b>L2L-1213</b> — Dev-only backend feature-flag override tooling for local/dev environments; no customer-facing surface. Also flagged above as a likely mis-cite under the "Accounting" header.</li>
+    <li><b>TEN-623</b> — Backend performance fix for tenant portal login; explicitly preserves existing UI/behavior (lease switcher unchanged).</li>
+    <li><b>TEN-934</b> — Bug fix restoring the already-documented intended behavior of the Payment Hold &amp; Risk Review flow.</li>
+    <li><b>L2L-1868</b> — Internal list-engine v2 migration of the embedded Rental Applications tab; behavior preserved.</li>
+    <li><b>L2L-1869</b> — Internal list-engine v2 migration of the embedded Signature Requests tab; behavior preserved.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
