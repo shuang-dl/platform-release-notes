@@ -252,5 +252,13 @@
     "filename": "reports/v9.4.5.html",
     "generatedAt": "2026-07-20T00:00:00Z",
     "summary": "This release ships a single PM Operations change: entity list filters (Properties, Units, Leases, Owners, and related lists) move to the new list-engine searchable single-select and multi-select filter inputs, and dependent dropdown scoping between related filters is restored."
+  },
+  {
+    "date": "2026-07-07",
+    "version": "v9.4.8",
+    "title": "Release v9.4.8 — Help Center Impact",
+    "filename": "reports/v9.4.8.html",
+    "generatedAt": "2026-07-20T00:00:00Z",
+    "summary": "This release ships 10 changes across PM Operations (per-view preset columns, a combined range filter for currency/percentage custom fields), Tenant Experience & Payments (a new list-engine Leases list, faster tenant-portal login, demo-portal insurance, and a payment-hold fix), and Leads & Leasing (list-engine v2 migrations for embedded Rental Applications and Signature Requests tabs, plus a new draft-lease drawer). One Accounting-labeled item (L2L-1213) is dev-only feature-flag tooling with no customer-facing surface, and appears to be mis-filed under Accounting."
   }
 ]
