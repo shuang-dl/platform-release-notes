@@ -283,5 +283,13 @@
     "filename": "reports/v9.4.16.html",
     "generatedAt": "2026-07-21T00:00:00Z",
     "summary": "This release ships 4 changes across PM Operations (smarter task drawer quick actions with an always-visible Action Needed card), Accounting (an internal feature-flag evaluation telemetry hook — no customer-facing change), and Leads & Leasing (a new Fee collection column on rental application lists/settings plus a fix to fee-toggle reset behavior)."
+  },
+  {
+    "date": "2026-07-12",
+    "version": "v9.4.18",
+    "title": "Release v9.4.18 — Help Center Impact",
+    "filename": "reports/v9.4.18.html",
+    "generatedAt": "2026-07-21T00:00:00Z",
+    "summary": "This is a small, two-feature release. In Tenant Experience & Payments, TEN-988 ships the final approved UI for the tenant-portal insurance-required dialog (desktop & mobile) — a visual/copy refinement on top of the wiring TEN-943 shipped in v9.4.15. In Leads & Leasing, L2L-1881 adds a 3-tab quick-view drawer (Overview, Communication, Reports) for rental applications, letting PMs review an application without leaving the list view."
   }
 ]
