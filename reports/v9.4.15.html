@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.15 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.15 — 2026-07-09</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1783601750420149">View original Slack post</a> · <code>1783601750.420149</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships three Tenant Experience &amp; Payments changes — a new tenant-portal insurance-required dialog, PM-facing "Request policy" alerts on lease overview pages, and a backend fix scoping the payment-hold auto-decline sweep to eligible companies — plus one Banking fix so consent-check calls no longer 401 prospects out of the public rental-application wizard.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (4)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (3)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+  </div>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-943">TEN-943</a></td>
+          <td>Insurance-required dialog in the tenant portal</td>
+          <td class="original">Added an insurance-required dialog in the tenant portal with localized copy, provider promo, and policy actions.</td>
+          <td>A new mobile-first dialog in the tenant portal tells tenants their PM requires renters insurance, shows a recommended provider card (Lemonade or Sure, routed by state) with a "Check prices" CTA, and offers "I already have insurance" or "Remind me later" exits. Localized (i18n) copy included.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6973871-how-to-get-renters-insurance-on-the-tenant-portal">How to Get Renters Insurance on the Tenant Portal</a> — <span class="note">Likely update needed: add the new insurance-required dialog (provider card, "Check prices" CTA, "Remind me later") to the walkthrough screenshots.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/8926877-introduction-to-lemonade-and-renters-insurance">Introduction to Lemonade and Renters Insurance</a> — <span class="note">Likely update needed: note that Lemonade/Sure now surface directly inside the new required-insurance dialog, not just the standalone flow.</span></li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">Tenant Portal Overview</span> <span class="note">(created Mar 23, 2026 — 108 days before this release; likely needs a segment update showing the new insurance-required dialog)</span>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-939">TEN-939</a></td>
+          <td>PM "Request policy" action with throttle + tracking</td>
+          <td class="original">Added lease-level insurance requirement alerts, policy details, and request-email actions on lease overview pages.</td>
+          <td>PMs can now click "Request policy" on a non-compliant tenant to send a request email (throttled, proposed at 1x/7 days) and see a "Last request sent" timestamp on lease/tenant overview pages. Expired policies count as non-compliant, and the action is gated behind the insurance-requirement feature flag.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6345333-view-and-edit-tenant-insurance-policy-information">View and Edit Tenant Insurance Policy Information</a> — <span class="note">Likely update needed: document the new "Request policy" button, its throttle behavior, and the "Last request sent" indicator.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/6304675-edit-the-requirement-for-renters-insurance-on-an-active-lease">Edit the Requirement for Renters Insurance on an Active Lease</a> — <span class="note">Likely update needed: cross-link the new lease-overview alert for non-compliant tenants.</span></li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-966">TEN-966</a></td>
+          <td>Payment-hold auto-decline sweep scoped to eligible companies</td>
+          <td class="original">Fixed payment-hold auto-decline to run only for eligible companies and exit cleanly when none are enrolled.</td>
+          <td>Backend fix: the hourly payment-hold auto-decline job was running an unindexed cross-tenant scan of a 52.5M-row collection every run. The discovery query is now scoped to companies actually enrolled in payment-hold review and short-circuits entirely when none are enrolled — a database/performance fix with no visible UI change.</td>
+          <td><span>⚫ INTERNAL</span> — <span class="note">backend performance fix only; no user-facing behavior or UI changed, no Help Center update needed.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-1409">BAN-1409</a></td>
+          <td>Rental-application wizard no longer breaks on consent check</td>
+          <td class="original">Fixed consent prompts so they only appear for authenticated property managers and no longer break applicant rental applications.</td>
+          <td>A PM-only banking "get-consent" check was accidentally firing inside the public rental-application wizard, returning a 401 that threw applicants out with a "Something went wrong" error. The check is now gated to PM identities only, so prospects can complete their rental application without interruption.</td>
+          <td><span>⚫ INTERNAL</span> — <span class="note">bug fix restoring existing rental-application flow; no new feature or setting to document.</span></td>
+          <td>
+            <span class="video-matched">Rental Applications</span> <span class="note">(created Mar 22, 2026 — 109 days before this release; not directly affected, since this was a bug fix rather than a workflow change — review only if the error was ever shown mid-recording)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>None — both customer-visible features (TEN-943, TEN-939) fold into existing Renters Insurance / Tenant Portal articles rather than warranting standalone new articles. See "Affected articles" above for the specific update notes.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Features it relates to</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/hkxwwfp62a">Tenant Portal Overview</a></td>
+        <td>Mar 23, 2026</td>
+        <td>3:19</td>
+        <td>TEN-943 (insurance-required dialog)</td>
+        <td>Yes — older than this release (108 days); consider re-recording the insurance section to show the new dialog.</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td>
+        <td>Mar 22, 2026</td>
+        <td>6:28</td>
+        <td>BAN-1409 (rental-application consent fix)</td>
+        <td>Review — bug fix, not a visible workflow change; no re-recording expected.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Suggested new training videos:</strong> none — TEN-939's "Request policy" action is a small enough addition to fold into a future refresh of the tenant-insurance content rather than warranting a new standalone video.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>TEN-966</strong> — backend database/performance fix (scoped auto-decline sweep query); no user-facing change.</li>
+    <li><strong>BAN-1409</strong> — bug fix restoring existing rental-application flow; no new feature or setting to document.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
