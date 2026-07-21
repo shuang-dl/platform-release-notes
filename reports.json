@@ -299,5 +299,13 @@
     "filename": "reports/v9.4.20.html",
     "generatedAt": "2026-07-21T00:00:00Z",
     "summary": "Release v9.4.20 ships a maintenance-dashboard insights foundation and property-scoped voice-call permissions in PM Operations; a new Payment Methods settings tab, a Tenants tab in property/unit/lease detail views, insurance reminder and cleanup UI, and lease-list polish in Tenant Experience & Payments; a wave of lease Collection/Lease-Status filters and columns plus the first pieces of the applicant Sign + Pay wizard and a late-fees default in Leads & Leasing; and a daily Banking Slack alert for treasury accounts missing a payment method."
+  },
+  {
+    "date": "2026-07-14",
+    "version": "v9.4.22",
+    "title": "Release v9.4.22 — Help Center Impact",
+    "filename": "reports/v9.4.22.html",
+    "generatedAt": "2026-07-21T00:00:00Z",
+    "summary": "This release ships 18 changes across PM Operations (new renewal dashboard insights, task Created-by column, and a task-drawer Communications tab), Tenant Experience & Payments (insurance-dialog snoozing, a new Payment Collection widget, and an overhauled tenants list), Workflows (a generic agent SMS tool and Deposits global search), and Leads & Leasing (Prospect Overview Pipeline/Action-needed/Showings cards and several Unit Drawer polish fixes). Five items are internal-only engineering/design cleanups with no customer-visible surface, and one item (the revamped tenants list) has no clearly matching Help Center article today."
   }
 ]
