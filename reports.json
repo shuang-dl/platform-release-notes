@@ -307,5 +307,13 @@
     "filename": "reports/v9.4.22.html",
     "generatedAt": "2026-07-21T00:00:00Z",
     "summary": "This release ships 18 changes across PM Operations (new renewal dashboard insights, task Created-by column, and a task-drawer Communications tab), Tenant Experience & Payments (insurance-dialog snoozing, a new Payment Collection widget, and an overhauled tenants list), Workflows (a generic agent SMS tool and Deposits global search), and Leads & Leasing (Prospect Overview Pipeline/Action-needed/Showings cards and several Unit Drawer polish fixes). Five items are internal-only engineering/design cleanups with no customer-visible surface, and one item (the revamped tenants list) has no clearly matching Help Center article today."
+  },
+  {
+    "date": "2026-07-15",
+    "version": "v9.4.26",
+    "title": "Release v9.4.26 — Help Center Impact",
+    "filename": "reports/v9.4.26.html",
+    "generatedAt": "2026-07-21T19:59:04Z",
+    "summary": "This release ships 3 changes across Workflows (Tenant Payments now searchable via Global Search with a deep link to the Charges & Payments report), Leads & Leasing (automatic daily reminder emails to re-engage applicants whose income verification has stalled or failed), and Banking (a feature-flag grandfathering change that keeps existing Stripe Treasury accounts on the embedded onboarding/management flow after the flags are turned off for new accounts). Two of the three items likely need Help Center updates; the banking change is an internal flag-rollout with no new user-facing workflow."
   }
 ]
