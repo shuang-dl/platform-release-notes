@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.16 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .internal { color: #555; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.16 — 2026-07-09</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1783772725162639">View original Slack post</a> · <code>1783772725.162639</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 4 changes across PM Operations (smarter task drawer quick actions with an always-visible Action Needed card), Accounting (an internal feature-flag evaluation telemetry hook — no customer-facing change), and Leads &amp; Leasing (a new Fee collection column on rental application lists/settings plus a fix to fee-toggle reset behavior).</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (4)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (1)</span>
+    <span class="chip" data-area="accounting">Accounting (1)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (2)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2375">PMO-2375</a></td>
+          <td>Smarter Task Drawer Quick Actions</td>
+          <td class="original">Added quicker task drawer actions, clearer header details, richer insights, and an Additional details section.</td>
+          <td>The Action Needed card in the task drawer's Overview tab now always shows three quick actions — Post Update, Complete/Reopen, and New Work Order — instead of hiding when no conditional action applies. Continue Inspection and Share with all tenants still appear only when their conditions are met, and the same permission gates from the full task page apply.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6098083-update-a-task">Update a Task</a> — <span class="note">Likely update needed: mention that Post Update, Complete/Reopen, and New Work Order are now always visible in the task drawer's Action Needed card, not just when a conditional action applies.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/9701687-edit-a-task">Edit a Task</a> — <span class="note">Likely update needed: refresh the Quick Actions screenshot/description to match the drawer's new always-on action set.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/8500024-edit-or-delete-a-task-hoa">Edit or Delete a Task [HOA]</a> — <span class="note">Likely update needed: same Quick Actions behavior change applies to the HOA task drawer variant.</span></li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">Creating a Task</span> <span class="note">(created Mar 23, 2026 — 108 days before this release; likely needs re-recording to show the new always-visible Action Needed card actions)</span><br>
+            <span class="video-matched">Managing Work Orders</span> <span class="note">(created Mar 23, 2026 — 108 days before this release; touch the New Work Order quick-action step)</span><br>
+            <span class="video-matched">Managing Tenant Requests</span> <span class="note">(created Mar 23, 2026 — 108 days before this release; touch the Share with all tenants conditional action)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="accounting">
+    <h2>Accounting <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-960">TEN-960</a></td>
+          <td>Feature-Flag Evaluation Telemetry (Internal)</td>
+          <td class="original">Added telemetry for feature-flag evaluations to help spot slow, errored, or defaulted checks without changing results.</td>
+          <td>Adds a backend OpenFeature observability hook that records per-evaluation timing, reason, error code, and event-loop utilization to a New Relic custom event/dashboard, so engineers can separate real flag-eval cost from event-loop queue-wait and catch flags silently falling to default. Purely observational — no change to what any flag evaluates to or how the app behaves for users.</td>
+          <td><span class="internal">INTERNAL</span> — backend telemetry/observability hook only; no user-facing behavior or UI change, so no Help Center update is needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1753">L2L-1753</a></td>
+          <td>Fee Collection Column for Rental Applications</td>
+          <td class="original">Added a Fee collection column to rental application lists and settings, showing deposit and fee totals when enabled.</td>
+          <td>Adds a "Fee collection" column to the Rental Application list and Settings screens that totals everything a landlord will collect: the sum of all configured fee line items, plus the fee-revenue portion of any Customizable Plan charge, plus the sum of every deposit type configured (with no double-counting when multiple deposits exist).</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/8854468-edit-rental-application-settings">Edit Rental Application Settings</a> — <span class="note">Likely update needed: document the new Fee collection column and how its total is calculated (fees + Customizable Plan fee portion + deposits).</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/6263838-charge-a-fee-for-rental-applications">Charge a Fee for Rental Applications</a> — <span class="note">Likely update needed: note that configured fees now roll up into the visible Fee collection total on the applications list.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/6255188-company-default-rental-application-settings">Company Default Rental Application Settings</a> — <span class="note">Likely update needed: mention the Fee collection column appears when fee/deposit settings are enabled at the company-default level.</span></li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">Rental Applications</span> <span class="note">(created Mar 22, 2026 — 109 days before this release; likely needs re-recording to show the new Fee collection column)</span><br>
+            <span class="video-matched">Fees Settings Overview</span> <span class="note">(created Mar 18, 2026 — 113 days before this release; touch the fee/deposit settings walkthrough)</span>
+          </td>
+        </tr>
+        <tr>
+          <td>—</td>
+          <td>Fee Toggle Reset Fix</td>
+          <td class="original">Fixed fee toggle behavior so turning it off clears saved rows and turning it back on restores one default row.</td>
+          <td>Fixes a bug in rental application fee settings: turning the fee toggle off now clears all previously saved fee rows, and turning it back on restores exactly one default row instead of leaving stale or duplicate rows behind.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/8404519-turn-off-rental-application-fees">Turn Off Rental Application Fees</a> — <span class="note">Likely update needed: clarify that re-enabling the fee toggle now restores exactly one default fee row rather than whatever was previously saved.</span></li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">Fees Settings Overview</span> <span class="note">(created Mar 18, 2026 — 113 days before this release; touch the toggle on/off behavior shown in the walkthrough)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>None — all customer-visible features this release matched existing Help Center articles (see Affected articles above). No standalone new article is recommended.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Features it relates to</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/i5szoii0n0">Creating a Task</a></td>
+        <td>Mar 23, 2026</td>
+        <td>2:37</td>
+        <td>PMO-2375 (Smarter Task Drawer Quick Actions)</td>
+        <td>Yes — older than this release</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/tn4ch9b3tf">Managing Work Orders</a></td>
+        <td>Mar 23, 2026</td>
+        <td>4:08</td>
+        <td>PMO-2375 (Smarter Task Drawer Quick Actions)</td>
+        <td>Review</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/61dr2gbk7w">Managing Tenant Requests</a></td>
+        <td>Mar 23, 2026</td>
+        <td>3:05</td>
+        <td>PMO-2375 (Smarter Task Drawer Quick Actions)</td>
+        <td>Review</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td>
+        <td>Mar 22, 2026</td>
+        <td>6:28</td>
+        <td>L2L-1753 (Fee Collection Column for Rental Applications)</td>
+        <td>Yes — older than this release</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/osq4pkssqe">Fees Settings Overview</a></td>
+        <td>Mar 18, 2026</td>
+        <td>3:12</td>
+        <td>L2L-1753 (Fee Collection Column); Fee Toggle Reset Fix</td>
+        <td>Yes — older than this release</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>TEN-960</strong> — Backend OpenFeature telemetry hook + New Relic dashboard for flag-evaluation observability. No behavior change, no UI surface — nothing for the Help Center to document.</li>
+  </ul>
+
+  <h2>Unreachable Linear tickets</h2>
+  <p>None — all linked Linear tickets (PMO-2375, TEN-960, L2L-1753) were successfully retrieved.</p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
