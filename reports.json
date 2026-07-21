@@ -275,5 +275,13 @@
     "title": "Release v9.4.15 \u2014 Help Center Impact",
     "filename": "reports/v9.4.15.html",
     "generatedAt": "2026-07-21T12:55:18Z"
+  },
+  {
+    "date": "2026-07-09",
+    "version": "v9.4.16",
+    "title": "Release v9.4.16 — Help Center Impact",
+    "filename": "reports/v9.4.16.html",
+    "generatedAt": "2026-07-21T00:00:00Z",
+    "summary": "This release ships 4 changes across PM Operations (smarter task drawer quick actions with an always-visible Action Needed card), Accounting (an internal feature-flag evaluation telemetry hook — no customer-facing change), and Leads & Leasing (a new Fee collection column on rental application lists/settings plus a fix to fee-toggle reset behavior)."
   }
 ]
