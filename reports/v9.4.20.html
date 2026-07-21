@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.20 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .beta { color: #7a3fb3; font-weight: 600; }
+    .broad { color: #b3231e; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.20 — 2026-07-13</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1783947176916589">View original Slack post</a> · <code>1783947176.916589</code></p>
+
+  <h2>Summary</h2>
+  <p>Release v9.4.20 ships a maintenance-dashboard insights foundation and property-scoped voice-call permissions in PM Operations; a new Payment Methods settings tab, a Tenants tab in property/unit/lease detail views, insurance reminder and cleanup UI, and lease-list polish in Tenant Experience &amp; Payments; a wave of lease Collection/Lease-Status filters and columns plus the first pieces of the applicant Sign + Pay wizard and a late-fees default in Leads &amp; Leasing; and a daily Banking Slack alert for treasury accounts missing a payment method.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (16)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (6)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (7)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2395">PMO-2395</a></td>
+          <td>Maintenance dashboard gets real task-insight stats</td>
+          <td class="original">Added maintenance dashboard task insights with real totals, trends, aging, and hotspot stats.</td>
+          <td>New shared backend aggregation service computes open/complete counts, created-vs-completed trend, overdue &amp; aging buckets, property/vendor hotspots, unassigned, stale, and average resolution time — all DbTenant-scoped — so the maintenance dashboard's insight widgets show real numbers instead of placeholders.</td>
+          <td><span class="unmatched">UNMATCHED</span> — suggested new article (see below)</td>
+          <td><span class="video-matched">"Navigating Dashboard"</span> (created Mar 17, 2026 — 118 days before this release) likely needs a follow-up covering the new maintenance insight widgets; <span class="video-matched">"Creating a Task"</span> could reference the new aging/hotspot stats.</td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2404">PMO-2404</a></td>
+          <td>Voice calls now respect property permissions</td>
+          <td class="original">Added property-based permissions to voice call lists, details, and recordings so users only see allowed calls.</td>
+          <td>The voice calls list, call detail, and recordings/transcripts were previously scoped only by company (DbTenant), so any user who could open the Calls screen saw every call in the company. This ships server-side property/portfolio permission filtering so users only see calls tied to properties they're allowed to access.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="https://support.doorloop.com/">DoorLoop Voice — Beta FAQ</a> — Likely update needed: note that call visibility now follows each user's property/portfolio permissions, same as leases and tenants.</li>
+              <li><a href="https://support.doorloop.com/">Communication Center: Frequently Asked Questions</a> — Likely update needed: mention the new permission scoping for calls specifically.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">"Set User Roles &amp; Permissions"</span> (created Mar 18, 2026 — 117 days before this release) likely needs an added note that role/property permissions now also govern voice call visibility.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">6 items</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-836">TEN-836</a></td>
+          <td>Payment Methods tab lands in unified tenant portal Settings</td>
+          <td class="original">Added a Payment Methods tab in Settings to view, add, rename, and delete cards and bank accounts.</td>
+          <td>Moves the existing tenant-portal Payment Methods experience (add / rename / delete / set default) into a tab inside the new unified Settings page, becoming the canonical entry point once the unified-settings flag is on; the old standalone page is removed at that point.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="https://support.doorloop.com/">Accepted Payment Methods on the Tenant Portal</a> — Likely update needed: note the new location under Settings → Payment Methods.</li>
+              <li><a href="https://support.doorloop.com/">How to Remove Your Old Card and Set Up Auto-Pay with a New One on the Tenant Portal</a> — Likely update needed: update screenshots showing the standalone page to the new Settings tab.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">"Tenant Portal Settings"</span> (created Mar 18, 2026 — 117 days before this release) likely needs a new section demoing the Payment Methods tab.</td>
+        </tr>
+        <tr>
+          <td>— (no Linear link; slack bullet only)</td>
+          <td>Tenants tab arrives on property, unit, and lease pages</td>
+          <td class="original">Now supports the Tenants tab in property, unit, and lease details with the new list experience and scoped filtering.</td>
+          <td>Property, unit, and lease detail pages now include a Tenants tab built on the new list-engine experience, scoped and filterable to just the tenants relevant to that record.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="https://support.doorloop.com/">Tenants Not Showing on the Lease Tenants Tab</a> — Likely update needed: confirm the troubleshooting steps still match the new list-engine tab.</li>
+              <li><a href="https://support.doorloop.com/">Find, Sort, and Filter Your Tenants</a> — Likely update needed: add screenshots of the new Tenants tab on property/unit pages.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">"Tenant Portal Overview"</span> (created Mar 23, 2026 — 112 days before this release) is only loosely related; consider a dedicated clip for the new Tenants tab.</td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-944">TEN-944</a></td>
+          <td>Tenant portal now reminds tenants to add renters insurance</td>
+          <td class="original">Added an insurance reminder dialog in the tenant portal with snooze and dismiss options.</td>
+          <td>Wires the insurance-required dialog (built in TEN-943) to actually show: on the email deep-link, on next login while non-compliant, and re-prompts after a 10-day snooze up to 3 times — then stays quiet unless another tenant on the lease adds a policy, which suppresses it for everyone on that lease.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="https://support.doorloop.com/">How to Get Renters Insurance on the Tenant Portal</a> — Likely update needed: describe when/how the reminder dialog now appears and the snooze behavior.</li>
+              <li><a href="https://support.doorloop.com/">Introduction to Lemonade and Renters Insurance</a> — Likely update needed: cross-link the new reminder flow.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-993">TEN-993</a></td>
+          <td>PM lease overview drops the renters-insurance card</td>
+          <td class="original">Removed the renters insurance card from lease overview and simplified the request modal to a plain confirmation.</td>
+          <td>Removes the "Renter's insurance required" banner and "Renter's insurance" card that were unintentionally showing on the PM-side lease Overview tab (both gated by the same flag as the new tenant-portal dialog in TEN-944), and simplifies the insurance request modal to a plain confirmation. Part of the same insurance-requirement epic as TEN-943 (v9.4.15) and TEN-988 (v9.4.18) — this is the PM-side cleanup companion to TEN-944's tenant-portal reminder.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="https://support.doorloop.com/">View and Edit Tenant Insurance Policy Information</a> — Likely update needed: remove any screenshots of the old PM lease-overview insurance card/banner.</li>
+              <li><a href="https://support.doorloop.com/">Edit the Requirement for Renters Insurance on an Active Lease</a> — Likely update needed: confirm request-modal screenshots reflect the simplified confirmation.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-997">TEN-997</a></td>
+          <td>Stripe records now carry environment metadata</td>
+          <td class="original">Now stamps deployment environment details on Stripe payment and charge records to reduce cross-environment webhook noise.</td>
+          <td>Internal NFR fix: stamps <code>nodeEnv</code>/<code>serverEnv</code> unconditionally on Stripe Connect PaymentIntent and charge metadata (previously missing on rental-application payments, returned-payment fees, screening-report fees, and outgoing-payment fees) so webhook handlers can reliably filter out charges from other deployment environments.</td>
+          <td>INTERNAL — no Help Center change; backend-only Stripe metadata/webhook fix with no visible product change.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-975">TEN-975</a></td>
+          <td>Lease list gets a cleaner default view and clearer balances</td>
+          <td class="original">Added a default leases list view and improved lease and balance column styling for clearer, color-coded balances.</td>
+          <td>Polish pass on the new list-engine leases list: solid white background (no gradient), removes the lease-column thumbnail image, ships a default view with no filters pre-applied, and restores the color-coded balance-column styling from the legacy list.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="https://support.doorloop.com/">Lease Balance Overview</a> — Likely update needed: update screenshots to match the restored color-coded balance styling.</li>
+              <li><a href="https://support.doorloop.com/">Introduction to Lease Payment Status Labels and Their Meaning</a> — Likely update needed: confirm status-label colors still match.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">"Creating Leases"</span> (created Mar 18, 2026 — 117 days before this release) likely needs updated screenshots of the new default leases list view.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">7 items</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-947">TEN-947</a></td>
+          <td>Lease lists get Collection Status and Lease Status filters</td>
+          <td class="original">Added a Collection Status filter to leases lists and lease tabs, letting users narrow results by payment status.<br>Added a Lease status filter to lease lists and tabs, including at-risk, overdue, pay-or-quit, and eviction states.</td>
+          <td>One ticket, two dropdown filters added to both the new list-engine and legacy lease lists: a <strong>Collection Status</strong> filter (Paid / Overdue / Credit / Overdue with failed payment) and a <strong>Calculated Lease Status</strong> filter (Active / At Risk / Expired / Pay-or-Quit Sent / Pay-or-Quit Expired / In Eviction), both reading server-computed status fields. Both Slack bullets cite this same ticket — confirmed accurate, not a duplicate mis-cite; the ticket genuinely covers both filters (the Lease Status half was added to scope on 2026-07-09).</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="https://support.doorloop.com/">Introduction to Lease Payment Status Labels and Their Meaning</a> — Likely update needed: document the new Collection Status and Lease Status filter dropdowns.</li>
+              <li><a href="https://support.doorloop.com/">Set a Lease to Eviction Status (Disable Payments &amp; Track Evictions)</a> — Likely update needed: mention the new "In Eviction" filter value.</li>
+              <li><a href="https://support.doorloop.com/">Find, Sort, and Filter Your Tenants</a> — Likely update needed: add the two new lease filters.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">"Creating Leases"</span> (created Mar 18, 2026 — 117 days before this release) could use a short update showing the new filters on the leases list.</td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-951">TEN-951</a></td>
+          <td>Collection Status shows as a colored tag on the new lease list</td>
+          <td class="original">Added a Collection Status column to the leases list, shown as colored tags for quick at-a-glance review.</td>
+          <td>Adds a Collection Status column (Paid = blue, Overdue = red, Credit = blue, Overdue with failed payment = red) to the new DoorLoop 2.0 list-engine leases list, using the design-system tag/priority component.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="https://support.doorloop.com/">Introduction to Lease Payment Status Labels and Their Meaning</a> — Likely update needed: add the new Collection Status column and its tag colors (same article flagged for TEN-947/TEN-924, notes merged).</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">"Creating Leases"</span> (created Mar 18, 2026 — 117 days before this release) — same staleness note as above.</td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1948">L2L-1948</a></td>
+          <td>Applicant portal sessions now carry signer role &amp; draft-lease context</td>
+          <td class="original">Added draft-lease context and viewer status to applicant portal sessions and responses after OTP verification.</td>
+          <td>Backend-only additive change to the applicant-portal read contract: exposes whether the current viewer is the primary signer, whether they've already signed, and carries the draft-lease ID into the post-OTP session so a returning applicant without the original emailed link can still resume the flow. Purely a data contract that the wizard (L2L-1949) consumes.</td>
+          <td>INTERNAL — no Help Center change; server-side API/session contract with no directly visible UI.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1949">L2L-1949</a></td>
+          <td>Applicants get a guided Sign + Pay wizard</td>
+          <td class="original">Added a full-width applicant wizard for Sign + Pay with step progress, terminal states, and safer session handling.</td>
+          <td>Replaces the old placeholder page with a 2-step wizard shell (Review &amp; Sign → Payment) for applicants, with step progress, success/terminal screens (all-done, waiting-on-others, link-dead, etc.), and state fully derived from the server on every load — no client-persisted state. <span class="beta">Behind the Flamingo Flow feature flag — hold for GA before publishing externally.</span></td>
+          <td><span class="matched beta">BETA</span> — feature behind a flag; hold for GA
+            <ul>
+              <li><a href="https://support.doorloop.com/">How to Fill Out the Rental Application (Applicant)</a> — candidate for update once GA.</li>
+              <li><a href="https://support.doorloop.com/">Introduction to Rental Application Links</a> — candidate for update once GA.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">"Rental Applications"</span> and <span class="video-matched">"Sending eSignature Requests"</span> (both created Mar 2026, well before this release) — hold updates until the wizard is GA.</td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1639">L2L-1639</a></td>
+          <td>New leases now default to late fees on</td>
+          <td class="original">Added a default Yes setting for late fees when creating new leases to match company or property rules.</td>
+          <td>When creating a lease, the "include late fees?" toggle now defaults to Yes instead of No, so it matches the company/property-level late-fee configuration unless a user explicitly opts out — avoiding accidental mismatches from leaving it on the old default.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="https://support.doorloop.com/">Turn On Late Fees for a Lease in DoorLoop</a> — Likely update needed: note the new default is Yes at lease creation.</li>
+              <li><a href="https://support.doorloop.com/">Set Up Your Late Fees Policy</a> — Likely update needed: mention the new-lease default behavior.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">"Late Fees Deep Dive"</span> and <span class="video-matched">"Fees Settings Overview"</span> (created Mar 18, 2026 — 117 days before this release) likely need a note that the new-lease toggle now defaults to Yes.</td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-302">L2L-302</a></td>
+          <td>Fixed duplicate analytics events on the applications list</td>
+          <td class="original">Fixed duplicate empty-state analytics events on the rental applications list when the page re-rendered.</td>
+          <td>Bug fix: the rental-applications empty-state PostHog event (<code>rental_application_empty_state_viewed</code>) was firing multiple times at the same timestamp on re-render, inflating analytics counts. No user-facing behavior changed.</td>
+          <td>INTERNAL — no Help Center change; internal analytics/telemetry bug fix, not user-visible.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-924">TEN-924</a></td>
+          <td>Collection Status column comes to the legacy leases list too</td>
+          <td class="original">Added a Collection Status column to the legacy leases list, showing paid and overdue status badges when enabled.</td>
+          <td>Brings the same Collection Status column (Paid / Overdue / Credit / Overdue with failed payment badges) added to the new list-engine leases list (TEN-951) to the legacy DataList-based leases list, behind the same feature flag.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="https://support.doorloop.com/">Introduction to Lease Payment Status Labels and Their Meaning</a> — Likely update needed: same article as TEN-947/TEN-951; note it now applies to both list views, notes merged.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">"Creating Leases"</span> (created Mar 18, 2026 — 117 days before this release) — same staleness note as TEN-947/TEN-951.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead><tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-1276">BAN-1276</a></td>
+          <td>Daily Slack alert flags treasury accounts missing a payment method</td>
+          <td class="original">Added daily Slack alerts for treasury accounts missing a payment method, with clearer breakdowns for faster follow-up.</td>
+          <td>Internal ops tooling: a daily 8 AM ET Slack alert to #banking-alerts lists production Stripe treasury accounts missing an external payment method, with a CSV attachment for follow-up. No customer-facing surface.</td>
+          <td>INTERNAL — no Help Center change; internal ops/Slack alerting for the Banking team, not customer-visible.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p><strong>PMO-2395 — Maintenance dashboard task insights</strong><br>
+  Proposed title: <em>What's New: See real-time maintenance task health at a glance on your dashboard — Version 9.4.20</em><br>
+  Rationale: No existing article documents the maintenance dashboard's task-insight widgets (open/complete counts, aging buckets, property/vendor hotspots, stale tasks, average resolution time). The dashboard itself has widget-click documentation ("Click on Widgets to View Details") but nothing describing what these new stats mean or how to read them.<br>
+  Suggested keywords: maintenance dashboard, task insights, aging, hotspots, stale tasks, resolution time, work order stats.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead><tr><th>Video</th><th>Created</th><th>Duration</th><th>Features it relates to</th><th>Needs update?</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://doorloop.wistia.com/medias/q3oejrw55n">Navigating Dashboard</a></td><td>Mar 17, 2026</td><td>1:14</td><td>PMO-2395</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/i5szoii0n0">Creating a Task</a></td><td>Mar 23, 2026, 12:49 AM</td><td>2:37</td><td>PMO-2395</td><td>Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/pvk9lx92zm">Set User Roles &amp; Permissions</a></td><td>Mar 18, 2026</td><td>4:10</td><td>PMO-2404</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/t65qdhawyi">Tenant Portal Settings</a></td><td>Mar 18, 2026, 2:47 PM</td><td>5:44</td><td>TEN-836</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/hkxwwfp62a">Tenant Portal Overview</a></td><td>Mar 23, 2026, 12:42 AM</td><td>3:19</td><td>Tenants tab (slack bullet)</td><td>Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/3i8ub7vvpz">Creating Leases</a></td><td>Mar 18, 2026, 6:41 PM</td><td>4:28</td><td>TEN-975, TEN-947, TEN-951, TEN-924</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td><td>Mar 22, 2026, 11:53 PM</td><td>6:28</td><td>L2L-1949 (beta — hold for GA)</td><td>Hold for GA</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/2hr70has8m">Sending eSignature Requests</a></td><td>Mar 23, 2026, 12:06 AM</td><td>6:29</td><td>L2L-1949 (beta — hold for GA)</td><td>Hold for GA</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/sjhnowtsd7">Late Fees Deep Dive</a></td><td>Mar 18, 2026, 4:31 PM</td><td>6:54</td><td>L2L-1639</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/osq4pkssqe">Fees Settings Overview</a></td><td>Mar 18, 2026, 3:48 PM</td><td>3:12</td><td>L2L-1639</td><td>Yes — older than this release</td></tr>
+    </tbody>
+  </table>
+  <p>Suggested new training videos: none identified beyond the maintenance dashboard insights gap already noted above (PMO-2395).</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>TEN-997</strong> — backend-only Stripe metadata/webhook fix, no visible product change.</li>
+    <li><strong>L2L-1948</strong> — server-side applicant-portal API/session contract change, no directly visible UI.</li>
+    <li><strong>L2L-302</strong> — internal analytics/telemetry duplicate-event bug fix.</li>
+    <li><strong>BAN-1276</strong> — internal ops Slack alerting for the Banking team.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
