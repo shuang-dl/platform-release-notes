@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.18 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.18 — 2026-07-12</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1783858971048109">View original Slack post</a> · <code>1783858971.048109</code></p>
+
+  <h2>Summary</h2>
+  <p>This is a small, two-feature release. In Tenant Experience &amp; Payments, TEN-988 ships the final approved UI for the tenant-portal insurance-required dialog (desktop &amp; mobile) — a visual/copy refinement on top of the wiring TEN-943 shipped in v9.4.15. In Leads &amp; Leasing, L2L-1881 adds a 3-tab quick-view drawer (Overview, Communication, Reports) for rental applications, letting PMs review an application without leaving the list view.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (2)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (1)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (1)</span>
+  </div>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-988">TEN-988</a></td>
+          <td>Final insurance-required dialog design</td>
+          <td class="original">Added the final insurance-required dialog design in the tenant portal, with updated desktop and mobile layouts.</td>
+          <td>Applies the final approved UI for the tenant-portal "renters insurance required" dialog: removes the provider card/RECOMMENDED badge in favor of a simpler DoorLoop × Lemonade (or Sure) logo lockup, personalizes the headline with the company name, and updates the three CTAs to "Check prices," "I already have insurance – add my policy," and "Remind me later." Mobile becomes a full-screen sheet with CTAs pinned to the bottom; desktop stays a 500×550 modal. This is a visual/copy-only follow-up to TEN-943 (v9.4.15) — the flag, provider routing, and exits are unchanged.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6973871-how-to-get-renters-insurance-on-the-tenant-portal">How to Get Renters Insurance on the Tenant Portal</a><br><span class="note">Likely update needed: update dialog screenshots to the final design — new logo lockup, personalized "{Company} requires renters insurance" headline, and the three renamed CTA buttons.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/8926877-introduction-to-lemonade-and-renters-insurance">Introduction to Lemonade and Renters Insurance</a><br><span class="note">Likely update needed: remove references to the provider card/RECOMMENDED badge and marketing copy that this ticket removed; reflect the simplified logo lockup.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/9011649-how-to-upload-renters-insurance-to-the-tenant-portal-if-you-already-have-it">How to Upload Renters Insurance to the Tenant Portal If You Already Have It</a><br><span class="note">Likely update needed: entry-point button is now labeled "I already have insurance – add my policy" — verify the article's step-1 screenshot matches.</span></li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">Tenant Portal Overview</span> (created Mar 23, 2026, 111 days before this release)<br>
+            <span class="note">Likely needs re-recording: the insurance-required dialog shown mid-walkthrough predates this final-design pass.</span><br><br>
+            <span class="video-matched">Tenant Portal Settings</span> (created Mar 18, 2026, 116 days before this release)<br>
+            <span class="note">Review: if this video demos the insurance-required dialog/settings, refresh to match the new CTA labels and layout.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1881">L2L-1881</a></td>
+          <td>Rental application quick-view drawer</td>
+          <td class="original">Added a quick-view drawer for rental applications with overview, communication, and reports tabs.</td>
+          <td>Adds a 3-tab entity drawer (Overview, Communication, Reports) to the v2 rental-applications list. Clicking the quick-view icon opens the drawer over the list — status, action-needed prompts, prospect/assignee cards, and related applications on the Overview tab; prospect-scoped messages on Communication; embedded screening report on Reports. Row-click still navigates to the full application page; the list stays visible behind the drawer.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6284916-review-a-submitted-rental-application">Review a Submitted Rental Application</a><br><span class="note">Likely update needed: document the new quick-view drawer (Overview/Communication/Reports tabs) as a faster alternative to opening the full application page.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/6263176-rental-applications-overview">Rental Applications Overview</a><br><span class="note">Likely update needed: add a screenshot/callout for the new quick-view icon on the applications list that opens the drawer.</span></li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">Rental Applications</span> (created Mar 22, 2026, 112 days before this release)<br>
+            <span class="note">Likely needs re-recording: the applications list walkthrough predates the quick-view drawer and won't show it.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>None — both features are incremental UI updates to existing, well-covered flows (renters-insurance dialog, rental applications list) and fold into the existing articles above rather than warranting a standalone article.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Features it relates to</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/hkxwwfp62a">Tenant Portal Overview</a></td>
+        <td>Mar 23, 2026</td>
+        <td>3:19</td>
+        <td>TEN-988 (Final insurance-required dialog design)</td>
+        <td>Yes — older than this release / Review</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/t65qdhawyi">Tenant Portal Settings</a></td>
+        <td>Mar 18, 2026</td>
+        <td>5:44</td>
+        <td>TEN-988 (Final insurance-required dialog design)</td>
+        <td>Review</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td>
+        <td>Mar 22, 2026</td>
+        <td>6:28</td>
+        <td>L2L-1881 (Rental application quick-view drawer)</td>
+        <td>Yes — older than this release / Review</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <p>None — both features in this release are customer-visible.</p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
