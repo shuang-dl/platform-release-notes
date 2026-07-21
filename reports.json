@@ -291,5 +291,13 @@
     "filename": "reports/v9.4.18.html",
     "generatedAt": "2026-07-21T00:00:00Z",
     "summary": "This is a small, two-feature release. In Tenant Experience & Payments, TEN-988 ships the final approved UI for the tenant-portal insurance-required dialog (desktop & mobile) — a visual/copy refinement on top of the wiring TEN-943 shipped in v9.4.15. In Leads & Leasing, L2L-1881 adds a 3-tab quick-view drawer (Overview, Communication, Reports) for rental applications, letting PMs review an application without leaving the list view."
+  },
+  {
+    "date": "2026-07-13",
+    "version": "v9.4.20",
+    "title": "Release v9.4.20 — Help Center Impact",
+    "filename": "reports/v9.4.20.html",
+    "generatedAt": "2026-07-21T00:00:00Z",
+    "summary": "Release v9.4.20 ships a maintenance-dashboard insights foundation and property-scoped voice-call permissions in PM Operations; a new Payment Methods settings tab, a Tenants tab in property/unit/lease detail views, insurance reminder and cleanup UI, and lease-list polish in Tenant Experience & Payments; a wave of lease Collection/Lease-Status filters and columns plus the first pieces of the applicant Sign + Pay wizard and a late-fees default in Leads & Leasing; and a daily Banking Slack alert for treasury accounts missing a payment method."
   }
 ]
