@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.22 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.22 — 2026-07-14</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1784032326545049">View original Slack post</a> · <code>1784032326.545049</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 18 changes across PM Operations (new renewal dashboard insights, task Created-by column, and a task-drawer Communications tab), Tenant Experience &amp; Payments (insurance-dialog snoozing, a new Payment Collection widget, and an overhauled tenants list), Workflows (a generic agent SMS tool and Deposits global search), and Leads &amp; Leasing (Prospect Overview Pipeline/Action-needed/Showings cards and several Unit Drawer polish fixes). Five items are internal-only engineering/design cleanups with no customer-visible surface, and one item (the revamped tenants list) has no clearly matching Help Center article today.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (18)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (5)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (3)</span>
+    <span class="chip" data-area="workflows">Workflows (3)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (7)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">5 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1933">L2L-1933</a></td>
+          <td>Cleaner compact communication drawer</td>
+          <td class="original">Now hides the top divider in the compact communication drawer for a cleaner layout.</td>
+          <td>Removes a redundant horizontal divider that rendered unconditionally at the top of the shared Communications Center module when embedded as a compact drawer variant.</td>
+          <td>no Help Center change — purely a visual/layout tweak inside an existing drawer, nothing to instruct users on</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2469">PMO-2469</a></td>
+          <td>Renewal dashboard with KPIs and drill-downs</td>
+          <td class="original">Added renewal dashboard insights with updated KPIs, expiring timelines, and drill-down views for faster review.</td>
+          <td>Post-migration upgrade to the Lease Renewals v2 drawer/dashboard: refreshed header, KPI cards, an expiring-leases timeline, and drill-down views (Communications, e-Signature, Inspections tabs) for reviewing renewals faster.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/10207476">Lease Renewals Overview</a><br><span class="note">Likely update needed: document the new KPI cards, expiring-lease timeline, and drill-down tabs on the renewals dashboard/drawer.</span></td>
+          <td><span class="video-matched">Lease Renewals Overview</span> (created Mar 20, 2026)<br><span class="note">Created ~116 days before this release — likely needs re-recording to show the new KPI/timeline/drill-down views.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2497">PMO-2497</a></td>
+          <td>See who — or what — created a task</td>
+          <td class="original">Added a Created by column and filter to the tasks list, showing whether each task was created by AI or a human.</td>
+          <td>The unified Tasks list now shows a "Created by" column (Human/AI) with a matching filter, so PMs can see and filter which tasks were opened by an AI agent versus a person.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/6098083">Update a Task</a>, <a href="https://support.doorloop.com/en/articles/9701687">Edit a Task</a><br><span class="note">Likely update needed: mention the new Created-by (Human/AI) column and filter on the tasks list.</span></td>
+          <td><span class="video-matched">Creating a Task</span> (created Mar 23, 2026)<br><span class="note">Created ~113 days before this release — likely needs a note about the new AI/Human Created-by column.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2492">PMO-2492</a></td>
+          <td>Clearer primary action in the task drawer</td>
+          <td class="original">Added task drawer improvements that highlight the first action, show activity history, and display request details and AI summaries.</td>
+          <td>The task drawer's first action button now renders as the visually primary action (all following buttons secondary), so the recommended next step stands out.</td>
+          <td>no Help Center change — internal visual-hierarchy styling of existing drawer buttons, no new workflow to document</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2496">PMO-2496</a></td>
+          <td>Chat with tenants and owners right from the task drawer</td>
+          <td class="original">Added a Communications tab to maintenance task drawers so reps can view task-related conversations without leaving the drawer.</td>
+          <td>Maintenance task drawers now have a Communications tab scoped to the task's property/unit, showing all related conversations (including AI-created chats) without leaving the drawer.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/9061551">Communications Center Overview</a><br><span class="note">Likely update needed: note that the maintenance task drawer now has its own scoped Communications tab.</span></td>
+          <td><span class="video-matched">Communications Log</span> (created Mar 23, 2026)<br><span class="note">Created ~113 days before this release — likely needs a note about the new task-drawer Communications tab.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-987">TEN-987</a></td>
+          <td>Insurance-snooze parity on the new tenant-portal service</td>
+          <td class="original">Added insurance dialog snoozing in the tenant portal, returning the updated snooze count and last snoozed time.</td>
+          <td>Pure backend parity work: ports the already-shipped insurance-dialog "snooze" endpoint from the monolith to the new tenant-portal microservice. No behavior change for tenants — the feature itself shipped earlier under TEN-944.</td>
+          <td>no Help Center change — backend infrastructure migration only, tenant-facing behavior unchanged</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-890">TEN-890</a></td>
+          <td>See exactly how tenants paid you this month</td>
+          <td class="original">Added a new Payment Collection dashboard widget showing this month's lease payment totals by payment type, with an empty state. Fixed payment collection dashboard totals to include only payments from the start of the month through today.</td>
+          <td>New AR-dashboard "Payment Collection" widget breaks down this month's lease payments by method — ACH, Card, Manual, PayLink, and Cash — with an empty state; a follow-up fix bounded the totals window to start-of-month through today so partial months don't over/undercount.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/15400762">Rent Payments Dashboard Overview</a><br><span class="note">Likely update needed: add the new Payment Collection widget's 5-way method breakdown (ACH/Card/Manual/PayLink/Cash) and note the month-to-date totals window.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-968">TEN-968</a></td>
+          <td>A faster, bulk-action-ready tenants list</td>
+          <td class="original">Added a default Current tenants view, bulk actions, and last-sent details to the tenants list.</td>
+          <td>The 2.0 tenants list now defaults to a "Current tenants" filter, supports multi-select with bulk actions, reorders columns, and shows when the last communication was sent to each tenant.</td>
+          <td><span class="unmatched">UNMATCHED</span> — suggested new article (see below)</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2405">PMO-2405</a></td>
+          <td>AI agents can now text tenants, owners, vendors, and prospects</td>
+          <td class="original">Added a new SMS tool for agents to text tenants, owners, vendors, and prospects with duplicate-send protection.</td>
+          <td>New shared Fleet-of-Agents tool: any AI agent (e.g. the Renewals Agent) can now send an SMS to a tenant, owner, vendor, or prospect through a single endpoint, with built-in idempotency so a retried call never double-sends or double-charges credits.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/9176260">Send a Welcome SMS to Your Tenants, Prospects, Vendors, and Owners</a>, <a href="https://support.doorloop.com/en/articles/9170800">Create and Send a New SMS/MMS Message on the Communication Center</a><br><span class="note">Likely update needed: note that DoorLoop's AI agents can now also send SMS on a PM's behalf, with duplicate-send protection.</span></td>
+          <td><span class="video-matched">Communications: Setting Up SMS Messaging</span> (created Mar 23, 2026)<br><span class="note">Created ~113 days before this release — likely needs a mention of AI-agent-initiated SMS sends.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1371">WOR-1371</a></td>
+          <td>Find deposits from global search</td>
+          <td class="original">Added a Deposits tab to global search with direct links to matching deposit detail reports.</td>
+          <td>Global search now includes a Deposits tab — search by reference/slip number, amount, memo, or date, and click through to the Deposit Detail report filtered to that deposit.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/8868458">Search DoorLoop Using Global Search</a>, <a href="https://support.doorloop.com/en/articles/9764500">Deposit Detail Report</a><br><span class="note">Likely update needed: add Deposits to the list of searchable entity tabs in global search.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1388">WOR-1388</a></td>
+          <td>Command Center visual polish</td>
+          <td class="original">Added clearer command center labels, status tags, and detail styling to better match the design and show key lease info.</td>
+          <td>Batch of design-fidelity fixes for the Command Center (Lease Renewal Agent workspace): spacing, tag styling/colors, column order, typography, and dialog/toast behavior brought in line with the approved design.</td>
+          <td>no Help Center change — visual/design-QA fixes to an internal AI-agent workspace, not a functional or workflow change</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">7 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1812">L2L-1812</a></td>
+          <td>Cleaner TransUnion failure alerting</td>
+          <td class="original">Now classifies TransUnion 4xx rental application failures as user input issues and records the response status and error detail.</td>
+          <td>Fixes a NewRelic alert-noise bug: TransUnion 422 responses (bad applicant input) were being misclassified as integration failures. They're now correctly bucketed as user-input failures with the status code and error detail attached, so the on-call alert only fires on real TransUnion outages.</td>
+          <td>no Help Center change — internal monitoring/alerting fix, no customer-visible behavior changed</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-805">L2L-805</a></td>
+          <td>See a prospect's lease pipeline at a glance</td>
+          <td class="original">Added a Pipeline card to the Prospect Overview drawer that shows lead-to-lease progress with clearer stage status.</td>
+          <td>New collapsible Pipeline card on the Prospect Overview tab renders the 14-stage lead-to-lease timeline, collapsed to the current stage plus "Show more," with the same stage grouping now driving the header status chip.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/14893833">Showings: Manage Dashboard, and Prospect Overview</a><br><span class="note">Likely update needed: document the new Pipeline card and its collapsed/expanded stage view on the Prospect Overview tab.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-804">L2L-804</a></td>
+          <td>Know the next best step for every prospect</td>
+          <td class="original">Added an Action needed card to Prospect Overview with the next best step, status summary, and permission-aware actions.</td>
+          <td>New Action Needed card on the Prospect Overview tab surfaces the single next recommended action per prospect stage, wired to the same handlers as the prospects list (screening, showings, navigation), with confirm dialogs on destructive actions.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/14893833">Showings: Manage Dashboard, and Prospect Overview</a>, <a href="https://support.doorloop.com/en/articles/6301158">Manage Your Prospects</a><br><span class="note">Likely update needed: document the new Action Needed card and the actions it surfaces per pipeline stage.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1929">L2L-1929</a></td>
+          <td>One clear listing status per unit</td>
+          <td class="original">Fixed the unit drawer header to show only one listing status, Listed or Not listed, instead of duplicate pills.</td>
+          <td>The Unit Drawer header now shows a single "Listed"/"Not listed" pill instead of two overlapping status pills, plus a full unit actions menu (3-dot) and a "List unit" CTA when a unit isn't yet listed.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/8680696">Turn Off Online Listings for a Unit</a><br><span class="note">Likely update needed: update any screenshots showing the old duplicate listing-status pills in the unit drawer header.</span></td>
+          <td><span class="video-matched">Listings</span> (created Mar 22, 2026)<br><span class="note">Created ~114 days before this release — likely needs re-recording to show the corrected single-status header.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1932">L2L-1932</a></td>
+          <td>Cleaner rental application lists, with Resend</td>
+          <td class="original">Added Show more/Show less for rental application lists over 10 items and a gray drill-in count badge.</td>
+          <td>Rental Applications card (unit and prospect drawers) now caps long lists at 10 with a Show more/less toggle, uses a gray drill-in count badge, and lets you drill into and Resend a sent-but-not-started application.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/6284916">Review a Submitted Rental Application</a>, <a href="https://support.doorloop.com/en/articles/8852342">Introduction to Rental Application Links</a><br><span class="note">Likely update needed: document the new Show more/less behavior and the Resend option for sent-not-started applications.</span></td>
+          <td><span class="video-matched">Rental Applications</span> (created Mar 22, 2026)<br><span class="note">Created ~114 days before this release — likely needs a mention of the Show more/less toggle and Resend action.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1954">L2L-1954</a></td>
+          <td>Clearer empty states in the Unit Overview drawer</td>
+          <td class="original">Added clearer empty states for unit photos, amenities, and signature requests in the Overview drawer.</td>
+          <td>Unit Drawer Overview cards (amenities, photos, signature requests) now show proper empty states with an icon, title, description, and — for signatures — a "New signature request" CTA scoped to that unit.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/9715044">Edit Unit Photos</a>, <a href="https://support.doorloop.com/en/articles/10516893">Signature Templates vs Signature Requests</a><br><span class="note">Likely update needed: show the new empty-state screens for amenities, photos, and signature requests in the unit drawer.</span></td>
+          <td><span class="video-matched">Sending eSignature Requests</span> (created Mar 23, 2026)<br><span class="note">Created ~113 days before this release — likely needs a note about the unit-scoped "New signature request" empty-state CTA.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1961">L2L-1961</a></td>
+          <td>Drill into a showing's full details</td>
+          <td class="original">Added a clickable showing drill-in on the Prospect Overview tab with date, property, unit, assignee, contact, and status details.</td>
+          <td>Clicking a showing on the Prospect Overview tab now opens a detail drawer with the showing's date/time, property, unit, assignee, prospect contact, and status badge.</td>
+          <td><span class="matched">MATCHED</span> — <a href="https://support.doorloop.com/en/articles/14893833">Showings: Manage Dashboard, and Prospect Overview</a><br><span class="note">Likely update needed: document the new showing drill-in detail view accessible from Prospect Overview.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p><strong>TEN-968 — Tenants list: default view, bulk actions, and last-contacted details</strong><br>
+  Proposed title: <em>What's New: Manage your current tenants faster with bulk actions and last-contacted details — Version 9.4.22</em><br>
+  Rationale: the 2.0 tenants list now defaults to a "Current tenants" filter, supports multi-select bulk actions, and shows when a tenant was last contacted — none of the existing tenant-info or invite articles cover the list view itself.<br>
+  Suggested keywords: tenants list, current tenants view, bulk actions, last sent, last contacted, tenant list columns.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead><tr><th>Video</th><th>Created</th><th>Duration</th><th>Features it relates to</th><th>Needs update?</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://doorloop.wistia.com/medias/34ofizmqi1">Lease Renewals Overview</a></td><td>Mar 20, 2026</td><td>—</td><td>PMO-2469 (Renewal dashboard insights)</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/i5szoii0n0">Creating a Task</a></td><td>Mar 23, 2026</td><td>—</td><td>PMO-2497 (Created by column)</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/3xiq7gebjh">Communications Log</a></td><td>Mar 23, 2026</td><td>—</td><td>PMO-2496 (Task drawer Communications tab)</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/krxbldyqse">Communications: Setting Up SMS Messaging</a></td><td>Mar 23, 2026</td><td>—</td><td>PMO-2405 (Agent SMS tool)</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/1xqjh8xe3d">Listings</a></td><td>Mar 22, 2026</td><td>—</td><td>L2L-1929 (Single listing status)</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td><td>Mar 22, 2026</td><td>—</td><td>L2L-1932 (Rental applications list)</td><td>Yes — older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/2hr70has8m">Sending eSignature Requests</a></td><td>Mar 23, 2026</td><td>—</td><td>L2L-1954 (Unit drawer empty states)</td><td>Yes — older than this release</td></tr>
+    </tbody>
+  </table>
+  <p>Suggested new training videos: none identified — TEN-890, TEN-968, WOR-1371, L2L-805, L2L-804, and L2L-1961 have no closely matching existing video, but each is a relatively small UI addition to an already-covered surface rather than a standalone topic.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>L2L-1933</strong> — pure layout tweak (removes a divider) inside an existing drawer; no user-facing workflow change.</li>
+    <li><strong>PMO-2492</strong> — button-styling change only (first action becomes visually primary); no new capability.</li>
+    <li><strong>TEN-987</strong> — backend microservice parity port of an already-shipped feature (TEN-944); no tenant-facing behavior change.</li>
+    <li><strong>WOR-1388</strong> — design-QA/visual fixes to the internal Command Center (AI agent workspace), not a functional change.</li>
+    <li><strong>L2L-1812</strong> — internal NewRelic alert-classification fix; no customer-visible behavior changed.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
