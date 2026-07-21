@@ -315,5 +315,13 @@
     "filename": "reports/v9.4.26.html",
     "generatedAt": "2026-07-21T19:59:04Z",
     "summary": "This release ships 3 changes across Workflows (Tenant Payments now searchable via Global Search with a deep link to the Charges & Payments report), Leads & Leasing (automatic daily reminder emails to re-engage applicants whose income verification has stalled or failed), and Banking (a feature-flag grandfathering change that keeps existing Stripe Treasury accounts on the embedded onboarding/management flow after the flags are turned off for new accounts). Two of the three items likely need Help Center updates; the banking change is an internal flag-rollout with no new user-facing workflow."
+  },
+  {
+    "date": "2026-07-16",
+    "version": "v9.4.29",
+    "title": "Release v9.4.29 — Help Center Impact",
+    "filename": "reports/v9.4.29.html",
+    "generatedAt": "2026-07-21T00:00:00Z",
+    "summary": "This release ships 5 changes across PM Operations (per-tenant renewal recommendations with risk flags), Tenant Experience & Payments (an insurance onboarding step and a new Collection Trend dashboard widget), Leads & Leasing (a recommended-action column on the leases list and embedded HelloSign signing in the applicant portal), and a standalone Tenant Portal move-out access card for staff. Most items are customer-visible and land in existing Help Center collections, with the embedded signing flow standing out as a genuinely new applicant-facing surface with no dedicated article yet."
   }
 ]
