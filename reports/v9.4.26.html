@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.26 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.26 — 2026-07-15</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1784118875083329">View original Slack post</a> · <code>1784118875.083329</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 3 changes across Workflows (Tenant Payments now searchable via Global Search with a deep link to the Charges &amp; Payments report), Leads &amp; Leasing (automatic daily reminder emails to re-engage applicants whose income verification has stalled or failed), and Banking (a feature-flag grandfathering change that keeps existing Stripe Treasury accounts on the embedded onboarding/management flow after the flags are turned off for new accounts). Two of the three items likely need Help Center updates; the banking change is an internal flag-rollout with no new user-facing workflow.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (3)</span>
+    <span class="chip" data-area="workflows">Workflows (1)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (1)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+  </div>
+
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1370">WOR-1370</a></td>
+          <td>Tenant payments in global search</td>
+          <td class="original">Added Tenant payments to global search with tenant, property, payment method, and report deep links.</td>
+          <td>Global Search now includes a Tenant Payments results tab. Users can search by reference, check number, amount, memo, or date; each result resolves the tenant/property name client-side and clicking through deep-links to the Charges &amp; Payments report filtered to that specific payment (works for both v1 and v2 reports).</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/8868458-search-doorloop-using-global-search">Search DoorLoop Using Global Search</a><br><span class="note">Likely update needed: add a section covering the new Tenant Payments results tab and its deep link into the Charges &amp; Payments report.</span></li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">Reports Overview</span><span class="note"> — created Mar 23, 2026 (114 days before this release); likely needs a mention of the new global-search-to-report deep link.</span><br>
+            <span class="video-matched">Filtering &amp; Grouping in Reports</span><span class="note"> — created Mar 23, 2026 (114 days before this release); review for the new entry point into Charges &amp; Payments.</span><br>
+            <span class="video-matched">Understanding Your Tenant's Ledger</span><span class="note"> — created Mar 20, 2026 (117 days before this release); tangential — review only if it references payment lookup.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-731">L2L-731</a></td>
+          <td>Automatic reminders for stalled income verification</td>
+          <td class="original">Added automatic daily reminder emails to re-engage applicants whose income verification has stalled or failed.</td>
+          <td>A new daily scheduled job automatically emails applicants when their income verification (IV) fails outright or gets stuck mid-flow with no progress for a day, prompting them to resume. Reminders stop once the applicant becomes ineligible or recovers, and the job is idempotent and throttled so applicants aren't double-emailed — reducing the number of stalled applications PMs have to chase manually.</td>
+          <td>
+            <span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/13860117">Income Verification for Rentals: How to Confidently Confirm an Applicant Can Afford the Rent</a><br><span class="note">Likely update needed: add a note describing the new automatic reminder email sent when income verification fails or stalls.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/8694658">Automatic Rental Application Reminders for Prospects</a><br><span class="note">Likely update needed: clarify that this article's existing 1/3/7/14-day incomplete-application cadence is a separate mechanism from the new IV-stall reminder; consider cross-linking.</span></li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-1334">BAN-1334</a></td>
+          <td>Grandfathered Stripe Treasury accounts keep the embedded flow</td>
+          <td class="original">Now supports grandfathered Stripe Treasury accounts in the embedded onboarding and management flow when feature flags are turned off.</td>
+          <td>DoorLoop is turning off the <code>banking-embedded-onboarding-ui</code> and <code>banking-create-stripe-account-with-treasury</code> feature flags so brand-new merchant accounts stop getting the embedded/Treasury flow. An OR-clause grandfathers any merchant account that already has a Stripe Treasury capability, so accounts already on the embedded onboarding/management dialog keep working exactly as before — no visible change for existing users, and no new UI for anyone.</td>
+          <td>
+            <span class="unmatched" style="color:#555;">INTERNAL</span> — no Help Center change: this is a feature-flag rollback/kill-switch that preserves existing behavior for already-onboarded accounts and doesn't add a new customer-facing capability for new accounts to learn about. Closest existing coverage if reviewed: <a href="http://support.doorloop.com/en/articles/15347529">DoorLoop Wallet: Recipient Banking Setup</a> (Early Access embedded banking article) — no update needed for this ticket specifically.
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>None. Both customer-visible features (WOR-1370, L2L-731) fold into existing articles; BAN-1334 is internal-only and doesn't warrant a standalone article.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Features it relates to</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/792djhuood">Reports Overview</a></td>
+        <td>Mar 23, 2026</td>
+        <td>—</td>
+        <td>WOR-1370 (Tenant payments in global search)</td>
+        <td>Yes — 114 days older than this release; review</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/ikt1yw6muk">Filtering &amp; Grouping in Reports</a></td>
+        <td>Mar 23, 2026</td>
+        <td>—</td>
+        <td>WOR-1370 (Tenant payments in global search)</td>
+        <td>Yes — 114 days older than this release; review</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/80b0wtda2i">Understanding Your Tenant's Ledger</a></td>
+        <td>Mar 20, 2026</td>
+        <td>—</td>
+        <td>WOR-1370 (Tenant payments in global search)</td>
+        <td>Review only if it references payment lookup</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Suggested new training videos:</strong> L2L-731 (automatic IV-stall reminder emails) and BAN-1334 (internal — no video needed) had no matching video in the Training Hub folder.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><a href="https://linear.app/doorloop/issue/BAN-1334">BAN-1334</a> — feature-flag grandfathering/kill-switch change with no new UI or customer-visible workflow; existing embedded-onboarding accounts see no difference.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
