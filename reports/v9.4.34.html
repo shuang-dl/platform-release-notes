@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.34 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .beta { color: #7a3fb3; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.34 — 2026-07-21</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1784637365873819">View original Slack post</a> · <code>1784637365.873819</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 2 changes, both in PM Operations. Owner records gain optional custom fields — a drawer overview card and list-engine filters, with value columns still pending a server endpoint — but it ships behind the <code>custom-fields-owner</code> flag, so Help Center updates should wait for GA. The Maintenance Dashboard gets an AI view toggle, refreshed filters, and clickable Sankey drill-downs, continuing the same dashboard epic already flagged as an undocumented gap in v9.4.20, v9.4.22, and v9.4.32 — this item folds into that same suggested article rather than needing a new one.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (2)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2570/custom-fields-for-owner-records">PMO-2570</a></td>
+          <td>Custom fields for Owner records</td>
+          <td class="original">Added optional Owner custom fields in the owner drawer and list, including filters and value columns behind a flag.</td>
+          <td>Extends DoorLoop's custom-fields system to the Owner entity: companies will be able to define, fill, and filter custom fields on owners via a drawer overview card and list-engine filters. Value columns are optional pending a separate server <code>…WithCustomFields</code> endpoint. <span class="beta">Ships behind the <code>custom-fields-owner</code> feature flag — hold Help Center updates for GA.</span></td>
+          <td><span class="matched beta">BETA</span> — feature behind a flag; hold for GA
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/11418769-set-up-custom-fields">Set Up Custom Fields</a> — candidate for update once GA: add Owner to the list of supported entity types.</li>
+              <li><a href="http://support.doorloop.com/en/articles/11464799-manage-your-custom-fields">Manage Your Custom Fields</a> — candidate for update once GA: cover owner-drawer custom-field filters.</li>
+              <li><a href="http://support.doorloop.com/en/articles/11418883-custom-fields-hoa">Custom Fields [HOA]</a> — candidate for update once GA: note owner-level custom fields alongside HOA-level ones.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2622/maintenance-dashboard-tenant-request-sankey-for-non-ai-companies-split">PMO-2622</a></td>
+          <td>Maintenance dashboard: AI toggle, filters &amp; Sankey drill-downs</td>
+          <td class="original">Added an AI view toggle, refreshed filters, and clickable Sankey drill-downs on the maintenance dashboard.</td>
+          <td>Gives non-AI companies their own tenant-request Sankey (mirroring the AI-only tenant-inquiry Sankey from PMO-2596), fixes a bug where incomplete work orders and incomplete WO-less requests merged into one confusing "Incomplete" terminal (now split into two distinct nodes so ribbons don't cross), and ships together with a "Resolved-by-AI" rate card in one combined PR — the source of this bullet's "AI view toggle" and "refreshed filters" framing.</td>
+          <td><span class="unmatched">🟠 UNMATCHED</span> — no existing article documents the Maintenance Dashboard; continues the same gap flagged in v9.4.32 (PMO-2500/2596/2605) and v9.4.20/v9.4.22 — folds into that same suggested "Maintenance Dashboard" article rather than a new standalone one.</td>
+          <td>
+            <span class="video-matched">Navigating Dashboard</span> <span class="note">(created Mar 17, 2026 — 126 days before this release; likely needs updating to show the new AI-view toggle and dashboard nav placement)</span><br>
+            <span class="video-matched">Managing Work Orders</span> <span class="note">(created Mar 23, 2026 — 120 days before this release; likely needs a segment on the new incomplete-terminal split and Sankey drill-downs)</span><br>
+            <span class="video-matched">Managing Tenant Requests</span> <span class="note">(created Mar 23, 2026 — 120 days before this release; likely needs updating to show the non-AI tenant-request Sankey)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>None standalone this release. PMO-2622 folds into the "Maintenance Dashboard" article already proposed in the v9.4.32 report (covering PMO-2500 / PMO-2596 / PMO-2605 / PMO-2622 together) — still an open draft candidate, not yet created. PMO-2570 doesn't need a new article; once it reaches GA, the three existing Custom Fields articles above should be updated instead.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Duration</th><th>Features it relates to</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><a href="https://doorloop.wistia.com/medias/q3oejrw55n">Navigating Dashboard</a></td><td>Mar 17, 2026</td><td>1:14</td><td>PMO-2622 (Maintenance Dashboard)</td><td>Yes — 126 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/tn4ch9b3tf">Managing Work Orders</a></td><td>Mar 23, 2026</td><td>4:08</td><td>PMO-2622 (Maintenance Dashboard)</td><td>Yes — 120 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/61dr2gbk7w">Managing Tenant Requests</a></td><td>Mar 23, 2026</td><td>3:05</td><td>PMO-2622 (Maintenance Dashboard)</td><td>Yes — 120 days older than this release</td></tr>
+    </tbody>
+  </table>
+  <p>No training video today covers custom-fields setup/management well enough to match PMO-2570 — a "Custom Fields" walkthrough video (once Owner support reaches GA) is a candidate for a new training video.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <p>None — both items in this release are customer-visible.</p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
