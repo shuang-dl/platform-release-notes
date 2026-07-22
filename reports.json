@@ -329,14 +329,16 @@
     "version": "v9.4.31",
     "title": "Release v9.4.31 \u2014 Help Center Impact",
     "filename": "reports/v9.4.31.html",
-    "generatedAt": "2026-07-22T17:03:00Z"
+    "generatedAt": "2026-07-22T17:03:00Z",
+    "summary": "This release ships a single change to PM Operations: a pre-send cost summary for Announcements (PMO-206) that shows credits used, remaining balance, and top-up charges before a message goes out. It directly extends the existing Announcements credit/pricing documentation and the \"Sending Out Announcements\" training video, both of which should be updated to reflect the new pre-send confirmation screen."
   },
   {
     "date": "2026-07-20",
     "version": "v9.4.32",
     "title": "Release v9.4.32 \u2014 Help Center Impact",
     "filename": "reports/v9.4.32.html",
-    "generatedAt": "2026-07-22T17:26:29Z"
+    "generatedAt": "2026-07-22T17:26:29Z",
+    "summary": "This release ships 17 changes across PM Operations (voice-transcript reliability, EN\u2194ES message translation, four Maintenance Dashboard additions, calls-list filters, and drawer/list UX alignment), Tenant Experience & Payments (an onboarding-skip fix that routes eligible residents to the insurance step), Workflows (Command Center chat page context), Leads & Leasing (full lease actions in the Unit drawer, an Extend Portal Access recommendation, and a new applicant payment step), and Banking (three internal Treasury daily-sweep hardening changes). Six items are genuinely customer-visible but not yet covered by an existing Help Center article \u2014 most notably the expanding Maintenance Dashboard and the new applicant payment step."
   },
   {
     "date": "2026-07-21",
@@ -351,6 +353,7 @@
     "version": "v9.4.37",
     "title": "Release v9.4.37 \u2014 Help Center Impact",
     "filename": "reports/v9.4.37.html",
-    "generatedAt": "2026-07-22T19:14:22Z"
+    "generatedAt": "2026-07-22T19:14:22Z",
+    "summary": "This release ships 2 changes: Tenant Experience & Payments gets a tenant-portal contact fix that reflects the company's DoorLoop number for SMS and calls instead of a stale company phone number (PMO-2540), and Leads & Leasing gets a new \"Next actions\" column on the draft-leases list letting PMs send for e-signature, remind, send a pay link, or activate a lease directly from the list, with built-in 24-hour resend cooldowns (L2L-1573, flag-gated behind flamingo-flow-pm). Both features have existing Help Center coverage to update; no net-new articles are needed for this release."
   }
 ]
