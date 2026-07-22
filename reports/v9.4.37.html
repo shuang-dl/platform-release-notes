@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.37 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.37 — 2026-07-22</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1784723895309289">View original Slack post</a> · <code>1784723895.309289</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 2 changes: Tenant Experience &amp; Payments gets a tenant-portal contact fix that reflects the company's DoorLoop number for SMS and calls instead of a stale company phone number (PMO-2540), and Leads &amp; Leasing gets a new "Next actions" column on the draft-leases list letting PMs send for e-signature, remind, send a pay link, or activate a lease directly from the list, with built-in 24-hour resend cooldowns (L2L-1573, flag-gated behind <code>flamingo-flow-pm</code>). Both features have existing Help Center coverage to update; no net-new articles are needed for this release.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (2)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (1)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (1)</span>
+  </div>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2540/reflect-the-doorloop-number-in-the-tenant-portal-contact-sms-call">PMO-2540</a></td>
+          <td>Tenant portal now shows your real DoorLoop number</td>
+          <td class="original">Added tenant portal contact settings to show the company's DoorLoop number for SMS and calls when available.</td>
+          <td>When a company has an active DoorLoop number, the tenant portal's Contact tab, dialog, and sidebar now reflect that number as the SMS contact (and, if the <code>voice</code> flag is on, the call number too) instead of falling back to the generic company phone. Each slot still honors its own show/hide toggle; if a PM turns a slot off, it stays hidden. This only applies to tenant logins — owner portal has a separate, sibling change (PMO-2541).</td>
+          <td class="matched">MATCHED
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6081899-customize-company-default-tenant-portal-settings">Customize Company Default Tenant Portal Settings</a><br><span class="note">Likely update needed: clarify that when a DoorLoop number is active, it overrides the SMS (and, with voice on, call) contact slot even if a custom number was previously saved.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/10261449-how-to-find-the-property-manager-s-contact-info">How to Find the Property Manager's Contact Info</a><br><span class="note">Likely update needed: note that tenants may now see the company's DoorLoop number as a distinct SMS row and, separately, a call row, rather than one combined number.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/9788021-customize-property-specific-tenant-portal-settings">Customize Property-Specific Tenant Portal Settings</a><br><span class="note">Likely update needed: cross-reference the same DoorLoop-number override behavior for property-level contact settings.</span></li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">Tenant Portal Settings</span> — created Mar 18, 2026<br>
+            <span class="note">Created ~126 days before this release — likely needs re-recording to show the new SMS/call rows sourced from the DoorLoop number.</span><br>
+            <span class="video-matched">Communications: Setting Up SMS Messaging</span> — created Mar 23, 2026<br>
+            <span class="note">Created ~121 days before this release — review whether the SMS setup walkthrough should mention the tenant-portal contact reflection.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1573/draft-leases-list-next-actions-column-send-e-sign-remind-send-pay-link">L2L-1573</a></td>
+          <td>Drive draft leases forward from the list, one click at a time</td>
+          <td class="original">Added a draft leases Next actions column with one-click send, reminder, and activate options plus 24-hour resend cooldowns.</td>
+          <td>The draft-leases list gets a new "Next actions" column that derives the right next step from the lease's status: Send for e-signature, Send pay link, Send reminder, or Activate lease — no more digging into each draft individually. Resending is capped by a 24-hour cooldown, with the last-sent time shown so PMs know when they can nudge a tenant again. Currently gated behind the <code>flamingo-flow-pm</code> flag.</td>
+          <td class="matched">MATCHED
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6326017-edit-or-activate-a-draft-lease">Edit or Activate a Draft Lease</a><br><span class="note">Likely update needed: document the new "Next actions" column as an additional way to activate a draft lease directly from the list view.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/10446520-create-a-draft-lease">Create a Draft Lease</a><br><span class="note">Likely update needed: add a note pointing to the new column for sending e-signature/pay-link requests after the draft is created.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/14760452-send-signature-request-reminders-to-pending-signers">Send Signature Request Reminders to Pending Signers</a><br><span class="note">Likely update needed: mention the new one-click "Send reminder" action in the Next actions column and its 24-hour cooldown.</span></li>
+            </ul>
+          </td>
+          <td>
+            <span class="video-matched">Creating Leases</span> — created Mar 18, 2026<br>
+            <span class="note">Created ~126 days before this release — review whether it should show the new Next actions column on the draft-leases list.</span><br>
+            <span class="video-matched">Sending eSignature Requests</span> — created Mar 23, 2026<br>
+            <span class="note">Created ~121 days before this release — review whether it should mention the one-click send action in the Next actions column.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>None — both features fold into existing Help Center coverage (see Affected articles above).</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Video</th>
+        <th>Created</th>
+        <th>Duration</th>
+        <th>Features it relates to</th>
+        <th>Needs update?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/t65qdhawyi">Tenant Portal Settings</a></td>
+        <td>Mar 18, 2026</td>
+        <td>5:44</td>
+        <td>PMO-2540 (Tenant portal DoorLoop number reflection)</td>
+        <td>Yes — older than this release</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/krxbldyqse">Communications: Setting Up SMS Messaging</a></td>
+        <td>Mar 23, 2026</td>
+        <td>3:45</td>
+        <td>PMO-2540 (Tenant portal DoorLoop number reflection)</td>
+        <td>Review</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/3i8ub7vvpz">Creating Leases</a></td>
+        <td>Mar 18, 2026</td>
+        <td>4:28</td>
+        <td>L2L-1573 (Draft leases Next actions column)</td>
+        <td>Yes — older than this release</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/2hr70has8m">Sending eSignature Requests</a></td>
+        <td>Mar 23, 2026</td>
+        <td>6:29</td>
+        <td>L2L-1573 (Draft leases Next actions column)</td>
+        <td>Review</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <p>None — both features in this release are customer-visible.</p>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
