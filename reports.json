@@ -337,5 +337,13 @@
     "title": "Release v9.4.32 — Help Center Impact",
     "filename": "reports/v9.4.32.html",
     "generatedAt": "2026-07-22T17:26:29Z"
+  },
+  {
+    "date": "2026-07-21",
+    "version": "v9.4.34",
+    "title": "Release v9.4.34 — Help Center Impact",
+    "filename": "reports/v9.4.34.html",
+    "generatedAt": "2026-07-22T18:28:38Z",
+    "summary": "This release ships 2 changes, both in PM Operations. Owner records gain optional custom fields behind the custom-fields-owner flag, so Help Center updates should wait for GA. The Maintenance Dashboard gets an AI view toggle, refreshed filters, and clickable Sankey drill-downs, continuing the same dashboard epic already flagged as an undocumented gap in v9.4.20, v9.4.22, and v9.4.32 — this item folds into that same suggested article rather than needing a new one."
   }
 ]
