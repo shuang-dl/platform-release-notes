@@ -156,7 +156,8 @@
     "version": "v9.3.2",
     "title": "Release v9.3.2 \u2014 Help Center Impact",
     "filename": "reports/v9.3.2.html",
-    "generatedAt": "2026-06-16T00:00:00Z"
+    "generatedAt": "2026-06-16T00:00:00Z",
+    "summary": "This release ships 4 changes across Onboarding & Imports (1) and Tenant Experience & Payments (3). The tenant-facing highlight is a bug fix restoring accurate stat cards on the Rent Payments Overview dashboard \u2014 outstanding balance, collection rate, overdue %, and average days values are now correct. The remaining items are backend improvements: a self-healing Salesforce merchant-account sync, a performance boost for tenant requests with file attachments, and internal analytics tracking for lease e-signature completions."
   },
   {
     "date": "2026-06-17",
@@ -187,7 +188,8 @@
     "version": "v9.3.19",
     "title": "Release v9.3.19 \u2014 Help Center Impact",
     "filename": "reports/v9.3.19.html",
-    "generatedAt": "2026-06-23T00:00:00Z"
+    "generatedAt": "2026-06-23T00:00:00Z",
+    "summary": "Release v9.3.19 ships 3 changes across PM Operations (1) and Leads & Leasing (2). The headline change is a Communications Center file-send fallback that automatically converts oversized or unsupported attachments into secure hosted links rather than failing \u2014 currently behind a flag (commsCenterLinkFallback). Both Leads & Leasing items are pre-production: the unit drawer is a dark-launch infrastructure change with zero customer impact, and property timezone auto-detection remains behind the property-timezone flag (default off)."
   },
   {
     "date": "2026-06-24",
@@ -274,7 +276,8 @@
     "version": "v9.4.15",
     "title": "Release v9.4.15 \u2014 Help Center Impact",
     "filename": "reports/v9.4.15.html",
-    "generatedAt": "2026-07-21T12:55:18Z"
+    "generatedAt": "2026-07-21T12:55:18Z",
+    "summary": "This release ships three Tenant Experience & Payments changes \u2014 a new tenant-portal insurance-required dialog, PM-facing \"Request policy\" alerts on lease overview pages, and a backend fix scoping the payment-hold auto-decline sweep to eligible companies \u2014 plus one Banking fix so consent-check calls no longer 401 prospects out of the public rental-application wizard."
   },
   {
     "date": "2026-07-09",
