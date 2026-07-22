@@ -1,0 +1,340 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.32 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.32 — 2026-07-20</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1784551723390329">View original Slack post</a> · <code>1784551723.390329</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 17 changes across PM Operations (voice-transcript reliability, EN↔ES message translation, four Maintenance Dashboard additions, calls-list filters, and drawer/list UX alignment), Tenant Experience &amp; Payments (an onboarding-skip fix that routes eligible residents to the insurance step), Workflows (Command Center chat page context), Leads &amp; Leasing (full lease actions in the Unit drawer, an Extend Portal Access recommendation, and a new applicant payment step), and Banking (three internal Treasury daily-sweep hardening changes). Six items are genuinely customer-visible but not yet covered by an existing Help Center article — most notably the expanding Maintenance Dashboard and the new applicant payment step.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (17)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (9)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (1)</span>
+    <span class="chip" data-area="workflows">Workflows (1)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (3)</span>
+    <span class="chip" data-area="banking">Banking (3)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">9 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2413">PMO-2413</a></td>
+          <td>More reliable voice call transcripts</td>
+          <td class="original">Fixed voice call post-processing to retry transient transcription failures so transcripts and AI summaries are less likely to be lost.</td>
+          <td>Post-call transcription now rethrows on retriable errors (network/timeout/429/5xx) instead of silently degrading, so the job retries up to 3 times before giving up — no more permanently lost transcripts from a blip in the transcription service.</td>
+          <td><span class="label">⚫ INTERNAL</span> — pure backend reliability fix to a background job; no visible workflow change to document.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-1565">PMO-1565</a></td>
+          <td>In-app EN↔ES message translation</td>
+          <td class="original">Added on-demand English↔Spanish message translation in Communications Center, with cached thread and message views.</td>
+          <td>PMs can now toggle a "Translated / View original" view on incoming tenant messages, auto-detecting non-English text and translating it into English (and vice versa), with translated views cached so they load instantly on repeat visits.</td>
+          <td><span class="matched">🟢 MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/9061551-communications-center-overview">Communications Center Overview</a> — <span class="note">Likely update needed: add a section on the new "Translated / View original" toggle for incoming tenant messages.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/14759218-what-is-the-communications-center-in-doorloop">What Is the Communications Center in DoorLoop</a> — <span class="note">Likely update needed: mention bilingual support as a headline capability.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">AI Communications Center</span> (created Mar 23, 2026 — 119 days before this release) <span class="note">likely needs a short addendum or re-recording to show the translation toggle.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2500">PMO-2500</a></td>
+          <td>Actionable unassigned-tasks widget</td>
+          <td class="original">Added an unassigned tasks widget, a work-order funnel, and AI insight cards to the maintenance dashboard.</td>
+          <td>Replaces the old "Unassigned" KPI tile with an actionable widget: shows the unassigned count and a CTA that drills straight into the pre-filtered unassigned list, where bulk "assign to me" actions are already available.</td>
+          <td><span class="unmatched">🟠 UNMATCHED</span> — no existing article documents the Maintenance Dashboard specifically; see suggested new article below (covers PMO-2500 / PMO-2596 / PMO-2605 together).</td>
+          <td><span class="video-matched">Navigating Dashboard</span> (created Mar 17, 2026 — 125 days before this release), <span class="video-matched">Managing Work Orders</span> (created Mar 23, 2026 — 119 days before this release) <span class="note">both predate the dashboard's new widgets and likely need re-recording.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-2012">L2L-2012</a></td>
+          <td>Showings hidden from task type filter</td>
+          <td class="original">Fixed the Tasks Type filter to hide calendar-only Showing events while keeping other task types available.</td>
+          <td>"Showing" is a calendar-only event type and should never have appeared as a selectable canonical task type in the Tasks Type filter — it's now hidden from that filter while still working normally for calendar scheduling.</td>
+          <td><span class="matched">🟢 MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/14762070-filter-tasks-work-orders-and-tenant-requests-by-property-and-unit">Filter Tasks, Work Orders, and Tenant Requests by Property and Unit</a> — <span class="note">Likely update needed: confirm the Task Type filter dropdown no longer lists "Showing" and note it remains available on the calendar.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Creating a Task</span> (created Mar 23, 2026 — 119 days before this release) <span class="note">predates this filter fix; low priority re-record since the filter change is minor.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2589">PMO-2589</a></td>
+          <td>Linkable columns in maintenance task list</td>
+          <td class="original">Added linkable property, unit, vendor, and requester columns plus searchable filters in the maintenance task list.</td>
+          <td>Tenant, property, unit, and lease values in the tasks list are now clickable links that jump straight to each entity's page, and a new Requested-by column plus autocomplete filters make the list easier to search.</td>
+          <td><span class="matched">🟢 MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/14762070-filter-tasks-work-orders-and-tenant-requests-by-property-and-unit">Filter Tasks, Work Orders, and Tenant Requests by Property and Unit</a> — <span class="note">Likely update needed: document the new linkable entity columns and the Requested-by filter.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/9701687-edit-a-task">Edit a Task</a> — <span class="note">Likely update needed: screenshot the list with clickable entity links.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Creating a Task</span> (created Mar 23, 2026 — 119 days before this release) <span class="note">predates the linkable-columns update; consider a short addendum.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2586">PMO-2586</a></td>
+          <td>Calls list property/portfolio filters + quick view</td>
+          <td class="original">Added property and portfolio filters to the calls list, with quick view and caller links to related records.</td>
+          <td>The Voice calls list now has property and portfolio filter chips, a Quick View button on each row (matching other DoorLoop lists), and a non-dimming drawer so you can browse call detail without losing your place in the list.</td>
+          <td><span class="unmatched">🟠 UNMATCHED</span> — no calls-list-specific article exists; the closest is <a href="http://support.doorloop.com/en/articles/15280537-doorloop-voice-beta-faq">DoorLoop Voice — Beta FAQ</a>, which could gain a short filters/quick-view mention. See suggested new article below.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2605">PMO-2605</a></td>
+          <td>Maintenance Dashboard nav item</td>
+          <td class="original">Added a Maintenance dashboard menu item for eligible users and removed the old in-page tab bar and feedback banner.</td>
+          <td>The Maintenance Dashboard is now a first-class item in the Tasks side-menu (same pattern as the Accounts Receivable dashboard) instead of a tab on the tasks screen, and the old beta feedback banner is gone.</td>
+          <td><span class="unmatched">🟠 UNMATCHED</span> — no existing Maintenance Dashboard article; see suggested new article below (covers PMO-2500 / PMO-2596 / PMO-2605 together).</td>
+          <td><span class="video-matched">Navigating Dashboard</span> (created Mar 17, 2026 — 125 days before this release) <span class="note">predates the new nav item; likely needs updating to show the menu entry.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2596">PMO-2596</a></td>
+          <td>Tenant inquiry flow Sankey widget</td>
+          <td class="original">Added a tenant inquiry flow Sankey widget to the maintenance dashboard with filter-aware loading, empty, error, and retry states.</td>
+          <td>A new Sankey chart on the Maintenance Dashboard visualizes how tenant AI-copilot inquiries flow into maintenance/general requests, then into work orders, then into completed vs. incomplete outcomes — respects the dashboard's existing period/property filters.</td>
+          <td><span class="unmatched">🟠 UNMATCHED</span> — no existing Maintenance Dashboard article; see suggested new article below.</td>
+          <td><span class="video-matched">Navigating Dashboard</span> (created Mar 17, 2026 — 125 days before this release), <span class="video-matched">Managing Tenant Requests</span> (created Mar 23, 2026 — 119 days before this release) <span class="note">neither shows the new Sankey widget.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2588">PMO-2588</a></td>
+          <td>Consistent drawer &amp; list UX across entities</td>
+          <td class="original">Added consistent drawer and list actions, copyable headers, and key details across properties, units, inspections, vendors, owners, and tasks.</td>
+          <td>Drawers across Properties, Units, Inspections, Vendors, Owners, and Tasks now share the same three-dots menu (including "Login to portal" and "Duplicate"), the same filter set, a default "All ___" tab, and insight cards / copyable address headers at the top.</td>
+          <td><span class="unmatched">🟠 UNMATCHED</span> — this is a broad, cross-entity UX change rather than a single feature; no one article covers it. See suggested new article below.</td>
+          <td><span class="video-matched">Add a New Property</span> (created Mar 18, 2026 — 124 days before this release), <span class="video-matched">Add a New Unit</span> (created Mar 18, 2026 — 124 days before this release), <span class="video-matched">AI Inspections</span> (created Mar 23, 2026 — 119 days before this release) <span class="note">all predate the drawer/list redesign and show the old layout.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>— <span class="note">(no Linear link in Slack post)</span></td>
+          <td>Onboarding skip routes to insurance step</td>
+          <td class="original">Added onboarding skip handling that now sends eligible residents to the insurance step instead of ending setup early.</td>
+          <td>Residents who skip a step during onboarding are no longer dropped out of the flow early — if they're eligible, they're now routed forward into the renters-insurance step so onboarding still completes correctly. Likely continues the insurance-onboarding epic seen in prior releases (TEN-943/988/993/944/987/911).</td>
+          <td><span class="matched">🟢 MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/8926877-introduction-to-lemonade-and-renters-insurance">Introduction to Lemonade and Renters Insurance</a> — <span class="note">Likely update needed: note that skipping an earlier onboarding step now still leads eligible residents into this insurance step rather than ending setup.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/9011649-how-to-upload-renters-insurance-to-the-tenant-portal-if-you-already-have-it">How to Upload Renters Insurance to the Tenant Portal If You Already Have It</a> — <span class="note">Likely update needed: cross-reference the corrected onboarding path.</span></li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1399">WOR-1399</a></td>
+          <td>Command Center chat carries page context</td>
+          <td class="original">Added execution page context to Command Center chat messages when a run is selected.</td>
+          <td>When a PM opens Command Center chat while viewing a specific agent run, the conversation now silently carries that run's context (agent type, run ID, related entity) so the assistant can answer questions about it without the PM re-explaining what they're looking at.</td>
+          <td><span class="label">⚫ INTERNAL</span> — invisible plumbing between client, DTO, and AI backend; no new UI or workflow to document.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1955">L2L-1955</a></td>
+          <td>Full lease actions from the Unit drawer</td>
+          <td class="original">Added full lease actions in the unit drawer and kept payment, charge, refund, and credit dialogs visible over the Units list.</td>
+          <td>The Unit drawer's Leases tab drill-in menu now offers the full action set — Receive payment, Add charge, Give refund, Issue credit, Start AI inspection, End lease, Delete — and those dialogs stay open on top of the Units list instead of closing it. Each lease row also shows a colored status tag above the amount.</td>
+          <td><span class="matched">🟢 MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6184359-refund-a-payment-to-a-tenant-on-an-active-lease">Refund a Payment to a Tenant on an Active Lease</a> — <span class="note">Likely update needed: show the refund action reachable from the Unit drawer's lease drill-in menu, not just the lease page.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/14761806-credit-or-unapplied-payment-appearing-on-a-lease">Credit or Unapplied Payment Appearing on a Lease</a> — <span class="note">Likely update needed: mention "Issue credit" is now available directly from the Unit drawer.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Creating Leases</span> (created Mar 18, 2026 — 124 days before this release) <span class="note">predates the new drawer action menu.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1007">TEN-1007</a></td>
+          <td>Extend Portal Access recommendation for inactive leases</td>
+          <td class="original">Added an Extend Portal Access recommendation for inactive overdue leases and restored Action and Collection Status columns in Inactive view.</td>
+          <td>When a lease is Inactive, its collection status is Overdue, and portal access is disabled, the lease action column now surfaces an "Extend Portal Access" recommendation using the existing extend-access handler — and the Action / Collection Status columns are back in the Inactive leases view.</td>
+          <td><span class="matched">🟢 MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/14761811-tenant-portal-access-after-a-lease-expires">Tenant Portal Access After a Lease Expires</a> — <span class="note">Likely update needed: document the new "Extend Portal Access" recommendation shown on inactive, overdue leases.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/13226645-enable-access-to-the-tenant-portal-after-a-lease-ends-or-a-tenant-moves-out">Enable Access to the Tenant Portal After a Lease Ends or a Tenant Moves Out</a> — <span class="note">Likely update needed: cross-link the new recommendation and the restored Action/Collection Status columns.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Tenant Portal Settings</span> (created Mar 18, 2026 — 124 days before this release), <span class="video-matched">Tenant Portal Overview</span> (created Mar 23, 2026 — 119 days before this release) <span class="note">neither shows the new Extend Portal Access recommendation.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-1943">L2L-1943</a></td>
+          <td>Applicant payment step (card/ACH)</td>
+          <td class="original">Added a new applicant payment step so applicants can save card or ACH details during the application flow.</td>
+          <td>Rental applicants can now save a card or bank (ACH) payment method as a dedicated step inside the application flow itself, with empty/pending/success/error states, instead of only being able to add payment details after being approved.</td>
+          <td><span class="unmatched">🟠 UNMATCHED</span> — existing rental application articles cover application settings and links, but none document collecting payment during the application. See suggested new article below.</td>
+          <td><span class="video-matched">Rental Applications</span> (created Mar 22, 2026 — 120 days before this release), <span class="video-matched">Recording Manual Payments</span> (created Mar 22, 2026 — 120 days before this release) <span class="note">neither shows the in-application payment step.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-1436">BAN-1436</a></td>
+          <td>Sweep audit Slack channel</td>
+          <td class="original">Added a new Slack breadcrumb channel for daily sweep tracking, keeping audit messages separate from banking alerts.</td>
+          <td>Internal audit-trail plumbing: a new, dedicated Slack channel now receives breadcrumb messages for the Treasury daily sweep job, separate from the existing banking-alerts channel.</td>
+          <td><span class="label">⚫ INTERNAL</span> — internal ops/audit tooling; no customer-facing surface.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-1441">BAN-1441</a></td>
+          <td>Treasury sweep percentage kill switch</td>
+          <td class="original">Added a PostHog-controlled treasury sweep percentage with a 0% kill switch and safe fallback on bad settings.</td>
+          <td>Internal config: the percentage of available cash swept into Treasury is now a PostHog flag (0–100%), currently set to 0 (sweep off), letting engineering ramp the rollout without a deploy and instantly kill it if needed.</td>
+          <td><span class="label">⚫ INTERNAL</span> — internal rollout control; no customer-facing surface.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-1437">BAN-1437</a></td>
+          <td>Treasury account lookup for daily sweep</td>
+          <td class="original">Added Treasury account lookup and alerting for daily sweep jobs when the platform account cannot be uniquely identified.</td>
+          <td>Internal safety check: the daily sweep, return, and watchdog jobs now share a resolver that looks up the platform's Treasury financial account and aborts with a Slack alert if it can't find exactly one match, preventing sweeps from running against an ambiguous account.</td>
+          <td><span class="label">⚫ INTERNAL</span> — internal safeguard for a backend job; no customer-facing surface.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+
+  <p><b>What's New: A smarter Maintenance Dashboard — unassigned tasks, tenant-inquiry flow, and a dedicated menu item</b><br>
+  Rationale: PMO-2500, PMO-2596, and PMO-2605 together turn the Maintenance Dashboard into a materially richer surface (actionable unassigned-tasks widget, work-order funnel, AI insight cards, a tenant-inquiry Sankey flow chart, and its own nav item replacing the old in-page tab bar), but no Help Center article documents the dashboard at all today.<br>
+  Suggested keywords: maintenance dashboard, unassigned tasks, work order funnel, tenant inquiry flow, AI insights, dashboard navigation.</p>
+
+  <p><b>What's New: One consistent drawer experience across Properties, Units, Inspections, Vendors, Owners, and Tasks</b><br>
+  Rationale: PMO-2588 aligns the three-dots menu, filters, default tabs, and header/insight-card layout across six entity drawers at once. This is broad enough that it either needs its own explainer or a coordinated update across every affected entity's existing article.<br>
+  Suggested keywords: drawer, insight cards, three-dots menu, default tab, copyable header, properties, units, vendors, owners.</p>
+
+  <p><b>What's New: Filter your calls by property and portfolio</b><br>
+  Rationale: PMO-2586 adds property/portfolio filters, a Quick View button, and a non-dimming drawer to the Voice calls list — none of which is covered by the existing DoorLoop Voice — Beta FAQ.<br>
+  Suggested keywords: voice calls, property filter, portfolio filter, quick view, calls list.</p>
+
+  <p><b>What's New: Applicants can now pay by card or bank transfer during the application</b><br>
+  Rationale: L2L-1943 adds a dedicated payment-collection step (card or ACH, with a Stripe-backed setup) inside the rental application flow — a materially new capability not covered by the existing application-settings articles.<br>
+  Suggested keywords: rental application, applicant payment, ACH, card payment, security deposit collection.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Duration</th><th>Features it relates to</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><a href="https://doorloop.wistia.com/medias/o1cw1de8i5">AI Communications Center</a></td><td>Mar 23, 2026</td><td>1:27</td><td>PMO-1565 (EN↔ES translation)</td><td>Yes — 119 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/q3oejrw55n">Navigating Dashboard</a></td><td>Mar 17, 2026</td><td>1:14</td><td>PMO-2500, PMO-2605, PMO-2596 (Maintenance Dashboard)</td><td>Yes — 125 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/tn4ch9b3tf">Managing Work Orders</a></td><td>Mar 23, 2026</td><td>4:08</td><td>PMO-2500 (work-order funnel)</td><td>Yes — 119 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/61dr2gbk7w">Managing Tenant Requests</a></td><td>Mar 23, 2026</td><td>3:05</td><td>PMO-2596 (tenant inquiry flow), PMO-2589 (task list columns)</td><td>Yes — 119 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/i5szoii0n0">Creating a Task</a></td><td>Mar 23, 2026</td><td>2:37</td><td>L2L-2012, PMO-2589 (task list filters/columns)</td><td>Review — minor filter change</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/pmogitfoao">Add a New Property</a></td><td>Mar 18, 2026</td><td>2:40</td><td>PMO-2588 (property drawer redesign)</td><td>Yes — 124 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/qhbipfxe62">Add a New Unit</a></td><td>Mar 18, 2026</td><td>1:20</td><td>PMO-2588 (unit drawer redesign)</td><td>Yes — 124 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/34pur4lk9w">AI Inspections</a></td><td>Mar 23, 2026</td><td>7:10</td><td>PMO-2588 (inspection drawer redesign)</td><td>Yes — 119 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/3i8ub7vvpz">Creating Leases</a></td><td>Mar 18, 2026</td><td>4:28</td><td>L2L-1955 (Unit drawer lease actions)</td><td>Yes — 124 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/t65qdhawyi">Tenant Portal Settings</a></td><td>Mar 18, 2026</td><td>5:44</td><td>TEN-1007 (Extend Portal Access)</td><td>Yes — 124 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/hkxwwfp62a">Tenant Portal Overview</a></td><td>Mar 23, 2026</td><td>3:19</td><td>TEN-1007 (Extend Portal Access)</td><td>Yes — 119 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td><td>Mar 22, 2026</td><td>6:28</td><td>L2L-1943 (applicant payment step)</td><td>Yes — 120 days older than this release</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/dvz950y9qf">Recording Manual Payments</a></td><td>Mar 22, 2026</td><td>3:28</td><td>L2L-1943 (applicant payment step)</td><td>Review — different payment context (owner-recorded vs. applicant self-serve)</td></tr>
+    </tbody>
+  </table>
+  <p><b>Suggested new training videos</b> — no existing video covers: voice call transcription reliability (PMO-2413, internal), Voice calls-list filters (PMO-2586), or the tenant-inquiry Sankey widget specifically (PMO-2596, beyond the general dashboard tour).</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><a href="https://linear.app/doorloop/issue/PMO-2413">PMO-2413</a> — backend retry logic for a background job; no user-facing workflow change.</li>
+    <li><a href="https://linear.app/doorloop/issue/WOR-1399">WOR-1399</a> — invisible AI-context plumbing between client, DTO, and backend.</li>
+    <li><a href="https://linear.app/doorloop/issue/BAN-1436">BAN-1436</a> — internal Slack audit-trail channel for the Treasury sweep job.</li>
+    <li><a href="https://linear.app/doorloop/issue/BAN-1441">BAN-1441</a> — internal PostHog rollout control for the Treasury sweep percentage.</li>
+    <li><a href="https://linear.app/doorloop/issue/BAN-1437">BAN-1437</a> — internal safeguard preventing sweep jobs from running against an ambiguous account.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
