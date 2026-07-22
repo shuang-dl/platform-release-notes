@@ -279,23 +279,23 @@
   {
     "date": "2026-07-09",
     "version": "v9.4.16",
-    "title": "Release v9.4.16 — Help Center Impact",
+    "title": "Release v9.4.16 \u2014 Help Center Impact",
     "filename": "reports/v9.4.16.html",
     "generatedAt": "2026-07-21T00:00:00Z",
-    "summary": "This release ships 4 changes across PM Operations (smarter task drawer quick actions with an always-visible Action Needed card), Accounting (an internal feature-flag evaluation telemetry hook — no customer-facing change), and Leads & Leasing (a new Fee collection column on rental application lists/settings plus a fix to fee-toggle reset behavior)."
+    "summary": "This release ships 4 changes across PM Operations (smarter task drawer quick actions with an always-visible Action Needed card), Accounting (an internal feature-flag evaluation telemetry hook \u2014 no customer-facing change), and Leads & Leasing (a new Fee collection column on rental application lists/settings plus a fix to fee-toggle reset behavior)."
   },
   {
     "date": "2026-07-12",
     "version": "v9.4.18",
-    "title": "Release v9.4.18 — Help Center Impact",
+    "title": "Release v9.4.18 \u2014 Help Center Impact",
     "filename": "reports/v9.4.18.html",
     "generatedAt": "2026-07-21T00:00:00Z",
-    "summary": "This is a small, two-feature release. In Tenant Experience & Payments, TEN-988 ships the final approved UI for the tenant-portal insurance-required dialog (desktop & mobile) — a visual/copy refinement on top of the wiring TEN-943 shipped in v9.4.15. In Leads & Leasing, L2L-1881 adds a 3-tab quick-view drawer (Overview, Communication, Reports) for rental applications, letting PMs review an application without leaving the list view."
+    "summary": "This is a small, two-feature release. In Tenant Experience & Payments, TEN-988 ships the final approved UI for the tenant-portal insurance-required dialog (desktop & mobile) \u2014 a visual/copy refinement on top of the wiring TEN-943 shipped in v9.4.15. In Leads & Leasing, L2L-1881 adds a 3-tab quick-view drawer (Overview, Communication, Reports) for rental applications, letting PMs review an application without leaving the list view."
   },
   {
     "date": "2026-07-13",
     "version": "v9.4.20",
-    "title": "Release v9.4.20 — Help Center Impact",
+    "title": "Release v9.4.20 \u2014 Help Center Impact",
     "filename": "reports/v9.4.20.html",
     "generatedAt": "2026-07-21T00:00:00Z",
     "summary": "Release v9.4.20 ships a maintenance-dashboard insights foundation and property-scoped voice-call permissions in PM Operations; a new Payment Methods settings tab, a Tenants tab in property/unit/lease detail views, insurance reminder and cleanup UI, and lease-list polish in Tenant Experience & Payments; a wave of lease Collection/Lease-Status filters and columns plus the first pieces of the applicant Sign + Pay wizard and a late-fees default in Leads & Leasing; and a daily Banking Slack alert for treasury accounts missing a payment method."
@@ -303,7 +303,7 @@
   {
     "date": "2026-07-14",
     "version": "v9.4.22",
-    "title": "Release v9.4.22 — Help Center Impact",
+    "title": "Release v9.4.22 \u2014 Help Center Impact",
     "filename": "reports/v9.4.22.html",
     "generatedAt": "2026-07-21T00:00:00Z",
     "summary": "This release ships 18 changes across PM Operations (new renewal dashboard insights, task Created-by column, and a task-drawer Communications tab), Tenant Experience & Payments (insurance-dialog snoozing, a new Payment Collection widget, and an overhauled tenants list), Workflows (a generic agent SMS tool and Deposits global search), and Leads & Leasing (Prospect Overview Pipeline/Action-needed/Showings cards and several Unit Drawer polish fixes). Five items are internal-only engineering/design cleanups with no customer-visible surface, and one item (the revamped tenants list) has no clearly matching Help Center article today."
@@ -311,7 +311,7 @@
   {
     "date": "2026-07-15",
     "version": "v9.4.26",
-    "title": "Release v9.4.26 — Help Center Impact",
+    "title": "Release v9.4.26 \u2014 Help Center Impact",
     "filename": "reports/v9.4.26.html",
     "generatedAt": "2026-07-21T19:59:04Z",
     "summary": "This release ships 3 changes across Workflows (Tenant Payments now searchable via Global Search with a deep link to the Charges & Payments report), Leads & Leasing (automatic daily reminder emails to re-engage applicants whose income verification has stalled or failed), and Banking (a feature-flag grandfathering change that keeps existing Stripe Treasury accounts on the embedded onboarding/management flow after the flags are turned off for new accounts). Two of the three items likely need Help Center updates; the banking change is an internal flag-rollout with no new user-facing workflow."
@@ -319,9 +319,16 @@
   {
     "date": "2026-07-16",
     "version": "v9.4.29",
-    "title": "Release v9.4.29 — Help Center Impact",
+    "title": "Release v9.4.29 \u2014 Help Center Impact",
     "filename": "reports/v9.4.29.html",
     "generatedAt": "2026-07-21T00:00:00Z",
     "summary": "This release ships 5 changes across PM Operations (per-tenant renewal recommendations with risk flags), Tenant Experience & Payments (an insurance onboarding step and a new Collection Trend dashboard widget), Leads & Leasing (a recommended-action column on the leases list and embedded HelloSign signing in the applicant portal), and a standalone Tenant Portal move-out access card for staff. Most items are customer-visible and land in existing Help Center collections, with the embedded signing flow standing out as a genuinely new applicant-facing surface with no dedicated article yet."
+  },
+  {
+    "date": "2026-07-19",
+    "version": "v9.4.31",
+    "title": "Release v9.4.31 \u2014 Help Center Impact",
+    "filename": "reports/v9.4.31.html",
+    "generatedAt": "2026-07-22T17:03:00Z"
   }
 ]
