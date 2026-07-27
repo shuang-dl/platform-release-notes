@@ -358,5 +358,13 @@
     "filename": "reports/v9.4.37.html",
     "generatedAt": "2026-07-22T19:14:22Z",
     "summary": "This release ships 2 changes: Tenant Experience & Payments gets a tenant-portal contact fix that reflects the company's DoorLoop number for SMS and calls instead of a stale company phone number (PMO-2540), and Leads & Leasing gets a new \"Next actions\" column on the draft-leases list letting PMs send for e-signature, remind, send a pay link, or activate a lease directly from the list, with built-in 24-hour resend cooldowns (L2L-1573, flag-gated behind flamingo-flow-pm). Both features have existing Help Center coverage to update; no net-new articles are needed for this release."
+  },
+  {
+    "date": "2026-07-23",
+    "version": "v9.4.41",
+    "title": "Release v9.4.41 — Help Center Impact",
+    "filename": "reports/v9.4.41.html",
+    "generatedAt": "2026-07-27T00:00:00Z",
+    "summary": "This small release ships 2 changes: an internal security hardening fix in Onboarding & Imports (ACT-1362, adding authenticated bearer-token requests to the GSF AI migration service) and a Tenant Experience & Payments improvement (TEN-1101) that persists each user's custom dashboard widget layout and sizes across sessions. Only the dashboard layout change is customer-visible; the migration-service auth change is backend-only."
   }
 ]
