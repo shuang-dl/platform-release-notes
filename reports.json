@@ -382,5 +382,13 @@
     "filename": "reports/v9.4.43.html",
     "generatedAt": "2026-07-27T21:31:42Z",
     "summary": "This release refreshes the Incoming Payments Transactions tab in Accounting (BAN-1539) and ships a redesigned Choose Plan page plus more reliable server-side AI import mapping in Onboarding & Imports (ACT-1345, ACT-1104). Tenant Experience & Payments gets a Gmail-verification fix and a new bulk \"request online payment\" lease action (TEN-1090, TEN-1043), while Workflows adds a pre-activation agent test-run preview and a clearer Command Center Status column alongside three internal fixes (WOR-1421, WOR-1492, WOR-1487, WOR-1491). Leads & Leasing rounds out the release with an applicant-portal payment/fee-preview step, a listings-wizard revert, and a smarter eviction action recommendation (L2L-2149, L2L-2080, TEN-1004), plus an internal Banking reliability tool (BAN-1577)."
+  },
+  {
+    "date": "2026-07-27",
+    "version": "v9.4.47",
+    "title": "Release v9.4.47 — Help Center Impact",
+    "filename": "reports/v9.4.47.html",
+    "generatedAt": "2026-07-27T00:00:00Z",
+    "summary": "This release ships a single backend performance improvement in Tenant Experience & Payments: TEN-1153 adds Redis caching (with gzip compression) for AR dashboard lease and aging widget queries, collapsing redundant active-lease lookups and cutting the aging widget's load time from roughly 17.6s to ~1s on large accounts. The change is purely a server-side performance fix — dashboard behavior and data shown to users are unchanged, so no Help Center article or training video needs updating."
   }
 ]
