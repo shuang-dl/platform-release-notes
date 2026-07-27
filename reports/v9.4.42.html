@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.42 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #666; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.42 — 2026-07-23</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1784982346564429">View original Slack post</a> · <code>1784982346.564429</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 12 changes across Onboarding &amp; Imports (setup-mode empty states), Tenant Experience &amp; Payments (bulk Auto-Pay requests, insurance-popup dedup, DoorLoop Platform Fee wording, tenant-portal-server parity), Leads &amp; Leasing (rental application drawer reports/payment flows, embedded e-signature reminders, lease drawer polish, unit listing action, drawer tab styling), and Banking (alerts for failed Treasury payouts and top-ups). Most changes are customer-visible UI/workflow improvements; a few are internal reliability, legal-wording, or observability fixes with no Help Center impact.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (12)</span>
+    <span class="chip" data-area="onboarding-imports">Onboarding &amp; Imports (1)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (4)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (6)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+  </div>
+
+  <section class="area-section" data-area="onboarding-imports">
+    <h2>Onboarding &amp; Imports <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-1279">ACT-1279</a></td>
+          <td>Setup-mode nudges guide users back to Get Started</td>
+          <td class="original">Added setup-mode empty states on empty properties, units, tenants, and leases lists to guide onboarding users back to setup.</td>
+          <td>When an account is still mid-setup and a user visits an empty Properties, Units, Tenants, or Leases list, a new empty-state card now appears with a "Go back to setup" primary CTA and an "Add anyway" secondary option, steering out-of-flow data entry back into the Get Started flow.</td>
+          <td><span class="matched">MATCHED</span> — <a href="http://support.doorloop.com/en/articles/6301613-get-started-with-doorloop">Get Started With DoorLoop</a><br><span class="note">Likely update needed: add a note/screenshot showing the new setup-mode prompt that appears if a user navigates to Properties/Units/Tenants/Leases with an empty list while still in Get Started.</span></td>
+          <td><span class="video-matched">Add a New Property</span> (created Mar 18, 2026 — 127 days before this release) <span class="note">— likely needs updating to show the new setup-mode redirect prompt.</span><br><span class="video-matched">Creating Leases</span> (created Mar 18, 2026 — 127 days before this release)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">4 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1093">TEN-1093</a></td>
+          <td>Tenant-portal insurance-shown endpoint ported to new server</td>
+          <td class="original">Added support for marking the insurance offer as shown in the tenant portal, with duplicate updates prevented.</td>
+          <td>Purely a backend migration: the "mark insurance offer shown" endpoint was added to the new tenant-portal-server (behind a flag) to match the already-migrated snooze endpoint, so the legacy and new servers don't diverge. Behavior for tenants and PMs is unchanged.</td>
+          <td><span class="internal">INTERNAL</span> — flag-gated backend server-migration parity work; no user-facing behavior change, so no Help Center update needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1042">TEN-1042</a></td>
+          <td>Bulk Send Auto-Pay Request for leases</td>
+          <td class="original">Added a bulk Send Auto-Pay Request action for leases, with per-lease results and duplicate-request protection.</td>
+          <td>Property managers can now select multiple leases in the lease list and send an Auto-Pay request email to all eligible tenants at once (last payment via portal, AutoPay not yet set, portal access enabled, not in eviction), instead of doing it lease-by-lease. Ineligible leases are skipped, and a 7-day throttle prevents duplicate requests.</td>
+          <td><span class="matched">MATCHED</span> — <a href="http://support.doorloop.com/en/articles/9160534-how-to-set-up-auto-pay-on-the-resident-center">How to Set Up Auto-Pay on the Resident Center</a><br><span class="note">Likely update needed: add a section covering the PM-side bulk "Send Auto-Pay Request" action from the lease list, separate from the tenant self-service setup this article currently documents.</span></td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1119">TEN-1119</a></td>
+          <td>Duplicate insurance-offer popup removed</td>
+          <td class="original">Removed legacy insurance offer events so tenants no longer see duplicate Intercom popups.</td>
+          <td>Tenants were briefly seeing two insurance-offer popups — the new native in-app dialog plus a legacy Intercom-triggered one firing off the same event. The legacy event emission was removed so tenants only see the single native popup going forward.</td>
+          <td><span class="internal">INTERNAL</span> — silent analytics/dedup bugfix; the tenant-facing insurance popup itself is unchanged and already documented, so no article update needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1120">TEN-1120</a></td>
+          <td>Tenant fees now always labeled DoorLoop Platform Fee</td>
+          <td class="original">Now presents tenant payment fees as DoorLoop Platform Fee instead of processing fee wording.</td>
+          <td>Per outside counsel (to avoid surcharging concerns), the tenant portal no longer describes DoorLoop's fee as a "processing fee" or "card processing fee" anywhere in the payment wizard or payment-methods screens (English and Spanish). It's now consistently labeled "DoorLoop Platform Fee," with a new tooltip explaining it's DoorLoop's fee for platform use — the amount/percentage shown is unchanged.</td>
+          <td><span class="matched">MATCHED</span> — <a href="http://support.doorloop.com/en/articles/11055358-tenant-platform-fees-on-the-portal">Tenant Platform Fees on the Portal</a><br><span class="note">Likely update needed: remove any remaining "processing fee" / "card processing fee" wording and screenshots, and confirm the tooltip copy matches the new counsel-approved text ("DoorLoop Platform Fee ... for paying via its platform").</span></td>
+          <td><span class="video-matched">Fees Settings Overview</span> (created Mar 18, 2026 — 127 days before this release) <span class="note">— likely needs updating if it shows tenant-facing "processing fee" wording that has now changed.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">6 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-2084">L2L-2084</a></td>
+          <td>Rental application reports tab redesign (round 2)</td>
+          <td class="original">Added drawer-native report rows for rental applications, with available and pending states matching the design prototype.</td>
+          <td>The rental application drawer's Reports tab now renders its "not requested," "available," "TransUnion couldn't verify identity," and "request payment" states natively in the drawer's new design system instead of falling back to the legacy embedded reports tab, plus outlined (not ghost) footer buttons on the details card.</td>
+          <td><span class="matched">MATCHED</span> — <a href="http://support.doorloop.com/en/articles/9086299-download-rental-applications-and-screening-reports">Download Rental Applications and Screening Reports</a><br><span class="note">Likely update needed: refresh screenshots of the reports tab to reflect the new drawer-native card states.</span></td>
+          <td><span class="video-matched">Rental Applications</span> (created Mar 22, 2026 — 123 days before this release) <span class="note">— likely needs updating to show the redesigned reports tab states.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-2013">L2L-2013</a></td>
+          <td>Embedded e-signature reminders now reach every signer</td>
+          <td class="original">Added automated reminder emails for embedded e-signature requests so signers can be nudged to finish signing.</td>
+          <td>Previously, automated e-signature reminders for embedded signing requests silently did nothing (Dropbox never emails embedded signers, so the "reminder" logged success but nobody got nudged). Now DoorLoop sends its own reminder email to any unsigned PM, tenant, prospect, owner, or vendor signer on an embedded request, linking them to the surface they can actually sign on.</td>
+          <td><span class="matched">MATCHED</span> — <a href="http://support.doorloop.com/en/articles/14760452-send-signature-request-reminders-to-pending-signers">Send Signature Request Reminders to Pending Signers</a><br><span class="note">Likely update needed: note that embedded signing requests now receive automated DoorLoop-sent reminders (previously silent no-op) for all signer roles.</span></td>
+          <td><span class="video-matched">Sending eSignature Requests</span> (created Mar 23, 2026 — 122 days before this release)<br><span class="video-matched">Creating eSignature Templates</span> (created Mar 23, 2026 — 122 days before this release)</td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1104">TEN-1104</a></td>
+          <td>Lease drawer product-review polish</td>
+          <td class="original">Added lease drawer updates for tenants, renewals, payment methods, insurance, and clearer transaction details.</td>
+          <td>Multiple lease-drawer refinements: clicking list cells now correctly opens the overview, the drawer can expand to the full lease view, quick actions match the lease overview, the insurance-required ribbon now shows in the drawer, tenants are listed below lease status (clickable to a sub-drawer), renewal process and alternative payment methods were added to the overview, and the transactions tab gained charge type and running balance.</td>
+          <td><span class="matched">MATCHED</span> — <a href="http://support.doorloop.com/en/articles/10207476-lease-renewals-overview">Lease Renewals Overview</a>, <a href="http://support.doorloop.com/en/articles/15330154-can-i-use-a-payment-method-that-s-already-saved-on-another-lease">Can I use a payment method that's already saved on another lease?</a><br><span class="note">Likely update needed: refresh screenshots of the lease drawer overview to show the renewal-process section, alternative payment methods, insurance ribbon, and tenant list.</span></td>
+          <td><span class="video-matched">Lease Renewals Overview</span> (created Mar 20, 2026 — 125 days before this release) <span class="note">— likely needs updating to reflect the redesigned lease drawer.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-2099">L2L-2099</a></td>
+          <td>Two-step in-drawer payment flow for screening reports</td>
+          <td class="original">Added a two-step screening report payment flow in the rental application drawer for applicants or owners to pay.</td>
+          <td>Paying for a screening report (when required) now happens natively inside the rental application drawer: step 1 picks who pays, step 2 picks a payment method and shows the fee breakdown before confirming — replacing the old embedded legacy payment fallback.</td>
+          <td><span class="matched">MATCHED</span> — <a href="http://support.doorloop.com/en/articles/6263838-charge-a-fee-for-rental-applications">Charge a Fee for Rental Applications</a>, <a href="http://support.doorloop.com/en/articles/9086299-download-rental-applications-and-screening-reports">Download Rental Applications and Screening Reports</a><br><span class="note">Likely update needed: document the new in-drawer two-step "who pays" → "payment method + summary" flow for screening-report payments.</span></td>
+          <td><span class="video-matched">Rental Applications</span> (created Mar 22, 2026 — 123 days before this release)</td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-2097">L2L-2097</a></td>
+          <td>List-unit action added to unit drawer for vacant units</td>
+          <td class="original">Added a List unit action for vacant, unlisted units in the unit drawer, while listed or occupied units still show Manage listing.</td>
+          <td>The unit drawer was missing a way to create a listing for a vacant unit — it only offered "Manage listing" (for units already listed). Now vacant, unlisted units show a "List unit" action in the drawer's top actions.</td>
+          <td><span class="matched">MATCHED</span> — <a href="http://support.doorloop.com/en/articles/6066925-create-an-online-listing-for-your-rentals">Create an Online Listing for Your Rentals</a><br><span class="note">Likely update needed: mention the new "List unit" quick action available directly from the unit drawer for vacant, unlisted units.</span></td>
+          <td><span class="video-matched">Listings</span> (created Mar 22, 2026 — 123 days before this release)</td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-2101">L2L-2101</a></td>
+          <td>Full-width drawer tab divider + 1px active indicator</td>
+          <td class="original">Added a full-width drawer tab divider and matched the active tab indicator to 1px for a cleaner look.</td>
+          <td>Pure visual polish shared across all entity drawers: the gray divider under the tab strip now spans the full drawer width, and the blue active-tab indicator was thinned from 2px to 1px so it sits flush on the divider line.</td>
+          <td><span class="internal">INTERNAL</span> — cosmetic CSS/pixel-alignment fix with no functional or content change; no Help Center update needed.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-1523">BAN-1523</a></td>
+          <td>Alerts for failed Treasury payouts/top-ups</td>
+          <td class="original">Added alerts for failed Treasury payouts and top-ups so support can respond faster to payment issues.</td>
+          <td>Internal observability only: a new webhook endpoint pages on-call via PagerDuty (through the existing #banking-alerts pipeline) when a platform Treasury payout or top-up fails, with enough context (Stripe object ID, amount, failure reason) to triage without leaving the alert.</td>
+          <td><span class="internal">INTERNAL</span> — backend alerting/on-call tooling; no customer-visible behavior or documentation change.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>None — every customer-visible feature in this release maps to an existing article that likely needs a targeted update (see notes above). No standalone new article is warranted for v9.4.42.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Duration</th><th>Features it relates to</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><a href="https://doorloop.wistia.com/medias/pmogitfoao">Add a New Property</a></td><td>Mar 18, 2026</td><td>—</td><td>ACT-1279 (Setup-mode empty states)</td><td>Yes — older than this release / review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/3i8ub7vvpz">Creating Leases</a></td><td>Mar 18, 2026</td><td>—</td><td>ACT-1279 (Setup-mode empty states)</td><td>Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/osq4pkssqe">Fees Settings Overview</a></td><td>Mar 18, 2026</td><td>3:48</td><td>TEN-1120 (Platform Fee wording)</td><td>Yes — older than this release / review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td><td>Mar 22, 2026</td><td>—</td><td>L2L-2084 (reports tab redesign), L2L-2099 (screening report payment flow)</td><td>Yes — older than this release / review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/2hr70has8m">Sending eSignature Requests</a></td><td>Mar 23, 2026</td><td>—</td><td>L2L-2013 (embedded e-sign reminders)</td><td>Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/n4hff6ccd5">Creating eSignature Templates</a></td><td>Mar 23, 2026</td><td>—</td><td>L2L-2013 (embedded e-sign reminders)</td><td>Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/34ofizmqi1">Lease Renewals Overview</a></td><td>Mar 20, 2026</td><td>—</td><td>TEN-1104 (lease drawer polish)</td><td>Yes — older than this release / review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/1xqjh8xe3d">Listings</a></td><td>Mar 22, 2026</td><td>—</td><td>L2L-2097 (List unit action)</td><td>Review</td></tr>
+    </tbody>
+  </table>
+  <p><em>Suggested new training videos:</em> None — TEN-1042 (bulk Auto-Pay request) has no closely matching video today; consider a short clip on the lease-list bulk actions bar if training coverage of AR Dashboard bulk actions expands.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>TEN-1093</strong> — backend tenant-portal-server migration parity work, flag-gated, no user-facing change.</li>
+    <li><strong>TEN-1119</strong> — silent analytics/dedup fix removing a duplicate popup; the visible popup itself is unchanged and already documented.</li>
+    <li><strong>L2L-2101</strong> — cosmetic CSS/pixel-alignment fix to drawer tab dividers, no content impact.</li>
+    <li><strong>BAN-1523</strong> — internal PagerDuty alerting for failed Treasury payouts/top-ups, no customer-visible change.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
