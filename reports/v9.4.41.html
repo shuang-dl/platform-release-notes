@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.41 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+    .internal { color: #666; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.41 — 2026-07-23</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1784810303431999">View original Slack post</a> · <code>1784810303.431999</code></p>
+
+  <h2>Summary</h2>
+  <p>This small release ships 2 changes: an internal security hardening fix in Onboarding &amp; Imports (ACT-1362, adding authenticated bearer-token requests to the GSF AI migration service) and a Tenant Experience &amp; Payments improvement (TEN-1101) that persists each user's custom dashboard widget layout and sizes across sessions. Only the dashboard layout change is customer-visible; the migration-service auth change is backend-only.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (2)</span>
+    <span class="chip" data-area="onboarding-imports">Onboarding &amp; Imports (1)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (1)</span>
+  </div>
+
+  <section class="area-section" data-area="onboarding-imports">
+    <h2>Onboarding &amp; Imports <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-1362">ACT-1362</a></td>
+          <td>Secure the AI data-migration service with a bearer token</td>
+          <td class="original">Added authenticated migration requests when a service token is configured, while keeping existing behavior when it is not.</td>
+          <td>The server-side proxy that calls the GSF AI migration service now attaches an <code>Authorization: Bearer &lt;token&gt;</code> header whenever the <code>ROSETTA_SERVICE_TOKEN</code> secret is configured (which it will be in prod), and sends no auth header when it isn't (local dev). This is a backend security hardening change with no visible UI difference for property managers.</td>
+          <td><span class="internal">INTERNAL</span> — no Help Center change; purely a server-to-server auth header added to the AI data-migration proxy, no user-facing workflow changed.</td>
+          <td><span class="video-matched">Import Your Existing Data</span> (created Mar 23, 2026 — 122 days before this release)<br><span class="note">Topical overlap only ("import"/migration) — this video covers the customer-facing import flow, which is unchanged by this ticket. No update needed.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Linear</th>
+          <th>Feature</th>
+          <th>Original Notes (Slack)</th>
+          <th>What it does</th>
+          <th>Affected articles</th>
+          <th>Affected videos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1101">TEN-1101</a></td>
+          <td>Dashboard widget layout now saves automatically</td>
+          <td class="original">Added dashboard widget layout persistence so users see their saved order and sizes on return.</td>
+          <td>The Overview dashboard now remembers each user's custom widget arrangement and sizing (per the merged PR, "persist widget layout and add reorder analytics") — when a user rearranges or resizes widgets and comes back later, the dashboard loads in the same layout instead of resetting to default.</td>
+          <td><span class="matched">MATCHED</span>
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6249901-move-and-arrange-widgets-on-your-dashboard">Move and Arrange Widgets on Your Dashboard</a><br><span class="note">Likely update needed: note that the rearranged layout now persists automatically across sessions/logins, rather than only implying a one-time rearrangement.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/6249871-add-widgets-to-your-dashboard">Add Widgets to Your Dashboard</a><br><span class="note">Likely update needed: mention that widget sizes/positions chosen when adding a widget will now be remembered on return visits.</span></li>
+              <li><a href="http://support.doorloop.com/en/articles/6249883-remove-widgets-from-your-dashboard">Remove Widgets From Your Dashboard</a><br><span class="note">Likely update needed: confirm the remaining layout after removal is now saved, not reset on next login.</span></li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Navigating Dashboard</span> (created Mar 17, 2026 — 128 days before this release)<br><span class="note">"Navigating Dashboard" (created Mar 17, 2026 — 128 days before this release) likely needs a short update/callout that widget layout now persists between sessions.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p>None — no unmatched features this release. TEN-1101 folds into the existing widget-arrangement articles above; ACT-1362 is internal-only.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead>
+      <tr><th>Video</th><th>Created</th><th>Duration</th><th>Features it relates to</th><th>Needs update?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/q3oejrw55n">Navigating Dashboard</a></td>
+        <td>Mar 17, 2026</td>
+        <td>1:14</td>
+        <td>TEN-1101 (Dashboard widget layout persistence)</td>
+        <td>Yes — older than this release / Review</td>
+      </tr>
+      <tr>
+        <td><a href="https://doorloop.wistia.com/medias/h9y7ymsrfc">Import Your Existing Data</a></td>
+        <td>Mar 23, 2026</td>
+        <td>5:26</td>
+        <td>ACT-1362 (AI migration service auth — backend only)</td>
+        <td>Review only — topical overlap, no functional change to update for</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><b>ACT-1362</b> — Backend-only auth header added to the AI migration service proxy; no visible change to any customer-facing workflow or screen.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
