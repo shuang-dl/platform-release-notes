@@ -366,5 +366,13 @@
     "filename": "reports/v9.4.41.html",
     "generatedAt": "2026-07-27T00:00:00Z",
     "summary": "This small release ships 2 changes: an internal security hardening fix in Onboarding & Imports (ACT-1362, adding authenticated bearer-token requests to the GSF AI migration service) and a Tenant Experience & Payments improvement (TEN-1101) that persists each user's custom dashboard widget layout and sizes across sessions. Only the dashboard layout change is customer-visible; the migration-service auth change is backend-only."
+  },
+  {
+    "date": "2026-07-23",
+    "version": "v9.4.42",
+    "title": "Release v9.4.42 — Help Center Impact",
+    "filename": "reports/v9.4.42.html",
+    "generatedAt": "2026-07-27T00:00:00Z",
+    "summary": "This release ships 12 changes across Onboarding & Imports (setup-mode empty states), Tenant Experience & Payments (bulk Auto-Pay requests, insurance-popup dedup, DoorLoop Platform Fee wording, tenant-portal-server parity), Leads & Leasing (rental application drawer reports/payment flows, embedded e-signature reminders, lease drawer polish, unit listing action, drawer tab styling), and Banking (alerts for failed Treasury payouts and top-ups). Most changes are customer-visible UI/workflow improvements; a few are internal reliability, legal-wording, or observability fixes with no Help Center impact."
   }
 ]
