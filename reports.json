@@ -390,5 +390,13 @@
     "filename": "reports/v9.4.47.html",
     "generatedAt": "2026-07-27T00:00:00Z",
     "summary": "This release ships a single backend performance improvement in Tenant Experience & Payments: TEN-1153 adds Redis caching (with gzip compression) for AR dashboard lease and aging widget queries, collapsing redundant active-lease lookups and cutting the aging widget's load time from roughly 17.6s to ~1s on large accounts. The change is purely a server-side performance fix — dashboard behavior and data shown to users are unchanged, so no Help Center article or training video needs updating."
+  },
+  {
+    "date": "2026-07-28",
+    "version": "v9.4.52",
+    "title": "Release v9.4.52 — Help Center Impact",
+    "filename": "reports/v9.4.52.html",
+    "generatedAt": "2026-07-28T00:00:00Z",
+    "summary": "This release ships six changes across PM Operations (clickable maintenance-task links, Properties list grouping by portfolio/owner, and a cleaner lease renewal overview), Tenant Experience & Payments (an AR dashboard filter and performance fix), and Workflows (a 7-step lease-renewal agent and a Communications settings empty state). Most changes are customer-visible; one (the AR dashboard fix) is an internal bug fix with no documentation impact."
   }
 ]
