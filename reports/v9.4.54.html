@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Release v9.4.54 — Help Center Impact</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 0.5rem; }
+    h2 { margin-top: 2.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border-bottom: 1px solid #eee; padding: 0.6rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #fafafa; }
+    .matched { color: #1f7a4d; font-weight: 600; }
+    .unmatched { color: #b3541e; font-weight: 600; }
+    .internal { color: #666; font-weight: 600; }
+    .meta { color: #7a3fb3; font-weight: 600; }
+    .video-matched { color: #5b3fb3; font-weight: 600; }
+    .no-video { color: #b3541e; font-weight: 600; }
+    .label { display: inline-block; background: #f0f0f0; border-radius: 4px; padding: 1px 6px; font-size: 0.8em; margin-right: 4px; }
+    .note { font-size: 0.92em; color: #444; }
+    code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0.5rem; padding: 0.85rem; background: #fafafa; border-radius: 8px; border: 1px solid #ececec; }
+    .filters .label-text { font-size: 0.85em; color: #555; align-self: center; margin-right: 0.5rem; font-weight: 600; }
+    .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; border: 1px solid #d6d6d6; background: #fff; cursor: pointer; font-size: 0.85em; user-select: none; }
+    .chip:hover { background: #f0f0f0; }
+    .chip.active { background: #18408f; color: #fff; border-color: #18408f; }
+    .chip[data-area="all"].active { background: #1a1a1a; border-color: #1a1a1a; }
+    .area-section { margin-top: 2rem; }
+    .area-section.hidden { display: none; }
+    .area-section h2 .count { color: #555; font-weight: 400; font-size: 0.7em; margin-left: 0.5rem; }
+    .original { font-size: 0.88em; color: #2d2d2d; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>Release v9.4.54 — 2026-07-29</h1>
+  <p><a href="https://doorloop.slack.com/archives/C0B4GTX1SBG/p1785329096512189">View original Slack post</a> · <code>1785329096.512189</code></p>
+
+  <h2>Summary</h2>
+  <p>This release ships 13 changes across PM Operations (creator/assignee avatars and chevron drill-downs in maintenance lists), Onboarding &amp; Imports (tenant portal feature cards, an instant welcome email with set-password activation, and a redesigned Training Academy hub), Tenant Experience &amp; Payments (AR dashboard daily breakdowns, tenant drawer fixes, a new-tab payment health drill, and a settings-dialog refresh), Workflows (Command Center execution details), Leads &amp; Leasing (server-side holding-deposit withholding), and Banking (a modernized Usage &amp; Limits list). Most items are incremental UI/UX polish; two items (the Training Academy redesign and the Risk Indicator settings dialog rebuild) are meta/internal changes rather than net-new customer features.</p>
+
+  <div class="filters" id="filters">
+    <span class="label-text">Filter by area:</span>
+    <span class="chip active" data-area="all">All (13)</span>
+    <span class="chip" data-area="pm-operations">PM Operations (2)</span>
+    <span class="chip" data-area="onboarding-imports">Onboarding &amp; Imports (3)</span>
+    <span class="chip" data-area="tenant-experience-payments">Tenant Experience &amp; Payments (4)</span>
+    <span class="chip" data-area="workflows">Workflows (2)</span>
+    <span class="chip" data-area="leads-leasing">Leads &amp; Leasing (1)</span>
+    <span class="chip" data-area="banking">Banking (1)</span>
+  </div>
+
+  <section class="area-section" data-area="pm-operations">
+    <h2>PM Operations <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2863">PMO-2863</a></td>
+          <td>Creator &amp; Assignee Avatars in Maintenance Lists</td>
+          <td class="original">Added creator and assignee avatars to maintenance lists, making task ownership easier to scan at a glance.</td>
+          <td>Replaces the flat creator-type icons (Tenant/Owner/Vendor/User) in the maintenance task list with a real xs-size avatar and the person's actual name; AI-created rows keep a sparkles icon. PM-created tasks now show the user's own name instead of the generic "Property manager" label.</td>
+          <td class="matched">MATCHED —
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6093760-create-a-task">Create a Task</a> — Likely update needed: refresh the task-list screenshots to show the new avatar + name in the Created By column.</li>
+              <li><a href="http://support.doorloop.com/en/articles/7191971-edit-a-tenant-request-maintenance-request">Edit a Tenant Request (Maintenance Request)</a> — Likely update needed: same list-view screenshot refresh for tenant requests.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Creating a Task</span> <a href="https://doorloop.wistia.com/medias/i5szoii0n0">(watch)</a><br><span class="note">Created Mar 23, 2026 — 128 days before this release; the task list view shown likely needs re-recording to show the new avatar column.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/PMO-2864">PMO-2864</a></td>
+          <td>Chevron Drill-Downs for Maintenance Drawers</td>
+          <td class="original">Added chevron drill-down links and made recurring property and unit fields open their details in place.</td>
+          <td>All redirecting links inside maintenance drawers (e.g. "Requested by tenant") now use a right-pointing chevron instead of an up-right arrow, and recurring work order property/unit fields open their record's details inline rather than navigating away. Peek and modifier-click behavior are unchanged.</td>
+          <td class="matched">MATCHED —
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/14762070-filter-tasks-work-orders-and-tenant-requests-by-property-and-unit">Filter Tasks, Work Orders, and Tenant Requests by Property and Unit</a> — Likely update needed: note that clicking a property/unit field in a drawer now opens its details inline.</li>
+              <li><a href="http://support.doorloop.com/en/articles/11366177-create-a-recurring-work-order">Create a Recurring Work Order</a> — Likely update needed: mention the new chevron affordance on recurring work order drawer fields.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Add a New Property</span> <a href="https://doorloop.wistia.com/medias/pmogitfoao">(watch)</a>, <span class="video-matched">Add a New Unit</span> <a href="https://doorloop.wistia.com/medias/qhbipfxe62">(watch)</a><br><span class="note">Both created Mar 18, 2026 — ~133 days before this release; low priority since this is a drawer-navigation tweak, not a property/unit setup change.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="onboarding-imports">
+    <h2>Onboarding &amp; Imports <span class="count">3 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-1281">ACT-1281</a></td>
+          <td>Get Started: Tenant Portal Feature Cards + Demo Link</td>
+          <td class="original">Added tenant portal onboarding feature cards and a demo link to preview the tenant experience.</td>
+          <td>The Tenant Portal step in Get Started (both V1 and V2) now shows three benefit-led feature cards — Autopay, AI Maintenance Assistant, and Renters Insurance (with a commercial-only copy variant) — plus a secondary "See it as your tenant →" link that opens a live demo portal in a new tab.</td>
+          <td class="matched">MATCHED —
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6337601-tenant-portal-overview">Tenant Portal Overview</a> — Likely update needed: mention the new Get Started preview cards and demo link.</li>
+              <li><a href="http://support.doorloop.com/en/articles/6766895-how-to-use-the-tenant-portal">How to Use the Tenant Portal</a> — Likely update needed: cross-link from the onboarding step.</li>
+              <li><a href="http://support.doorloop.com/en/articles/12091904-doorloop-ai-assistant-for-the-tenant-portal">DoorLoop AI Assistant for the Tenant Portal</a> — Likely update needed: referenced directly by the new AI Maintenance Assistant card.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">AI Tenant Portal Concierge</span> <a href="https://doorloop.wistia.com/medias/o9ij6alyn7">(watch)</a>, <span class="video-matched">Tenant Portal Overview</span> <a href="https://doorloop.wistia.com/medias/hkxwwfp62a">(watch)</a>, <span class="video-matched">Tenant Portal Settings</span> <a href="https://doorloop.wistia.com/medias/t65qdhawyi">(watch)</a><br><span class="note">All created Mar 2026 (~130+ days before this release) — worth a refresh to match the new demo-portal framing used in Get Started.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-979">ACT-979</a></td>
+          <td>Instant Welcome Email with Set-Password Activation</td>
+          <td class="original">Added a welcome email with a one-time set-password link that signs new customers into the app after activation.</td>
+          <td>New customers now get a backend-sent welcome email within seconds of signup (replacing the old Intercom Series), with a single CTA that lets them set their own password and land signed-in directly in the platform — collapsing the old "login → generic password → reset email → reset" detour into one step. The link is single-use and expires after 7 days.</td>
+          <td class="matched">MATCHED —
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/11956042-accept-your-user-portal-invite">Accept Your User Portal Invite</a> — Likely update needed: note the new immediate welcome email and single-use set-password link for new customers specifically (distinct from the existing invite flow).</li>
+              <li><a href="http://support.doorloop.com/en/articles/8148968-log-into-your-doorloop-account">Log Into Your DoorLoop Account</a> — Likely update needed: cross-reference the new activation path so support can distinguish it from a standard login/reset issue.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Welcome to DoorLoop</span> <a href="https://doorloop.wistia.com/medias/6dqwhwx8xg">(watch)</a><br><span class="note">Created Mar 17, 2026 — 134 days before this release; likely needs a refresh to show the new set-password activation step instead of the old login flow.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/ACT-1460">ACT-1460</a></td>
+          <td>Redesigned Training Academy Hub <span class="label">META</span></td>
+          <td class="original">Added a redesigned Training Academy with a new help panel, improved navigation, and video search across modules.</td>
+          <td><strong>Note: this is a meta change</strong> — it redesigns the Training Hub/help-bubble UI that delivers the Wistia training videos referenced elsewhere in this report, rather than shipping a new product feature. It adds a new help panel, improved navigation, and cross-module video search to the Training Academy page and its launcher bubble.</td>
+          <td class="meta">META —
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6301613-get-started-with-doorloop">Get Started With DoorLoop</a> — Likely update needed: refresh any screenshots of the old Training Hub bubble/panel.</li>
+              <li><a href="http://support.doorloop.com/en/articles/10522250-join-our-live-training-to-enhance-your-doorloop-journey">Join Our Live Training to Enhance Your DoorLoop Journey</a> — Likely update needed: same UI refresh.</li>
+              <li><a href="http://support.doorloop.com/en/articles/9100637-access-the-doorloop-help-center">Access the DoorLoop Help Center</a> — Likely update needed: note the new video-search capability inside Training Academy.</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span><br><span class="note">This ticket changes how existing Wistia videos are surfaced (navigation/search), not the video content itself — no re-recording is implied.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="tenant-experience-payments">
+    <h2>Tenant Experience &amp; Payments <span class="count">4 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1158">TEN-1158</a></td>
+          <td>Daily Breakdown for Late Payments &amp; Collection Trend Charts</td>
+          <td class="original">Added daily breakdowns for the current range in Late Payments and Collection Trend charts, with clearer date labels.</td>
+          <td>In the AR dashboard, selecting the "current" range on the Late Payments and Collection Trend widgets now shows a day-by-day breakdown (day 1 through today) instead of a single monthly bar/point, with day-formatted axis labels. The 3-month/6-month ranges remain monthly.</td>
+          <td class="matched">MATCHED —
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/15400762-rent-payments-dashboard-overview">Rent Payments Dashboard Overview</a> — Likely update needed: document the new daily view for the "current" range on Late Payments and Collection Trend widgets. <em>(also affects TEN-1165 below)</em></li>
+              <li><a href="http://support.doorloop.com/en/articles/6249911-click-on-widgets-to-view-details">Click on Widgets to View Details</a> — Likely update needed: mention the new per-day date labels when drilling into "current."</li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1172">TEN-1172</a></td>
+          <td>Tenant Drawer Lease Card &amp; Warning Banner Fixes</td>
+          <td class="original">Added a tenant leases card and moved the screening warning above the drawer header for clearer overview details.</td>
+          <td>The tenant record drawer now shows a proper lease card (lease name + property) that opens the lease's details in the drawer with an option to go to the full lease overview, and the screening warning banner has been moved above the drawer header so it's seen first.</td>
+          <td class="matched">MATCHED —
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6189780-view-and-edit-tenant-information">View and Edit Tenant Information</a> — Likely update needed: update drawer screenshots to show the new lease card and repositioned warning banner.</li>
+              <li><a href="http://support.doorloop.com/en/articles/10207476-lease-renewals-overview">Lease Renewals Overview</a> — Likely update needed: note the new drill-in path from the tenant drawer's lease card.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Understanding Your Tenant's Ledger</span> <a href="https://doorloop.wistia.com/medias/80b0wtda2i">(watch)</a>, <span class="video-matched">Lease Renewals Overview</span> <a href="https://doorloop.wistia.com/medias/34ofizmqi1">(watch)</a><br><span class="note">Both created Mar 20, 2026 — ~131 days before this release; the tenant drawer walkthrough likely needs a refresh to show the new lease card layout.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1165">TEN-1165</a></td>
+          <td>Payment Health Drill-Down Opens in New Tab</td>
+          <td class="original">Now opens the Payment Health drill in a new tab so managers can inspect transactions without leaving the dashboard.</td>
+          <td>Clicking through from the AR dashboard's Payment Health indicator to incoming-payment transaction details now opens in a new browser tab instead of navigating away from the dashboard.</td>
+          <td class="matched">MATCHED —
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/15400762-rent-payments-dashboard-overview">Rent Payments Dashboard Overview</a> — Likely update needed: note that the Payment Health drill-down now opens in a new tab. <em>(merged with TEN-1158 above)</em></li>
+            </ul>
+          </td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/TEN-1159">TEN-1159</a></td>
+          <td>Risk Indicator Settings Now Uses Standard Settings Dialog <span class="label">INTERNAL</span></td>
+          <td class="original">Now uses the shared settings dialog frame for Risk indicator settings, with matching loading, save, and close behavior.</td>
+          <td>Purely internal UI-framework consistency work: the Lease Manager → Risk Indicator settings dialog was rebuilt on the same shared <code>SettingsAnimatedContentDialog</code> frame used by every other settings dialog (e.g. Company Information), instead of a hand-rolled dialog. All fields, permissions, and behavior are unchanged for end users.</td>
+          <td class="internal">INTERNAL — no Help Center change; same fields/behavior, only the dialog chrome/frame changed under the hood.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="workflows">
+    <h2>Workflows <span class="count">2 items</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>—</td>
+          <td>Pre-Run Execution Records <span class="label">INTERNAL</span></td>
+          <td class="original">Added pre-run execution records so triggered runs can attach to an execution from the start.</td>
+          <td>Backend-only change (no linked Linear ticket in the Slack post): triggered workflow runs now create an execution record before the run starts, so the run can attach to it from the beginning instead of one being created after the fact. No visible change to the Command Center UI.</td>
+          <td class="internal">INTERNAL — backend execution-tracking plumbing; no Help Center change.</td>
+          <td><span class="no-video">— no related video</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/WOR-1490">WOR-1490</a></td>
+          <td>Command Center Execution Details with Operation-Level Links</td>
+          <td class="original">Added operation-level execution details with inline resource links and clearer destinations for leases, renewals, and inspections.</td>
+          <td>The Command Center execution-detail view now surfaces each individual operation (tool call) an AI agent performed — tool name, status, summary, and timestamp — grouped under its step, instead of only a rolled-up list of touched resources. Linked-resource links/labels now resolve based on the specific step + tool + resource type, so leases, renewals, and inspections get correct, context-aware destinations instead of one generic link per resource type.</td>
+          <td class="unmatched">UNMATCHED — no existing Help Center article documents Command Center execution details specifically; see "Suggested new articles" below.</td>
+          <td><span class="video-matched">Workflows</span> <a href="https://doorloop.wistia.com/medias/c3pk1wpm3m">(watch)</a><br><span class="note">Created Mar 23, 2026 — 128 days before this release; likely needs a refresh/addendum covering the new execution-detail drill-down.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="leads-leasing">
+    <h2>Leads &amp; Leasing <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/L2L-2150">L2L-2150</a></td>
+          <td>Server-Side Holding Deposit Withholding</td>
+          <td class="original">Added server-side withholding for eligible holding deposits, with balanced journal entries and idempotent settlement tracking.</td>
+          <td>When a holding deposit is eligible to be withheld (e.g. a canceled or denied rental application), the server now performs the withholding automatically, generating balanced journal entries and tracking settlement idempotently so the operation can't be double-applied.</td>
+          <td class="matched">MATCHED —
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/6176899-withhold-a-security-deposit-or-any-lease-deposit-on-an-active-lease">Withhold a Security Deposit or Any Lease Deposit on an Active Lease</a> — Likely update needed: clarify how the new server-side automatic withholding for holding deposits (pre-lease) differs from the existing manual withholding flow described here.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Rental Applications</span> <a href="https://doorloop.wistia.com/medias/cj0cls5dwu">(watch)</a><br><span class="note">Created Mar 22, 2026 — ~129 days before this release; tangential match (application/holding-deposit lifecycle) — review for a mention of deposit withholding on cancellation.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="area-section" data-area="banking">
+    <h2>Banking <span class="count">1 item</span></h2>
+    <table>
+      <thead>
+        <tr><th>Linear</th><th>Feature</th><th>Original Notes (Slack)</th><th>What it does</th><th>Affected articles</th><th>Affected videos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://linear.app/doorloop/issue/BAN-1542">BAN-1542</a></td>
+          <td>Modernized Usage &amp; Limits List</td>
+          <td class="original">Added a modern Usage &amp; Limits list for incoming and outgoing payments with update info actions and payment breakdown tooltips.</td>
+          <td>The Usage &amp; Limits tab (shared by both Incoming and Outgoing Payments) was migrated to DoorLoop's new list engine with the DL 2.0 look, keeping the existing progress-bar header, and rolled out behind a toggle alongside the legacy v1 list.</td>
+          <td class="matched">MATCHED —
+            <ul>
+              <li><a href="http://support.doorloop.com/en/articles/10844079-view-your-outgoing-payment-limits">View Your Outgoing Payment Limits</a> — Likely update needed: refresh screenshots to the new list engine styling.</li>
+              <li><a href="http://support.doorloop.com/en/articles/10436744-outgoing-payments-limit-increase">Outgoing Payments Limit Increase</a> — Likely update needed: same screenshot refresh.</li>
+            </ul>
+          </td>
+          <td><span class="video-matched">Setting Up Incoming Payments</span> <a href="https://doorloop.wistia.com/medias/bzdlte97ff">(watch)</a>, <span class="video-matched">Setting Up Outgoing Payments</span> <a href="https://doorloop.wistia.com/medias/t294c9xgop">(watch)</a><br><span class="note">Both created Mar 2026 — ~129 days before this release; low priority since this is a visual/engine migration with stated v1 parity.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>Suggested new articles</h2>
+  <p><strong>WOR-1490 — Command Center Execution Details</strong><br>
+  Proposed title: <code>What's New: See exactly what your AI agent did, step by step — Version 9.4.54</code><br>
+  Rationale: no existing article documents the Command Center execution-detail view at all, let alone the new per-operation (tool call) breakdown and context-aware resource links for leases, renewals, and inspections. This is a genuinely new drill-down capability worth its own short article.<br>
+  Suggested keywords: Command Center, execution details, AI agent, operations, tool calls, Fleet of Agents, linked resources.</p>
+
+  <h2>Related training videos</h2>
+  <table>
+    <thead><tr><th>Video</th><th>Created</th><th>Duration</th><th>Features it relates to</th><th>Needs update?</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://doorloop.wistia.com/medias/i5szoii0n0">Creating a Task</a></td><td>Mar 23, 2026</td><td>2:37</td><td>PMO-2863</td><td>Yes — older than this release / Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/pmogitfoao">Add a New Property</a></td><td>Mar 18, 2026</td><td>2:40</td><td>PMO-2864</td><td>Review (low priority)</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/qhbipfxe62">Add a New Unit</a></td><td>Mar 18, 2026</td><td>1:20</td><td>PMO-2864</td><td>Review (low priority)</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/o9ij6alyn7">AI Tenant Portal Concierge</a></td><td>Mar 23, 2026</td><td>2:43</td><td>ACT-1281</td><td>Yes — older than this release / Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/hkxwwfp62a">Tenant Portal Overview</a></td><td>Mar 23, 2026</td><td>3:19</td><td>ACT-1281</td><td>Yes — older than this release / Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/t65qdhawyi">Tenant Portal Settings</a></td><td>Mar 18, 2026</td><td>5:44</td><td>ACT-1281</td><td>Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/6dqwhwx8xg">Welcome to DoorLoop</a></td><td>Mar 17, 2026</td><td>4:34</td><td>ACT-979</td><td>Yes — older than this release / Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/80b0wtda2i">Understanding Your Tenant's Ledger</a></td><td>Mar 20, 2026</td><td>3:40</td><td>TEN-1172</td><td>Yes — older than this release / Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/34ofizmqi1">Lease Renewals Overview</a></td><td>Mar 20, 2026</td><td>3:49</td><td>TEN-1172</td><td>Yes — older than this release / Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/c3pk1wpm3m">Workflows</a></td><td>Mar 23, 2026</td><td>4:11</td><td>WOR-1490</td><td>Yes — older than this release / Review</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/cj0cls5dwu">Rental Applications</a></td><td>Mar 22, 2026</td><td>6:28</td><td>L2L-2150</td><td>Review (tangential)</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/bzdlte97ff">Setting Up Incoming Payments</a></td><td>Mar 23, 2026</td><td>6:47</td><td>BAN-1542</td><td>Review (low priority)</td></tr>
+      <tr><td><a href="https://doorloop.wistia.com/medias/t294c9xgop">Setting Up Outgoing Payments</a></td><td>Mar 23, 2026</td><td>3:22</td><td>BAN-1542</td><td>Review (low priority)</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Suggested new training videos:</strong> TEN-1158 (AR dashboard daily breakdown) and TEN-1165 (Payment Health drill-down) have no related training video — both are minor dashboard-widget refinements folded into the existing AR dashboard walkthrough, so a standalone video is not recommended. ACT-1460 (Training Academy redesign) has no related video since it changes how videos are delivered, not their content.</p>
+
+  <h2>Items intentionally skipped (internal-only)</h2>
+  <ul>
+    <li><strong>TEN-1159</strong> — Risk Indicator settings dialog was rebuilt on the shared settings frame; fields and behavior are unchanged for users, only internal UI-framework consistency.</li>
+    <li><strong>Pre-run execution records</strong> (no Linear link) — backend-only change to when workflow execution records are created; no visible UI change.</li>
+  </ul>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('#filters .chip');
+      var sections = document.querySelectorAll('.area-section');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var area = chip.getAttribute('data-area');
+          sections.forEach(function(sec) {
+            if (area === 'all' || sec.getAttribute('data-area') === area) {
+              sec.classList.remove('hidden');
+            } else {
+              sec.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
