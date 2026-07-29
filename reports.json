@@ -398,5 +398,13 @@
     "filename": "reports/v9.4.52.html",
     "generatedAt": "2026-07-28T00:00:00Z",
     "summary": "This release ships six changes across PM Operations (clickable maintenance-task links, Properties list grouping by portfolio/owner, and a cleaner lease renewal overview), Tenant Experience & Payments (an AR dashboard filter and performance fix), and Workflows (a 7-step lease-renewal agent and a Communications settings empty state). Most changes are customer-visible; one (the AR dashboard fix) is an internal bug fix with no documentation impact."
+  },
+  {
+    "date": "2026-07-29",
+    "version": "v9.4.54",
+    "title": "Release v9.4.54 — Help Center Impact",
+    "filename": "reports/v9.4.54.html",
+    "generatedAt": "2026-07-29T13:26:58Z",
+    "summary": "This release ships 13 changes across PM Operations (creator/assignee avatars and chevron drill-downs in maintenance lists), Onboarding & Imports (tenant portal feature cards, an instant welcome email with set-password activation, and a redesigned Training Academy hub), Tenant Experience & Payments (AR dashboard daily breakdowns, tenant drawer fixes, a new-tab payment health drill, and a settings-dialog refresh), Workflows (Command Center execution details), Leads & Leasing (server-side holding-deposit withholding), and Banking (a modernized Usage & Limits list). Most items are incremental UI/UX polish; two items (the Training Academy redesign and the Risk Indicator settings dialog rebuild) are meta/internal changes rather than net-new customer features."
   }
 ]
